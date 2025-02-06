@@ -4,46 +4,47 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums
 
-public class LinkAttackingState : ILinkState
+public class LinkUsingItemState : ILinkState
 {
     private Link link;
     private Direction currentDirection;
-    private float attackDuration;
+    private float useItemDuration;
 
-    public LinkAttackingState(Link link, Direction direction)
+    public LinkUsingItemState(Link link, Direction direction)
     {
         this.link = link;
-        currentDirection = direction;
-        attackDuration = 0.5f; // Attack lasts for half a second.
+        this.currentDirection = direction;
+        useItemDuration = 0.5f; // Using an item lasts for half a second.
     }
 
     public void Enter()
     {
+        // Set the using item animation 
         switch (currentDirection)
         {
             case Direction.Up:
-                link.SetSprite("LinkAttackingUp");
+                link.SetSprite("UsingItemUp");
                 break;
             case Direction.Down:
-                link.SetSprite("LinkAttackingDown");
+                link.SetSprite("UsingItemDown");
                 break;
             case Direction.Left:
-                link.SetSprite("LinkAttackingLeft");
+                link.SetSprite("UsingItemLeft");
                 break;
             case Direction.Right:
-                link.SetSprite("LinkAttackingRight");
+                link.SetSprite("UsingItemRight");
                 break;
         }
 
-        link.PerformAttack();
+        link.UseItem();
     }
 
     public void Update(GameTime gameTime)
     {
-        attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (attackDuration <= 0)
+        useItemDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (useItemDuration <= 0)
         {
-            // After attacking, return to Idle.
+            // Return to Idle once done.
             link.ChangeState(new LinkIdleState(link, currentDirection));
         }
     }
@@ -55,6 +56,6 @@ public class LinkAttackingState : ILinkState
 
     public void Exit()
     {
-        // exit...
+        // Exit...
     }
 }

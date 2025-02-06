@@ -5,13 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Link
 {
-    // current state for Link 
     private ILinkState currentState;
-
-    // Position of Link 
     public Vector2 Position { get; set; }
-
-    
     private ISprite currentSprite;
     private SpriteFactory spriteFactory;
 
@@ -29,9 +24,7 @@ public class Link
     {
         // Initialize the sprite factory (assuming it's implemented as a singleton).
         spriteFactory = SpriteFactory.Instance;
-
         Position = new Vector2(100, 100);
-
         currentSprite = spriteFactory.CreateLinkSprite("Idle");
 
         // Start in the Idle state.
@@ -59,7 +52,6 @@ public class Link
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        // Delegate drawing to the current state.
         currentState.Draw(spriteBatch);
     }
 
