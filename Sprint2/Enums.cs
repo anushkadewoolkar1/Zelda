@@ -7,4 +7,10 @@ namespace Zelda.Enums
         Left,
         Right
     }
+
+    public enum EnemyType
+    {
+        Keese,
+        Stalfos
+    }
 }
