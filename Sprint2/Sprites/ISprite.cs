@@ -16,5 +16,8 @@ namespace Sprint0.Sprites
 
         // Draws sprite on the screen
         void Draw(SpriteBatch spriteBatch);
+
+        // Draws sprite on the screen, NOW requires position to be passed, used for LinkSprite
+        void Draw(SpriteBatch spriteBatch, Vector2 position);
     }
 }
