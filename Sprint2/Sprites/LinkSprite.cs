@@ -22,7 +22,7 @@ namespace Sprint0.Sprites
         public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] LinkStates)
         {
             _texture = texture;
-            linkDamaged = Convert.ToBoolean(LinkStates[2]);
+            linkDamaged = Convert.ToBoolean(LinkStates[3]);
             if (!linkDamaged)
             {
                 simpleClock = 0;
@@ -34,16 +34,16 @@ namespace Sprint0.Sprites
             switch (LinkStates[1])
             {
                 case 1:
-                    sourceRectangle = new Rectangle(16, 16, spriteSheetXPos, spriteSheetYPos);
+                    sourceRectangle = new Rectangle(16, 16, FixDirection(spriteSheetXPos, LinkStates[2]), spriteSheetYPos);
                     break;
                 case 2:
-                    sourceRectangle = new Rectangle(16, 16, spriteSheetXPos + 17, spriteSheetYPos + colorAdjustment);
+                    sourceRectangle = new Rectangle(16, 16, FixDirection(spriteSheetXPos + 17, LinkStates[2]), spriteSheetYPos + colorAdjustment);
                     break;
                 case 3:
-                    sourceRectangle = new Rectangle(16, 16, spriteSheetXPos + 34, spriteSheetYPos + colorAdjustment);
+                    sourceRectangle = new Rectangle(16, 16, FixDirection(spriteSheetXPos + 34, LinkStates[2]), spriteSheetYPos + colorAdjustment);
                     break;
                 case 4:
-                    sourceRectangle = new Rectangle(16, 16, spriteSheetXPos + 51, spriteSheetYPos + colorAdjustment);
+                    sourceRectangle = new Rectangle(16, 16, FixDirection(spriteSheetXPos + 51, LinkStates[2]), spriteSheetYPos + colorAdjustment);
                     break;
                 default:
                     break;
@@ -58,8 +58,7 @@ namespace Sprint0.Sprites
             if (!linkDamaged)
             {
                 spriteBatch.Draw(_texture, sourceRectangle, destinationRectangle, Color.White);
-            } else
-            {
+            } else {
                 switch (simpleClock % 3)
                 {
                     case 0:
@@ -82,6 +81,21 @@ namespace Sprint0.Sprites
         public void Update(GameTime gameTime)
         {
             //no-op
+        }
+
+        public void Draw(SpriteBatch _textures)
+        {
+            //no-op
+        }
+
+        private int FixDirection(int xCoordinates, int Direction)
+        {
+            if (Direction != 1)
+            {
+                return xCoordinates;
+            } else {
+                return 742 - xCoordinates + 16;
+            }
         }
 
     }
