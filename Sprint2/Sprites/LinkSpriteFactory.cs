@@ -37,7 +37,7 @@ namespace SpriteFactory
 
         public void LoadZeldaTextures(ContentManager spriteBatch)
         {
-            zeldaSpriteSheet = spriteBatch.Load<Texture2D>("Zelda");
+            zeldaSpriteSheet = spriteBatch.Load<Texture2D>("LinkAllOverworldColorsWithReflection");
         }
         public ISprite CreateDownWalk(int frame, int state, int health)
         {
