@@ -171,32 +171,32 @@ namespace SpriteFactory
 
         public ISprite CreateRightAttackMagicalSword(int frame, int state, int health)
         {
-            LinkTotality = [1, 1, state, health];
+            LinkTotality = [2, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 187, 77, LinkTotality);
         }
 
 
         public ISprite CreateDownAttackMagicalRod(int frame, int state, int health)
         {
-            LinkTotality = [1, 1, state, health];
+            LinkTotality = [0, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
         }
 
         public ISprite CreateUpAttackMagicalRod(int frame, int state, int health)
         {
-            LinkTotality = [1, 1, state, health];
+            LinkTotality = [0, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
         }
 
         public ISprite CreateLeftAttackWMagicalRod(int frame, int state, int health)
         {
-            LinkTotality = [1, 1, state, health];
+            LinkTotality = [1, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
         }
 
         public ISprite CreateRightAttackMagicalRod(int frame, int state, int health)
         {
-            LinkTotality = [1, 1, state, health];
+            LinkTotality = [2, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
         }
     }
