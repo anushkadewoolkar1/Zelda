@@ -28,6 +28,13 @@ namespace Sprint0.Sprites
                 simpleClock = 0;
             }
 
+            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[0], LinkStates[1]);
+
+            if (0 < LinkStates[2] && LinkStates[2] < 3 && (LinkStates[0] % 2) == 1)
+            {
+                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1], LinkStates[2]);
+            }
+            
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
             colorAdjustment = (LinkStates[0] / 2) * 310;
 
@@ -98,5 +105,97 @@ namespace Sprint0.Sprites
             }
         }
 
+        private int[] AdjustAttacks(int xCoordinate, int yCoordinate, int frame, int facingDirection)
+        {
+            int[] sourceRectangleDimensions = {xCoordinate, yCoordinate, 16, 16};
+
+            if (yCoordinate > 46)
+            {
+                return sourceRectangleDimensions;
+            }
+
+            if (facingDirection == 0)
+            {
+                switch (frame)
+                {
+                    case 2:
+                        sourceRectangleDimensions[3] = 27;
+                        break;
+                    case 3:
+                        sourceRectangleDimensions[3] = 23;
+                        break;
+                    case 4:
+                        sourceRectangleDimensions[3] = 19;
+                        break;
+                    default:
+                        break;
+                }    
+            } else if (facingDirection == 3)
+            {
+                switch (frame)
+                {
+                    case 2:
+                        sourceRectangleDimensions[3] = 27;
+                        break;
+                    case 3:
+                        sourceRectangleDimensions[3] = 23;
+                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
+                        break;
+                    case 4:
+                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
+                        break;
+                    default:
+                        break;
+                }
+            } else
+            {
+                switch (frame)
+                {
+                    case 2:
+                        sourceRectangleDimensions[2] = 28;
+                        break;
+                    case 3:
+                        sourceRectangleDimensions[2] = 23;
+                        sourceRectangleDimensions[0] = xCoordinate + 12;
+                        break;
+                    case 4:
+                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[0] = xCoordinate + 12 + 8;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return sourceRectangleDimensions;
+        }
+
+        private int[] MagicalShield(int[] sourceRectangleDimensions, int facingDirection, int frame)
+        {
+            switch (sourceRectangleDimensions[2])
+            {
+                case 1:
+                    sourceRectangleDimensions[0] += 288;
+                    break;
+                case 47:
+                    sourceRectangleDimensions[1] += 81;
+                    sourceRectangleDimensions[0] -= 35;
+                    break;
+                case 77:
+                    sourceRectangleDimensions[1] += 51;
+                    if (frame == 3)
+                    {
+                        sourceRectangleDimensions[0] -= 10;
+                    } else if (frame == 4)
+                    {
+                        sourceRectangleDimensions[0] -= 11;
+                    }
+                    break;
+                default:
+                    break;
+                
+            }
+            return sourceRectangleDimensions;
+        }
     }
 }
