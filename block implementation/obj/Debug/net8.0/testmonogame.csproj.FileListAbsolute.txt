@@ -1,0 +1,50 @@
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/testmonogame
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/testmonogame.deps.json
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/testmonogame.runtimeconfig.json
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/testmonogame.dll
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/testmonogame.pdb
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/MonoGame.Framework.dll
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/NVorbis.dll
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
+/Users/anushkadewoolkar/testmonogame/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.csproj.AssemblyReference.cache
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.GeneratedMSBuildEditorConfig.editorconfig
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.AssemblyInfoInputs.cache
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.AssemblyInfo.cs
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.csproj.CoreCompileInputs.cache
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmono.4164B126.Up2Date
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.dll
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/refint/testmonogame.dll
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.pdb
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/testmonogame.genruntimeconfig.cache
+/Users/anushkadewoolkar/testmonogame/obj/Debug/net8.0/ref/testmonogame.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/testmonogame
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/testmonogame.deps.json
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/testmonogame.runtimeconfig.json
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/testmonogame.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/testmonogame.pdb
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/MonoGame.Framework.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/NVorbis.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
+/Users/anushkadewoolkar/block implementation/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.csproj.AssemblyReference.cache
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.GeneratedMSBuildEditorConfig.editorconfig
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.AssemblyInfoInputs.cache
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.AssemblyInfo.cs
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.csproj.CoreCompileInputs.cache
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmono.4164B126.Up2Date
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.dll
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/refint/testmonogame.dll
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.pdb
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/testmonogame.genruntimeconfig.cache
+/Users/anushkadewoolkar/block implementation/obj/Debug/net8.0/ref/testmonogame.dll

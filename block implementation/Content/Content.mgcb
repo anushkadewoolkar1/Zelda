@@ -1,0 +1,74 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+/begin Texture2D block1
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block1.png
+/end
+
+/begin Texture2D block2
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block2.png
+/end
+
+/begin Texture2D block3
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block3.png
+/end
+
+/begin Texture2D block4
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block4.png
+/end
+
+/begin Texture2D block5
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block5.png
+/end
+
+/begin Texture2D block6
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block6.png
+/end
+
+/begin Texture2D block7
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block7.png
+/end
+
+/begin Texture2D block8
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block8.png
+/end
+
+/begin Texture2D block9
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block9.png
+/end
+
+/begin Texture2D block10
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:block10.png
+/end
