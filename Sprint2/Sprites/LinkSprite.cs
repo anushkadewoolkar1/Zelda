@@ -30,12 +30,11 @@ namespace Sprint0.Sprites
                 damageClock = 0;
             }
 
-            int[] sourceDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[0], LinkStates[1]);
+            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[0], LinkStates[1]);
 
-            //Checks if Link is facing Down or Sideways and if Link has the Magical Shield
-            if (LinkStates[2] < 3 && (LinkStates[0] % 2) == 1)
+            if (0 < LinkStates[2] && LinkStates[2] < 3 && (LinkStates[0] % 2) == 1)
             {
-                sourceDimensions = MagicalShield(sourceDimensions, LinkStates[1], LinkStates[2]);
+                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1], LinkStates[2]);
             }
             
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
@@ -44,20 +43,20 @@ namespace Sprint0.Sprites
             switch (LinkStates[1])
             {
                 case 1:
-                    sourceRectangle = new Rectangle(sourceDimensions[2], sourceDimensions[3],
-                        FixDirection(sourceDimensions[0], LinkStates[2]), sourceDimensions[1]);
+                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
+                        FixDirection(sourceRectangleDimensions[0], LinkStates[2]), sourceRectangleDimensions[1]);
                     break;
                 case 2:
-                    sourceRectangle = new Rectangle(sourceDimensions[2], sourceDimensions[3],
-                        FixDirection(sourceDimensions[0] + 17, LinkStates[2]), sourceDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
+                        FixDirection(sourceRectangleDimensions[0] + 17, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
                     break;
                 case 3:
-                    sourceRectangle = new Rectangle(sourceDimensions[2], sourceDimensions[3],
-                        FixDirection(sourceDimensions[0] + 34, LinkStates[2]), sourceDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
+                        FixDirection(sourceRectangleDimensions[0] + 34, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
                     break;
                 case 4:
-                    sourceRectangle = new Rectangle(sourceDimensions[2], sourceDimensions[3],
-                        FixDirection(sourceDimensions[0] + 51, LinkStates[2]), sourceDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
+                        FixDirection(sourceRectangleDimensions[0] + 51, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
                     break;
                 default:
                     break;
@@ -112,11 +111,11 @@ namespace Sprint0.Sprites
 
         private int[] AdjustAttacks(int xCoordinate, int yCoordinate, int frame, int facingDirection)
         {
-            int[] sourceDimensions = {xCoordinate, yCoordinate, 16, 16};
+            int[] sourceRectangleDimensions = {xCoordinate, yCoordinate, 16, 16};
 
             if (yCoordinate > 46)
             {
-                return sourceDimensions;
+                return sourceRectangleDimensions;
             }
 
             if (facingDirection == 0)
@@ -124,13 +123,13 @@ namespace Sprint0.Sprites
                 switch (frame)
                 {
                     case 2:
-                        sourceDimensions[3] = 27;
+                        sourceRectangleDimensions[3] = 27;
                         break;
                     case 3:
-                        sourceDimensions[3] = 23;
+                        sourceRectangleDimensions[3] = 23;
                         break;
                     case 4:
-                        sourceDimensions[3] = 19;
+                        sourceRectangleDimensions[3] = 19;
                         break;
                     default:
                         break;
@@ -140,15 +139,15 @@ namespace Sprint0.Sprites
                 switch (frame)
                 {
                     case 2:
-                        sourceDimensions[3] = 27;
+                        sourceRectangleDimensions[3] = 27;
                         break;
                     case 3:
-                        sourceDimensions[3] = 23;
-                        sourceDimensions[1] = yCoordinate - (27 - 17);
+                        sourceRectangleDimensions[3] = 23;
+                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
                         break;
                     case 4:
-                        sourceDimensions[3] = 19;
-                        sourceDimensions[1] = yCoordinate - (27 - 17);
+                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
                         break;
                     default:
                         break;
@@ -158,48 +157,49 @@ namespace Sprint0.Sprites
                 switch (frame)
                 {
                     case 2:
-                        sourceDimensions[2] = 28;
+                        sourceRectangleDimensions[2] = 28;
                         break;
                     case 3:
-                        sourceDimensions[2] = 23;
-                        sourceDimensions[0] = xCoordinate + 12;
+                        sourceRectangleDimensions[2] = 23;
+                        sourceRectangleDimensions[0] = xCoordinate + 12;
                         break;
                     case 4:
-                        sourceDimensions[3] = 19;
-                        sourceDimensions[0] = xCoordinate + 12 + 8;
+                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[0] = xCoordinate + 12 + 8;
                         break;
                     default:
                         break;
                 }
             }
-            return sourceDimensions;
+            return sourceRectangleDimensions;
         }
 
-        private int[] MagicalShield(int[] sourceDimensions, int facingDirection, int frame)
+        private int[] MagicalShield(int[] sourceRectangleDimensions, int facingDirection, int frame)
         {
-            switch (sourceDimensions[2])
+            switch (sourceRectangleDimensions[2])
             {
                 case 1:
-                    sourceDimensions[0] += 288;
+                    sourceRectangleDimensions[0] += 288;
                     break;
                 case 47:
-                    sourceDimensions[1] += 81;
-                    sourceDimensions[0] -= 35;
+                    sourceRectangleDimensions[1] += 81;
+                    sourceRectangleDimensions[0] -= 35;
                     break;
                 case 77:
-                    sourceDimensions[1] += 51;
+                    sourceRectangleDimensions[1] += 51;
                     if (frame == 3)
                     {
-                        sourceDimensions[0] -= 10;
+                        sourceRectangleDimensions[0] -= 10;
                     } else if (frame == 4)
                     {
-                        sourceDimensions[0] -= 11;
+                        sourceRectangleDimensions[0] -= 11;
                     }
                     break;
                 default:
                     break;
+                
             }
-            return sourceDimensions;
+            return sourceRectangleDimensions;
         }
     }
 }
