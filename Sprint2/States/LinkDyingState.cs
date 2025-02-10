@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SpriteFactory;
 using Zelda.Enums;
 
 public class LinkDyingState : ILinkState
@@ -18,7 +19,7 @@ public class LinkDyingState : ILinkState
     public void Enter()
     {
         // dying logic.
-        link.SetAnimation("Dying");
+        // link.SetSprite(ZeldaSpriteFactory.Instance.CreateDyingLink(0, 0, 0);
         link.HandleDeathStart();
     }
 
@@ -34,7 +35,7 @@ public class LinkDyingState : ILinkState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        link.DrawCurrentAnimation(spriteBatch);
+        link.DrawCurrentSprite(spriteBatch);
     }
 
     public void Exit()

@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
+using Sprint0.Sprites;
 
 public class LinkWalkingState : ILinkState
 {
     private Link link;
     private Direction currentDirection;
 
-    public LinkWalkingState(Link link)
+    public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
-        currentDirection = direction;
+        this.currentDirection = direction;
     }
 
     public void Enter()
@@ -22,16 +23,16 @@ public class LinkWalkingState : ILinkState
         switch (currentDirection)
         {
             case Direction.Up:
-                link.SetSprite("WalkingUp");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(0, 1, link.Health));
                 break;
             case Direction.Down:
-                link.SetSprite("WalkingDown");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(0, 1, link.Health));
                 break;
             case Direction.Left:
-                link.SetSprite("WalkingLeft");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(0, 1, link.Health));
                 break;
             case Direction.Right:
-                link.SetSprite("WalkingRight");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(0, 1, link.Health));
                 break;
         }
     }

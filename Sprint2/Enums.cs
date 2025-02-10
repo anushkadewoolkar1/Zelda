@@ -8,6 +8,13 @@ namespace Zelda.Enums
         Right
     }
 
+    public enum SwordType
+    {
+        WoodenSword,
+        WhiteSword,
+        MagicalSword
+    }
+    
     public enum EnemyType
     {
         OldMan,

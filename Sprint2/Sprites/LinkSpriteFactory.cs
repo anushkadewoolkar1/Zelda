@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
 
-namespace SpriteFactory
+namespace Sprint0.Sprites
 {
-    public class ZeldaSpriteFactory
+    public class LinkSpriteFactory
     {
         private Texture2D zeldaSpriteSheet;
         private enum LinkState { GreenSmallShield, GreenMagicalShield, WhiteSmallShield, WhiteMagicalShield, RedSmallShield, RedMagicalShield };
@@ -21,9 +21,9 @@ namespace SpriteFactory
         private LinkDamaged health = LinkDamaged.Normal;
         int[] LinkTotality;
 
-        private static ZeldaSpriteFactory instance = new ZeldaSpriteFactory();
+        private static LinkSpriteFactory instance = new LinkSpriteFactory();
 
-        public static ZeldaSpriteFactory Instance
+        public static LinkSpriteFactory Instance
         {
             get
             {
@@ -31,7 +31,7 @@ namespace SpriteFactory
             }
         }
 
-        private ZeldaSpriteFactory()
+        private LinkSpriteFactory()
         {
         }
 
@@ -166,7 +166,7 @@ namespace SpriteFactory
             return new LinkSprite(zeldaSpriteSheet, 187, 108, LinkTotality);
         }
 
-        public ISprite CreateLeftAttackWMagicalSword(int frame, int state, int health)
+        public ISprite CreateLeftAttackMagicalSword(int frame, int state, int health)
         {
             LinkTotality = [1, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 187, 77, LinkTotality);
@@ -191,7 +191,7 @@ namespace SpriteFactory
             return new LinkSprite(zeldaSpriteSheet, 280, 108, LinkTotality);
         }
 
-        public ISprite CreateLeftAttackWMagicalRod(int frame, int state, int health)
+        public ISprite CreateLeftAttackMagicalRod(int frame, int state, int health)
         {
             LinkTotality = [1, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 280, 77, LinkTotality);

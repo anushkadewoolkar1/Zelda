@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
+using Sprint0.Sprites;
+using SpriteFactory;
 
 public class LinkUsingItemState : ILinkState
 {
@@ -23,16 +25,18 @@ public class LinkUsingItemState : ILinkState
         switch (currentDirection)
         {
             case Direction.Up:
-                link.SetSprite("UsingItemUp");
+                // For Up, the factory method takes (state, health) as parameters.
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemUp(1, link.Health));
                 break;
             case Direction.Down:
-                link.SetSprite("UsingItemDown");
+                // For Down, assume the factory method takes (frame, state, health) parameters.
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemDown(1, 1, link.Health));
                 break;
             case Direction.Left:
-                link.SetSprite("UsingItemLeft");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemLeft(1, link.Health));
                 break;
             case Direction.Right:
-                link.SetSprite("UsingItemRight");
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemRight(1, link.Health));
                 break;
         }
 
@@ -45,7 +49,7 @@ public class LinkUsingItemState : ILinkState
         if (useItemDuration <= 0)
         {
             // Return to Idle once done.
-            link.ChangeState(new LinkIdleState(link, currentDirection));
+            link.ChangeState(new LinkWalkingState(link, currentDirection));
         }
     }
 

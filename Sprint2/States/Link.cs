@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Sprites;
-using Sprint2.LinkSpriteFactory;
+using Sprint0.Sprites;
+using Zelda.Enums;
 
 
 public class Link
@@ -11,7 +11,7 @@ public class Link
     private ILinkState currentState;
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
-    private LinkSpriteFactory LinkSpriteFactory;
+    private LinkSpriteFactory spriteFactory;
 
     // Invulnerability settings.
     public bool IsInvulnerable { get; private set; }
@@ -21,17 +21,18 @@ public class Link
     private const float Speed = 100f;
 
     // Health property 
-    public int Health { get; set; } = 3;
+    public int Health { get; set; } = 2;
 
     public Link()
     {
-        // Initialize the sprite factory (assuming it's implemented as a singleton).
-        spriteFactory = SpriteFactory.Instance;
+        // Initialize the sprite factory 
+        spriteFactory = LinkSpriteFactory.Instance;
         Position = new Vector2(100, 100);
-        currentSprite = spriteFactory.CreateLinkSprite("Idle");
 
-        // Start in the Idle state.
-        currentState = new LinkIdleState(this);
+
+        // Start initial sprite
+        currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(0, 1, 0);
+        currentState = currentState = new LinkWalkingState(this, Direction.Down);
         currentState.Enter();
     }
 
@@ -39,7 +40,6 @@ public class Link
     {
 
         currentState.Update(gameTime);
-
         currentSprite.Update(gameTime);
 
         // Update invulnerability timer if Link is invulnerable.
@@ -65,9 +65,9 @@ public class Link
         currentState.Enter();
     }
 
-    public void SetSprite(string spriteName)
+    public void SetSprite(ISprite sprite)
     {
-        currentSprite = spriteFactory.CreateLinkSprite(spriteName);
+        currentSprite = sprite;
     }
 
     public void DrawCurrentSprite(SpriteBatch spriteBatch)
@@ -75,13 +75,18 @@ public class Link
         currentSprite.Draw(spriteBatch, Position);
     }
 
-    public void Move(Vector2 direction)
+    public ISprite GetCurrentSprite()
+    {
+        return currentSprite; 
+    }
+
+    public void Move(Vector2 direction, GameTime gameTime)
     {
         // Normalize direction if it's not zero.
         if (direction != Vector2.Zero)
             direction.Normalize();
 
-        float dt = 1f / 60f; // 1/60 second
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         Position += direction * Speed * dt;
     }
 
@@ -89,6 +94,12 @@ public class Link
     {
         Console.WriteLine("Link performs an attack!");
         // Implement actual attack logic here.
+    }
+
+    public void PickUpItem()
+    {
+        Console.WriteLine("Link picks up item");
+        // Implement item pick up logic
     }
 
     public void UseItem()
