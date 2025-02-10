@@ -13,7 +13,7 @@ namespace Sprint0.Controllers
     {
         private readonly Dictionary<Keys, ICommand> _keyCommandMap;
         // Add instance variable to store last input (with a default value for no input): (PP)
-        private readonly Keys lastInput;
+        private Keys lastInput;
 
         public KeyboardController(Dictionary<Keys, ICommand> keyCommandMap)
         {
