@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Sprint0;
 using Sprint0.Controllers;
 using Sprint0.Sprites;
-using 
 
 namespace Sprint0.Commands
 {
@@ -45,6 +44,18 @@ namespace Sprint0.Commands
 
     public class ChangeLinkState : ICommand
     {
-        private Link
+        private Link _link;
+        private ILinkState _targetState;
+
+        public ChangeLinkState(Link currLink, ILinkState state)
+        {
+            _link = currLink;
+            _targetState = state;
+        }
+
+        public void Execute()
+        {
+            currLink.changeState(_targetState);
+        }
     }
 }

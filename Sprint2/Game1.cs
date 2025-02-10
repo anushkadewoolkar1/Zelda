@@ -59,16 +59,37 @@ namespace Sprint0
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
-                { Keys.D0, quitCommand },
-                
-                { Keys.D1, setSpriteNonMovingNonAnim },
-                
-                { Keys.D2, setSpriteNonMovingAnim },
-                
-                { Keys.D3, setSpriteMovingNonAnim },
-                
-                { Keys.D4, setSpriteMovingAnim },
-                
+                { Keys.Q, quitCommand },
+
+                { Keys.R, resetCommand },
+
+                { Keys.Z, trigAttackState },
+
+                { Keys.N, trigAttackState },
+
+                { Keys.D, trigDamageState },
+
+                { Keys.T, cycleBlockL },
+
+                { Keys.Y, cycleBlockR },
+
+                { Keys.O, cycleNpcL },
+
+                { Keys.P, cycleNpcR },
+
+                { Keys.U, cycleItemL },
+
+                { Keys.I, cycleItemR },
+
+                { Keys.D1, setItem }
+
+                { Keys.D2, setItem }
+
+                { Keys.D3, setItem }
+
+                { Ke }
+
+
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);
 
