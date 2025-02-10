@@ -10,7 +10,7 @@ public class LinkWalkingState : ILinkState
     private Link link;
     private Direction currentDirection;
 
-    public LinkWalkingState(Link link)
+    public LinkWalkingState(Link link, Direction direction) // !Should there be an additional Direction parameter?
     {
         this.link = link;
         currentDirection = direction;
