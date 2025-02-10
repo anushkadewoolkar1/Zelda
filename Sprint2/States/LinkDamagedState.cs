@@ -21,16 +21,16 @@ public class LinkDamagedState : ILinkState
     {
         switch (currentDirection)
         {
-            case Direction.Up
+            case Direction.Up:
                 link.setSprite("LinkDamagedUp");
                 break;
-            case Direction.Down
+            case Direction.Down:
                 link.setSprite("LinkDamagedDown");
                 break;
-            case Direction.Left
+            case Direction.Left:
                 link.setSprite("LinkDamagedLeft");
                 break;
-            case Direction.Right
+            case Direction.Right:
                 link.setSprite("LinkDamagedRight");
                 break;
         }
