@@ -1,0 +1,8 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/../DefaultFont.spritefont","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/DefaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",477,21538,0.1417837
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/ItemSpritesheet.png","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/ItemSpritesheet.xnb","TextureProcessor","Texture2DContent",2865,23737,0.00895
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/LinkAllOverworldColorsWithReflection.xnb","TextureProcessor","Texture2DContent",73770,2760325,0.0640457
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/LuigiDead.png","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/LuigiDead.xnb","TextureProcessor","Texture2DContent",387,4181,0.0014976
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/LuigiRunMoveSheet.png","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/LuigiRunMoveSheet.xnb","TextureProcessor","Texture2DContent",6625,304645,0.0175
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/LuigiRunningSheet.png","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/LuigiRunningSheet.xnb","TextureProcessor","Texture2DContent",6625,304645,0.0079754
+"C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/LuigiStill.png","C:/Users/Aidan/source/repos/Zelda/Zelda/Sprint2/Content/bin/DesktopGL/LuigiStill.xnb","TextureProcessor","Texture2DContent",395,3913,0.0012495
