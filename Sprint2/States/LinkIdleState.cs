@@ -12,7 +12,7 @@ public class LinkIdleState : ILinkState
     public LinkIdleState(Link link)
     {
         this.link = link;
-        currentDirection = direction
+        currentDirection = direction;
     }
 
     public void Enter()

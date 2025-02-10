@@ -40,7 +40,7 @@ public class LinkWalkingState : ILinkState
     {
         // vector corresponding to current direction
         Vector2 movement = Vector2.Zero;
-        swtich (currentDirection)
+        switch (currentDirection)
         {
             case Direction.Up:
                 movement = new Vector2(0, -1);
