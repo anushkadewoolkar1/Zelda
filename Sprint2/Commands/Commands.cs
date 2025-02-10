@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sprint0;
 using Sprint0.Controllers;
 using Sprint0.Sprites;
+using Zelda.enums;
 
 namespace Sprint0.Commands
 {
@@ -40,5 +41,22 @@ namespace Sprint0.Commands
             _game.CurrentSprite = _sprite;
         }
 
+    }
+
+    public class ChangeLinkState : ICommand
+    {
+        private Link _link;
+        private ILinkState _targetState;
+
+        public ChangeLinkState(Link currLink, ILinkState state)
+        {
+            _link = currLink;
+            _targetState = state;
+        }
+
+        public void Execute()
+        {
+            currLink.changeState(_targetState);
+        }
     }
 }
