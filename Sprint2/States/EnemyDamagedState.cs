@@ -46,14 +46,11 @@ namespace Sprint0.States
             }
 
             enemy.Update(gameTime);
-            
-            // call move but also find out when this state will stop (after a certain number of frames probs)
         }
 
         void RemoveDecorator()
         {
-            // game.Link = decoratedLink; in example, figure out this.game logistics first
-            new EnemyMovingState(enemy);
+            // go back to EnemyMovingState
         }
     }
 }

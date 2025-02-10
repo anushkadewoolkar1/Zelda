@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
 using Zelda.Enums;
@@ -11,50 +12,50 @@ namespace Sprint0.States
 {
     public class EnemyStateMachine
     {
-        private bool moving = true;
-        private double EnemyHealth = 0.0;
-        private enum Enemies { Bat, Skeleton };
-        private Enemies currentEnemy;
+        private double EnemyHealth;
+        private SpriteBatch spriteBatch;
+        EnemyStateMachine currentState;
+        private EnemyMovingState enemyMoving;
+        private EnemyIdleState enemyIdle;
+        private EnemyDamagedState enemyDamaged;
+        private EnemyType currentEnemy;
 
         public void ChangeEnemy()
         {
             switch(currentEnemy)
             {
-                case Enemies.Bat:
-                    currentEnemy = Enemies.Skeleton;
+                case EnemyType.OldMan:
+                    currentEnemy = EnemyType.Keese;
                     break;
-                case Enemies.Skeleton:
+                case EnemyType.Keese:
+                    currentEnemy = EnemyType.Stalfos;
+                    break;
+                case EnemyType.Stalfos:
                     // change when more enemies are implemented
-                    currentEnemy = Enemies.Bat;
+                    currentEnemy = EnemyType.OldMan;
                     break;
                 default:
-                    currentEnemy = Enemies.Bat;
+                    currentEnemy = EnemyType.OldMan;
                     break;
             }
         }
 
-        // probably can be deleted later, i didn't wanna waste it just in case
-        public Enemy GetEnemy(EnemyType type)
+        public EnemyType GetEnemy()
         {
-            switch (type)
-            {
-                case EnemyType.Keese:
-                // return new Bat();
-                case EnemyType.Stalfos:
-                // return new Skeleton();
-                default:
-                    throw new NotSupportedException();
-            }
+            return currentEnemy;
         }
 
         public void SetHealth()
         {
             switch(currentEnemy)
             {
-                case Enemies.Bat:
+                case EnemyType.OldMan:
+                    EnemyHealth = 99.0;
+                    break;
+                case EnemyType.Keese:
                     EnemyHealth = 0.5;
                     break;
-                case Enemies.Skeleton:
+                case EnemyType.Stalfos:
                     EnemyHealth = 2.0;
                     break;
 
@@ -63,18 +64,13 @@ namespace Sprint0.States
 
         public void Moving(Enemy enemy)
         {
-            EnemyMovingState moving = new EnemyMovingState(enemy);
+            enemyMoving.Load(spriteBatch);
             
         }
 
         public void TakeDamage()
         {
-            EnemyHealth--;
-
-            if(EnemyHealth <= 0.0)
-            {
-                
-            }
+            enemyDamaged.Load(spriteBatch);
         }
 
         public void Stop()
@@ -82,17 +78,10 @@ namespace Sprint0.States
 
         }
 
-        public void Dead()
-        {
-            if(EnemyHealth <= 0.0)
-            {
-                // state = new EnemyDeadState();
-            }
-        }
-
-        public void Update()
+        public void Update(GameTime gameTime)
         {
 
+            currentState.Update(gameTime);
         }
     }
 }

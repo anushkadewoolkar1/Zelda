@@ -12,12 +12,13 @@ namespace Sprint0.States
     public class EnemyMovingState : IEnemyState
     {
         private Enemy enemy;
+        private SpriteBatch spriteBatch;
 
         public EnemyMovingState(Enemy enemy)
         {
             this.enemy = enemy;
             // construct enemy's sprite here
-            ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite();
+            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite(spriteBatch);
         }
 
         public void Load(SpriteBatch spriteBatch)
@@ -27,18 +28,17 @@ namespace Sprint0.States
 
         public void Move(Enemy enemy)
         {
-            // NO-OP
-            // already moving
+            enemy.Move(enemy);
         }
 
         public void TakeDamage()
         {
-            // enemy.state = new EnemyDamagedState(enemy, this.game);
+            // change to EnemyDamagedState
         }
 
         public void Update(GameTime gameTime)
         {
-            // enemy.Move();
+            // move the sprite however the enemy moves (probably do a switch case here)
 
             enemy.Update(gameTime);
         }

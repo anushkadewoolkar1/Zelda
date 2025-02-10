@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
+using Zelda.Enums;
+
 
 namespace Sprint0.States
 {
@@ -19,7 +21,11 @@ namespace Sprint0.States
         public Enemy()
         {
             // start out in moving state
-            stateMachine = new EnemyStateMachine();
+        }
+
+        public EnemyType GetEnemy()
+        {
+            return stateMachine.GetEnemy();
         }
 
         public void ChangeEnemy()
@@ -27,15 +33,22 @@ namespace Sprint0.States
             stateMachine.ChangeEnemy();
         }
 
-        public double SetHealth()
+        public void SetHealth()
         {
-            // do switch case here based on what the enemy's name is (similar to GetState method methinks)
-            return 0;
+            stateMachine.SetHealth();
         }
         
         public void Load(SpriteBatch spriteBatch)
         {
-            sprite = spriteFactory.CreateEnemySprite();
+            switch (stateMachine.GetEnemy())
+            {
+                case EnemyType.Keese:
+                    spriteFactory.CreateSmallEnemySprite(spriteBatch);
+                    break;
+                case EnemyType.Stalfos:
+                    spriteFactory.CreateLargeEnemySprite(spriteBatch);
+                    break;
+            }
         }
 
 
@@ -51,7 +64,7 @@ namespace Sprint0.States
 
         public void Update(GameTime gameTime)
         {
-            stateMachine.Update();
+            stateMachine.Update(gameTime);
 
             sprite.Update(gameTime);
         }

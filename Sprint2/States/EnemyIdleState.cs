@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint0.States
 {
     public class EnemyIdleState : IEnemyState
     {
-        // might change things so this class doesn't exist and the death animation triggers in the EnemyDamagedState class, will get to later
         
         private Enemy enemy;
 
@@ -19,27 +19,28 @@ namespace Sprint0.States
             // construct sprite here
         }
 
+        public void Load(SpriteBatch spriteBatch)
+        {
+            enemy.Load(spriteBatch);
+        }
+
         public void Move(Enemy enemy)
         {
             // NO-OP
-            // dead
+            // idle
         }
 
         public void TakeDamage()
         {
             // NO-OP
-            // dead
-        }
-
-        public void Die()
-        {
-            // NO-OP
-            // currently dying
+            // pretty sure this is gonna be used for NPCs, i don't think they take any damage
         }
 
         public void Update(GameTime gameTime)
         {
-            // trigger animation for enemy death
+            // trigger non-moving animation
+
+            enemy.Update(gameTime);
         }
     }
 }
