@@ -10,6 +10,7 @@ namespace Zelda.Enums
 
     public enum EnemyType
     {
+        OldMan,
         Keese,
         Stalfos
     }

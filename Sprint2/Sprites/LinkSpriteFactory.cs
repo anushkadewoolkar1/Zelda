@@ -15,7 +15,7 @@ namespace SpriteFactory
         private Texture2D zeldaSpriteSheet;
         private enum LinkState { GreenSmallShield, GreenMagicalShield, WhiteSmallShield, WhiteMagicalShield, RedSmallShield, RedMagicalShield };
         private LinkState state = LinkState.GreenSmallShield;
-        private enum LinkDirection { NoFacing, LeftFacing, RightFacing };
+        private enum LinkDirection { DownFacing, LeftFacing, RightFacing, UpFacing };
         private LinkDirection direction = LinkDirection.RightFacing;
         private enum LinkDamaged { Normal, Damaged };
         private LinkDamaged health = LinkDamaged.Normal;
@@ -50,7 +50,7 @@ namespace SpriteFactory
 
         public ISprite CreateUpWalk(int frame, int state, int health)
         {
-            LinkTotality = [0, frame, state, health];
+            LinkTotality = [3, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 69, 11, LinkTotality);
         }
 
@@ -74,7 +74,7 @@ namespace SpriteFactory
 
         public ISprite CreateUseItemUp(int state, int health)
         {
-            LinkTotality = [0, 1, state, health];
+            LinkTotality = [3, 1, state, health];
             return new LinkSprite(zeldaSpriteSheet, 141, 11, LinkTotality);
         }
 
@@ -99,7 +99,7 @@ namespace SpriteFactory
 
         public ISprite CreatePickUpItemTwo(int state, int health)
         {
-            LinkTotality = [0, 1, state, health];
+            LinkTotality = [3, 1, state, health];
             return new LinkSprite(zeldaSpriteSheet, 230, 11, LinkTotality);
         }
 
@@ -112,7 +112,7 @@ namespace SpriteFactory
 
         public ISprite CreateUpAttackWoodenSword(int frame, int state, int health)
         {
-            LinkTotality = [0, frame, state, health];
+            LinkTotality = [3, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 1, 108, LinkTotality);
         }
 
@@ -137,7 +137,7 @@ namespace SpriteFactory
 
         public ISprite CreateUpAttackWhiteSword(int frame, int state, int health)
         {
-            LinkTotality = [0, frame, state, health];
+            LinkTotality = [3, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 94, 108, LinkTotality);
         }
 
@@ -162,7 +162,7 @@ namespace SpriteFactory
 
         public ISprite CreateUpAttackMagicalSword(int frame, int state, int health)
         {
-            LinkTotality = [0, frame, state, health];
+            LinkTotality = [3, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, 187, 108, LinkTotality);
         }
 
@@ -182,25 +182,25 @@ namespace SpriteFactory
         public ISprite CreateDownAttackMagicalRod(int frame, int state, int health)
         {
             LinkTotality = [0, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, 280, 47, LinkTotality);
         }
 
         public ISprite CreateUpAttackMagicalRod(int frame, int state, int health)
         {
-            LinkTotality = [0, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
+            LinkTotality = [3, frame, state, health];
+            return new LinkSprite(zeldaSpriteSheet, 280, 108, LinkTotality);
         }
 
         public ISprite CreateLeftAttackWMagicalRod(int frame, int state, int health)
         {
             LinkTotality = [1, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, 280, 77, LinkTotality);
         }
 
         public ISprite CreateRightAttackMagicalRod(int frame, int state, int health)
         {
             LinkTotality = [2, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, 32, 32, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, 280, 77, LinkTotality);
         }
     }
 }
