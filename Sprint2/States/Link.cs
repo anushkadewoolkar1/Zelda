@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Sprites;
+using Sprint2.LinkSpriteFactory;
+
 
 public class Link
 {
     private ILinkState currentState;
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
-    private SpriteFactory spriteFactory;
+    private LinkSpriteFactory LinkSpriteFactory;
 
     // Invulnerability settings.
     public bool IsInvulnerable { get; private set; }
