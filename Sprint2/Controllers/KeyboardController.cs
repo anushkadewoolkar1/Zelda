@@ -12,10 +12,14 @@ namespace Sprint0.Controllers
     public class KeyboardController : IController
     {
         private readonly Dictionary<Keys, ICommand> _keyCommandMap;
+        // Add instance variable to store last input (with a default value for no input): (PP)
+        private Keys lastInput;
 
         public KeyboardController(Dictionary<Keys, ICommand> keyCommandMap)
         {
             _keyCommandMap = keyCommandMap;
+            // Assign default value for lastInput upon construction:
+            lastInput = Keys.None;
         }
 
         public void Update()
@@ -24,12 +28,23 @@ namespace Sprint0.Controllers
 
             Keys[] pressedKeys = state.GetPressedKeys();
 
+            // If no input is given, reset lastInput to its default: (PP)
+            if (pressedKeys.Length == 0)
+            {
+                lastInput = Keys.None;
+            }
+
             foreach (Keys key in pressedKeys)
             {
                 // if key in map execute
                 if (_keyCommandMap.ContainsKey(key))
                 {
-                    _keyCommandMap[key].Execute();
+                    if (key != lastKey)
+                    {
+                        _keyCommandMap[key].Execute();
+                    }
+                    // Update lastInput if input is valid command: (PP)
+                    lastInput = key;
                 }
             }
         }
