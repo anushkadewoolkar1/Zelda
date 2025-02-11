@@ -11,7 +11,9 @@ namespace Sprint0.Sprites
 {
     public class LinkSprite : ISprite
     {
+
         private Texture2D _texture;
+
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         private Vector2 sourceRectangleArea;
@@ -23,6 +25,8 @@ namespace Sprint0.Sprites
         {
             _texture = texture;
 
+            sourceRectangle = new Rectangle(spriteSheetXPos, spriteSheetYPos, 200, 200);
+
             //Sets clock to 0 when Link isn't damaged 
             linkDamaged = Convert.ToBoolean(LinkStates[3]);
             if (!linkDamaged)
@@ -30,46 +34,55 @@ namespace Sprint0.Sprites
                 damageClock = 0;
             }
 
-            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[0], LinkStates[1]);
+            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[1], LinkStates[0]);
 
-            if (0 < LinkStates[2] && LinkStates[2] < 3 && (LinkStates[0] % 2) == 1)
+            //sourceRectangleDimensions = [ spriteSheetXPos, spriteSheetYPos, 16, 16 ];
+
+            if (LinkStates[0] < 3 && (LinkStates[2] % 2) == 1)
             {
-                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1], LinkStates[2]);
+                //sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1], LinkStates[2]);
             }
-            
+
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
-            colorAdjustment = (LinkStates[0] / 2) * 310;
+            colorAdjustment = (LinkStates[2] / 2) * 310;
+            //sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
+            //            16, 16);
+
 
             switch (LinkStates[1])
             {
                 case 1:
-                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
-                        FixDirection(sourceRectangleDimensions[0], LinkStates[2]), sourceRectangleDimensions[1]);
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0], LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                        sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 2:
-                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
-                        FixDirection(sourceRectangleDimensions[0] + 17, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 17, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                        sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 3:
-                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
-                        FixDirection(sourceRectangleDimensions[0] + 34, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 34, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                        sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 4:
-                    sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
-                        FixDirection(sourceRectangleDimensions[0] + 51, LinkStates[2]), sourceRectangleDimensions[1] + colorAdjustment);
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 51, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                        sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 default:
                     break;
             }
+            Console.WriteLine("fhesjkgbseghjskdvhskbhkisgjsh");
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.X, sourceRectangle.Y);
-            if (!linkDamaged)
-            {
-                spriteBatch.Draw(_texture, sourceRectangle, destinationRectangle, Color.White);
-            } else {
+            //sourceRectangle = new Rectangle(1, 11, 200, 200); DELETE
+            destinationRectangle = new Rectangle(100, 100, sourceRectangle.Width, sourceRectangle.Height);
+            //if (!linkDamaged)
+            //{
+            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+            /*} else {
                 switch (damageClock % 3)
                 {
                     case 0:
@@ -85,7 +98,7 @@ namespace Sprint0.Sprites
                         break;
                 }
                 damageClock++;
-            }
+            }*/
 
         }
 
@@ -99,24 +112,30 @@ namespace Sprint0.Sprites
             //no-op
         }
 
-        private int FixDirection(int xCoordinates, int Direction)
+        private int FixDirection(int xCoordinates, int Direction, int sourceRectangleWidth)
         {
             if (Direction != 1)
             {
                 return xCoordinates;
-            } else {
-                return 742 - xCoordinates + 16;
+            }
+            else
+            {
+                return 742 - xCoordinates - sourceRectangleWidth;
             }
         }
 
         private int[] AdjustAttacks(int xCoordinate, int yCoordinate, int frame, int facingDirection)
         {
-            int[] sourceRectangleDimensions = {xCoordinate, yCoordinate, 16, 16};
+            int[] sourceRectangleDimensions = { xCoordinate, yCoordinate, 16, 16 };
 
-            if (yCoordinate > 46)
+
+
+            if (yCoordinate < 45)
             {
                 return sourceRectangleDimensions;
             }
+
+
 
             if (facingDirection == 0)
             {
@@ -133,8 +152,9 @@ namespace Sprint0.Sprites
                         break;
                     default:
                         break;
-                }    
-            } else if (facingDirection == 3)
+                }
+            }
+            else if (facingDirection == 3)
             {
                 switch (frame)
                 {
@@ -152,7 +172,8 @@ namespace Sprint0.Sprites
                     default:
                         break;
                 }
-            } else
+            }
+            else
             {
                 switch (frame)
                 {
@@ -171,17 +192,21 @@ namespace Sprint0.Sprites
                         break;
                 }
             }
+
             return sourceRectangleDimensions;
         }
 
         private int[] MagicalShield(int[] sourceRectangleDimensions, int facingDirection, int frame)
         {
-            switch (sourceRectangleDimensions[2])
+            //int[] result = sourceRectangleDimensions;
+            //sourceRectangleDimensions[3] += 100;
+            switch (sourceRectangleDimensions[1])
             {
                 case 1:
                     sourceRectangleDimensions[0] += 288;
                     break;
                 case 47:
+                    //Something Might Be Wrong With This
                     sourceRectangleDimensions[1] += 81;
                     sourceRectangleDimensions[0] -= 35;
                     break;
@@ -190,15 +215,17 @@ namespace Sprint0.Sprites
                     if (frame == 3)
                     {
                         sourceRectangleDimensions[0] -= 10;
-                    } else if (frame == 4)
+                    }
+                    else if (frame == 4)
                     {
                         sourceRectangleDimensions[0] -= 11;
                     }
                     break;
                 default:
                     break;
-                
+
             }
+
             return sourceRectangleDimensions;
         }
     }

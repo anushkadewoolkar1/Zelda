@@ -32,12 +32,14 @@ namespace SpriteFactory
 
         public void ItemTextures(ContentManager Content)
         {
-            itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet.png");
+            itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet");
             LoadSpriteData("../Content/ItemSpriteData.txt");
         }
 
         private void LoadSpriteData(string FilePath)
         {
+
+            spriteRectangles = new Dictionary<string, Rectangle>();
 
             foreach (var line in File.ReadLines(FilePath))
             {
@@ -51,7 +53,7 @@ namespace SpriteFactory
                     int width = int.Parse(nums[3]);
                     int height = int.Parse(nums[4]);
 
-                    spriteRectangles[name] = new Rectangle(x, y, width, height);
+                    spriteRectangles.Add(name, new Rectangle(x, y, width, height));
                 }
             }
         }

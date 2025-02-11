@@ -23,16 +23,16 @@ public class LinkWalkingState : ILinkState
         switch (currentDirection)
         {
             case Direction.Up:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(0, 1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(1, 0, link.Health));
                 break;
             case Direction.Down:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(0, 1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(1, 0, link.Health));
                 break;
             case Direction.Left:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(0, 1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(1, 0, link.Health));
                 break;
             case Direction.Right:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(0, 1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(1, 0, link.Health));
                 break;
         }
     }

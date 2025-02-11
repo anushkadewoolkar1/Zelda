@@ -19,7 +19,7 @@ public class LinkAttackingState : ILinkState
         this.currentDirection = direction;
         this.swordType = swordType;
         attackDuration = 0.5f; // Attack lasts for half a second.
-        attackFrame = 0;
+        attackFrame = 1;
     }
 
     public void Enter()

@@ -13,6 +13,9 @@ namespace Sprint0.Sprites
     public class LinkSpriteFactory
     {
         private Texture2D zeldaSpriteSheet;
+
+
+
         private enum LinkState { GreenSmallShield, GreenMagicalShield, WhiteSmallShield, WhiteMagicalShield, RedSmallShield, RedMagicalShield };
         private LinkState state = LinkState.GreenSmallShield;
         private enum LinkDirection { DownFacing, LeftFacing, RightFacing, UpFacing };
@@ -35,7 +38,7 @@ namespace Sprint0.Sprites
         {
         }
 
-        public void LoadZeldaTextures(ContentManager spriteBatch)
+        public void LoadLinkTextures(ContentManager spriteBatch)
         {
             zeldaSpriteSheet = spriteBatch.Load<Texture2D>("LinkAllOverworldColorsWithReflection");
         }

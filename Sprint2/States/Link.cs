@@ -29,8 +29,8 @@ public class Link
 
 
         // Start initial sprite
-        currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(0, 1, 0);
-        currentState = currentState = new LinkWalkingState(this, Direction.Down);
+        currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(1, 0, 0);
+        currentState = new LinkWalkingState(this, Direction.Down);
         currentState.Enter();
     }
 
@@ -53,7 +53,7 @@ public class Link
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        currentState.Draw(spriteBatch);
+        currentSprite.Draw(spriteBatch, this.Position);
     }
 
     public void ChangeState(ILinkState newState)
