@@ -5,6 +5,7 @@ using Sprint0.Sprites;
 using Sprint0.Controllers;
 using Sprint0.Commands;
 using System.Collections.Generic;
+using SpriteFactory;
 
 namespace Sprint0
 {
@@ -27,6 +28,8 @@ namespace Sprint0
         // Sprite font
         private SpriteFont _spriteFont;
 
+        private ItemSprite itemSprite;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -46,6 +49,9 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            ItemSpriteFactory.Instance.ItemTextures(Content);  
+            itemSprite = ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow");
 
             // Load textures
 
@@ -132,6 +138,8 @@ namespace Sprint0
             _currentSprite.Draw(_spriteBatch);
 
             _textSprite.Draw(_spriteBatch);
+
+            itemSprite.Draw(_spriteBatch, new Vector2(100, 100));
 
             _spriteBatch.End();
 
