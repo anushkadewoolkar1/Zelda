@@ -90,19 +90,19 @@ public class Link
 
     public void PerformAttack()
     {
-        Console.WriteLine("Link performs an attack!");
+        System.Diagnostics.Debug.WriteLine("Link performs an attack!");
         // Implement actual attack logic here.
     }
 
     public void PickUpItem()
     {
-        Console.WriteLine("Link picks up item");
+        System.Diagnostics.Debug.WriteLine("Link picks up item");
         // Implement item pick up logic
     }
 
     public void UseItem()
     {
-        Console.WriteLine("Link uses an item!");
+        System.Diagnostics.Debug.WriteLine("Link uses an item!");
         // Implement item usage logic here
     }
 
@@ -110,25 +110,25 @@ public class Link
     {
         IsInvulnerable = true;
         invulnerabilityTimer = 1.0f; // Link remains invulnerable for 1 second.
-        Console.WriteLine("Link is now invulnerable.");
+        System.Diagnostics.Debug.WriteLine("Link is now invulnerable.");
     }
 
     public void EndInvulnerability()
     {
         IsInvulnerable = false;
         invulnerabilityTimer = 0;
-        Console.WriteLine("Link is no longer invulnerable.");
+        System.Diagnostics.Debug.WriteLine("Link is no longer invulnerable.");
     }
 
     public void HandleDeathStart()
     {
-        Console.WriteLine("Link is dying...");
+        System.Diagnostics.Debug.WriteLine("Link is dying...");
         // logic here to disable player input or play a sound.
     }
 
     public void HandleDeathCompletion()
     {
-        Console.WriteLine("Link has died. Game Over.");
+        System.Diagnostics.Debug.WriteLine("Link has died. Game Over.");
         // Trigger game over or level reset logic here.
     }
 }
