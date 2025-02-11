@@ -125,7 +125,7 @@ namespace Sprint0
 
             _keyboardController.Update();
 
-            _currentSprite.Update(gameTime);
+            //_currentSprite.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -136,9 +136,9 @@ namespace Sprint0
 
             _spriteBatch.Begin();
 
-            _currentSprite.Draw(_spriteBatch);
+            //_currentSprite.Draw(_spriteBatch);
 
-            _textSprite.Draw(_spriteBatch);
+            //_textSprite.Draw(_spriteBatch);
 
             itemSprite.Draw(_spriteBatch, new Vector2(100, 100));
 

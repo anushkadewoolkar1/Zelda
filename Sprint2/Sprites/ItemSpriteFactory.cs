@@ -14,7 +14,7 @@ namespace SpriteFactory
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private Dictionary<string, Rectangle> spriteRectangles;
+        private Dictionary<string, Rectangle> spriteRectangles = new Dictionary<string, Rectangle>();
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
@@ -32,8 +32,8 @@ namespace SpriteFactory
 
         public void ItemTextures(ContentManager Content)
         {
-            itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet.png");
-            LoadSpriteData("../Content/ItemSpriteData.txt");
+            itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet");
+            LoadSpriteData("../../../Zelda/Sprint2/Content/ItemSpriteData.txt");
         }
 
         private void LoadSpriteData(string FilePath)
