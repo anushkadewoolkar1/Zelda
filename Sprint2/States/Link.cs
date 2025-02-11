@@ -27,6 +27,7 @@ public class Link
         spriteFactory = LinkSpriteFactory.Instance;
         Position = new Vector2(100, 100);
 
+        Health = 1;
 
         // Start initial sprite
         currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(1, 0, 0);

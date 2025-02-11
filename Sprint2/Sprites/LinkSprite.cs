@@ -77,28 +77,38 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            //sourceRectangle = new Rectangle(1, 11, 200, 200); DELETE
             destinationRectangle = new Rectangle(100, 100, sourceRectangle.Width, sourceRectangle.Height);
-            //if (!linkDamaged)
-            //{
-            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-            /*} else {
+            if (!linkDamaged)
+            {
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+            } else {
+
+                if (damageClock % 14 <= 4)
+                {
+                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);
+                } else if (damageClock % 14 <= 9)
+                {
+                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Red);
+                } else
+                {
+                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Blue);
+                } /*
                 switch (damageClock % 3)
                 {
                     case 0:
-                        spriteBatch.Draw(_texture, sourceRectangle, destinationRectangle, Color.Purple);
+                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);
                         break;
                     case 1:
-                        spriteBatch.Draw(_texture, sourceRectangle, destinationRectangle, Color.Red);
+                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Red);
                         break;
                     case 2:
-                        spriteBatch.Draw(_texture, sourceRectangle, destinationRectangle, Color.Blue);
+                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Blue);
                         break;
                     default:
                         break;
-                }
+                } */
                 damageClock++;
-            }*/
+            }
 
         }
 
