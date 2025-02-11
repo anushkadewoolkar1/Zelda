@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
 using Sprint0.Controllers;
 using Sprint0.Sprites;
-using Zelda.enums;
+using Zelda.Enums;
 
 namespace Sprint0.Commands
 {
