@@ -6,13 +6,13 @@ using Sprint0.Controllers;
 using Sprint0.Commands;
 using System.Collections.Generic;
 using SpriteFactory;
+using Zelda.Enums;
 using Sprint0.States;
 
 namespace Sprint0
 {
     public class Game1 : Game
     {
-        private ISprite test2;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -33,7 +33,7 @@ namespace Sprint0
 
         private ItemSprite itemSprite;
 
-        Link link1;
+        Link linkSprite;
 
         public Game1()
         {
@@ -74,22 +74,19 @@ namespace Sprint0
             );
             */
 
+            linkSprite = new Link();
 
             // Set the initial sprite
-            // _currentSprite = sprite1; // Non-moving, non-animated
-
-            link1 = new Link();
-
-            //_currentSprite = link1.GetCurrentSprite();
+           // _currentSprite = sprite1; // Non-moving, non-animated
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);
-            var attackLeftCommand = new ChangeLinkState(link1, new LinkAttackingState(link1, Zelda.Enums.Direction.Left));
-            var attackRightCommand = new ChangeLinkState(link1, new LinkAttackingState(link1, Zelda.Enums.Direction.Right));
-            var moveUpCommand = new ChangeLinkState(link1, new LinkWalkingState(link1, Zelda.Enums.Direction.Up));
-            var moveDownCommand = new ChangeLinkState(link1, new LinkWalkingState(link1, Zelda.Enums.Direction.Down));
-            var moveLeftCommand = new ChangeLinkState(link1, new LinkWalkingState(link1, Zelda.Enums.Direction.Left));
-            var moveRightCommand = new ChangeLinkState(link1, new LinkWalkingState(link1, Zelda.Enums.Direction.Right));
+            var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left));
+            var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right));
+            var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up));
+            var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
+            var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
+            var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
             // var enemyCycleLeftCmd = new CycleEnemy(_currentEnemy, Directions.Left, _currentEnemy.stateMachine);
             // var enemyCycleRightCmd = new CycleEnemy(_currentEnemy, Directions.Right, _currentEnemy.stateMachine);
             // Set up KeyboardController with dictionary
@@ -126,8 +123,6 @@ namespace Sprint0
              * -Use Items (Implemented using the UseItem method from Link, once Link is able to be assigned items)
              * -Damage (Uses ChangeLinkState command, need for LinkDamagedState class to be completed before input is implemented)
              */
-
-            test2 = LinkSpriteFactory.Instance.CreateDownWalk(0,1,0);
         }
 
         protected override void Update(GameTime gameTime)
@@ -148,9 +143,9 @@ namespace Sprint0
 
             _spriteBatch.Begin();
 
-            link1.Draw(_spriteBatch);
+            linkSprite.Draw(_spriteBatch);
 
-            //test2.Draw(_spriteBatch, new Vector2(200, 200));
+            //_textSprite.Draw(_spriteBatch);
 
             itemSprite.Draw(_spriteBatch, new Vector2(100, 100));
 

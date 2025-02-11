@@ -61,3 +61,4 @@ C:\Users\jorda\source\repos\Sprint2TestProject\Sprint2TestProject\Zelda\Sprint2\
 C:\Users\jorda\source\repos\Sprint2TestProject\Sprint2TestProject\Zelda\Sprint2\obj\Debug\net8.0\Sprint0.csproj.Up2Date
 C:\Users\jorda\source\repos\Sprint2TestProject\Sprint2TestProject\Zelda\Sprint2\obj\Debug\net8.0\Sprint0.genruntimeconfig.cache
 C:\Users\jorda\source\repos\Sprint2TestProject\Sprint2TestProject\Zelda\Sprint2\obj\Debug\net8.0\ref\Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2TestProject\Sprint2TestProject\Zelda\Sprint2\bin\Debug\net8.0\Content\lozNPCs.xnb

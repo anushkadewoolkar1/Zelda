@@ -7,6 +7,7 @@
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/../DefaultFont.spritefont</File>
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/ItemSpritesheet.png</File>
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</File>
+    <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/lozNPCs.png</File>
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/LuigiDead.png</File>
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/LuigiRunMoveSheet.png</File>
     <File>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/LuigiRunningSheet.png</File>
@@ -14,6 +15,7 @@
   </SourceFiles>
   <DestFiles>
     <File>DefaultFont.spritefont</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

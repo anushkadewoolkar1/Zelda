@@ -14,7 +14,7 @@ namespace SpriteFactory
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private Dictionary<string, Rectangle> spriteRectangles;
+        private Dictionary<string, Rectangle> spriteRectangles = new Dictionary<string, Rectangle>();
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
