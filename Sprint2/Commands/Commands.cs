@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0;
 using Sprint0.Controllers;
 using Sprint0.Sprites;
+using Sprint0.States;
 using Zelda.Enums;
 
 namespace Sprint0.Commands
