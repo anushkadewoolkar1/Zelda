@@ -65,23 +65,48 @@ namespace Sprint0
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);
-
+            var attackLeftCommand = new ChangeLinkState(_currentSprite, new LinkAttackingState(_currentSprite, Directions.Left));
+            var attackRightCommand = new ChangeLinkState(_currentSprite, new LinkAttackingState(_currentSprite, Directions.Right));
+            var moveUpCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Up));
+            var moveDownCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Down));
+            var moveLeftCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Left));
+            var moveRightCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Right));
+            // var enemyCycleLeftCmd = new CycleEnemy(_currentEnemy, Directions.Left, _currentEnemy.stateMachine);
+            // var enemyCycleRightCmd = new CycleEnemy(_currentEnemy, Directions.Right, _currentEnemy.stateMachine);
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
-                { Keys.D0, quitCommand },
+                { Keys.Q, quitCommand },
                 
-                { Keys.D1, setSpriteNonMovingNonAnim },
+                { Keys.Z, attackLeftCommand },
+
+                { Keys.N, attackRightCommand },
                 
-                { Keys.D2, setSpriteNonMovingAnim },
-                
-                { Keys.D3, setSpriteMovingNonAnim },
-                
-                { Keys.D4, setSpriteMovingAnim },
-                
+                { Keys.W, moveUpCommand },
+
+                { Keys.Up, moveUpCommand },
+
+                { Keys.A, moveLeftCommand },
+
+                { Keys.Left, moveLeftCommand },
+
+                { Keys.S, moveDownCommand },
+
+                { Keys.Down, moveDownCommand },
+
+                { Keys.D, moveRightCommand },
+
+                { Keys.Right, moveRightCommand },
+
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);
-
+            /*
+             * Commands to still be implemented are:
+             * -Reset (needs further discussion on how to implement)
+             * -Block/Item Cycle (Probably need an Item/Block StateMachine to access enum values paired to their respective sprites)
+             * -Use Items (Implemented using the UseItem method from Link, once Link is able to be assigned items)
+             * -Damage (Uses ChangeLinkState command, need for LinkDamagedState class to be completed before input is implemented)
+             */
         }
 
         protected override void Update(GameTime gameTime)
