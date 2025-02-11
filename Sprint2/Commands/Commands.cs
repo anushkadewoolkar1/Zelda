@@ -60,7 +60,7 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            currLink.changeState(_targetState);
+            _link.ChangeState(_targetState);
         }
     }
 
@@ -70,7 +70,7 @@ namespace Sprint0.Commands
         private Direction _direction;
         private EnemyStateMachine stateMachine;
 
-        public CycleEnemy(CycleEnemy enemy, Direction direction, EnemyStateMachine machine)
+        public CycleEnemy(Enemy enemy, Direction direction, EnemyStateMachine machine)
         {
             _enemy = enemy;
             _direction = direction;
@@ -80,12 +80,11 @@ namespace Sprint0.Commands
         public void Execute()
         {
             //Temporary static implementation: (PP)
-            stateMachine.changeEnemy();
-            if (_direction = Direction.Left)
+            stateMachine.ChangeEnemy();
+            if (_direction == Direction.Left)
             {
-                stateMachine.changeEnemy();
+                stateMachine.ChangeEnemy();
             }
-            _enemy = stateMachine.GetEnemy();
         } 
     }
 }

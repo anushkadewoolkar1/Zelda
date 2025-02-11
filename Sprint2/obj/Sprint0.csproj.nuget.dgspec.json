@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kdbro\\source\\repos\\anushkadewoolkar1\\Zelda\\Sprint2\\Sprint0.csproj": {}
+    "C:\\Users\\Bazin\\source\\repos\\Zelda\\Sprint2\\Sprint0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kdbro\\source\\repos\\anushkadewoolkar1\\Zelda\\Sprint2\\Sprint0.csproj": {
+    "C:\\Users\\Bazin\\source\\repos\\Zelda\\Sprint2\\Sprint0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kdbro\\source\\repos\\anushkadewoolkar1\\Zelda\\Sprint2\\Sprint0.csproj",
+        "projectUniqueName": "C:\\Users\\Bazin\\source\\repos\\Zelda\\Sprint2\\Sprint0.csproj",
         "projectName": "Sprint0",
-        "projectPath": "C:\\Users\\Kdbro\\source\\repos\\anushkadewoolkar1\\Zelda\\Sprint2\\Sprint0.csproj",
-        "packagesPath": "C:\\Users\\Kdbro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kdbro\\source\\repos\\anushkadewoolkar1\\Zelda\\Sprint2\\obj\\",
+        "projectPath": "C:\\Users\\Bazin\\source\\repos\\Zelda\\Sprint2\\Sprint0.csproj",
+        "packagesPath": "C:\\Users\\Bazin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bazin\\source\\repos\\Zelda\\Sprint2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kdbro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bazin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
