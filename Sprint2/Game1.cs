@@ -6,6 +6,7 @@ using Sprint0.Controllers;
 using Sprint0.Commands;
 using System.Collections.Generic;
 using SpriteFactory;
+using Zelda.Enums;
 
 namespace Sprint0
 {
@@ -66,19 +67,19 @@ namespace Sprint0
                 color: Color.Black
             );
             */
-            
+
+            Link linkSprite = new Link();
 
             // Set the initial sprite
-           // _currentSprite = sprite1; // Non-moving, non-animated
-
+            // _currentSprite = sprite1; // Non-moving, non-animated
             // Create Commands 
             var quitCommand = new QuitCommand(this);
-            var attackLeftCommand = new ChangeLinkState(_currentSprite, new LinkAttackingState(_currentSprite, Directions.Left));
-            var attackRightCommand = new ChangeLinkState(_currentSprite, new LinkAttackingState(_currentSprite, Directions.Right));
-            var moveUpCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Up));
-            var moveDownCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Down));
-            var moveLeftCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Left));
-            var moveRightCommand = new ChangeLinkState(_currentSprite, new LinkWalkingState(_currentSprite, Directions.Right));
+            var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Direction.Left));
+            var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Direction.Right));
+            var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Direction.Up));
+            var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Direction.Down));
+            var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Direction.Left));
+            var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Direction.Right));
             // var enemyCycleLeftCmd = new CycleEnemy(_currentEnemy, Directions.Left, _currentEnemy.stateMachine);
             // var enemyCycleRightCmd = new CycleEnemy(_currentEnemy, Directions.Right, _currentEnemy.stateMachine);
             // Set up KeyboardController with dictionary
