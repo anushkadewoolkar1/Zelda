@@ -52,16 +52,18 @@ namespace Sprint0
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
 
-            // Text sprite 
+            /* Text sprite /*
             _textSprite = new TextSprite(
                 font: _spriteFont,
                 text: "Credits\nProgram Made By: Kyle Dietrich\nSprites from: https://www.mariouniverse.com/sprites-nes-smb/",
                 position: new Vector2(200, 300),
                 color: Color.Black
             );
+            */
+            
 
             // Set the initial sprite
-            _currentSprite = sprite1; // Non-moving, non-animated
+           // _currentSprite = sprite1; // Non-moving, non-animated
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);
