@@ -12,6 +12,7 @@ namespace Sprint0.Sprites
     {
         private Texture2D enemySpritesheet;
         private Texture2D bossSpritesheet;
+        private Texture2D npcSpritesheet;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance
@@ -29,27 +30,28 @@ namespace Sprint0.Sprites
 
         public void LoadAllTextures(ContentManager content)
         {
+            npcSpritesheet = content.Load<Texture2D>("lozNPCs");
             enemySpritesheet = content.Load<Texture2D>("BossSpriteSheet");
             bossSpritesheet = content.Load<Texture2D>("BossSpriteSheet");
         }
 
         // change all these when the spritesheets are actually loaded in
-        public EnemySprite CreateNPCSprite(SpriteBatch spriteBatch)
+        public EnemySprite CreateNPCSprite()
         {
-            return new EnemySprite(enemySpritesheet, 0, 0);
+            return new EnemySprite(npcSpritesheet, 5, 1);
         }
         
-        public EnemySprite CreateSmallEnemySprite(SpriteBatch spriteBatch)
+        public EnemySprite CreateSmallEnemySprite()
         {
             return new EnemySprite(enemySpritesheet, 0, 0);
         }
 
-        public EnemySprite CreateLargeEnemySprite(SpriteBatch spriteBatch)
+        public EnemySprite CreateLargeEnemySprite()
         {
             return new EnemySprite(enemySpritesheet, 0, 0);
         }
 
-        public EnemySprite CreateBossEnemySprite(SpriteBatch spriteBatch)
+        public EnemySprite CreateBossEnemySprite()
         {
             return new EnemySprite(bossSpritesheet, 0, 0);
         }
