@@ -59,4 +59,29 @@ namespace Sprint0.Commands
             currLink.changeState(_targetState);
         }
     }
+
+    public class CycleEnemy : ICommand
+    {
+        private Enemy _enemy;
+        private Direction _direction;
+        private EnemyStateMachine stateMachine;
+
+        public CycleEnemy(CycleEnemy enemy, Direction direction, EnemyStateMachine machine)
+        {
+            _enemy = enemy;
+            _direction = direction;
+            stateMachine = machine;
+        }
+
+        public void Execute()
+        {
+            //Temporary static implementation: (PP)
+            stateMachine.changeEnemy();
+            if (_direction = Direction.Left)
+            {
+                stateMachine.changeEnemy();
+            }
+            _enemy = stateMachine.GetEnemy();
+        } 
+    }
 }
