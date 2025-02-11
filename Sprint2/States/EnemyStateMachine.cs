@@ -62,15 +62,15 @@ namespace Sprint0.States
             }
         }
 
-        public void Moving(Enemy enemy)
+        public void Moving(Vector2 position)
         {
-            enemyMoving.Load(spriteBatch);
+            enemyMoving.Load();
             
         }
 
         public void TakeDamage()
         {
-            enemyDamaged.Load(spriteBatch);
+            enemyDamaged.Load();
         }
 
         public void Stop()

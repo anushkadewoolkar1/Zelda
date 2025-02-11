@@ -5,27 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Sprites;
 
 namespace Sprint0.States
 {
     public class EnemyDamagedState : IEnemyState
     {
         private Enemy enemy;
+        private SpriteBatch spriteBatch;
         int timer = 1000;
+        private Vector2 position;
 
         public EnemyDamagedState(Enemy enemy)
         {
             this.enemy = enemy;
             // construct sprite here
+            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
         }
-        public void Load(SpriteBatch spriteBatch)
+        public void Load()
         {
-            enemy.Load(spriteBatch);
+            enemy.Load();
         }
 
-        public void Move(Enemy enemy)
+        public void Move(Vector2 position)
         {
-            enemy.Move(enemy);
+            enemy.Move(position);
         }
 
         public void TakeDamage()
@@ -37,7 +41,7 @@ namespace Sprint0.States
         public void Update(GameTime gameTime)
         {
             enemy.TakeDamage();
-            enemy.Move(enemy);
+            enemy.Move(position);
             
             timer--;
             if (timer == 0)

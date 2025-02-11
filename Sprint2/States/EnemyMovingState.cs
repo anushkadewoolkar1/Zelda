@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
+using Zelda.Enums;
 
 namespace Sprint0.States
 {
@@ -13,34 +14,42 @@ namespace Sprint0.States
     {
         private Enemy enemy;
         private SpriteBatch spriteBatch;
+        private Vector2 position;
 
         public EnemyMovingState(Enemy enemy)
         {
             this.enemy = enemy;
             // construct enemy's sprite here
-            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite(spriteBatch);
+            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
         }
 
-        public void Load(SpriteBatch spriteBatch)
+        public void Load()
         {
-            enemy.Load(spriteBatch);
+            enemy.Load();
         }
 
-        public void Move(Enemy enemy)
+        public void Move()
         {
-            enemy.Move(enemy);
-        }
-
-        public void TakeDamage()
-        {
-            // change to EnemyDamagedState
+            enemy.Move(position);
         }
 
         public void Update(GameTime gameTime)
         {
-            // move the sprite however the enemy moves (probably do a switch case here)
+            // move the vector however the enemy moves (probably do a switch case here)
 
-            enemy.Update(gameTime);
+            switch(enemy.GetEnemy())
+            {
+                case EnemyType.OldMan:
+                    // OldMan NPC doesn't need to move
+                    break;
+                case EnemyType.Keese:
+                    
+                    break;
+
+
+            }
+
+            enemy.Move(position);
         }
 
         public void Draw(SpriteBatch spriteBatch)

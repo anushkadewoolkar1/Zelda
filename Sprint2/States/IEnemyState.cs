@@ -11,9 +11,7 @@ namespace Sprint0.States
 {
     internal interface IEnemyState
     {
-        void Load(SpriteBatch spriteBatch);
-        void Move(Enemy enemy);
-        void TakeDamage();
+        void Load();
         void Update(GameTime gameTime);
     }
 }

@@ -12,15 +12,21 @@ using Zelda.Enums;
 
 namespace Sprint0.States
 {
-    public class Enemy : IEnemyState
+    public class Enemy
     {
+        private Enemy enemy;
         private EnemySprite sprite;
         private EnemySpriteFactory spriteFactory;
         private EnemyStateMachine stateMachine;
+        public Vector2 position;
 
         public Enemy()
         {
-            // start out in moving state
+            spriteFactory = EnemySpriteFactory.Instance;
+            position = new Vector2(500, 250);
+
+            sprite = EnemySpriteFactory.Instance.CreateNPCSprite();
+            // stateMachine = new EnemyMovingState(enemy);
         }
 
         public EnemyType GetEnemy()
@@ -38,23 +44,23 @@ namespace Sprint0.States
             stateMachine.SetHealth();
         }
         
-        public void Load(SpriteBatch spriteBatch)
+        public void Load()
         {
             switch (stateMachine.GetEnemy())
             {
                 case EnemyType.Keese:
-                    spriteFactory.CreateSmallEnemySprite(spriteBatch);
+                    spriteFactory.CreateSmallEnemySprite();
                     break;
                 case EnemyType.Stalfos:
-                    spriteFactory.CreateLargeEnemySprite(spriteBatch);
+                    spriteFactory.CreateLargeEnemySprite();
                     break;
             }
         }
 
 
-        public void Move(Enemy enemy)
+        public void Move(Vector2 position)
         {
-            stateMachine.Moving(enemy);
+            stateMachine.Moving(position);
         }
 
         public void TakeDamage()
@@ -78,7 +84,6 @@ namespace Sprint0.States
         {
             stateMachine.Stop();
             stateMachine = enemyState;
-            // stateMachine.Load(sprite);
 
         }
     }

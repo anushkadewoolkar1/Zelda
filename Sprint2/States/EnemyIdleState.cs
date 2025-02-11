@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Sprites;
 
 namespace Sprint0.States
 {
@@ -12,28 +13,18 @@ namespace Sprint0.States
     {
         
         private Enemy enemy;
+        private SpriteBatch spriteBatch;
+        private Vector2 position;
 
-        public EnemyIdleState(Enemy enemy)
+        public EnemyIdleState()
         {
-            this.enemy = enemy;
             // construct sprite here
+            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
         }
 
-        public void Load(SpriteBatch spriteBatch)
+        public void Load()
         {
-            enemy.Load(spriteBatch);
-        }
-
-        public void Move(Enemy enemy)
-        {
-            // NO-OP
-            // idle
-        }
-
-        public void TakeDamage()
-        {
-            // NO-OP
-            // pretty sure this is gonna be used for NPCs, i don't think they take any damage
+            enemy.Load();
         }
 
         public void Update(GameTime gameTime)
