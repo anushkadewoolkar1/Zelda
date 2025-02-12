@@ -24,6 +24,7 @@ public class LinkAttackingState : ILinkState
 
     public void Enter()
     {
+        attackDuration = .5f;
        
         switch (currentDirection)
         {
