@@ -31,8 +31,6 @@ namespace Sprint0.Sprites
         public void LoadAllTextures(ContentManager content)
         {
             npcSpritesheet = content.Load<Texture2D>("lozNPCs");
-            enemySpritesheet = content.Load<Texture2D>("BossSpriteSheet");
-            bossSpritesheet = content.Load<Texture2D>("BossSpriteSheet");
         }
 
         // change all these when the spritesheets are actually loaded in
@@ -43,17 +41,17 @@ namespace Sprint0.Sprites
         
         public EnemySprite CreateSmallEnemySprite()
         {
-            return new EnemySprite(enemySpritesheet, 0, 0);
+            return new EnemySprite(npcSpritesheet, 0, 0);
         }
 
         public EnemySprite CreateLargeEnemySprite()
         {
-            return new EnemySprite(enemySpritesheet, 0, 0);
+            return new EnemySprite(npcSpritesheet, 0, 0);
         }
 
         public EnemySprite CreateBossEnemySprite()
         {
-            return new EnemySprite(bossSpritesheet, 0, 0);
+            return new EnemySprite(npcSpritesheet, 0, 0);
         }
     }
 }
