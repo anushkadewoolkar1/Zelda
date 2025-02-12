@@ -19,19 +19,32 @@ namespace Sprint0.States
         public EnemyIdleState()
         {
             // construct sprite here
-            ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
+            // will probably end up doing switch case here to account for different enemy sizes
+            if (enemy.enemyType == Zelda.Enums.EnemyType.OldMan)
+            {
+                ISprite npcSprite = EnemySpriteFactory.Instance.CreateNPCSprite();
+            } else
+            {
+                ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
+            }
         }
 
         public void Load()
         {
-            enemy.Load();
+            // sprite work done here
         }
 
         public void Update(GameTime gameTime)
         {
             // trigger non-moving animation
+            // vector work done here
 
             enemy.Update(gameTime);
+        }
+
+        public void Stop()
+        {
+            // no-op
         }
     }
 }

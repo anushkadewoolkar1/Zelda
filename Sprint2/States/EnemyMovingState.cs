@@ -25,22 +25,17 @@ namespace Sprint0.States
 
         public void Load()
         {
-            enemy.Load();
-        }
-
-        public void Move()
-        {
-            enemy.Move(position);
+            // sprite work done here
         }
 
         public void Update(GameTime gameTime)
         {
-            // move the vector however the enemy moves (probably do a switch case here)
+            // vector movement done here
 
             switch(enemy.GetEnemy())
             {
                 case EnemyType.OldMan:
-                    // OldMan NPC doesn't need to move
+                    // no-op: OldMan NPC doesn't need to move
                     break;
                 case EnemyType.Keese:
                     
@@ -52,9 +47,14 @@ namespace Sprint0.States
             enemy.Move(position);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            enemy.DrawCurrentSprite(spriteBatch);
+            enemy.DrawCurrentSprite(spriteBatch, position);
+        }
+
+        public void Stop()
+        {
+            // no-op
         }
     }
 }

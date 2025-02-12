@@ -9,9 +9,10 @@ using Sprint0.Sprites;
 
 namespace Sprint0.States
 {
-    internal interface IEnemyState
+    public interface IEnemyState
     {
         void Load();
         void Update(GameTime gameTime);
+        void Stop();
     }
 }

@@ -24,22 +24,12 @@ namespace Sprint0.States
         }
         public void Load()
         {
-            enemy.Load();
-        }
-
-        public void Move(Vector2 position)
-        {
-            enemy.Move(position);
-        }
-
-        public void TakeDamage()
-        {
-            // change health status
-            // i don't think the upgraded swords will be added, but this is where different levels of damage would be done
+            // sprite work done here
         }
 
         public void Update(GameTime gameTime)
         {
+            // vector work done here
             enemy.TakeDamage();
             enemy.Move(position);
             
@@ -55,6 +45,11 @@ namespace Sprint0.States
         void RemoveDecorator()
         {
             // go back to EnemyMovingState
+        }
+
+        public void Stop()
+        {
+            // no-op
         }
     }
 }

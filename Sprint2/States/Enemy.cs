@@ -14,76 +14,94 @@ namespace Sprint0.States
 {
     public class Enemy
     {
-        private Enemy enemy;
-        private EnemySprite sprite;
-        private EnemySpriteFactory spriteFactory;
-        private EnemyStateMachine stateMachine;
+        public Enemy currentEnemy;
+        public IEnemyState enemyState;
+        public double EnemyHealth;
+        public EnemySprite sprite;
+        public EnemySpriteFactory spriteFactory;
         public Vector2 position;
+        public EnemyType enemyType;
 
         public Enemy()
         {
             spriteFactory = EnemySpriteFactory.Instance;
             position = new Vector2(500, 250);
+            
+            currentEnemy.GetEnemy();
+            spriteFactory.CreateNPCSprite();
 
-            sprite = EnemySpriteFactory.Instance.CreateNPCSprite();
-            // stateMachine = new EnemyMovingState(enemy);
+
+            enemyState = new EnemyMovingState(currentEnemy);
+
         }
 
         public EnemyType GetEnemy()
         {
-            return stateMachine.GetEnemy();
+            return currentEnemy.enemyType;
         }
 
         public void ChangeEnemy()
         {
-            stateMachine.ChangeEnemy();
-        }
-
-        public void SetHealth()
-        {
-            stateMachine.SetHealth();
-        }
-        
-        public void Load()
-        {
-            switch (stateMachine.GetEnemy())
+            switch (enemyType)
             {
+                case EnemyType.OldMan:
+                    currentEnemy.enemyType = EnemyType.Keese;
+                    break;
                 case EnemyType.Keese:
-                    spriteFactory.CreateSmallEnemySprite();
+                    currentEnemy.enemyType = EnemyType.Stalfos;
                     break;
                 case EnemyType.Stalfos:
-                    spriteFactory.CreateLargeEnemySprite();
+                    // change when more enemies are implemented
+                    currentEnemy.enemyType = EnemyType.OldMan;
+                    break;
+                default:
+                    currentEnemy.enemyType = EnemyType.OldMan;
                     break;
             }
         }
 
+        public void SetHealth()
+        {
+            switch (currentEnemy.enemyType)
+            {
+                case EnemyType.OldMan:
+                    EnemyHealth = 99.0;
+                    break;
+                case EnemyType.Keese:
+                    EnemyHealth = 0.5;
+                    break;
+                case EnemyType.Stalfos:
+                    EnemyHealth = 2.0;
+                    break;
+
+            }
+        }
 
         public void Move(Vector2 position)
         {
-            stateMachine.Moving(position);
+            
         }
 
         public void TakeDamage()
         {
-            stateMachine.TakeDamage();
+            
         }
 
         public void Update(GameTime gameTime)
         {
-            stateMachine.Update(gameTime);
-
             sprite.Update(gameTime);
         }
 
-        public void DrawCurrentSprite(SpriteBatch spriteBatch)
+        public void DrawCurrentSprite(SpriteBatch spriteBatch, Vector2 position)
         {
-            sprite.Draw(spriteBatch);
+            sprite.Draw(spriteBatch, position);
         }
 
-        public void ChangeState(EnemyStateMachine enemyState)
+        public void ChangeState(IEnemyState newState)
         {
-            stateMachine.Stop();
-            stateMachine = enemyState;
+            enemyState.Stop();
+            enemyState = newState;
+            enemyState.Load();
 
         }
     }
