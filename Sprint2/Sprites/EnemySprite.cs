@@ -44,11 +44,10 @@ namespace Sprint0.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             Rectangle SourceRectangle = new Rectangle(0, 0, 16, 32);
-            Rectangle DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, 32, 32);
+            Rectangle DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, SourceRectangle.Width, SourceRectangle.Height);
 
-            spriteBatch.Begin();
             spriteBatch.Draw(Texture, DestinationRectangle, SourceRectangle, Color.White);
-            spriteBatch.End();
+            
         }
     }
 }
