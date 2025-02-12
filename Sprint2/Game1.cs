@@ -35,6 +35,9 @@ namespace Sprint0
 
         Link linkSprite;
 
+        private Enemy enemySprite;
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -57,6 +60,9 @@ namespace Sprint0
             itemSprite = ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow");
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
+
+            EnemySpriteFactory.Instance.LoadAllTextures(Content);
+            enemySprite = new Enemy();
 
             
 
@@ -132,8 +138,6 @@ namespace Sprint0
 
             _keyboardController.Update();
 
-            linkSprite.Update(gameTime);
-
             //_currentSprite.Update(gameTime);
 
             base.Update(gameTime);
@@ -146,6 +150,8 @@ namespace Sprint0
             _spriteBatch.Begin();
 
             linkSprite.Draw(_spriteBatch);
+
+            enemySprite.DrawCurrentSprite(_spriteBatch);
 
             //_textSprite.Draw(_spriteBatch);
 
