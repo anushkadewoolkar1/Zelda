@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block8.png</SourceFile>
+  <SourceTime>2025-02-11T13:43:33.3319982-05:00</SourceTime>
+  <DestFile>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/bin/DesktopGL/Content/block8.xnb</DestFile>
+  <DestTime>2025-02-11T13:48:51.2141677-05:00</DestTime>
+  <Importer>TextureImporter</Importer>
+  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <Processor>TextureProcessor</Processor>
+  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

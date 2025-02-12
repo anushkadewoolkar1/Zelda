@@ -77,22 +77,12 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width, sourceRectangle.Height);
-            if (!linkDamaged)
-            {
-                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-            } else {
-
-                if (damageClock % 14 <= 4)
-                {
-                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);
-                } else if (damageClock % 14 <= 9)
-                {
-                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Red);
-                } else
-                {
-                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Blue);
-                } /*
+            //sourceRectangle = new Rectangle(1, 11, 200, 200); DELETE
+            destinationRectangle = new Rectangle(100, 100, sourceRectangle.Width*2, sourceRectangle.Height*2);
+            //if (!linkDamaged)
+            //{
+            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+            /*} else {
                 switch (damageClock % 3)
                 {
                     case 0:
@@ -108,9 +98,8 @@ namespace Sprint0.Sprites
                         break;
                 } */
                 damageClock++;
-            }
-
         }
+
 
         public void Update(GameTime gameTime)
         {

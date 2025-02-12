@@ -9,6 +9,7 @@ using SpriteFactory;
 using Zelda.Enums;
 using Sprint0.States;
 
+
 namespace Sprint0
 {
     public class Game1 : Game
@@ -35,8 +36,8 @@ namespace Sprint0
 
         Link linkSprite;
 
-        private Enemy enemySprite;
-
+        //block
+        private Block _block;
 
         public Game1()
         {
@@ -54,6 +55,23 @@ namespace Sprint0
 
         protected override void LoadContent()
         {
+            Texture2D[] blockTextures = new Texture2D[]
+            {
+                Content.Load<Texture2D>("block1"),
+                Content.Load<Texture2D>("block2"),
+                Content.Load<Texture2D>("block3"),
+                Content.Load<Texture2D>("block4"),
+                Content.Load<Texture2D>("block5"),
+                Content.Load<Texture2D>("block6"),
+                Content.Load<Texture2D>("block7"),
+                Content.Load<Texture2D>("block8"),
+                Content.Load<Texture2D>("block9"),
+                Content.Load<Texture2D>("block10")
+            };
+
+            // Create the block at position (200, 200)
+            _block = new Block(new Vector2(200, 200), blockTextures);
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ItemSpriteFactory.Instance.ItemTextures(Content);  
@@ -62,7 +80,7 @@ namespace Sprint0
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
-            enemySprite = new Enemy();
+            //enemySprite = new Enemy();
 
             
 
@@ -140,6 +158,8 @@ namespace Sprint0
 
             //_currentSprite.Update(gameTime);
 
+            _block.Update();
+
             base.Update(gameTime);
         }
 
@@ -151,9 +171,11 @@ namespace Sprint0
 
             linkSprite.Draw(_spriteBatch);
 
-            enemySprite.DrawCurrentSprite(_spriteBatch);
+            //enemySprite.DrawCurrentSprite(_spriteBatch);
 
             //_textSprite.Draw(_spriteBatch);
+
+            _block.Draw(_spriteBatch);
 
             itemSprite.Draw(_spriteBatch, new Vector2(100, 100));
 
