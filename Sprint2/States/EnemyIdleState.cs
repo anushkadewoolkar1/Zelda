@@ -16,8 +16,9 @@ namespace Sprint0.States
         private SpriteBatch spriteBatch;
         private Vector2 position;
 
-        public EnemyIdleState()
+        public EnemyIdleState(Enemy enemy)
         {
+            this.enemy = enemy;
             // construct sprite here
             // will probably end up doing switch case here to account for different enemy sizes
             if (enemy.enemyType == Zelda.Enums.EnemyType.OldMan)

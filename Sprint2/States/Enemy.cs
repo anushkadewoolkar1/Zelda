@@ -14,7 +14,6 @@ namespace Sprint0.States
 {
     public class Enemy
     {
-        public Enemy currentEnemy;
         public IEnemyState enemyState;
         public double EnemyHealth;
         public EnemySprite sprite;
@@ -26,18 +25,18 @@ namespace Sprint0.States
         {
             spriteFactory = EnemySpriteFactory.Instance;
             position = new Vector2(500, 250);
-            
-            currentEnemy.GetEnemy();
-            spriteFactory.CreateNPCSprite();
+
+            enemyType = EnemyType.OldMan;
+            this.sprite = spriteFactory.CreateNPCSprite();
 
 
-            enemyState = new EnemyMovingState(currentEnemy);
+            enemyState = new EnemyIdleState(this);
 
         }
 
         public EnemyType GetEnemy()
         {
-            return currentEnemy.enemyType;
+            return enemyType;
         }
 
         public void ChangeEnemy()
@@ -45,24 +44,24 @@ namespace Sprint0.States
             switch (enemyType)
             {
                 case EnemyType.OldMan:
-                    currentEnemy.enemyType = EnemyType.Keese;
+                    enemyType = EnemyType.Keese;
                     break;
                 case EnemyType.Keese:
-                    currentEnemy.enemyType = EnemyType.Stalfos;
+                    enemyType = EnemyType.Stalfos;
                     break;
                 case EnemyType.Stalfos:
                     // change when more enemies are implemented
-                    currentEnemy.enemyType = EnemyType.OldMan;
+                    enemyType = EnemyType.OldMan;
                     break;
                 default:
-                    currentEnemy.enemyType = EnemyType.OldMan;
+                    enemyType = EnemyType.OldMan;
                     break;
             }
         }
 
         public void SetHealth()
         {
-            switch (currentEnemy.enemyType)
+            switch (enemyType)
             {
                 case EnemyType.OldMan:
                     EnemyHealth = 99.0;
@@ -92,9 +91,9 @@ namespace Sprint0.States
             sprite.Update(gameTime);
         }
 
-        public void DrawCurrentSprite(SpriteBatch spriteBatch, Vector2 position)
+        public void DrawCurrentSprite(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch, position);
+            sprite.Draw(spriteBatch, this.position);
         }
 
         public void ChangeState(IEnemyState newState)

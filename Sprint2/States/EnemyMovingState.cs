@@ -47,9 +47,9 @@ namespace Sprint0.States
             enemy.Move(position);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            enemy.DrawCurrentSprite(spriteBatch, position);
+            enemy.DrawCurrentSprite(spriteBatch);
         }
 
         public void Stop()
