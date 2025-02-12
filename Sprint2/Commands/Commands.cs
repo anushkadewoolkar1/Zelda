@@ -68,22 +68,20 @@ namespace Sprint0.Commands
     {
         private Enemy _enemy;
         private Direction _direction;
-        private EnemyStateMachine stateMachine;
 
-        public CycleEnemy(Enemy enemy, Direction direction, EnemyStateMachine machine)
+        public CycleEnemy(Enemy enemy, Direction direction)
         {
             _enemy = enemy;
             _direction = direction;
-            stateMachine = machine;
         }
 
         public void Execute()
         {
             //Temporary static implementation: (PP)
-            stateMachine.ChangeEnemy();
+            _enemy.ChangeEnemy();
             if (_direction == Direction.Left)
             {
-                stateMachine.ChangeEnemy();
+                _enemy.ChangeEnemy();
             }
         } 
     }
