@@ -132,6 +132,8 @@ namespace Sprint0
 
             _keyboardController.Update();
 
+            linkSprite.Update(gameTime);
+
             //_currentSprite.Update(gameTime);
 
             base.Update(gameTime);

@@ -39,7 +39,7 @@ namespace Sprint0.Controllers
                 // if key in map execute
                 if (_keyCommandMap.ContainsKey(key))
                 {
-                    if (key != lastKey)
+                    if (key != lastInput)
                     {
                         _keyCommandMap[key].Execute();
                     }

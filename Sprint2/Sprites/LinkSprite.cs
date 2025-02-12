@@ -77,7 +77,7 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle(100, 100, sourceRectangle.Width, sourceRectangle.Height);
+            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width, sourceRectangle.Height);
             if (!linkDamaged)
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
