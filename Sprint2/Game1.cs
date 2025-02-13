@@ -105,6 +105,7 @@ namespace Sprint0
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);
+            var idleStateCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), Zelda.Enums.Direction.Down)); // Will be changed to current direction, directly accessing Link's direction value once implemented
             var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left));
             var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right));
             var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up));
@@ -117,6 +118,8 @@ namespace Sprint0
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
                 { Keys.Q, quitCommand },
+
+                { Keys.None, idleStateCommand },
                 
                 { Keys.Z, attackLeftCommand },
 
