@@ -28,12 +28,6 @@ namespace Sprint0.Controllers
 
             Keys[] pressedKeys = state.GetPressedKeys();
 
-            // If no input is given, reset lastInput to its default: (PP)
-            if (pressedKeys.Length == 0)
-            {
-                lastInput = Keys.None;
-            }
-
             foreach (Keys key in pressedKeys)
             {
                 // if key in map execute
@@ -46,6 +40,14 @@ namespace Sprint0.Controllers
                     // Update lastInput if input is valid command: (PP)
                     lastInput = key;
                 }
+            }
+
+
+            // If no input is given, reset lastInput to Keys.None (default state), and return Link to default idle state: (PP)
+            if (pressedKeys.Length == 0)
+            {
+                lastInput = Keys.None;
+                _keyCommandMap[Keys.None].Execute();
             }
         }
     }
