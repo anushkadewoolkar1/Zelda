@@ -1,189 +1,44 @@
-<<<<<<< HEAD
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Sprint0.exe
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Sprint0.deps.json
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Sprint0.runtimeconfig.json
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Sprint0.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Sprint0.pdb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/MonoGame.Framework.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/NVorbis.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.csproj.AssemblyReference.cache
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.GeneratedMSBuildEditorConfig.editorconfig
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.AssemblyInfoInputs.cache
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.AssemblyInfo.cs
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.csproj.CoreCompileInputs.cache
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.csproj.Up2Date
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/refint/Sprint0.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.pdb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/Sprint0.genruntimeconfig.cache
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/obj/Debug/net8.0/ref/Sprint0.dll
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Content/LuigiDead.xnb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Content/LuigiRunMoveSheet.xnb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Content/LuigiRunningSheet.xnb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Content/LuigiStill.xnb
-C:/Users/Kdbro/source/repos/Sprint0/Sprint0/bin/Debug/net8.0/Content/DefaultFont.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.AssemblyReference.cache
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.GeneratedMSBuildEditorConfig.editorconfig
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfoInputs.cache
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfo.cs
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.CoreCompileInputs.cache
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.sourcelink.json
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/refint/Sprint0.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.pdb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/DefaultFont.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/ItemSpritesheet.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/LinkAllOverworldColorsWithReflection.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiDead.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunMoveSheet.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunningSheet.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiStill.xnb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.exe
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.deps.json
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.runtimeconfig.json
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.pdb
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/MonoGame.Framework.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/NVorbis.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.Up2Date
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.genruntimeconfig.cache
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/obj/Debug/net8.0/ref/Sprint0.dll
-C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/bin/Debug/net8.0/Content/lozNPCs.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/DefaultFont.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/ItemSpritesheet.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/LinkAllOverworldColorsWithReflection.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/lozNPCs.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiDead.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunMoveSheet.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunningSheet.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiStill.xnb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.exe
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.deps.json
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.runtimeconfig.json
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.pdb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/MonoGame.Framework.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/NVorbis.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.AssemblyReference.cache
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.GeneratedMSBuildEditorConfig.editorconfig
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfoInputs.cache
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfo.cs
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.CoreCompileInputs.cache
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.sourcelink.json
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.Up2Date
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/refint/Sprint0.dll
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.pdb
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.genruntimeconfig.cache
-C:/Users/jorda/source/repos/CheckFolder/Zelda/Sprint2/obj/Debug/net8.0/ref/Sprint0.dll
-=======
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/DefaultFont.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/ItemSpritesheet.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/LinkAllOverworldColorsWithReflection.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/lozNPCs.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiDead.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunMoveSheet.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunningSheet.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiStill.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Sprint0
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.deps.json
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.runtimeconfig.json
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.pdb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/MonoGame.Framework.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/NVorbis.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.AssemblyReference.cache
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.GeneratedMSBuildEditorConfig.editorconfig
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfoInputs.cache
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfo.cs
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.CoreCompileInputs.cache
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.sourcelink.json
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.Up2Date
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/refint/Sprint0.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.pdb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.genruntimeconfig.cache
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/obj/Debug/net8.0/ref/Sprint0.dll
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block1.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block10.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block2.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block3.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block4.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block5.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block6.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block7.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block8.xnb
-/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/bin/Debug/net8.0/Content/block9.xnb
->>>>>>> 701bbce (block implementation added)
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block1.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block10.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block2.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block3.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block4.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block5.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block6.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block7.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block8.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/block9.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/DefaultFont.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/ItemSpritesheet.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/LinkAllOverworldColorsWithReflection.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/lozNPCs.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiDead.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunMoveSheet.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiRunningSheet.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Content/LuigiStill.xnb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Sprint0
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.deps.json
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.runtimeconfig.json
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/Sprint0.pdb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/MonoGame.Framework.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/NVorbis.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.AssemblyReference.cache
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.GeneratedMSBuildEditorConfig.editorconfig
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfoInputs.cache
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.AssemblyInfo.cs
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.CoreCompileInputs.cache
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.sourcelink.json
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.csproj.Up2Date
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/refint/Sprint0.dll
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.pdb
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/Sprint0.genruntimeconfig.cache
-/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/Debug/net8.0/ref/Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block1.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block10.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block2.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block3.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block4.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block5.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block6.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block7.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block8.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\block9.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\DefaultFont.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\ItemSpritesheet.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\LinkAllOverworldColorsWithReflection.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\lozNPCs.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\LuigiDead.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\LuigiRunMoveSheet.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\LuigiRunningSheet.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Content\LuigiStill.xnb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Sprint0.exe
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Sprint0.deps.json
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Sprint0.runtimeconfig.json
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\Sprint0.pdb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\MonoGame.Framework.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\NVorbis.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\bin\Debug\net8.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.csproj.AssemblyReference.cache
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.AssemblyInfoInputs.cache
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.AssemblyInfo.cs
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.csproj.CoreCompileInputs.cache
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.sourcelink.json
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.csproj.Up2Date
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\refint\Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.pdb
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.genruntimeconfig.cache
+C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\ref\Sprint0.dll

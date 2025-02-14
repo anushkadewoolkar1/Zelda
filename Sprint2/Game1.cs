@@ -163,6 +163,8 @@ namespace Sprint0
 
             //_currentSprite.Update(gameTime);
 
+            linkSprite.Update(gameTime);
+
             _block.Update();
 
             base.Update(gameTime);

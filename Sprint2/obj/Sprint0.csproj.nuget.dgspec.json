@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Sprint0.csproj": {}
+    "C:\\Users\\jorda\\source\\repos\\Sprint2_V3\\Sprint2\\Sprint0.csproj": {}
   },
   "projects": {
-    "/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Sprint0.csproj": {
+    "C:\\Users\\jorda\\source\\repos\\Sprint2_V3\\Sprint2\\Sprint0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Sprint0.csproj",
+        "projectUniqueName": "C:\\Users\\jorda\\source\\repos\\Sprint2_V3\\Sprint2\\Sprint0.csproj",
         "projectName": "Sprint0",
-        "projectPath": "/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Sprint0.csproj",
-        "packagesPath": "/Users/anushkadewoolkar/.nuget/packages/",
-        "outputPath": "/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/obj/",
+        "projectPath": "C:\\Users\\jorda\\source\\repos\\Sprint2_V3\\Sprint2\\Sprint0.csproj",
+        "packagesPath": "C:\\Users\\jorda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jorda\\source\\repos\\Sprint2_V3\\Sprint2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/anushkadewoolkar/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\jorda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -68,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.405/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

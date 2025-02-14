@@ -40,13 +40,11 @@ namespace Sprint0.Sprites
 
             if (LinkStates[0] < 3 && (LinkStates[2] % 2) == 1)
             {
-                //sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1], LinkStates[2]);
+                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[0], LinkStates[1]);
             }
 
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
             colorAdjustment = (LinkStates[2] / 2) * 310;
-            //sourceRectangle = new Rectangle(sourceRectangleDimensions[2], sourceRectangleDimensions[3],
-            //            16, 16);
 
 
             switch (LinkStates[1])
@@ -77,12 +75,13 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            //sourceRectangle = new Rectangle(1, 11, 200, 200); DELETE
-            destinationRectangle = new Rectangle(100, 100, sourceRectangle.Width*2, sourceRectangle.Height*2);
-            //if (!linkDamaged)
-            //{
-            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-            /*} else {
+            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
+            if (!linkDamaged)
+            {
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+            }
+            else
+            {
                 switch (damageClock % 3)
                 {
                     case 0:
@@ -96,10 +95,11 @@ namespace Sprint0.Sprites
                         break;
                     default:
                         break;
-                } */
+                }
                 damageClock++;
+            }
         }
-
+        
 
         public void Update(GameTime gameTime)
         {
@@ -180,12 +180,12 @@ namespace Sprint0.Sprites
                         sourceRectangleDimensions[2] = 28;
                         break;
                     case 3:
-                        sourceRectangleDimensions[2] = 23;
-                        sourceRectangleDimensions[0] = xCoordinate + 12;
+                        sourceRectangleDimensions[2] = 22;
+                        sourceRectangleDimensions[0] = xCoordinate + 11;
                         break;
                     case 4:
-                        sourceRectangleDimensions[3] = 19;
-                        sourceRectangleDimensions[0] = xCoordinate + 12 + 8;
+                        sourceRectangleDimensions[2] = 18;
+                        sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
                         break;
                     default:
                         break;
@@ -197,8 +197,6 @@ namespace Sprint0.Sprites
 
         private int[] MagicalShield(int[] sourceRectangleDimensions, int facingDirection, int frame)
         {
-            //int[] result = sourceRectangleDimensions;
-            //sourceRectangleDimensions[3] += 100;
             switch (sourceRectangleDimensions[1])
             {
                 case 1:
@@ -213,11 +211,11 @@ namespace Sprint0.Sprites
                     sourceRectangleDimensions[1] += 51;
                     if (frame == 3)
                     {
-                        sourceRectangleDimensions[0] -= 10;
+                        sourceRectangleDimensions[0] -= 11;
                     }
                     else if (frame == 4)
                     {
-                        sourceRectangleDimensions[0] -= 11;
+                        sourceRectangleDimensions[0] -= 10;
                     }
                     break;
                 default:
