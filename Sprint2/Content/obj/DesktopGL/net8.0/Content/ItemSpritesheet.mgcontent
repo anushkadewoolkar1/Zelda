@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<<<<<<< HEAD
-  <SourceFile>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/ItemSpritesheet.png</SourceFile>
-  <SourceTime>2025-02-10T22:57:35.1448749-05:00</SourceTime>
-  <DestFile>C:/Users/jorda/source/repos/Sprint2TestProject/Sprint2TestProject/Zelda/Sprint2/Content/bin/DesktopGL/Content/ItemSpritesheet.xnb</DestFile>
-  <DestTime>2025-02-12T13:12:51.7808496-05:00</DestTime>
-=======
-  <SourceFile>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/ItemSpritesheet.png</SourceFile>
-  <SourceTime>2025-02-11T13:28:42.4860887-05:00</SourceTime>
-  <DestFile>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/bin/DesktopGL/Content/ItemSpritesheet.xnb</DestFile>
-  <DestTime>2025-02-11T13:29:17.0586931-05:00</DestTime>
->>>>>>> 701bbce (block implementation added)
+  <SourceFile>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/ItemSpritesheet.png</SourceFile>
+  <SourceTime>2025-02-14T12:46:11.1695298-05:00</SourceTime>
+  <DestFile>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/bin/DesktopGL/Content/ItemSpritesheet.xnb</DestFile>
+  <DestTime>2025-02-14T12:48:40.4337181-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

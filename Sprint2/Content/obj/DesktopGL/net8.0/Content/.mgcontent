@@ -4,24 +4,24 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/../DefaultFont.spritefont</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/ItemSpritesheet.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/lozNPCs.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/LuigiDead.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/LuigiRunMoveSheet.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/LuigiRunningSheet.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/LuigiStill.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block1.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block2.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block3.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block4.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block5.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block6.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block7.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block8.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block9.png</File>
-    <File>/Users/anushkadewoolkar/Zelda-new/Zelda/Sprint2/Content/block10.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/../DefaultFont.spritefont</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/ItemSpritesheet.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/lozNPCs.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/LuigiDead.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/LuigiRunMoveSheet.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/LuigiRunningSheet.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/LuigiStill.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block1.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block2.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block3.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block4.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block5.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block6.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block7.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block8.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block9.png</File>
+    <File>/Users/anushkadewoolkar/zelda check/Zelda/Sprint2/Content/block10.png</File>
   </SourceFiles>
   <DestFiles>
     <File>DefaultFont.spritefont</File>
