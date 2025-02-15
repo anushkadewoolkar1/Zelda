@@ -26,6 +26,10 @@ namespace Zelda.Enums
     {
         OldMan,
         Keese,
-        Stalfos
+        Stalfos,
+        Goriya,
+        Gel,
+        Zol,
+        Trap
     }
 }
