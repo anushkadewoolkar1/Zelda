@@ -11,6 +11,7 @@ namespace Sprint0.Sprites
 {
     public class EnemySpriteFactory
     {
+        private Texture2D enemySpawnSheet;
         private Texture2D largeSpritesheet;
         private Texture2D smallSpritesheet;
         private Texture2D bossSpritesheet;
@@ -34,6 +35,7 @@ namespace Sprint0.Sprites
 
         public void LoadAllTextures(ContentManager content)
         {
+            enemySpawnSheet = content.Load<Texture2D>("EnemySpawning");
             npcSpritesheet = content.Load<Texture2D>("lozNPCs");
             largeSpritesheet = content.Load<Texture2D>("LargeEnemies");
             smallSpritesheet = content.Load<Texture2D>("SmallEnemies");
@@ -43,53 +45,88 @@ namespace Sprint0.Sprites
         // change all these when the spritesheets are actually loaded in
         public EnemySprite CreateNPCSprite()
         {
-            return new EnemySprite(npcSpritesheet, 1, 1, 0, 0, 16, 32);
+            return new EnemySprite(npcSpritesheet, 1, 1, 0, 0, 16, 32, EnemyType.OldMan);
         }
 
         public EnemySprite CreateEnemySprite(EnemyType enemyType)
         {
+            // enemies spawn in with an animation, add that in later
             EnemySprite sprite;
             XSize = 16;
             YSize = 32;
             switch(enemyType)
             {
                 case EnemyType.OldMan:
-                    return sprite = CreateNPCSprite();
+                    sprite = CreateNPCSprite();
+                    sprite.spriteSize = 32;
+                    return sprite;
                 case EnemyType.Keese:
-                    return sprite = CreateSmallEnemySprite(enemyType, 2, 19, 0);
+                    sprite = CreateSmallEnemySprite(enemyType, 2, 21, 1);
+                    sprite.spriteSize = 32;
+                    return sprite;
                 case EnemyType.Stalfos:
-                    return sprite = CreateLargeEnemySprite(enemyType, 2, 123, 18);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 124, 18);
+                    sprite.spriteSize = 32;
+                    return sprite;
                 case EnemyType.Goriya:
                     YSize = 16;
-                    return sprite = CreateLargeEnemySprite(enemyType, 6, 30, 0);
+                    sprite = CreateLargeEnemySprite(enemyType, 8, 34, 0);
+                    sprite.spriteSize = 32;
+                    return sprite;
                 case EnemyType.Gel:
                     XSize = 8;
                     YSize = 16;
-                    return sprite = CreateSmallEnemySprite(enemyType, 2, 0, 0);
+                    sprite = CreateSmallEnemySprite(enemyType, 2, 2, 1);
+                    sprite.spriteSize = 16;
+                    return sprite;
                 case EnemyType.Zol:
-                    XSize = 12;
                     YSize = 16;
-                    return sprite = CreateLargeEnemySprite(enemyType, 2, 0, 0);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 0, 1);
+                    sprite.spriteSize = 32;
+                    return sprite;
+                case EnemyType.Trap:
+                    sprite = CreateLargeEnemySprite(enemyType, 1, 34, 18);
+                    sprite.spriteSize = 32;
+                    return sprite;
+                case EnemyType.Wallmaster:
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 0, 18);
+                    sprite.spriteSize = 32;
+                    return sprite;
+                case EnemyType.Rope:
+                    sprite = CreateLargeEnemySprite(enemyType, 4, 50, 18);
+                    sprite.spriteSize = 32;
+                    return sprite;
+                case EnemyType.Aquamentus:
+                    XSize = 32;
+                    sprite = CreateBossEnemySprite(enemyType, 4, 0, 0);
+                    sprite.spriteSize = 32;
+                    return sprite;
+                case EnemyType.Dodongo:
+                    sprite = CreateBossEnemySprite(enemyType, 4, 0, 34);
+                    sprite.spriteSize = 32;
+                    return sprite;
                 default:
-                    return sprite = CreateNPCSprite();
+                    sprite = CreateNPCSprite();
+                    sprite.spriteSize = 32;
+                    return sprite;
             }
         }
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
             EnemySprite sprite;
-            return sprite = new EnemySprite(smallSpritesheet, rows, 1, startX, startY, XSize, YSize);
+            return sprite = new EnemySprite(smallSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
         }
 
         public EnemySprite CreateLargeEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
             EnemySprite sprite;
-            return sprite = new EnemySprite(largeSpritesheet, rows, 1, startX, startY, XSize, YSize);
+            return sprite = new EnemySprite(largeSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
         }
 
-        public EnemySprite CreateBossEnemySprite()
+        public EnemySprite CreateBossEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            return new EnemySprite(bossSpritesheet, 0, 0, 0, 0, XSize, YSize);
+            return new EnemySprite(bossSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
         }
     }
 }
