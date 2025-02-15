@@ -36,6 +36,8 @@ namespace Sprint0
 
         Link linkSprite;
 
+        Enemy enemySprite;
+
         //block
         private Block _block;
 
@@ -82,7 +84,7 @@ namespace Sprint0
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
-            //enemySprite = new Enemy();
+            enemySprite = new Enemy();
 
             
 
@@ -114,8 +116,8 @@ namespace Sprint0
             var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
             var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
             var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
-            // var enemyCycleLeftCmd = new CycleEnemy(_currentEnemy, Directions.Left, _currentEnemy.stateMachine);
-            // var enemyCycleRightCmd = new CycleEnemy(_currentEnemy, Directions.Right, _currentEnemy.stateMachine);
+            var enemyCycleLeftCmd = new CycleEnemy(enemySprite, Direction.Left);
+            var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
@@ -143,6 +145,10 @@ namespace Sprint0
 
                 { Keys.Right, moveRightCommand },
 
+                { Keys.O, enemyCycleLeftCmd },
+
+                { Keys.P, enemyCycleRightCmd }
+
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);
             /*
@@ -163,6 +169,8 @@ namespace Sprint0
 
             //_currentSprite.Update(gameTime);
 
+            enemySprite.Update(gameTime);
+
             linkSprite.Update(gameTime);
 
             _block.Update();
@@ -178,7 +186,7 @@ namespace Sprint0
 
             linkSprite.Draw(_spriteBatch);
 
-            //enemySprite.DrawCurrentSprite(_spriteBatch);
+            enemySprite.DrawCurrentSprite(_spriteBatch);
 
             //_textSprite.Draw(_spriteBatch);
 
