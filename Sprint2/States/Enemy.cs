@@ -27,7 +27,8 @@ namespace Sprint0.States
             position = new Vector2(500, 250);
 
             enemyType = EnemyType.OldMan;
-            this.sprite = spriteFactory.CreateNPCSprite();
+            this.sprite = spriteFactory.CreateEnemySprite(enemyType);
+            this.sprite.spriteSize = 32;
 
 
             enemyState = new EnemyIdleState(this);
@@ -39,7 +40,62 @@ namespace Sprint0.States
             return enemyType;
         }
 
-        public void ChangeEnemy()
+        public void ChangeEnemyBackward()
+        {
+            switch (enemyType)
+            {
+                case EnemyType.OldMan:
+                    this.enemyType = EnemyType.Dodongo;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Keese:
+                    this.enemyType = EnemyType.OldMan;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Stalfos:
+                    this.enemyType = EnemyType.Keese;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Gel:
+                    this.enemyType = EnemyType.Stalfos;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Zol:
+                    this.enemyType = EnemyType.Gel;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Goriya:
+                    this.enemyType = EnemyType.Zol;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Trap:
+                    this.enemyType = EnemyType.Goriya;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Wallmaster:
+                    this.enemyType = EnemyType.Trap;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Rope:
+                    this.enemyType = EnemyType.Wallmaster;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Aquamentus:
+                    this.enemyType = EnemyType.Rope;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Dodongo:
+                    this.enemyType = EnemyType.Aquamentus;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                default:
+                    this.enemyType = EnemyType.OldMan;
+                    this.sprite = spriteFactory.CreateNPCSprite();
+                    break;
+            }
+        }
+
+        public void ChangeEnemyForward()
         {
             switch (enemyType)
             {
@@ -64,6 +120,26 @@ namespace Sprint0.States
                     this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
                     break;
                 case EnemyType.Goriya:
+                    this.enemyType = EnemyType.Trap;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Trap:
+                    this.enemyType = EnemyType.Wallmaster;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Wallmaster:
+                    this.enemyType = EnemyType.Rope;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Rope:
+                    this.enemyType = EnemyType.Aquamentus;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Aquamentus:
+                    this.enemyType = EnemyType.Dodongo;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Dodongo:
                     this.enemyType = EnemyType.OldMan;
                     this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
                     break;
