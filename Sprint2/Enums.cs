@@ -14,7 +14,14 @@ namespace Zelda.Enums
         WhiteSword,
         MagicalSword
     }
-    
+
+    public enum ItemType
+    {
+        Arrow,
+        Boomerang,
+        Bomb
+    }
+
     public enum EnemyType
     {
         OldMan,

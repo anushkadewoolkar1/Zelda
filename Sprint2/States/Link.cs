@@ -20,6 +20,8 @@ public class Link
 
     // Health property 
     public int Health { get; set; } = 2;
+    // property for which item is currently selected
+    public ItemType CurrentItem { get; set; }  
 
     public Link()
     {
@@ -27,12 +29,18 @@ public class Link
         spriteFactory = LinkSpriteFactory.Instance;
         Position = new Vector2(100, 100);
 
-        Health = 1;
-
         // Start initial sprite
         currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(1, 0, 0);
         currentState = new LinkWalkingState(this, Direction.Down);
         currentState.Enter();
+
+        // Set invulnerability to false and timer to 0.
+        IsInvulnerable = false;
+        invulnerabilityTimer = 0f;
+
+        // Set the default current item 
+        CurrentItem = ItemType.Arrow;
+
     }
 
     public void Update(GameTime gameTime)
@@ -89,10 +97,51 @@ public class Link
         Position += direction * Speed * dt;
     }
 
-    public void PerformAttack()
+    public void PerformAttack(Direction direction)
     {
         System.Diagnostics.Debug.WriteLine("Link performs an attack!");
-        // Implement actual attack logic here.
+
+        //// Define the dimensions of the attack hitbox.
+        //int hitboxWidth = 20;
+        //int hitboxHeight = 20;
+        //Rectangle attackHitbox;
+
+        //// Determine the hitbox location based on Link's current facing direction.
+        //switch (FacingDirection)
+        //{
+        //    case Direction.Up:
+        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y - hitboxHeight, hitboxWidth, hitboxHeight);
+        //        break;
+        //    case Direction.Down:
+        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y + hitboxHeight, hitboxWidth, hitboxHeight);
+        //        break;
+        //    case Direction.Left:
+        //        attackHitbox = new Rectangle((int)Position.X - hitboxWidth, (int)Position.Y, hitboxWidth, hitboxHeight);
+        //        break;
+        //    case Direction.Right:
+        //        attackHitbox = new Rectangle((int)Position.X + hitboxWidth, (int)Position.Y, hitboxWidth, hitboxHeight);
+        //        break;
+        //    default:
+        //        // Fallback if FacingDirection isn't set.
+        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y, hitboxWidth, hitboxHeight);
+        //        break;
+        //}
+
+        //Console.WriteLine("Attack hitbox: " + attackHitbox.ToString());
+
+        // Uncomment the following code when enemy collision is implemented:
+        /*
+        foreach (var enemy in EnemyManager.Instance.Enemies)
+        {
+            if (attackHitbox.Intersects(enemy.BoundingBox))
+            {
+                enemy.TakeDamage(1); // Apply damage to the enemy.
+            }
+        }
+        */
+
+        // play an attack sound.
+        // SoundManager.Instance.PlaySound("LinkAttack");
     }
 
     public void PickUpItem()
@@ -104,7 +153,42 @@ public class Link
     public void UseItem()
     {
         System.Diagnostics.Debug.WriteLine("Link uses an item!");
-        // Implement item usage logic here
+        
+        //switch (CurrentItem)
+        //{
+        //    case ItemType.Arrow:
+        //        {
+        //            // Create the arrow sprite from the item sprite factory.
+        //            ISprite arrowSprite = ItemSpriteFactory.Instance.CreateArrow();
+        //            // Create an arrow projectile (assume you have an ArrowProjectile class).
+        //            ArrowProjectile arrow = new ArrowProjectile(Position, FacingDirection, arrowSprite);
+        //            // Add the arrow to a projectile manager so that it is updated/drawn.
+        //            ProjectileManager.Instance.AddProjectile(arrow);
+        //            break;
+        //        }
+        //    case ItemType.Boomerang:
+        //        {
+        //            ISprite boomerangSprite = ItemSpriteFactory.Instance.CreateBoomerang();
+        //            // Create a boomerang projectile (assume you have a BoomerangProjectile class).
+        //            BoomerangProjectile boomerang = new BoomerangProjectile(Position, FacingDirection, boomerangSprite);
+        //            ProjectileManager.Instance.AddProjectile(boomerang);
+        //            break;
+        //        }
+        //    case ItemType.Bomb:
+        //        {
+        //            ISprite bombSprite = ItemSpriteFactory.Instance.CreateBomb();
+        //            // Create a bomb (which may be handled differently than a projectile).
+        //            Bomb bomb = new Bomb(Position, bombSprite);
+        //            // Add the bomb to a bomb manager (or similar) to handle its countdown and explosion.
+        //            BombManager.Instance.AddBomb(bomb);
+        //            break;
+        //        }
+        //    default:
+        //        {
+        //            Console.WriteLine("No valid item selected.");
+        //            break;
+        //        }
+        //}
     }
 
     public void StartInvulnerability()

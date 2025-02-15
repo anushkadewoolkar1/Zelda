@@ -13,7 +13,7 @@ public class LinkAttackingState : ILinkState
     private float attackDuration;
     private int attackFrame;
 
-    public LinkAttackingState(Link link, Direction direction)
+    public LinkAttackingState(Link link, Direction direction, SwordType swordType)
     {
         this.link = link;
         this.currentDirection = direction;
@@ -24,7 +24,7 @@ public class LinkAttackingState : ILinkState
 
     public void Enter()
     {
-        attackDuration = .5f;
+        attackDuration = 0.5f;
        
         switch (currentDirection)
         {
@@ -62,7 +62,7 @@ public class LinkAttackingState : ILinkState
                 break;
         }
 
-        link.PerformAttack();
+        link.PerformAttack(currentDirection);
     }
 
     public void Update(GameTime gameTime)
