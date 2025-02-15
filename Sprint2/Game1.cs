@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using SpriteFactory;
 using Zelda.Enums;
 using Sprint0.States;
+using System;
 
 
 namespace Sprint0
@@ -38,6 +39,7 @@ namespace Sprint0
 
         Enemy enemySprite;
 
+
         //block
         private Block _block;
 
@@ -45,6 +47,11 @@ namespace Sprint0
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            this.IsFixedTimeStep = true;
+            // fps
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1d / 30d);
+
             IsMouseVisible = true;
         }
 
@@ -110,8 +117,9 @@ namespace Sprint0
             // Create Commands 
             var quitCommand = new QuitCommand(this);
             var idleStateCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), Zelda.Enums.Direction.Down)); // Will be changed to current direction, directly accessing Link's direction value once implemented
-            var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left));
-            var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right));
+            // made it so it always does wooden sword for compilation fixes
+            var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left, SwordType.WoodenSword));
+            var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right, SwordType.WoodenSword));
             var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up));
             var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
             var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
