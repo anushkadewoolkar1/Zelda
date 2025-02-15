@@ -44,17 +44,32 @@ namespace Sprint0.States
             switch (enemyType)
             {
                 case EnemyType.OldMan:
-                    enemyType = EnemyType.Keese;
+                    this.enemyType = EnemyType.Keese;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
                     break;
                 case EnemyType.Keese:
-                    enemyType = EnemyType.Stalfos;
+                    this.enemyType = EnemyType.Stalfos;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
                     break;
                 case EnemyType.Stalfos:
-                    // change when more enemies are implemented
-                    enemyType = EnemyType.OldMan;
+                    this.enemyType = EnemyType.Gel;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Gel:
+                    this.enemyType = EnemyType.Zol;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Zol:
+                    this.enemyType = EnemyType.Goriya;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    break;
+                case EnemyType.Goriya:
+                    this.enemyType = EnemyType.OldMan;
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
                     break;
                 default:
-                    enemyType = EnemyType.OldMan;
+                    this.enemyType = EnemyType.OldMan;
+                    this.sprite = spriteFactory.CreateNPCSprite();
                     break;
             }
         }

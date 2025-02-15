@@ -26,7 +26,7 @@ namespace Sprint0.States
                 ISprite npcSprite = EnemySpriteFactory.Instance.CreateNPCSprite();
             } else
             {
-                ISprite enemySprite = EnemySpriteFactory.Instance.CreateSmallEnemySprite();
+                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
             }
         }
 
