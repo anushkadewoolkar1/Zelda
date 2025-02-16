@@ -20,6 +20,7 @@ namespace Sprint0.Sprites
         private int colorAdjustment;
         private bool linkDamaged;
         private int damageClock;
+        private int leftAdjustment;
 
         public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] LinkStates)
         {
@@ -33,6 +34,8 @@ namespace Sprint0.Sprites
             {
                 damageClock = 0;
             }
+
+            leftAdjustment = 0;
 
             int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[1], LinkStates[0]);
 
@@ -75,7 +78,7 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
+            destinationRectangle = new Rectangle((int)_position.X - leftAdjustment, (int)_position.Y, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
             if (!linkDamaged)
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
@@ -177,14 +180,26 @@ namespace Sprint0.Sprites
                 switch (frame)
                 {
                     case 2:
-                        sourceRectangleDimensions[2] = 28;
+                        if (facingDirection == 1)
+                        {
+                            leftAdjustment = 32;
+                        }
+                        sourceRectangleDimensions[2] = 27;
                         break;
                     case 3:
-                        sourceRectangleDimensions[2] = 22;
+                        if (facingDirection == 1)
+                        {
+                            leftAdjustment = 22;
+                        }
+                        sourceRectangleDimensions[2] = 23;
                         sourceRectangleDimensions[0] = xCoordinate + 11;
                         break;
                     case 4:
-                        sourceRectangleDimensions[2] = 18;
+                        if (facingDirection == 1)
+                        {
+                            leftAdjustment = 9;
+                        }
+                        sourceRectangleDimensions[2] = 19;
                         sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
                         break;
                     default:
@@ -208,14 +223,15 @@ namespace Sprint0.Sprites
                     sourceRectangleDimensions[0] -= 35;
                     break;
                 case 77:
-                    sourceRectangleDimensions[1] += 51;
                     if (frame == 3)
                     {
+                        sourceRectangleDimensions[1] += 51;
                         sourceRectangleDimensions[0] -= 11;
                     }
                     else if (frame == 4)
                     {
-                        sourceRectangleDimensions[0] -= 10;
+                        sourceRectangleDimensions[1] += 51;
+                        sourceRectangleDimensions[0] -= 11;
                     }
                     break;
                 default:
