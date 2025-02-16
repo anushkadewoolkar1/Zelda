@@ -20,13 +20,15 @@ namespace Sprint0.Sprites
         private int colorAdjustment;
         private bool linkDamaged;
         private int damageClock;
+
         private int leftAdjustment;
+        private int upAdjustment;
+        private int linkScale = 2;
 
         public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] LinkStates)
         {
             _texture = texture;
 
-            sourceRectangle = new Rectangle(spriteSheetXPos, spriteSheetYPos, 200, 200);
 
             //Sets clock to 0 when Link isn't damaged 
             linkDamaged = Convert.ToBoolean(LinkStates[3]);
@@ -35,11 +37,12 @@ namespace Sprint0.Sprites
                 damageClock = 0;
             }
 
+            //Used to adjust the sprites that shift Link's body
             leftAdjustment = 0;
+            upAdjustment = 0;
 
+            //Returns initial rectangle containing appropriate coordinates and dimensions without Magical Shield
             int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[1], LinkStates[0]);
-
-            //sourceRectangleDimensions = [ spriteSheetXPos, spriteSheetYPos, 16, 16 ];
 
             if (LinkStates[0] < 3 && (LinkStates[2] % 2) == 1)
             {
@@ -50,6 +53,7 @@ namespace Sprint0.Sprites
             colorAdjustment = (LinkStates[2] / 2) * 310;
 
 
+            //Changes Link's Sprite depending on frame of animation
             switch (LinkStates[1])
             {
                 case 1:
@@ -78,14 +82,15 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle((int)_position.X - (leftAdjustment / 2), (int)_position.Y, sourceRectangle.Width * 2, sourceRectangle.Height * 2);
+            destinationRectangle = new Rectangle((int)_position.X - (leftAdjustment * linkScale), (int)_position.Y - (upAdjustment * linkScale),
+                            sourceRectangle.Width * linkScale, sourceRectangle.Height * linkScale);
             if (!linkDamaged)
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             }
             else
             {
-                switch (damageClock % 3)
+                switch ((damageClock / 8) % 3)
                 {
                     case 0:
                         spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);
@@ -157,55 +162,59 @@ namespace Sprint0.Sprites
                 }
             }
             else if (facingDirection == 3)
-            {
-                switch (frame)
                 {
-                    case 2:
-                        sourceRectangleDimensions[3] = 27;
-                        break;
-                    case 3:
-                        sourceRectangleDimensions[3] = 23;
-                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
-                        break;
-                    case 4:
-                        sourceRectangleDimensions[3] = 19;
-                        sourceRectangleDimensions[1] = yCoordinate - (27 - 17);
-                        break;
-                    default:
-                        break;
+                    switch (frame)
+                    {
+                        case 2:
+                            upAdjustment = 12;
+                            sourceRectangleDimensions[3] = 28;
+                            sourceRectangleDimensions[1] = yCoordinate - 11;
+                            break;
+                        case 3:
+                            upAdjustment = 11;
+                            sourceRectangleDimensions[3] = 27;
+                            sourceRectangleDimensions[1] = yCoordinate - 10;
+                            break;
+                        case 4:
+                            upAdjustment = 3;
+                            sourceRectangleDimensions[3] = 19;
+                            sourceRectangleDimensions[1] = yCoordinate - 2;
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                switch (frame)
+                else
                 {
-                    case 2:
-                        if (facingDirection == 1)
-                        {
-                            leftAdjustment = 32;
-                        }
-                        sourceRectangleDimensions[2] = 27;
-                        break;
-                    case 3:
-                        if (facingDirection == 1)
-                        {
-                            leftAdjustment = 22;
-                        }
-                        sourceRectangleDimensions[2] = 23;
-                        sourceRectangleDimensions[0] = xCoordinate + 11;
-                        break;
-                    case 4:
-                        if (facingDirection == 1)
-                        {
-                            leftAdjustment = 9;
-                        }
-                        sourceRectangleDimensions[2] = 19;
-                        sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
-                        break;
-                    default:
-                        break;
+                    switch (frame)
+                    {
+                        case 2:
+                            if (facingDirection == 1)
+                            {
+                                leftAdjustment = 12;
+                            }
+                            sourceRectangleDimensions[2] = 27;
+                            break;
+                        case 3:
+                            if (facingDirection == 1)
+                            {
+                                leftAdjustment = 7;
+                            }
+                            sourceRectangleDimensions[2] = 23;
+                            sourceRectangleDimensions[0] = xCoordinate + 11;
+                            break;
+                        case 4:
+                            if (facingDirection == 1)
+                            {
+                                leftAdjustment = 3;
+                            }
+                            sourceRectangleDimensions[2] = 19;
+                            sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
 
             return sourceRectangleDimensions;
         }
@@ -218,19 +227,21 @@ namespace Sprint0.Sprites
                     sourceRectangleDimensions[0] += 288;
                     break;
                 case 47:
-                    //Something Might Be Wrong With This
-                    sourceRectangleDimensions[1] += 81;
-                    sourceRectangleDimensions[0] -= 35;
+                    if (frame == 3 || frame == 4)
+                    {
+                        sourceRectangleDimensions[1] += 81;
+                        sourceRectangleDimensions[0] -= 34;
+                    }
                     break;
                 case 77:
                     if (frame == 3)
                     {
-                        sourceRectangleDimensions[1] += 51;
+                        sourceRectangleDimensions[1] += 52;
                         sourceRectangleDimensions[0] -= 11;
                     }
-                    else if (frame == 4)
+                    if (frame == 4)
                     {
-                        sourceRectangleDimensions[1] += 51;
+                        sourceRectangleDimensions[1] += 50;
                         sourceRectangleDimensions[0] -= 11;
                     }
                     break;
