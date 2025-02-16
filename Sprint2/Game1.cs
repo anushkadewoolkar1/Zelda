@@ -93,26 +93,10 @@ namespace Sprint0
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             enemySprite = new Enemy();
 
-            
-
-            // Load textures
-
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
 
-            /* Text sprite /*
-            _textSprite = new TextSprite(
-                font: _spriteFont,
-                text: "Credits\nProgram Made By: Kyle Dietrich\nSprites from: https://www.mariouniverse.com/sprites-nes-smb/",
-                position: new Vector2(200, 300),
-                color: Color.Black
-            );
-            */
-
             linkSprite = new Link();
-
-            // Set the initial sprite
-           // _currentSprite = sprite1; // Non-moving, non-animated
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);

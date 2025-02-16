@@ -153,42 +153,49 @@ public class Link
     public void UseItem()
     {
         System.Diagnostics.Debug.WriteLine("Link uses an item!");
-        
-        //switch (CurrentItem)
-        //{
-        //    case ItemType.Arrow:
-        //        {
-        //            // Create the arrow sprite from the item sprite factory.
-        //            ISprite arrowSprite = ItemSpriteFactory.Instance.CreateArrow();
-        //            // Create an arrow projectile (assume you have an ArrowProjectile class).
-        //            ArrowProjectile arrow = new ArrowProjectile(Position, FacingDirection, arrowSprite);
-        //            // Add the arrow to a projectile manager so that it is updated/drawn.
-        //            ProjectileManager.Instance.AddProjectile(arrow);
-        //            break;
-        //        }
-        //    case ItemType.Boomerang:
-        //        {
-        //            ISprite boomerangSprite = ItemSpriteFactory.Instance.CreateBoomerang();
-        //            // Create a boomerang projectile (assume you have a BoomerangProjectile class).
-        //            BoomerangProjectile boomerang = new BoomerangProjectile(Position, FacingDirection, boomerangSprite);
-        //            ProjectileManager.Instance.AddProjectile(boomerang);
-        //            break;
-        //        }
-        //    case ItemType.Bomb:
-        //        {
-        //            ISprite bombSprite = ItemSpriteFactory.Instance.CreateBomb();
-        //            // Create a bomb (which may be handled differently than a projectile).
-        //            Bomb bomb = new Bomb(Position, bombSprite);
-        //            // Add the bomb to a bomb manager (or similar) to handle its countdown and explosion.
-        //            BombManager.Instance.AddBomb(bomb);
-        //            break;
-        //        }
-        //    default:
-        //        {
-        //            Console.WriteLine("No valid item selected.");
-        //            break;
-        //        }
-        //}
+
+        switch (CurrentItem)
+        {
+            case ItemType.Arrow:
+                {
+                    ISprite arrowSprite;
+                    switch (FacingDirection)
+                    {
+                        case Direction.Up:
+                            arrowSprite = ProjectileSpriteFactory.Instance.CreateUpArrowBrown();
+                            break;
+                        case Direction.Down:
+                            arrowSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
+                            break;
+                        case Direction.Left:
+                            arrowSprite = ProjectileSpriteFactory.Instance.CreateLeftArrowBrown();
+                            break;
+                        case Direction.Right:
+                            arrowSprite = ProjectileSpriteFactory.Instance.CreateRightArrowBrown();
+                            break;
+                        default:
+                            arrowSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
+                            break;
+                    }
+                    break;
+                }
+            case ItemType.Boomerang:
+                {
+                    ISprite boomerangSprite;
+                    boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown();
+                    break;
+                }
+            case ItemType.Bomb:
+                {
+                    ISprite bombSprite = ProjectileSpriteFactory.Instance.CreateBomb();
+                    break;
+                }
+            default:
+                {
+                    Console.WriteLine("No valid item selected.");
+                    break;
+                }
+        }
     }
 
     public void StartInvulnerability()

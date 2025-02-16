@@ -1,0 +1,8 @@
+Author: Kyle Dietrich
+Date: 2/16/2025
+Sprint: 2
+File name: LinkSprite.cs
+Author of the .cs file: Roy
+Time taken: 
+Specific comments on what is readable and what is not:
+	
