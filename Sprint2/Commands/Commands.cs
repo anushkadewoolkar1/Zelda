@@ -164,7 +164,7 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            //_link.PickUpItem(_item); // Uncomment when PickUpItem() can accept argument (PP)
+            _link.PickUpItem(_item); // Uncomment when PickUpItem() can accept argument (PP)
             _link.UseItem();
         }
     }

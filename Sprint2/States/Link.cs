@@ -144,10 +144,16 @@ public class Link
         // SoundManager.Instance.PlaySound("LinkAttack");
     }
 
-    public void PickUpItem()
+    public void PickUpItem(ItemSprite pickedUpItem)
     {
         System.Diagnostics.Debug.WriteLine("Link picks up item");
         // Implement item pick up logic
+        switch (pickedUpItem.getItemString())
+        {
+            case "ZeldaSpriteArrow": CurrentItem = ItemType.Arrow; System.Diagnostics.Debug.WriteLine("ARROW!");  break;
+            case "ZeldaSpriteBoomerang": CurrentItem = ItemType.Boomerang; break;
+            case "ZeldaSpriteBomb": CurrentItem = ItemType.Bomb; break;
+        }
     }
 
     public void UseItem()

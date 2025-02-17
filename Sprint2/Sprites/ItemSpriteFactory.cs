@@ -14,7 +14,9 @@ namespace SpriteFactory
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private Dictionary<string, Rectangle> spriteRectangles = new Dictionary<string, Rectangle>();
+        //private Dictionary<string, Rectangle> spriteRectangles = new Dictionary<string, Rectangle>();
+        private Dictionary<string, int>spriteRectangles = new Dictionary<string, int>();
+        private Dictionary<int, string> spriteIndices;
         private int currentIdx = 0;
         List<Rectangle> spriteFrames;
 
@@ -35,21 +37,21 @@ namespace SpriteFactory
         public void ItemTextures(ContentManager Content)
         {
             itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet");
-            LoadSpriteData("../Content/ItemSpriteData.txt");
+            //LoadSpriteData("../Content/ItemSpriteData.txt");
             // the line below is so it compiles on my computer pls dont delete yet
-            //LoadSpriteData("../../../Zelda/Sprint2/Content/ItemSpriteData.txt");
+            LoadSpriteData("../../../Zelda/Sprint2/Content/ItemSpriteData.txt");
         }
 
         private void LoadSpriteData(string FilePath)
         {
-
-            spriteRectangles = new Dictionary<string, Rectangle>();
+            spriteFrames = new List<Rectangle>();  // keeps the order of frames
+            spriteIndices = new Dictionary<int, string>();
+            spriteRectangles = new Dictionary<string, int>();
 
             foreach (var line in File.ReadLines(FilePath))
             {
-
                 var nums = line.Split(',');
-                if (nums.Length == 5)      // it should never not be 5
+                if (nums.Length == 5)  
                 {
                     string name = nums[0];
                     int x = int.Parse(nums[1]);
@@ -57,10 +59,14 @@ namespace SpriteFactory
                     int width = int.Parse(nums[3]);
                     int height = int.Parse(nums[4]);
 
-                    spriteRectangles.Add(name, new Rectangle(x, y, width, height));
+                    Rectangle rect = new Rectangle(x, y, width, height);
+
+                    int index = spriteFrames.Count; 
+                    spriteFrames.Add(rect);
+                    spriteRectangles[name] = index;
+                    spriteIndices[index] = name;
                 }
             }
-            spriteFrames = spriteRectangles.Values.ToList();
         }
 
         public Rectangle itemCycleLeftFactory()
@@ -77,6 +83,26 @@ namespace SpriteFactory
             return rectangle;
         }
 
+        public String getItemStringFromIdx()
+        {
+            return spriteIndices[currentIdx];
+        }
+
+        public ItemSprite FetchItemSprite(string spriteName)
+        {
+            if (spriteRectangles.TryGetValue(spriteName, out int index))
+            {
+                Rectangle rectangle = spriteFrames[index];
+
+                return new ItemSprite(itemSpriteSheet, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, spriteName);
+            }
+            else
+            {
+                throw new ArgumentException($"Sprite '{spriteName}' not found in the data txt file.");
+            }
+        }
+
+        /*
         public ItemSprite FetchItemSprite(string spriteName)
         {
             // the second parameter is where the rectangle will be stored if it can find the key in spriteRectangles (C# out means output)
@@ -90,6 +116,7 @@ namespace SpriteFactory
                 throw new ArgumentException($"sprite '{spriteName}' not found in the data txt file.");
             }
         }
+        */
 
         
     }

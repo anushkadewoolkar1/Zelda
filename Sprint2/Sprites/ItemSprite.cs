@@ -16,12 +16,15 @@ namespace Sprint0.Sprites
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
         private ItemSpriteFactory factory;
+        private String itemString;
 
-        public ItemSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int width, int height)
+        public ItemSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int width, int height, String spriteName)
         {
             _texture = texture;
             sourceRectangle = new Rectangle(spriteSheetXPos,  spriteSheetYPos, width, height);
             factory = ItemSpriteFactory.Instance;
+            itemString = factory.getItemStringFromIdx();
+            itemString = spriteName;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
@@ -34,11 +37,18 @@ namespace Sprint0.Sprites
         public void itemCycleRight()
         {
             sourceRectangle = factory.itemCycleRightFactory();
+            itemString = factory.getItemStringFromIdx();
         }
 
         public void itemCycleLeft()
         {
             sourceRectangle = factory.itemCycleLeftFactory();
+            itemString = factory.getItemStringFromIdx();
+        }
+
+        public string getItemString()
+        {
+            return itemString;
         }
 
         public void Update(GameTime gameTime)

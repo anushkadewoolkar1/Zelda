@@ -24,7 +24,7 @@ public class LinkPickUpItemState : ILinkState
         // The parameters (here 1 for state and link.Health) 
         link.SetSprite(LinkSpriteFactory.Instance.CreatePickUpItemOne(1, link.Health));
 
-        link.PickUpItem();
+        //link.PickUpItem();
     }
 
     public void Update(GameTime gameTime)
