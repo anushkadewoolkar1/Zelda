@@ -211,7 +211,7 @@ namespace Sprint0.States
         public void Update(GameTime gameTime)
         {
 
-            enemyState.Update(position, gameTime);
+            enemyState.Update(gameTime);
             sprite.Update(gameTime);
         }
 

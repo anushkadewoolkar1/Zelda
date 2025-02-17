@@ -38,7 +38,7 @@ namespace Sprint0.States
             }
         }
 
-        public void Update(Vector2 position, GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             // vector movement done here
             Vector2 move = new Vector2(0, 0);

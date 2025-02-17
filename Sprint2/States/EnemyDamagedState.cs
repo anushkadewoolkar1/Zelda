@@ -27,7 +27,7 @@ namespace Sprint0.States
             // sprite work done here
         }
 
-        public void Update(Vector2 position, GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             // vector work done here
             enemy.TakeDamage();

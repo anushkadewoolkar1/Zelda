@@ -39,7 +39,7 @@ namespace Sprint0.States
             }
         }
 
-        public void Update(Vector2 position, GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             // trigger non-moving animation
             // vector work done here
