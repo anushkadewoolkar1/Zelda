@@ -114,8 +114,8 @@ namespace Sprint0
             var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
             var itemCycleLeftCmd = new CycleItem(itemSprite, Direction.Left);
             var itemCycleRightCmd = new CycleItem(itemSprite, Direction.Right);
-            // var blockCycleLeftCmd = new CycleBlock(_block, Direction.Left);
-            // var blockCycleRightCmd = new CycleBlock(_block, Direction.Right);
+            var blockCycleLeftCmd = new CycleBlock(_block, Direction.Left);
+            var blockCycleRightCmd = new CycleBlock(_block, Direction.Right);
             var useItemArrow = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow"));
             var useItemBmrg = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang"));
             var useItemBomb = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb"));
@@ -159,9 +159,9 @@ namespace Sprint0
 
                 { Keys.E, linkDamagedCommand },
 
-                // { Keys.T, blockCycleLeftCmd },
+                { Keys.T, blockCycleLeftCmd },
 
-                // { Keys.Y, blockCycleRightCmd },
+                { Keys.Y, blockCycleRightCmd },
 
                 { Keys.D1, useItemArrow },
 

@@ -128,6 +128,29 @@ namespace Sprint0.Commands
         }
     }
 
+    public class CycleBlock : ICommand
+    {
+        private Block _block;
+        private Direction _direction;
+
+        public CycleBlock(Block block, Direction direction)
+        {
+            _block = block;
+            _direction = direction;
+        }
+
+        public void Execute()
+        {
+            if ( _direction == Direction.Left)
+            {
+                _block.shiftByXPos(-1);
+            } else
+            {
+                _block.shiftByXPos(1);
+            }
+        }
+    }
+
     // Temporary implementation for sprint 2 behavior, actual game will simply call Link's UseItem() method:
     public class LinkUseItem : ICommand
     {
