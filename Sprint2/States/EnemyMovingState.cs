@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -15,36 +16,178 @@ namespace Sprint0.States
         private Enemy enemy;
         private SpriteBatch spriteBatch;
         private Vector2 position;
+        private int timer = 0;
 
         public EnemyMovingState(Enemy enemy)
         {
             this.enemy = enemy;
-            // construct enemy's sprite here
-            ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
+
+            // need facing directions for Goriya
         }
+
 
         public void Load()
         {
-            // sprite work done here
+            if (enemy.enemyType == Zelda.Enums.EnemyType.OldMan)
+            {
+                ISprite npcSprite = EnemySpriteFactory.Instance.CreateNPCSprite();
+            }
+            else
+            {
+                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
+            }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(Vector2 position, GameTime gameTime)
         {
             // vector movement done here
+            Vector2 move = new Vector2(0, 0);
+            RandomNumberGenerator randomNumber = RandomNumberGenerator.Create();
 
-            switch(enemy.GetEnemy())
+            enemy.Speed = 100f;
+
+            switch (enemy.enemyType)
             {
                 case EnemyType.OldMan:
                     // no-op: OldMan NPC doesn't need to move
+                    enemy.Speed = 0;
                     break;
                 case EnemyType.Keese:
+                    if (timer >= 0 && timer < 25)
+                    {
+                        move = new Vector2(1, RandomNumberGenerator.GetInt32(-1, 2));
+                    }
+                    else if (timer >= 25 && timer < 50)
+                    {
+                        move = new Vector2(1, RandomNumberGenerator.GetInt32(-1, 2));
+                    }
+                    else if (timer >= 50 && timer < 75)
+                    {
+                        move = new Vector2(-1, RandomNumberGenerator.GetInt32(-1, 2));
+                    }
+                    else if (timer >= 75 && timer < 100)
+                    {
+                        move = new Vector2(-1, RandomNumberGenerator.GetInt32(-1, 2));
+                    }
+                    break;
+                case EnemyType.Stalfos:
+                    if (timer >= 0 && timer < 25)
+                    {
+                        move = new Vector2(1, 0);
+                    } else if (timer >= 25 && timer < 50)
+                    {
+                        move = new Vector2(0, -1);
+                    } else if (timer >= 50 && timer < 75)
+                    {
+                        move = new Vector2(-1, 0);
+                    } else if (timer >= 75 && timer < 100)
+                    {
+                        move = new Vector2(0, 1);
+                    } 
+                    break;
+                case EnemyType.Goriya:
+                    if (position.X >= 500 && position.Y >= 350)
+                    {
+                        if (timer >= 0 && timer < 33)
+                        {
+                            move = new Vector2(0, -1);
+                        }
+                        else if (timer >= 33 && timer < 66)
+                        {
+                            move = new Vector2(1, 0);
+                        }
+                        else if (timer >= 66 && timer < 100)
+                        {
+                            move = new Vector2(0, 0);
+                        }
+                    } else
+                    {
+                        if (timer >= 0 && timer < 33)
+                        {
+                            move = new Vector2(0, 1);
+                        }
+                        else if (timer >= 33 && timer < 66)
+                        {
+                            move = new Vector2(-1, 0);
+                        }
+                        else if (timer >= 66 && timer < 100)
+                        {
+                            move = new Vector2(0, 0);
+                        }
+                    }
+
+                    if (timer == 66)
+                    {
+                        // throw animation, can't move while throwing but still has moving animation
+                    }
+                    break;
+                case EnemyType.Gel:
+                    if ((timer >= 0 && timer < 25) || (timer >= 50 && timer < 75))
+                    {
+                        move = new Vector2(0, 0);
+                    } else if (timer >= 25 && timer < 50)
+                    {
+                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                    } else
+                    {
+                        move = new Vector2(0, RandomNumberGenerator.GetInt32(0, 2));
+                    }
+                    break;
+                case EnemyType.Zol:
+                    move = new Vector2(0, 1);
+                    break;
+                case EnemyType.Trap:
+                    if (timer >= 0 && timer < 25)
+                    {
+                        enemy.Speed = 0;
+                        move = new Vector2(0, 0);
+                    }
+                    else if (timer >= 25 && timer < 50)
+                    {
+                        enemy.Speed = 200f;
+                        move = new Vector2(0, 1);
+                    }
+                    else if (timer >= 50 && timer < 100)
+                    {
+                        enemy.Speed = 100f;
+                        move = new Vector2(0, -1);
+                    }
+                    break;
+                case EnemyType.Wallmaster:
+                    enemy.Speed = 50f;
+                    
+                    move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), RandomNumberGenerator.GetInt32(0, 2));
                     
                     break;
-
-
+                case EnemyType.Rope:
+                    // when lined up with link, speed will double and it will bolt straight towards the spot they saw link at
+                    // otherwise, move around slowly
+                    move = new Vector2(0, 1);
+                    break;
+                case EnemyType.Aquamentus:
+                    if (timer >= 0 && timer < 50)
+                    {
+                        move = new Vector2(1, 0);
+                    } else if (timer >= 50 && timer < 100)
+                    {
+                        move = new Vector2(-1, 0);
+                    }
+                    break;
+                case EnemyType.Dodongo:
+                    move = new Vector2(0, 1);
+                    break;
+                default:
+                    move = new Vector2(0, 1); ;
+                    break;
             }
 
-            enemy.Move(position);
+            timer++;
+            if (timer == 100)
+            {
+                timer = 0;
+            }
+
+            enemy.Move(move, gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

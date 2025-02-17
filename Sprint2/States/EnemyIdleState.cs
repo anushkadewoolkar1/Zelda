@@ -20,27 +20,34 @@ namespace Sprint0.States
         {
             this.enemy = enemy;
             // construct sprite here
-            // will probably end up doing switch case here to account for different enemy sizes
+        }
+
+        public void Load()
+        {
+            SetSprite();
+        }
+
+        public void SetSprite()
+        {
             if (enemy.enemyType == Zelda.Enums.EnemyType.OldMan)
             {
                 ISprite npcSprite = EnemySpriteFactory.Instance.CreateNPCSprite();
-            } else
+            }
+            else
             {
                 ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
             }
         }
 
-        public void Load()
-        {
-            // sprite work done here
-        }
-
-        public void Update(GameTime gameTime)
+        public void Update(Vector2 position, GameTime gameTime)
         {
             // trigger non-moving animation
             // vector work done here
+            if (enemy.enemyType != Zelda.Enums.EnemyType.OldMan)
+            {
+                enemy.ChangeState(new EnemyMovingState(enemy));
+            }
 
-            enemy.Update(gameTime);
         }
 
         public void Stop()
