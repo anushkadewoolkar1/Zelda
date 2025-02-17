@@ -77,11 +77,12 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            //Temporary static implementation: (PP)
-            _enemy.ChangeEnemy();
             if (_direction == Direction.Left)
             {
-                _enemy.ChangeEnemy();
+                _enemy.ChangeEnemyBackward();
+            } else
+            {
+                _enemy.ChangeEnemyForward();
             }
         } 
     }
