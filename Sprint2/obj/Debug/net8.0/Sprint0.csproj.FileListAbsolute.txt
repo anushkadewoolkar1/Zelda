@@ -42,3 +42,7 @@ C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\refint\Sprint0.d
 C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.pdb
 C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\Sprint0.genruntimeconfig.cache
 C:\Users\jorda\source\repos\Sprint2_V3\Sprint2\obj\Debug\net8.0\ref\Sprint0.dll
+C:\Users\jorda\source\repos\Sprint2_v3\Sprint2\bin\Debug\net8.0\Content\EnemySpawning.xnb
+C:\Users\jorda\source\repos\Sprint2_v3\Sprint2\bin\Debug\net8.0\Content\LargeEnemies.xnb
+C:\Users\jorda\source\repos\Sprint2_v3\Sprint2\bin\Debug\net8.0\Content\SmallEnemies.xnb
+C:\Users\jorda\source\repos\Sprint2_v3\Sprint2\bin\Debug\net8.0\Content\BossEnemies.xnb

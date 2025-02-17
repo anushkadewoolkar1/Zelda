@@ -40,7 +40,7 @@ public class LinkAttackingMagicalRodState : ILinkState
         }
 
         // Execute Link's attack logic for the rod.
-        link.PerformAttack();
+        //link.PerformAttack();
 
         // Spawn a projectile or apply ranged effects here maybe
     }

@@ -19,7 +19,7 @@ public class Link
     private const float Speed = 100f;
 
     // Health property 
-    public int Health { get; set; } = 2;
+    public int Health { get; set; } = 0;
     // property for which item is currently selected
     public ItemType CurrentItem { get; set; }  
 
@@ -153,13 +153,13 @@ public class Link
     public void UseItem()
     {
         System.Diagnostics.Debug.WriteLine("Link uses an item!");
-
+        /*
         switch (CurrentItem)
         {
             case ItemType.Arrow:
                 {
                     ISprite arrowSprite;
-                    switch (FacingDirection)
+                    switch (this.FacingDirection)
                     {
                         case Direction.Up:
                             arrowSprite = ProjectileSpriteFactory.Instance.CreateUpArrowBrown();
@@ -192,10 +192,12 @@ public class Link
                 }
             default:
                 {
-                    Console.WriteLine("No valid item selected.");
+                    //Console.WriteLine("No valid item selected.");
                     break;
                 }
+        
         }
+        */
     }
 
     public void StartInvulnerability()
