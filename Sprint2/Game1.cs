@@ -9,6 +9,7 @@ using SpriteFactory;
 using Zelda.Enums;
 using Sprint0.States;
 using System;
+using System.Net.Http.Headers;
 
 
 namespace Sprint0
@@ -100,8 +101,8 @@ namespace Sprint0
 
             // Create Commands 
             var quitCommand = new QuitCommand(this);
+            // var resetCommand = new ResetCommand(this);
             var idleStateCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), Zelda.Enums.Direction.Down)); // Will be changed to current direction, directly accessing Link's direction value once implemented
-            // made it so it always does wooden sword for compilation fixes
             var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left, SwordType.WoodenSword));
             var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right, SwordType.WoodenSword));
             var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up));
@@ -112,10 +113,15 @@ namespace Sprint0
             var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
             var itemCycleLeftCmd = new CycleItem(itemSprite, Direction.Left);
             var itemCycleRightCmd = new CycleItem(itemSprite, Direction.Right);
+            // var blockCycleLeftCmd = new CycleBlock(_block, Direction.Left);
+            // var blockCycleRightCmd = new CycleBlock(_block, Direction.Right);
+
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
                 { Keys.Q, quitCommand },
+
+                // { Keys.R, resetCommand },
 
                 { Keys.None, idleStateCommand },
                 
@@ -145,7 +151,11 @@ namespace Sprint0
 
                 { Keys.I, itemCycleRightCmd },
 
-                { Keys.U, itemCycleLeftCmd }
+                { Keys.U, itemCycleLeftCmd },
+
+                // { Keys.T, blockCycleLeftCmd },
+
+                // { Keys.Y, blockCycleRightCmd },
 
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);
