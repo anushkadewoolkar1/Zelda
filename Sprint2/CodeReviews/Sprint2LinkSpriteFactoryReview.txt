@@ -4,5 +4,24 @@ Sprint: 2
 File name: LinkSpriteFactory.cs
 Author of the .cs file: Roy
 Specific comments on code quality:
-	
+	Many methods are duplicated like CreateDownAttackWoodenSword, CreateUpAttackWoodenSword.
+	Adding a new weapon or changing a sprite sheet would mean every method needs updated.
+	Maybe doing something with single methods would be better with parameters like 
+	(dirtection, weaponType, frame, state, health, baseX, baseY) or store the X/Y offsets in a dictionary with (direction, weaponType)
+	then they read at runtime.
+
+	The defined enums at the top aren't used in the creation methods. instead ints are. Potential Improvement:
+	Integrate these enums in the factory methods. For example:
+
+	public ISprite CreateLinkSprite(LinkDirection direction, LinkState shieldState, LinkDamaged healthState, int frame)
+	{
+    // Map enum to sprite sheet coordinates, then call `new LinkSprite(...)`
+	}
+
+	LinkTotality could be a struct so its easier to modify later instead of a array which relies on correct ordering
+	Lastly, maybe making the offesets for the spritesheets being named constants would make it clearer and avoid magic numbers.
+
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+	Change: Add a new Blue ring color for link
+	Impact: You'd have to add enumerations and define new sprite offsets. which means new methods
+	Ease: Not to hard just repetitive

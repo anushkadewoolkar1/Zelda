@@ -3,6 +3,15 @@ Date: 2/16/2025
 Sprint: 2
 File name: LinkSprite.cs
 Author of the .cs file: Roy
-Time taken: 
+Time taken: 25 min
 Specific comments on what is readable and what is not:
-	
+	What is:
+	The class and method names are specific and clearly label behaviors.
+	The variable naming is also clear and self-explanatory for what they do.
+	The boolean logic is also clear. If link is damaged, increment the clock and color link diffirently in draw.
+	Swtich statemetns in draw are clear and show that every 8 ticks it cycles through a color.
+
+	What is not:
+	Magic numbers are not entirely clear. using named constants might be better or enums
+	LinkStates array is not super clear for someone who hasnt worked on this. Maybe an struct for this would be good with named properties
+	Some conditional logic is unclear such as yCoordinate < 45 or (LinkStates[2] % 2) == 1. A small comment for these would be great 
