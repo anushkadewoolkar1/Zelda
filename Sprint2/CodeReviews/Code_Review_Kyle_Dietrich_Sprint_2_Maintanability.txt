@@ -15,4 +15,6 @@ PerformAttack() is jumping on top of implementing a hitbox. Might be premature t
 PickUpItem() and UseItem() are good generic methods. Using an item will need to create a Sprite that will also need to be drawn and updated by the Draw() and Update() respectively.
 Vulnerability methods has well thought out functionality.
 Nice Addition of HandleDeathStart() and HandleDeathCompletion(). Will need to be called by Command.
+
+Potential Changes:
 The one interaction that might need a separate method is knockback.
