@@ -16,17 +16,20 @@ using Zelda.Enums;
 
 namespace Sprint0.Commands
 {
-    public class QuitCommand : ICommand
+    public class ExitCommand : ICommand
     {
         private readonly Game1 _game;
+        private bool _reset;
 
-        public QuitCommand(Game1 game)
+        public ExitCommand(Game1 game, bool reset)
         {
             _game = game;
+            _reset = reset;
         }
 
         public void Execute()
         {
+            _game.restart = _reset;
             _game.Exit();
         }
     }
@@ -97,11 +100,12 @@ namespace Sprint0.Commands
             if (_direction == Direction.Left)
             {
                 _enemy.ChangeEnemyBackward();
-            } else
+            }
+            else
             {
                 _enemy.ChangeEnemyForward();
             }
-        } 
+        }
     }
 
     public class CycleItem : ICommand
@@ -141,10 +145,11 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            if ( _direction == Direction.Left)
+            if (_direction == Direction.Left)
             {
                 _block.shiftByXPos(-1);
-            } else
+            }
+            else
             {
                 _block.shiftByXPos(1);
             }
@@ -157,7 +162,8 @@ namespace Sprint0.Commands
         private Link _link;
         private ItemSprite _item;
 
-        public LinkUseItem(Link link, ItemSprite item) {
+        public LinkUseItem(Link link, ItemSprite item)
+        {
             _link = link;
             _item = item;
         }
@@ -169,4 +175,5 @@ namespace Sprint0.Commands
         }
     }
 }
+
 
