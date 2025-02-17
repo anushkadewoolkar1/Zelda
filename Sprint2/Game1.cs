@@ -116,6 +116,9 @@ namespace Sprint0
             var itemCycleRightCmd = new CycleItem(itemSprite, Direction.Right);
             // var blockCycleLeftCmd = new CycleBlock(_block, Direction.Left);
             // var blockCycleRightCmd = new CycleBlock(_block, Direction.Right);
+            var useItemArrow = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow"));
+            var useItemBmrg = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang"));
+            var useItemBomb = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb"));
 
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
@@ -154,11 +157,17 @@ namespace Sprint0
 
                 { Keys.U, itemCycleLeftCmd },
 
-                { Keys.E, linkDamagedCommand }
+                { Keys.E, linkDamagedCommand },
 
                 // { Keys.T, blockCycleLeftCmd },
 
                 // { Keys.Y, blockCycleRightCmd },
+
+                { Keys.D1, useItemArrow },
+
+                { Keys.D2, useItemBmrg },
+
+                { Keys.D3, useItemBomb }
 
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);

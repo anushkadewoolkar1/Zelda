@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -123,6 +125,24 @@ namespace Sprint0.Commands
             {
                 _itemSprite.itemCycleRight();
             }
+        }
+    }
+
+    // Temporary implementation for sprint 2 behavior, actual game will simply call Link's UseItem() method:
+    public class LinkUseItem : ICommand
+    {
+        private Link _link;
+        private ItemSprite _item;
+
+        public LinkUseItem(Link link, ItemSprite item) {
+            _link = link;
+            _item = item;
+        }
+
+        public void Execute()
+        {
+            //_link.PickUpItem(_item); // Uncomment when PickUpItem() can accept argument (PP)
+            _link.UseItem();
         }
     }
 }
