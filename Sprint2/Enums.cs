@@ -30,6 +30,10 @@ namespace Zelda.Enums
         Goriya,
         Gel,
         Zol,
-        Trap
+        Trap,
+        Wallmaster,
+        Rope,
+        Aquamentus,
+        Dodongo
     }
 }
