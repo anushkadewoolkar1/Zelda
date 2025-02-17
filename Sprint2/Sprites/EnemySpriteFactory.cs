@@ -93,13 +93,13 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Rope:
-                    sprite = CreateLargeEnemySprite(enemyType, 4, 50, 18);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 50, 18);
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Aquamentus:
-                    XSize = 32;
-                    sprite = CreateBossEnemySprite(enemyType, 4, 0, 0);
-                    sprite.spriteSize = 32;
+                    XSize = 27;
+                    sprite = CreateBossEnemySprite(enemyType, 2, 0, 0);
+                    sprite.spriteSize = 54;
                     return sprite;
                 case EnemyType.Dodongo:
                     sprite = CreateBossEnemySprite(enemyType, 4, 0, 34);
