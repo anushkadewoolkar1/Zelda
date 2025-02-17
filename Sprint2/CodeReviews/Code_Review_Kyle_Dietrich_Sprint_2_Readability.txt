@@ -1,0 +1,22 @@
+Author: Roy Acapulcco
+Date: 2/16/2025
+Sprint2
+Link.cs
+Author of Code: Kyle Dietrich
+Time: 20 minutes
+
+Notes:
+I'm a little confused on Position, IsInvulnerably, Health, and ItemType. Are they going to be properties or variables
+Link Constructor is thoroughly commented
+The vulnerability Timer is readable
+There seems to be both Draw() and DrawCurrentSprite() with the same functionality
+Second part of Move could be better clarified (Maybe Change dt to deltatime?)
+PerformAttack() currently has lots of commented out code, still readable
+UseItem() also has lots of commented out code, still readable
+The two vulnerability methods are well commented.
+Same with Death Start and Completion.
+
+Overall,
+Methods have an appropriate name and are self-explanatory.
+Variables are very descriptive.
+Very readable code.
