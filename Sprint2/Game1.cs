@@ -109,6 +109,7 @@ namespace Sprint0
             var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
             var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
             var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
+            var linkDamagedCommand = new LinkDamaged(linkSprite);
             var enemyCycleLeftCmd = new CycleEnemy(enemySprite, Direction.Left);
             var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
             var itemCycleLeftCmd = new CycleItem(itemSprite, Direction.Left);
@@ -124,11 +125,11 @@ namespace Sprint0
                 // { Keys.R, resetCommand },
 
                 { Keys.None, idleStateCommand },
-                
+
                 { Keys.Z, attackLeftCommand },
 
                 { Keys.N, attackRightCommand },
-                
+
                 { Keys.W, moveUpCommand },
 
                 { Keys.Up, moveUpCommand },
@@ -152,6 +153,8 @@ namespace Sprint0
                 { Keys.I, itemCycleRightCmd },
 
                 { Keys.U, itemCycleLeftCmd },
+
+                { Keys.E, linkDamagedCommand }
 
                 // { Keys.T, blockCycleLeftCmd },
 

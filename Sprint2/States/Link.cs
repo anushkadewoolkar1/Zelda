@@ -13,7 +13,7 @@ public class Link
 
     // Invulnerability settings.
     public bool IsInvulnerable { get; private set; }
-    private float invulnerabilityTimer;
+    public float invulnerabilityTimer;
 
     // (pixels per second).
     private const float Speed = 100f;
@@ -204,6 +204,7 @@ public class Link
     {
         IsInvulnerable = true;
         invulnerabilityTimer = 1.0f; // Link remains invulnerable for 1 second.
+        Health = 1;
         System.Diagnostics.Debug.WriteLine("Link is now invulnerable.");
     }
 
@@ -211,6 +212,7 @@ public class Link
     {
         IsInvulnerable = false;
         invulnerabilityTimer = 0;
+        Health = 0;
         System.Diagnostics.Debug.WriteLine("Link is no longer invulnerable.");
     }
 

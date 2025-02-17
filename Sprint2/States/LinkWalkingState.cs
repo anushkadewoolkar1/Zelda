@@ -19,26 +19,17 @@ public class LinkWalkingState : ILinkState
 
     public void Enter()
     {
-        // Set Link’s walking animation based on direction
-        switch (currentDirection)
-        {
-            case Direction.Up:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(1, 0, link.Health));
-                break;
-            case Direction.Down:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(1, 0, link.Health));
-                break;
-            case Direction.Left:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(1, 0, link.Health));
-                break;
-            case Direction.Right:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(1, 0, link.Health));
-                break;
-        }
+        SetMove();
     }
 
     public void Update(GameTime gameTime)
     {
+        // checks if link became invulnerable or vulnerable
+        if (link.invulnerabilityTimer == 1f || link.invulnerabilityTimer <= 0f)
+        {
+            SetMove();
+        }
+
         // vector corresponding to current direction
         Vector2 movement = Vector2.Zero;
         switch (currentDirection)
@@ -58,6 +49,26 @@ public class LinkWalkingState : ILinkState
         }
 
         link.Move(movement, gameTime);
+    }
+
+    private void SetMove()
+    {
+        // Set Link’s walking animation based on direction
+        switch (currentDirection)
+        {
+            case Direction.Up:
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(1, 0, link.Health));
+                break;
+            case Direction.Down:
+                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(1, 0, link.Health));
+                break;
+            case Direction.Left:
+                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(1, 0, link.Health));
+                break;
+            case Direction.Right:
+                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(1, 0, link.Health));
+                break;
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

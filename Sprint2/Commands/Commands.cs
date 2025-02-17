@@ -64,6 +64,21 @@ namespace Sprint0.Commands
         }
     }
 
+    public class LinkDamaged : ICommand
+    {
+        private Link _link;
+
+        public LinkDamaged(Link currLink)
+        {
+            _link = currLink;
+        }
+
+        public void Execute()
+        {
+            _link.StartInvulnerability();
+        }
+    }
+
     public class CycleEnemy : ICommand
     {
         private Enemy _enemy;
