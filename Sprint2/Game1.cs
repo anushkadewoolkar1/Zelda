@@ -110,6 +110,8 @@ namespace Sprint0
             var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
             var enemyCycleLeftCmd = new CycleEnemy(enemySprite, Direction.Left);
             var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
+            var itemCycleLeftCmd = new CycleItem(itemSprite, Direction.Left);
+            var itemCycleRightCmd = new CycleItem(itemSprite, Direction.Right);
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
@@ -139,7 +141,11 @@ namespace Sprint0
 
                 { Keys.O, enemyCycleLeftCmd },
 
-                { Keys.P, enemyCycleRightCmd }
+                { Keys.P, enemyCycleRightCmd },
+
+                { Keys.I, itemCycleRightCmd },
+
+                { Keys.U, itemCycleLeftCmd }
 
             };
             _keyboardController = new KeyboardController(keyboardCommandMap);
@@ -180,11 +186,9 @@ namespace Sprint0
 
             enemySprite.DrawCurrentSprite(_spriteBatch);
 
-            //_textSprite.Draw(_spriteBatch);
-
             _block.Draw(_spriteBatch);
 
-            itemSprite.Draw(_spriteBatch, new Vector2(100, 100));
+            itemSprite.Draw(_spriteBatch, new Vector2(300, 100));
 
             _spriteBatch.End();
 

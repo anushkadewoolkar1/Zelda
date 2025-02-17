@@ -86,4 +86,29 @@ namespace Sprint0.Commands
             }
         } 
     }
+
+    public class CycleItem : ICommand
+    {
+        private ItemSprite _itemSprite;
+        private Direction _direction;
+
+        public CycleItem(ItemSprite itemSprite, Direction direction)
+        {
+            _itemSprite = itemSprite;
+            _direction = direction;
+        }
+
+        public void Execute()
+        {
+            if (_direction == Direction.Left)
+            {
+                _itemSprite.itemCycleLeft();
+            }
+            else
+            {
+                _itemSprite.itemCycleRight();
+            }
+        }
+    }
 }
+

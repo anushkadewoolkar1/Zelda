@@ -15,6 +15,8 @@ namespace SpriteFactory
     {
         private Texture2D itemSpriteSheet;
         private Dictionary<string, Rectangle> spriteRectangles = new Dictionary<string, Rectangle>();
+        private int currentIdx = 0;
+        List<Rectangle> spriteFrames;
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
@@ -34,6 +36,8 @@ namespace SpriteFactory
         {
             itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet");
             LoadSpriteData("../Content/ItemSpriteData.txt");
+            // the line below is so it compiles on my computer pls dont delete yet
+            //LoadSpriteData("../../../Zelda/Sprint2/Content/ItemSpriteData.txt");
         }
 
         private void LoadSpriteData(string FilePath)
@@ -56,6 +60,21 @@ namespace SpriteFactory
                     spriteRectangles.Add(name, new Rectangle(x, y, width, height));
                 }
             }
+            spriteFrames = spriteRectangles.Values.ToList();
+        }
+
+        public Rectangle itemCycleLeftFactory()
+        {
+            currentIdx = (currentIdx - 1 + spriteFrames.Count) % spriteFrames.Count;
+            Rectangle rectangle = spriteFrames[currentIdx];
+            return rectangle;
+        }
+
+        public Rectangle itemCycleRightFactory()
+        {
+            currentIdx = (currentIdx + 1) % spriteFrames.Count;
+            Rectangle rectangle = spriteFrames[currentIdx];
+            return rectangle;
         }
 
         public ItemSprite FetchItemSprite(string spriteName)
