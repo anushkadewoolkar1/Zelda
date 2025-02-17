@@ -16,6 +16,7 @@ namespace Sprint0
 {
     public class Game1 : Game
     {
+        public bool restart;
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -81,6 +82,8 @@ namespace Sprint0
                 Content.Load<Texture2D>("block10")
             };
 
+            restart = false;
+
             // Create the block at position (200, 200)
             _block = new Block(new Vector2(200, 200), blockTextures);
 
@@ -100,8 +103,8 @@ namespace Sprint0
             linkSprite = new Link();
 
             // Create Commands 
-            var quitCommand = new QuitCommand(this);
-            // var resetCommand = new ResetCommand(this);
+            var quitCommand = new ExitCommand(this, false);
+            var resetCommand = new ExitCommand(this, true);
             var idleStateCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), Zelda.Enums.Direction.Down)); // Will be changed to current direction, directly accessing Link's direction value once implemented
             var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left, SwordType.WoodenSword));
             var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right, SwordType.WoodenSword));
@@ -125,7 +128,7 @@ namespace Sprint0
             {
                 { Keys.Q, quitCommand },
 
-                // { Keys.R, resetCommand },
+                { Keys.R, resetCommand },
 
                 { Keys.None, idleStateCommand },
 
@@ -170,14 +173,8 @@ namespace Sprint0
                 { Keys.D3, useItemBomb }
 
             };
+
             _keyboardController = new KeyboardController(keyboardCommandMap);
-            /*
-             * Commands to still be implemented are:
-             * -Reset (needs further discussion on how to implement)
-             * -Block/Item Cycle (Probably need an Item/Block StateMachine to access enum values paired to their respective sprites)
-             * -Use Items (Implemented using the UseItem method from Link, once Link is able to be assigned items)
-             * -Damage (Uses ChangeLinkState command, need for LinkDamagedState class to be completed before input is implemented)
-             */
         }
 
         protected override void Update(GameTime gameTime)
