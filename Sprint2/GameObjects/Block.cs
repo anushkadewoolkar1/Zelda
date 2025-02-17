@@ -5,10 +5,9 @@ using Microsoft.Xna.Framework.Input;
 
 public class Block : IBlock
 {
+    // Removed Keyboard property to refactor input behavior to be the responsibility of Keyboard/Command classes (PP):
     private Vector2 position;
     private Texture2D[] textures;
-
-    private KeyboardState _previousState;
     private int currentTextureIndex = 0;
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)
@@ -24,6 +23,7 @@ public class Block : IBlock
 
     public void Update()
     {
+        /*
         KeyboardState state = Keyboard.GetState();
 
         // Change to previous texture when T is input
@@ -38,6 +38,13 @@ public class Block : IBlock
         }
 
         _previousState = state;
+        */
+    }
+
+    // Temporary method (as for now) to reflect Sprint 2 Functionality (PP):
+    public void shiftByXPos(int x)
+    {
+        currentTextureIndex = (currentTextureIndex + x + textures.Length) % textures.Length;
     }
 
     public void Draw(SpriteBatch spriteBatch)
