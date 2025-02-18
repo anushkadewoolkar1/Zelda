@@ -1,0 +1,14 @@
+Author: Anushka Dewoolkar
+Date: 2/17/2025
+Sprint: 2
+File Name: EnemySprite.cs
+Author of Code: Chloe Feller
+Time Taken: 25 minutes
+
+Notes:
+Factory design pattern used to create enemy sprites
+LoadAllTextures() keeps all textures loading in one place, which is good for maintainability
+CreateEnemySprite() uses switch statements, making it easy to see how enemies are instantiated
+CreateSmallEnemySprite(), CreateLargeEnemySprite(), and CreateBossEnemySprite() have repeated code which can probably be consolidated into one method with parameters
+
+Hypothetical Change: Adding different animation speeds to different enemies. This would require changing delay or passing in a speed as a parameter for each EnemyType.
