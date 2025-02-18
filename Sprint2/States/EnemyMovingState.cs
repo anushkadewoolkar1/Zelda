@@ -17,6 +17,7 @@ namespace Sprint0.States
         private SpriteBatch spriteBatch;
         private Vector2 position;
         private int timer = 0;
+        public Direction Direction { get; set; }
 
         public EnemyMovingState(Enemy enemy)
         {
@@ -28,7 +29,7 @@ namespace Sprint0.States
 
         public void Load()
         {
-            if (enemy.enemyType == Zelda.Enums.EnemyType.OldMan)
+            if (enemy.enemyType == EnemyType.OldMan)
             {
                 ISprite npcSprite = EnemySpriteFactory.Instance.CreateNPCSprite();
             }
@@ -40,7 +41,6 @@ namespace Sprint0.States
 
         public void Update(GameTime gameTime)
         {
-            // vector movement done here
             Vector2 move = new Vector2(0, 0);
             RandomNumberGenerator randomNumber = RandomNumberGenerator.Create();
 
@@ -134,7 +134,18 @@ namespace Sprint0.States
                     }
                     break;
                 case EnemyType.Zol:
-                    move = new Vector2(0, 1);
+                    if ((timer >= 0 && timer < 25) || (timer >= 50 && timer < 75))
+                    {
+                        move = new Vector2(0, 0);
+                    }
+                    else if (timer >= 25 && timer < 50)
+                    {
+                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                    }
+                    else
+                    {
+                        move = new Vector2(0, RandomNumberGenerator.GetInt32(0, 2));
+                    }
                     break;
                 case EnemyType.Trap:
                     if (timer >= 0 && timer < 25)
@@ -160,9 +171,19 @@ namespace Sprint0.States
                     
                     break;
                 case EnemyType.Rope:
-                    // when lined up with link, speed will double and it will bolt straight towards the spot they saw link at
-                    // otherwise, move around slowly
-                    move = new Vector2(0, 1);
+                    // set to a timer in sprint2, rope's double movement speed needs to be triggered by lining up with link, not doing it eveyr once in a while
+                    if (timer >= 0 && timer < 50)
+                    {
+                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                    } else if (timer >= 50 && timer < 75)
+                    {
+                        enemy.Speed = 200f;
+                        move = new Vector2(0, 1);
+                    } else
+                    {
+                        enemy.Speed = 100f;
+                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                    }
                     break;
                 case EnemyType.Aquamentus:
                     if (timer >= 0 && timer < 50)
@@ -174,7 +195,23 @@ namespace Sprint0.States
                     }
                     break;
                 case EnemyType.Dodongo:
-                    move = new Vector2(0, 1);
+                    enemy.Speed = 50f;
+                    if (timer >= 0 && timer < 25)
+                    {
+                        move = new Vector2(1, 0);
+                    }
+                    else if (timer >= 25 && timer < 50)
+                    {
+                        move = new Vector2(0, -1);
+                    }
+                    else if (timer >= 50 && timer < 75)
+                    {
+                        move = new Vector2(-1, 0);
+                    }
+                    else if (timer >= 75 && timer < 100)
+                    {
+                        move = new Vector2(0, 1);
+                    }
                     break;
                 default:
                     move = new Vector2(0, 1); ;
