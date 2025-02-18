@@ -30,6 +30,7 @@ public class Link
     private Boolean SpawnedItem;
     private ISprite arrowSprite, boomerangSprite, bombSprite;
     private Vector2 projectilePosition;
+    private Direction projectileDirection;
 
     public Link()
     {
@@ -241,7 +242,17 @@ public class Link
                 }
             case ItemType.Boomerang:
                 {
-                    boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown();
+                    if (currentDirection == Direction.Up)
+                    {
+                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection);
+                    } else if (currentDirection == Direction.Right)
+                    {
+                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection - 2);
+                    } else
+                    {
+                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection + 1);
+                    }
+                    
                     break;
                 }
             case ItemType.Bomb:
@@ -255,6 +266,7 @@ public class Link
                     break;
                 }
         }
+        projectileDirection = currentDirection;
         InitializeItem = true;
         System.Diagnostics.Debug.WriteLine("Item");
     }

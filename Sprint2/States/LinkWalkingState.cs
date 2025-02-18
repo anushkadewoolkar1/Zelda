@@ -14,7 +14,6 @@ public class LinkWalkingState : ILinkState
     public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
-        link.currentDirection = direction;
         this.currentDirectionWalk = direction;
     }
 
@@ -48,6 +47,8 @@ public class LinkWalkingState : ILinkState
                 movement = new Vector2(1, 0);
                 break;
         }
+
+        link.currentDirection = currentDirectionWalk;
 
         link.Move(movement, gameTime);
     }

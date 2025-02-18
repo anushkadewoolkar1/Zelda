@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,11 +21,14 @@ namespace Sprint0.Sprites
         private int[] deltaPosition;
 
         private float rotation;
+        private int directionProjectile;
 
         public ProjectileSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int direction)
         {
             _texture = texture;
+            
             rotation = direction * (MathHelper.Pi / 2);
+            directionProjectile = direction;
 
             int[] sourceRectangleDimensions = AdjustProjectile(spriteSheetXPos, spriteSheetYPos, direction);
 
@@ -49,16 +53,16 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            if (rotation < MathHelper.Pi / 2)
-            {
-                deltaPosition[1] += 2;
-            } else if (rotation < MathHelper.Pi)
-            {
-                deltaPosition[0] += 2;
-            } else if (rotation < MathHelper.Pi / (3/4))
+            if (directionProjectile == 0)
             {
                 deltaPosition[1] -= 2;
-            } else
+            } else if (directionProjectile == 1)
+            {
+                deltaPosition[0] += 2;
+            } else if (directionProjectile == 2)
+            {
+                deltaPosition[1] += 2;
+            } else if (directionProjectile == 3)
             {
                 deltaPosition[0] -= 2;
             }

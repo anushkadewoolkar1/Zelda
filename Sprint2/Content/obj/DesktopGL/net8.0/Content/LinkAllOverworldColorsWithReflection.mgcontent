@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<<<<<<< HEAD
-  <SourceFile>C:/Users/jorda/source/repos/Sprint2_v6/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</SourceFile>
-  <SourceTime>2025-02-17T19:47:42.4870494-05:00</SourceTime>
-  <DestFile>C:/Users/jorda/source/repos/Sprint2_v6/Sprint2/Content/bin/DesktopGL/Content/LinkAllOverworldColorsWithReflection.xnb</DestFile>
-  <DestTime>2025-02-17T19:48:06.3752802-05:00</DestTime>
-=======
-  <SourceFile>/Users/anushkadewoolkar/final sprint 2/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</SourceFile>
-  <SourceTime>2025-02-17T18:21:51.3426685-05:00</SourceTime>
-  <DestFile>/Users/anushkadewoolkar/final sprint 2/Zelda/Sprint2/Content/bin/DesktopGL/Content/LinkAllOverworldColorsWithReflection.xnb</DestFile>
-  <DestTime>2025-02-17T18:22:29.9509526-05:00</DestTime>
->>>>>>> 3c509b626e38f8aa77125637ae4bc28946e38039
+  <SourceFile>C:/Users/jorda/source/repos/Sprint2_v7/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</SourceFile>
+  <SourceTime>2025-02-17T20:47:18.5704612-05:00</SourceTime>
+  <DestFile>C:/Users/jorda/source/repos/Sprint2_v7/Sprint2/Content/bin/DesktopGL/Content/LinkAllOverworldColorsWithReflection.xnb</DestFile>
+  <DestTime>2025-02-17T20:47:55.041935-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

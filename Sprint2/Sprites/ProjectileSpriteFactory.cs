@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
+using Zelda.Enums;
 
 namespace Sprint0.Sprites
 {
@@ -86,22 +87,21 @@ namespace Sprint0.Sprites
             return new ProjectileSprite(projectileSpriteSheet, 29, 185, 1);
         }
 
-        public ISprite CreateBoomerangBrown()
+        public ISprite CreateBoomerangBrown(int direction)
         {
-
-            return new ProjectileSprite(projectileSpriteSheet, 65, 189, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 65, 189, direction);
         }
 
-        public ISprite CreateBoomerangBlue()
+        public ISprite CreateBoomerangBlue(int direction)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 92, 189, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 92, 189, direction);
         }
 
         public ISprite CreateBomb()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 129, 185, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 129, 185, -4);
         }
 
         public ISprite CreateLadderVertical()
