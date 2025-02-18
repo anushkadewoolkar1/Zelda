@@ -18,6 +18,9 @@ namespace Sprint0.Sprites
         private ItemSpriteFactory factory;
         private String itemString;
 
+        private double elapsedTime = 0; 
+        private double frameDuration = 0.2;
+
         public ItemSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int width, int height, String spriteName)
         {
             _texture = texture;
@@ -53,7 +56,22 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            //...
+            elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (elapsedTime >= frameDuration)
+            {
+                elapsedTime -= frameDuration; 
+
+                if (itemString.Contains("_frame_000"))
+                {
+                    itemString = itemString.Replace("_frame_000", "_frame_001");
+                }
+                else if (itemString.Contains("_frame_001"))
+                {
+                    itemString = itemString.Replace("_frame_001", "_frame_000");
+                }
+                sourceRectangle = factory.FetchItemSourceFromString(itemString);
+            }
         }
 
         public void Draw(SpriteBatch _textures)

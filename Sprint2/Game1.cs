@@ -188,6 +188,8 @@ namespace Sprint0
 
             enemySprite.Update(gameTime);
 
+            itemSprite.Update(gameTime);
+
             linkSprite.Update(gameTime);
 
             _block.Update();
