@@ -89,6 +89,8 @@ namespace Sprint0
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
+
             ItemSpriteFactory.Instance.ItemTextures(Content);
             itemSprite = ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow");
 

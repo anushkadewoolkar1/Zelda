@@ -33,7 +33,7 @@ namespace Sprint0.Sprites
 
         public void LoadProjectileTextures(ContentManager spriteBatch)
         {
-            projectileSpriteSheet = spriteBatch.Load<Texture2D>("Link");
+            projectileSpriteSheet = spriteBatch.Load<Texture2D>("LinkAllOverworldColorsWithReflection");
         }
 
         /* See enumerations above for how state and health is implemented

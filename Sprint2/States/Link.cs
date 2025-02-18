@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
@@ -22,6 +24,12 @@ public class Link
     public int Health { get; set; } = 0;
     // property for which item is currently selected
     public ItemType CurrentItem { get; set; }  
+    public Direction currentDirection { get; set; }
+    
+    private Boolean InitializeItem;
+    private Boolean SpawnedItem;
+    private ISprite arrowSprite, boomerangSprite, bombSprite;
+    private Vector2 projectilePosition;
 
     public Link()
     {
@@ -40,6 +48,8 @@ public class Link
 
         // Set the default current item 
         CurrentItem = ItemType.Arrow;
+        InitializeItem = false;
+        SpawnedItem = false;
 
     }
 
@@ -48,6 +58,24 @@ public class Link
 
         currentState.Update(gameTime);
         currentSprite.Update(gameTime);
+
+        if (SpawnedItem == true)
+        {
+            switch (CurrentItem)
+            {
+                case ItemType.Arrow:
+                    arrowSprite.Update(gameTime);
+                    break;
+                case ItemType.Boomerang:
+                    boomerangSprite.Update(gameTime);
+                    break;
+                case ItemType.Bomb:
+                    bombSprite.Update(gameTime);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         // Update invulnerability timer if Link is invulnerable.
         if (IsInvulnerable)
@@ -63,6 +91,33 @@ public class Link
     public void Draw(SpriteBatch spriteBatch)
     {
         currentSprite.Draw(spriteBatch, this.Position);
+
+
+        if (InitializeItem == true)
+        {
+            projectilePosition = this.Position + new Vector2(4 * 4, 4 * 4);
+            InitializeItem = false;
+            SpawnedItem = true;
+        }
+
+        if (SpawnedItem == true)
+        {
+            switch (CurrentItem)
+            {
+                case ItemType.Arrow:
+
+                    arrowSprite.Draw(spriteBatch, projectilePosition);
+                    break;
+                case ItemType.Boomerang:
+                    boomerangSprite.Draw(spriteBatch, projectilePosition);
+                    break;
+                case ItemType.Bomb:
+                    bombSprite.Draw(spriteBatch, projectilePosition);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void ChangeState(ILinkState newState)
@@ -159,13 +214,12 @@ public class Link
     public void UseItem()
     {
         System.Diagnostics.Debug.WriteLine("Link uses an item!");
-        /*
+        SpawnedItem = false;
         switch (CurrentItem)
         {
             case ItemType.Arrow:
                 {
-                    ISprite arrowSprite;
-                    switch (this.FacingDirection)
+                    switch (currentDirection)
                     {
                         case Direction.Up:
                             arrowSprite = ProjectileSpriteFactory.Instance.CreateUpArrowBrown();
@@ -187,13 +241,12 @@ public class Link
                 }
             case ItemType.Boomerang:
                 {
-                    ISprite boomerangSprite;
                     boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown();
                     break;
                 }
             case ItemType.Bomb:
                 {
-                    ISprite bombSprite = ProjectileSpriteFactory.Instance.CreateBomb();
+                    bombSprite = ProjectileSpriteFactory.Instance.CreateBomb();
                     break;
                 }
             default:
@@ -201,9 +254,9 @@ public class Link
                     //Console.WriteLine("No valid item selected.");
                     break;
                 }
-        
         }
-        */
+        InitializeItem = true;
+        System.Diagnostics.Debug.WriteLine("Item");
     }
 
     public void StartInvulnerability()

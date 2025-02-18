@@ -37,7 +37,7 @@ namespace SpriteFactory
         public void ItemTextures(ContentManager Content)
         {
             itemSpriteSheet = Content.Load<Texture2D>("ItemSpritesheet");
-            LoadSpriteData("../Content/ItemSpriteData.txt");
+            LoadSpriteData("../ItemSpriteData.txt");
             // the line below is so it compiles on my computer pls dont delete yet
             //LoadSpriteData("../../../Zelda/Sprint2/Content/ItemSpriteData.txt");
         }

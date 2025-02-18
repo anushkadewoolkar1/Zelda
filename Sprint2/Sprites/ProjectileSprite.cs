@@ -17,6 +17,7 @@ namespace Sprint0.Sprites
 
         private Rectangle sourceRectangle;
         private Vector2 destinationOrigin;
+        private int[] deltaPosition;
 
         private float rotation;
 
@@ -27,6 +28,8 @@ namespace Sprint0.Sprites
 
             int[] sourceRectangleDimensions = AdjustProjectile(spriteSheetXPos, spriteSheetYPos, direction);
 
+            deltaPosition = [0, 0];
+
 
             sourceRectangle = new Rectangle(sourceRectangleDimensions[0], sourceRectangleDimensions[1], sourceRectangleDimensions[2]
                        , sourceRectangleDimensions[3]);
@@ -36,7 +39,7 @@ namespace Sprint0.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
-            spriteBatch.Draw(_texture, new Vector2((int)_position.X, (int)_position.Y), sourceRectangle, Color.White, rotation,
+            spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0], (int)_position.Y + deltaPosition[1]), sourceRectangle, Color.White, rotation,
                 destinationOrigin, 1.0f, SpriteEffects.None, 0f);
             if ((int) sourceRectangle.Width == 5)
             {
@@ -46,7 +49,19 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            //no-op
+            if (rotation < MathHelper.Pi / 2)
+            {
+                deltaPosition[1] += 2;
+            } else if (rotation < MathHelper.Pi)
+            {
+                deltaPosition[0] += 2;
+            } else if (rotation < MathHelper.Pi / (3/4))
+            {
+                deltaPosition[1] -= 2;
+            } else
+            {
+                deltaPosition[0] -= 2;
+            }
         }
 
         public void Draw(SpriteBatch _textures)

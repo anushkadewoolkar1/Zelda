@@ -9,12 +9,13 @@ using Sprint0.Sprites;
 public class LinkWalkingState : ILinkState
 {
     private Link link;
-    private Direction currentDirection;
+    private Direction currentDirectionWalk;
 
     public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
-        this.currentDirection = direction;
+        link.currentDirection = direction;
+        this.currentDirectionWalk = direction;
     }
 
     public void Enter()
@@ -32,7 +33,7 @@ public class LinkWalkingState : ILinkState
 
         // vector corresponding to current direction
         Vector2 movement = Vector2.Zero;
-        switch (currentDirection)
+        switch (currentDirectionWalk)
         {
             case Direction.Up:
                 movement = new Vector2(0, -1);
@@ -54,7 +55,7 @@ public class LinkWalkingState : ILinkState
     private void SetMove()
     {
         // Set Link’s walking animation based on direction
-        switch (currentDirection)
+        switch (currentDirectionWalk)
         {
             case Direction.Up:
                 link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(1, 0, link.Health));
