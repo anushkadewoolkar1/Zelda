@@ -1,0 +1,20 @@
+﻿Sprint #2 Functionality Review:
+
+
+Code Reviewer:         Paul Paciorek
+Date of Review:        2/17/2025
+File Under Review:     ItemSpriteFactory.cs
+Code Author:           Aiden Roley
+Time to Complete:      50 minutes
+
+
+Comments:
+-Good use of data structures to manage the large quantity shapes and strings needed in ItemSprite.cs.
+-Constructor is empty, as the class is already instantiated with a static instance.
+-The ItemTexture() method is a good way to isolate the management of the content object, immediately leading into the LoadSpriteData() method, which parses the file and uses it to fill the aforementioned data structures.
+-Are ItemCycleLeftFactory() and ItemCycleRightFactory() able to be refactored into a single method which uses an integer parameter to denote the number of shifts, similar to my refactoring of the block class?
+-The remaining methods, getItemStringFromIdx(), FetchItemSourceFromString(), and FetchItemSprite() are ways of allowing access by method of various properties, implementing exceptions that will potentially assist in future debugging.
+-Overall, this class is very well written, implementing access methods that prove useful in both ItemSprite.cs and other classes that wish to manipulate item sprites.
+
+
+One suggestion is one I referenced above, that being that the ItemCycleLeftFactory() and ItemCycleRightFactory() may be able to be refactored to either consolidate the two into one method, taking in an integer parameter that would allow for transformation into any item by calculating the difference between indexes.

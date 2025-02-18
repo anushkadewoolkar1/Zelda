@@ -1,0 +1,16 @@
+﻿Sprint #2 Readability Review:
+
+
+Code Reviewer:         Paul Paciorek
+Date of Review:        2/17/2025
+File Under Review:     ItemSprite.cs
+Code Author:           Aiden Roley
+Time to Complete:      25 minutes
+
+
+Comments:
+(+) Code is well-indented & well-spaced, allowing for blocks and nests to be obvious at first glance.
+(-) Lack of summary comments before blocks results in a significantly longer time to read through the code and comprehend each block’s purpose.
+(+) Descriptive yet concise variable & method names allow for a variable/method’s purpose to be immediately understood by the reader.
+(-) Lack of commenting on the behavior of a method call outside the class requires the reader to reference other files in order to get a basic understanding of the class’s behavior.
+(-) Although I can personally understand the code due to having prior understanding of the program’s behavior, it is unlikely that a non-developer would be able to understand the file without comments.
