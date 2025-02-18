@@ -42,7 +42,6 @@ namespace Sprint0.Sprites
             bossSpritesheet = content.Load<Texture2D>("BossEnemies");
         }
 
-        // change all these when the spritesheets are actually loaded in
         public EnemySprite CreateNPCSprite()
         {
             return new EnemySprite(npcSpritesheet, 1, 1, 0, 0, 16, 32, EnemyType.OldMan);
@@ -70,7 +69,7 @@ namespace Sprint0.Sprites
                     return sprite;
                 case EnemyType.Goriya:
                     YSize = 16;
-                    sprite = CreateLargeEnemySprite(enemyType, 8, 34, 0);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 32, 1);
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Gel:
@@ -89,11 +88,11 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Wallmaster:
-                    sprite = CreateLargeEnemySprite(enemyType, 2, 0, 18);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 1, 18);
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Rope:
-                    sprite = CreateLargeEnemySprite(enemyType, 2, 50, 18);
+                    sprite = CreateLargeEnemySprite(enemyType, 2, 52, 18);
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Aquamentus:
@@ -102,7 +101,7 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 54;
                     return sprite;
                 case EnemyType.Dodongo:
-                    sprite = CreateBossEnemySprite(enemyType, 4, 0, 34);
+                    sprite = CreateBossEnemySprite(enemyType, 2, 0, 34);
                     sprite.spriteSize = 32;
                     return sprite;
                 default:
@@ -114,14 +113,12 @@ namespace Sprint0.Sprites
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            EnemySprite sprite;
-            return sprite = new EnemySprite(smallSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
+            return new EnemySprite(smallSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
         }
 
         public EnemySprite CreateLargeEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            EnemySprite sprite;
-            return sprite = new EnemySprite(largeSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
+            return new EnemySprite(largeSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
         }
 
         public EnemySprite CreateBossEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
