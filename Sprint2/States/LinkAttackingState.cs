@@ -25,7 +25,36 @@ public class LinkAttackingState : ILinkState
     public void Enter()
     {
         attackDuration = 0.5f;
-       
+
+        SetAttack();
+
+        link.PerformAttack(currentDirection);
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (attackDuration > .375f)
+        {
+            attackFrame = 2;
+            SetAttack();
+        }
+        else if (attackDuration > .25f)
+        {
+            attackFrame = 3;
+            SetAttack();
+        } else if (attackDuration > .125f) {
+            attackFrame = 4;
+            SetAttack();
+        } else
+        {
+            // After attacking, return idle
+            link.ChangeState(new LinkWalkingState(link, currentDirection));
+        }
+    }
+
+    private void SetAttack()
+    {
         switch (currentDirection)
         {
             case Direction.Up:
@@ -60,18 +89,6 @@ public class LinkAttackingState : ILinkState
                 else if (swordType == SwordType.MagicalSword)
                     link.SetSprite(LinkSpriteFactory.Instance.CreateRightAttackMagicalSword(attackFrame, 1, link.Health));
                 break;
-        }
-
-        link.PerformAttack(currentDirection);
-    }
-
-    public void Update(GameTime gameTime)
-    {
-        attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (attackDuration <= 0)
-        {
-            // After attacking, return idle
-            link.ChangeState(new LinkWalkingState(link, currentDirection));
         }
     }
 

@@ -148,7 +148,7 @@ namespace Sprint0.Sprites
 
 
 
-            if (facingDirection == (int)LinkSpriteDirection.Up)
+            if (facingDirection == (int)LinkSpriteDirection.Down)
             {
                 switch (frame)
                 {
@@ -165,7 +165,7 @@ namespace Sprint0.Sprites
                         break;
                 }
             }
-            else if (facingDirection == (int)LinkSpriteDirection.Down)
+            else if (facingDirection == (int)LinkSpriteDirection.Up)
                 {
                     switch (frame)
                     {

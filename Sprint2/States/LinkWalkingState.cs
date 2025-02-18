@@ -14,6 +14,7 @@ public class LinkWalkingState : ILinkState
     public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
+        link.currentDirection = currentDirectionWalk;
         this.currentDirectionWalk = direction;
     }
 
