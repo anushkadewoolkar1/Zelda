@@ -88,6 +88,19 @@ namespace SpriteFactory
             return spriteIndices[currentIdx];
         }
 
+        public Rectangle FetchItemSourceFromString(string spriteName)
+        {
+            if (spriteRectangles.TryGetValue(spriteName, out int index))
+            {
+                Rectangle rectangle = spriteFrames[index];
+                return rectangle;
+            }
+            else
+            {
+                throw new ArgumentException($"Sprite '{spriteName}' not found in the data txt file.");
+            }
+        }
+
         public ItemSprite FetchItemSprite(string spriteName)
         {
             if (spriteRectangles.TryGetValue(spriteName, out int index))
@@ -101,22 +114,6 @@ namespace SpriteFactory
                 throw new ArgumentException($"Sprite '{spriteName}' not found in the data txt file.");
             }
         }
-
-        /*
-        public ItemSprite FetchItemSprite(string spriteName)
-        {
-            // the second parameter is where the rectangle will be stored if it can find the key in spriteRectangles (C# out means output)
-            if (spriteRectangles.TryGetValue(spriteName, out Rectangle rectangle)) 
-            {
-                return new ItemSprite(itemSpriteSheet, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
-            }
-
-            else
-            {
-                throw new ArgumentException($"sprite '{spriteName}' not found in the data txt file.");
-            }
-        }
-        */
 
         
     }

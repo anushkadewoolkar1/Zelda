@@ -1,0 +1,17 @@
+Author: Anushka Dewoolkar
+Date: 2/17/2025
+Sprint: 2
+File Name: EnemySprite.cs
+Author of Code: Chloe Feller
+Time Taken: 25 minutes
+
+Notes:
+Readable:
+Method names are clear and descriptive
+The use of EnemyType enumeration keeps things organized
+
+Not readable:
+Update() method could use more commenting
+Magic number in the code (like delay=150) could be defined as constants
+SourceRectangles could be renamed to _sourceRectangles because its private
+
