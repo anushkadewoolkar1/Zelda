@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Zelda.Enums;
 
 namespace Sprint0.Sprites
 {
@@ -27,11 +26,15 @@ namespace Sprint0.Sprites
         {
             _texture = texture;
             
+            // Rotates projectile depending on direction using mathhelper
             rotation = direction * (MathHelper.Pi / 2);
+
+            // Used for maintaining direction in Update method
             directionProjectile = direction;
 
             int[] sourceRectangleDimensions = AdjustProjectile(spriteSheetXPos, spriteSheetYPos, direction);
 
+            // Hold the change in position after constructor call for ProjectileSprite
             deltaPosition = [0, 0];
 
 
@@ -45,6 +48,8 @@ namespace Sprint0.Sprites
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
             spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0], (int)_position.Y + deltaPosition[1]), sourceRectangle, Color.White, rotation,
                 destinationOrigin, 1.0f, SpriteEffects.None, 0f);
+
+            // Rotates specifically if ProjectileSprite is boomerang
             if ((int) sourceRectangle.Width == 5)
             {
                 rotation += (MathHelper.Pi / 8);
@@ -78,7 +83,7 @@ namespace Sprint0.Sprites
             int[] sourceRectangleDimensions = {xCoordinate, yCoordinate, 16, 16};
 
 
-
+            //Checks if projectile is smaller than a 16x16 rectangle and adjusts accordingly
             if (yCoordinate == 185 && (xCoordinate < 29 || xCoordinate == 129))
             {
                 sourceRectangleDimensions[2] = 7;

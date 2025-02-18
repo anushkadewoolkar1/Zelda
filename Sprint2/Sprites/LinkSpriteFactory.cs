@@ -15,13 +15,15 @@ namespace Sprint0.Sprites
         private Texture2D zeldaSpriteSheet;
 
 
-
+        //Acts as a key for what each value stands of LinkState, LinkDirection, and LinkDamaged stands for
         private enum LinkState { GreenSmallShield, GreenMagicalShield, WhiteSmallShield, WhiteMagicalShield, RedSmallShield, RedMagicalShield };
         private LinkState state = LinkState.GreenSmallShield;
         private enum LinkDirection { DownFacing, LeftFacing, RightFacing, UpFacing };
         private LinkDirection direction = LinkDirection.RightFacing;
         private enum LinkDamaged { Normal, Damaged };
         private LinkDamaged health = LinkDamaged.Normal;
+
+        //linkTotality = {direction, frame, state, health}
         int[] LinkTotality;
 
         private static LinkSpriteFactory instance = new LinkSpriteFactory();

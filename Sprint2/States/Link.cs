@@ -60,6 +60,7 @@ public class Link
         currentState.Update(gameTime);
         currentSprite.Update(gameTime);
 
+        //Updates projectile for sprite movement when projectile exists
         if (SpawnedItem == true)
         {
             switch (CurrentItem)
@@ -94,6 +95,8 @@ public class Link
         currentSprite.Draw(spriteBatch, this.Position);
 
 
+        //Starts Link's Projectile at Link's location
+
         if (InitializeItem == true)
         {
             projectilePosition = this.Position + new Vector2(4 * 4, 4 * 4);
@@ -101,6 +104,7 @@ public class Link
             SpawnedItem = true;
         }
 
+        //Draws Projectile Sprite while Projectile exists
         if (SpawnedItem == true)
         {
             switch (CurrentItem)
@@ -242,6 +246,8 @@ public class Link
                 }
             case ItemType.Boomerang:
                 {
+
+                    //Need to do this for Link Projectile Conversions
                     if (currentDirection == Direction.Up)
                     {
                         boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection);
@@ -266,6 +272,8 @@ public class Link
                     break;
                 }
         }
+
+        // Prepares to draw Link's Projectile and holds item direction information
         projectileDirection = currentDirection;
         InitializeItem = true;
         System.Diagnostics.Debug.WriteLine("Item");

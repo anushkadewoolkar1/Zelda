@@ -15,7 +15,11 @@ namespace Sprint0.Sprites
     {
         private Texture2D projectileSpriteSheet;
 
-        private enum LinkDirection { DownFacing, LeftFacing, RightFacing, UpFacing };
+        private enum LinkDirection { UpFacing, RightFacing, DownFacing, LeftFacing };
+
+        //Subtranction so that rotating sprite works but sprite does not move
+        private int notMoving = 4;
+
         private LinkDirection direction = LinkDirection.RightFacing;
 
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();
@@ -42,49 +46,49 @@ namespace Sprint0.Sprites
         public ISprite CreateDownArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, 2);
+            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, 3);
+            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, 1);
+            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.RightFacing);
         }
 
         public ISprite CreateDownArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, 2);
+            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, 3);
+            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, 1);
+            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.RightFacing);
         }
 
         public ISprite CreateBoomerangBrown(int direction)
@@ -107,13 +111,13 @@ namespace Sprint0.Sprites
         public ISprite CreateLadderVertical()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 280, 185, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 280, 185, (int)LinkDirection.DownFacing - notMoving);
         }
 
         public ISprite CreateLadderHorizontal()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 280, 185, 1);
+            return new ProjectileSprite(projectileSpriteSheet, 280, 185, (int)LinkDirection.RightFacing - notMoving);
         }
 
         /* Color
@@ -126,25 +130,25 @@ namespace Sprint0.Sprites
         public ISprite CreateDownAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, 2);
+            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, 0);
+            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, 3);
+            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, 1);
+            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.RightFacing);
         }
 
     }

@@ -13,6 +13,7 @@ namespace Sprint0.Sprites
     {
 
         private Texture2D _texture;
+        private enum LinkSpriteDirection {Down, Left, Right, Up};
 
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
@@ -44,9 +45,10 @@ namespace Sprint0.Sprites
             //Returns initial rectangle containing appropriate coordinates and dimensions without Magical Shield
             int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[1], LinkStates[0]);
 
+            // Checks if Link is not facing up and if Link has a MagicalShield before doing adjustment
             if (LinkStates[0] < 3 && (LinkStates[2] % 2) == 1)
             {
-                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[0], LinkStates[1]);
+                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1]);
             }
 
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
@@ -119,9 +121,11 @@ namespace Sprint0.Sprites
             //no-op
         }
 
+
+        //Adjusts the xCoordinate to rightside of spritesheet if link is facing left
         private int FixDirection(int xCoordinates, int Direction, int sourceRectangleWidth)
         {
-            if (Direction != 1)
+            if (Direction != (int)LinkSpriteDirection.Left)
             {
                 return xCoordinates;
             }
@@ -136,7 +140,7 @@ namespace Sprint0.Sprites
             int[] sourceRectangleDimensions = { xCoordinate, yCoordinate, 16, 16 };
 
 
-
+            //Exits if Link is not attacking
             if (yCoordinate < 45)
             {
                 return sourceRectangleDimensions;
@@ -144,7 +148,7 @@ namespace Sprint0.Sprites
 
 
 
-            if (facingDirection == 0)
+            if (facingDirection == (int)LinkSpriteDirection.Up)
             {
                 switch (frame)
                 {
@@ -161,7 +165,7 @@ namespace Sprint0.Sprites
                         break;
                 }
             }
-            else if (facingDirection == 3)
+            else if (facingDirection == (int)LinkSpriteDirection.Down)
                 {
                     switch (frame)
                     {
@@ -189,14 +193,14 @@ namespace Sprint0.Sprites
                     switch (frame)
                     {
                         case 2:
-                            if (facingDirection == 1)
+                            if (facingDirection == (int)LinkSpriteDirection.Left)
                             {
                                 leftAdjustment = 12;
                             }
                             sourceRectangleDimensions[2] = 27;
                             break;
                         case 3:
-                            if (facingDirection == 1)
+                            if (facingDirection == (int)LinkSpriteDirection.Left)
                             {
                                 leftAdjustment = 7;
                             }
@@ -204,7 +208,7 @@ namespace Sprint0.Sprites
                             sourceRectangleDimensions[0] = xCoordinate + 11;
                             break;
                         case 4:
-                            if (facingDirection == 1)
+                            if (facingDirection == (int)LinkSpriteDirection.Left)
                             {
                                 leftAdjustment = 3;
                             }
@@ -219,13 +223,17 @@ namespace Sprint0.Sprites
             return sourceRectangleDimensions;
         }
 
-        private int[] MagicalShield(int[] sourceRectangleDimensions, int facingDirection, int frame)
+        private int[] MagicalShield(int[] sourceRectangleDimensions, int frame)
         {
             switch (sourceRectangleDimensions[1])
             {
+
+                //This is checking for the case where link is Walking
                 case 1:
                     sourceRectangleDimensions[0] += 288;
                     break;
+
+                //This checks for the case when link is attacking down
                 case 47:
                     if (frame == 3 || frame == 4)
                     {
@@ -233,6 +241,8 @@ namespace Sprint0.Sprites
                         sourceRectangleDimensions[0] -= 34;
                     }
                     break;
+
+                //This checks for the case when link is attacking sideways
                 case 77:
                     if (frame == 3)
                     {
