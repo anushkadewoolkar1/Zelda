@@ -151,6 +151,11 @@ namespace Sprint0.Sprites
                     return sprite;
             }
         }
+
+        //public ProjectileSprite CreateProjectileSprite(ItemType itemType)
+        //{
+
+        //}
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
