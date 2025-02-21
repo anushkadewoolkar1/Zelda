@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/cello/OneDrive/Desktop/Spring 2025/Interactive Systems/CSE3902 Repository/Sprint2/Content/BossEnemies.png</SourceFile>
-  <SourceTime>2025-02-17T22:06:47.855263-05:00</SourceTime>
+  <SourceTime>2025-02-19T12:50:07-05:00</SourceTime>
   <DestFile>C:/Users/cello/OneDrive/Desktop/Spring 2025/Interactive Systems/CSE3902 Repository/Sprint2/Content/bin/DesktopGL/Content/BossEnemies.xnb</DestFile>
-  <DestTime>2025-02-17T22:11:23.4391113-05:00</DestTime>
+  <DestTime>2025-02-21T13:23:59.8976961-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
