@@ -17,7 +17,7 @@ namespace Sprint0.States
         private SpriteBatch spriteBatch;
         private Vector2 position;
         private int timer = 0;
-        public Direction Direction { get; set; }
+        public Direction Direction;
 
         public EnemyMovingState(Enemy enemy)
         {
@@ -35,7 +35,7 @@ namespace Sprint0.States
             }
             else
             {
-                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
+                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType, enemy.Direction);
             }
         }
 
@@ -86,39 +86,72 @@ namespace Sprint0.States
                     } 
                     break;
                 case EnemyType.Goriya:
-                    if (position.X >= 500 && position.Y >= 350)
+                    if (timer == 0)
                     {
-                        if (timer >= 0 && timer < 33)
+                        int random = RandomNumberGenerator.GetInt32(-1, 2);
+                        if (random == -1)
                         {
-                            move = new Vector2(0, -1);
+                            enemy.ChangeDirection(Direction.Up);
                         }
-                        else if (timer >= 33 && timer < 66)
+                        else if (random == 1)
                         {
-                            move = new Vector2(1, 0);
-                        }
-                        else if (timer >= 66 && timer < 100)
-                        {
-                            move = new Vector2(0, 0);
-                        }
-                    } else
-                    {
-                        if (timer >= 0 && timer < 33)
-                        {
-                            move = new Vector2(0, 1);
-                        }
-                        else if (timer >= 33 && timer < 66)
-                        {
-                            move = new Vector2(-1, 0);
-                        }
-                        else if (timer >= 66 && timer < 100)
-                        {
-                            move = new Vector2(0, 0);
+                            enemy.ChangeDirection(Direction.Down);
                         }
                     }
-
-                    if (timer == 66)
+                    else if (timer == 25)
                     {
-                        // throw animation, can't move while throwing but still has moving animation
+                        int random = RandomNumberGenerator.GetInt32(-1, 2);
+                        if (random == -1)
+                        {
+                            enemy.ChangeDirection(Direction.Right);
+                        }
+                        else if (random == 1)
+                        {
+                            enemy.ChangeDirection(Direction.Left);
+                        }
+                    }
+                    else if (timer == 50)
+                    {
+                        int random = RandomNumberGenerator.GetInt32(-1, 2);
+                        if (random == -1)
+                        {
+                            enemy.ChangeDirection(Direction.Up);
+                        }
+                        else if (random == 1)
+                        {
+                            enemy.ChangeDirection(Direction.Down);
+                        }
+
+                    }
+                    else if (timer == 75)
+                    {
+                        int random = RandomNumberGenerator.GetInt32(-1, 2);
+                        if (random == -1)
+                        {
+                            enemy.ChangeDirection(Direction.Left);
+                        }
+                        else if (random == 1)
+                        {
+                            enemy.ChangeDirection(Direction.Right);
+                        }
+
+                    }
+
+
+                    switch(enemy.Direction)
+                    {
+                        case Direction.Up:
+                            move = new Vector2(0, -1);
+                            break;
+                        case Direction.Down:
+                            move = new Vector2(0, 1);
+                            break;
+                        case Direction.Left:
+                            move = new Vector2(1, 0);
+                            break;
+                        case Direction.Right: 
+                            move = new Vector2(-1, 0);
+                            break;
                     }
                     break;
                 case EnemyType.Gel:
@@ -127,10 +160,10 @@ namespace Sprint0.States
                         move = new Vector2(0, 0);
                     } else if (timer >= 25 && timer < 50)
                     {
-                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                        move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), 0);
                     } else
                     {
-                        move = new Vector2(0, RandomNumberGenerator.GetInt32(0, 2));
+                        move = new Vector2(0, RandomNumberGenerator.GetInt32(-1, 2));
                     }
                     break;
                 case EnemyType.Zol:
@@ -167,14 +200,14 @@ namespace Sprint0.States
                 case EnemyType.Wallmaster:
                     enemy.Speed = 50f;
                     
-                    move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), RandomNumberGenerator.GetInt32(0, 2));
+                    move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), RandomNumberGenerator.GetInt32(-1, 2));
                     
                     break;
                 case EnemyType.Rope:
                     // set to a timer in sprint2, rope's double movement speed needs to be triggered by lining up with link, not doing it eveyr once in a while
                     if (timer >= 0 && timer < 50)
                     {
-                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                        move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), 0);
                     } else if (timer >= 50 && timer < 75)
                     {
                         enemy.Speed = 200f;
@@ -182,7 +215,7 @@ namespace Sprint0.States
                     } else
                     {
                         enemy.Speed = 100f;
-                        move = new Vector2(RandomNumberGenerator.GetInt32(0, 2), 0);
+                        move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), 0);
                     }
                     break;
                 case EnemyType.Aquamentus:
@@ -196,21 +229,38 @@ namespace Sprint0.States
                     break;
                 case EnemyType.Dodongo:
                     enemy.Speed = 50f;
-                    if (timer >= 0 && timer < 25)
+                    // make a method in enemy to change the direction based on how the movement is done?
+                    if (timer == 0)
                     {
-                        move = new Vector2(1, 0);
+                        enemy.ChangeDirection(Direction.Right);
                     }
-                    else if (timer >= 25 && timer < 50)
+                    else if (timer == 25)
                     {
-                        move = new Vector2(0, -1);
+                        enemy.ChangeDirection(Direction.Up);
                     }
-                    else if (timer >= 50 && timer < 75)
+                    else if (timer == 50)
                     {
-                        move = new Vector2(-1, 0);
+                        enemy.ChangeDirection(Direction.Left);
                     }
-                    else if (timer >= 75 && timer < 100)
+                    else if (timer == 75)
                     {
-                        move = new Vector2(0, 1);
+                        enemy.ChangeDirection(Direction.Down);
+                    }
+
+                    switch (enemy.Direction)
+                    {
+                        case Direction.Up:
+                            move = new Vector2(0, -1);
+                            break;
+                        case Direction.Down:
+                            move = new Vector2(0, 1);
+                            break;
+                        case Direction.Left:
+                            move = new Vector2(1, 0);
+                            break;
+                        case Direction.Right:
+                            move = new Vector2(-1, 0);
+                            break;
                     }
                     break;
                 default:

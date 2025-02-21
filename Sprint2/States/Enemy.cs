@@ -21,6 +21,7 @@ namespace Sprint0.States
         public Vector2 position;
         public EnemyType enemyType;
         public float Speed;
+        public Direction Direction;
 
         public Enemy()
         {
@@ -28,7 +29,7 @@ namespace Sprint0.States
             position = new Vector2(500, 250);
 
             enemyType = EnemyType.OldMan;
-            this.sprite = spriteFactory.CreateEnemySprite(enemyType);
+            this.sprite = spriteFactory.CreateEnemySprite(enemyType, Direction);
             this.sprite.spriteSize = 32;
 
 
@@ -49,57 +50,57 @@ namespace Sprint0.States
                 case EnemyType.OldMan:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Dodongo;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Keese:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Stalfos:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Keese;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Gel:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Stalfos;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Zol:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Gel;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Goriya:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Zol;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Trap:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Goriya;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Wallmaster:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Trap;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Rope:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Wallmaster;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Aquamentus:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Rope;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Dodongo:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Aquamentus;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 default:
                     position = new Vector2(500, 250);
@@ -116,62 +117,86 @@ namespace Sprint0.States
                 case EnemyType.OldMan:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Keese;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Keese:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Stalfos;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Stalfos:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Gel;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Gel:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Zol;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Zol:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Goriya;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Goriya:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Trap;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Trap:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Wallmaster;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Wallmaster:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Rope;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Rope:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Aquamentus;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Aquamentus:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.Dodongo;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 case EnemyType.Dodongo:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType);
+                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
                 default:
                     position = new Vector2(500, 250);
                     this.enemyType = EnemyType.OldMan;
                     this.sprite = spriteFactory.CreateNPCSprite();
+                    break;
+            }
+        }
+
+        public void ChangeDirection(Direction newDirection)
+        {
+            Direction = newDirection;
+            switch (newDirection)
+            {
+                case Direction.Up:
+                    // change to corresponding sprite
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Down:
+                    // change to corresponding sprite
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Left:
+                    // change to corresponding sprite
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Right:
+                    // change to corresponding sprite
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
                     break;
             }
         }
