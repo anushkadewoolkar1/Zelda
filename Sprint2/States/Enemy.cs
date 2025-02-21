@@ -22,6 +22,11 @@ namespace Sprint0.States
         public EnemyType enemyType;
         public float Speed;
         public Direction Direction;
+        private ISprite boomerangSprite, fireballSprite;
+        private Boolean itemSpawn;
+        private Boolean itemSpawned;
+        private ItemType itemType;
+        private Vector2 projectilePosition;
 
         public Enemy()
         {
@@ -35,6 +40,10 @@ namespace Sprint0.States
 
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
+
+            itemType = ItemType.Boomerang;
+            itemSpawn = false;
+            itemSpawned = false;
 
         }
 
@@ -176,31 +185,6 @@ namespace Sprint0.States
                     break;
             }
         }
-
-        public void ChangeDirection(Direction newDirection)
-        {
-            Direction = newDirection;
-            switch (newDirection)
-            {
-                case Direction.Up:
-                    // change to corresponding sprite
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Down:
-                    // change to corresponding sprite
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Left:
-                    // change to corresponding sprite
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Right:
-                    // change to corresponding sprite
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-            }
-        }
-
         public void SetHealth()
         {
             switch (enemyType)
@@ -218,6 +202,27 @@ namespace Sprint0.States
             }
         }
 
+        public void ChangeDirection(Direction newDirection)
+        {
+            Direction = newDirection;
+            switch (newDirection)
+            {
+                case Direction.Up:
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Down:
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Left:
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+                case Direction.Right:
+                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
+                    break;
+
+            }
+        }
+
         public void Move(Vector2 move, GameTime gameTime)
         {
             if (move != Vector2.Zero)
@@ -226,6 +231,41 @@ namespace Sprint0.States
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             this.position += move * Speed * dt;
 
+        }
+
+        public void SpawnProjectile()
+        {
+            itemSpawn = false;
+            int directionNumber = -1;
+            switch (Direction)
+            {
+                case Direction.Up:
+                    directionNumber = 0;
+                    break;
+                case Direction.Down:
+                    directionNumber = 1;
+                    break;
+                case Direction.Left:
+                    directionNumber = 2;
+                    break;
+                case Direction.Right:
+                    directionNumber = 3;
+                    break;
+            }
+            switch (itemType)
+            {
+                case ItemType.Boomerang:
+                    boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown(directionNumber);
+                    break;
+                case ItemType.Fireball:
+                    // create an EnemySprite since Boss sprite sheet has the needed fireballs
+                    //fireballSprite = EnemySpriteFactory.Instance.
+                    break;
+                default:
+                    break;
+            }
+
+            itemSpawn = true;
         }
 
         public void TakeDamage()
@@ -238,11 +278,47 @@ namespace Sprint0.States
 
             enemyState.Update(gameTime);
             sprite.Update(gameTime);
+
+            if (itemSpawned)
+            {
+                switch (itemType)
+                {
+                    case ItemType.Boomerang:
+                        boomerangSprite.Update(gameTime);
+                        break;
+                    case ItemType.Fireball:
+                        fireballSprite.Update(gameTime);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public void DrawCurrentSprite(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch, this.position);
+
+            if (itemSpawn)
+            {
+                projectilePosition = position + new Vector2(2, 2);
+                itemSpawn = false;
+                itemSpawned = true;
+            }
+            if (itemSpawned)
+            {
+                switch (itemType)
+                {
+                    case ItemType.Boomerang:
+                        boomerangSprite.Draw(spriteBatch, projectilePosition);
+                        break;
+                    case ItemType.Fireball:
+                        fireballSprite.Draw(spriteBatch, projectilePosition);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public void ChangeState(IEnemyState newState)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Sprint0.States
 {
     public class EnemyMovingState : IEnemyState
     {
+        private ISprite projectileSprite;
         private Enemy enemy;
         private SpriteBatch spriteBatch;
         private Vector2 position;
@@ -42,7 +44,6 @@ namespace Sprint0.States
         public void Update(GameTime gameTime)
         {
             Vector2 move = new Vector2(0, 0);
-            RandomNumberGenerator randomNumber = RandomNumberGenerator.Create();
 
             enemy.Speed = 100f;
 
@@ -86,6 +87,8 @@ namespace Sprint0.States
                     } 
                     break;
                 case EnemyType.Goriya:
+                    // refactor this later, this is pretty hard to look at tbh
+                    Boolean moving = true;
                     if (timer == 0)
                     {
                         int random = RandomNumberGenerator.GetInt32(-1, 2);
@@ -125,33 +128,34 @@ namespace Sprint0.States
                     }
                     else if (timer == 75)
                     {
-                        int random = RandomNumberGenerator.GetInt32(-1, 2);
-                        if (random == -1)
-                        {
-                            enemy.ChangeDirection(Direction.Left);
-                        }
-                        else if (random == 1)
-                        {
-                            enemy.ChangeDirection(Direction.Right);
-                        }
+                        enemy.SpawnProjectile();
+                    }
+                    else if (timer > 75 && timer < 100)
+                    {
+                        moving = false;
 
                     }
-
-
-                    switch(enemy.Direction)
+                    if (moving)
                     {
-                        case Direction.Up:
-                            move = new Vector2(0, -1);
-                            break;
-                        case Direction.Down:
-                            move = new Vector2(0, 1);
-                            break;
-                        case Direction.Left:
-                            move = new Vector2(1, 0);
-                            break;
-                        case Direction.Right: 
-                            move = new Vector2(-1, 0);
-                            break;
+                        switch (enemy.Direction)
+                        {
+                            case Direction.Up:
+                                move = new Vector2(0, -1);
+                                break;
+                            case Direction.Down:
+                                move = new Vector2(0, 1);
+                                break;
+                            case Direction.Left:
+                                move = new Vector2(1, 0);
+                                break;
+                            case Direction.Right:
+                                move = new Vector2(-1, 0);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        move = new Vector2(0, 0);
                     }
                     break;
                 case EnemyType.Gel:
@@ -225,11 +229,13 @@ namespace Sprint0.States
                     } else if (timer >= 50 && timer < 100)
                     {
                         move = new Vector2(-1, 0);
+                    } else if (timer == 100)
+                    {
+                        // spawn projectiles
                     }
                     break;
                 case EnemyType.Dodongo:
                     enemy.Speed = 50f;
-                    // make a method in enemy to change the direction based on how the movement is done?
                     if (timer == 0)
                     {
                         enemy.ChangeDirection(Direction.Right);
@@ -275,11 +281,6 @@ namespace Sprint0.States
             }
 
             enemy.Move(move, gameTime);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            enemy.DrawCurrentSprite(spriteBatch);
         }
 
         public void Stop()
