@@ -10,6 +10,7 @@ using Zelda.Enums;
 using Sprint0.States;
 using System;
 using System.Net.Http.Headers;
+using ZeldaGame.Zelda.CollisionMap;
 
 
 namespace Sprint0
@@ -41,6 +42,8 @@ namespace Sprint0
 
         Enemy enemySprite;
 
+        private TileMap _tileMap;
+
 
         //block
         private Block _block;
@@ -68,6 +71,9 @@ namespace Sprint0
 
         protected override void LoadContent()
         {
+            TileMap.Initialize(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            _tileMap = TileMap.GetInstance();
+
             Texture2D[] blockTextures = new Texture2D[]
             {
                 Content.Load<Texture2D>("block1"),
@@ -85,7 +91,8 @@ namespace Sprint0
             restart = false;
 
             // Create the block at position (200, 200)
-            _block = new Block(new Vector2(200, 200), blockTextures);
+            //_block = new Block(new Vector2(200, 200), blockTextures);
+            _block = new Block(new Vector2(15, 1), blockTextures);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
