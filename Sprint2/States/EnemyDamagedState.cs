@@ -20,7 +20,7 @@ namespace Sprint0.States
         {
             this.enemy = enemy;
             // construct sprite here
-            ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
+            ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType, enemy.Direction);
         }
         public void Load()
         {

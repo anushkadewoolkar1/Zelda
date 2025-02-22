@@ -35,7 +35,7 @@ namespace Sprint0.States
             }
             else
             {
-                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType);
+                ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType, enemy.Direction);
             }
         }
 

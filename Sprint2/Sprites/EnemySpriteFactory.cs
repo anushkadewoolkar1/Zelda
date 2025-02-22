@@ -16,6 +16,7 @@ namespace Sprint0.Sprites
         private Texture2D smallSpritesheet;
         private Texture2D bossSpritesheet;
         private Texture2D npcSpritesheet;
+        private EnemySprite sprite;
         private int XSize;
         private int YSize;
 
@@ -47,10 +48,9 @@ namespace Sprint0.Sprites
             return new EnemySprite(npcSpritesheet, 1, 1, 0, 0, 16, 32, EnemyType.OldMan);
         }
 
-        public EnemySprite CreateEnemySprite(EnemyType enemyType)
+        public EnemySprite CreateEnemySprite(EnemyType enemyType, Direction direction)
         {
             // enemies spawn in with an animation, add that in later
-            EnemySprite sprite;
             XSize = 16;
             YSize = 32;
             switch(enemyType)
@@ -69,7 +69,25 @@ namespace Sprint0.Sprites
                     return sprite;
                 case EnemyType.Goriya:
                     YSize = 16;
-                    sprite = CreateLargeEnemySprite(enemyType, 2, 32, 1);
+                    // will need to change this to UpdateSprite so that they still animate
+                    switch(direction)
+                    {
+                        case Direction.Left:
+                            sprite = CreateLargeEnemySprite(enemyType, 2, 100, 1);
+                            break;
+                        case Direction.Right:
+                            sprite = CreateLargeEnemySprite(enemyType, 2, 133, 1);
+                            break;
+                        case Direction.Up:
+                            sprite = CreateLargeEnemySprite(enemyType, 2, 66, 1);
+                            break;
+                        case Direction.Down:
+                            sprite = CreateLargeEnemySprite(enemyType, 2, 32, 1);
+                            break;
+                        default:
+                            sprite = CreateLargeEnemySprite(enemyType, 2, 32, 1);
+                            break;
+                    }
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Gel:
@@ -101,8 +119,31 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 54;
                     return sprite;
                 case EnemyType.Dodongo:
-                    sprite = CreateBossEnemySprite(enemyType, 2, 0, 34);
-                    sprite.spriteSize = 32;
+                    // will need to change CreateBossEnemySprite to UpdateSprite so they still animate (the frames are being reset each time methinks) 
+                    switch (direction)
+                    {
+                        case Direction.Left:
+                            XSize = 28;
+                            sprite = CreateBossEnemySprite(enemyType, 2, 106, 34);
+                            sprite.spriteSize = 35;
+                            break;
+                        case Direction.Right:
+                            XSize = 28;
+                            sprite = CreateBossEnemySprite(enemyType, 2, 235, 34);
+                            sprite.spriteSize = 35;
+                            break;
+                        case Direction.Up:
+                            sprite = CreateBossEnemySprite(enemyType, 2, 53, 34);
+                            sprite.spriteSize = 32;
+                            break;
+                        case Direction.Down:
+                            sprite = CreateBossEnemySprite(enemyType, 2, 1, 34);
+                            sprite.spriteSize = 32;
+                            break;
+                        default:
+                            sprite = CreateBossEnemySprite(enemyType, 2, 0, 34);
+                            break;
+                    }
                     return sprite;
                 default:
                     sprite = CreateNPCSprite();
@@ -110,6 +151,11 @@ namespace Sprint0.Sprites
                     return sprite;
             }
         }
+
+        //public ProjectileSprite CreateProjectileSprite(ItemType itemType)
+        //{
+
+        //}
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
