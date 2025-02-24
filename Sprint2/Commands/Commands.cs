@@ -123,11 +123,11 @@ namespace Sprint0.Commands
         {
             if (_direction == Direction.Left)
             {
-                _itemSprite.itemCycleLeft();
+                _itemSprite.ItemCycleLeft();
             }
             else
             {
-                _itemSprite.itemCycleRight();
+                _itemSprite.ItemCycleRight();
             }
         }
     }
@@ -147,11 +147,11 @@ namespace Sprint0.Commands
         {
             if (_direction == Direction.Left)
             {
-                _block.shiftByXPos(-1);
+                _block.ShiftByXPos(-1);
             }
             else
             {
-                _block.shiftByXPos(1);
+                _block.ShiftByXPos(1);
             }
         }
     }
@@ -170,7 +170,7 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            _link.PickUpItem(_item); // Uncomment when PickUpItem() can accept argument (PP)
+            _link.PickUpItem(_item);
             _link.UseItem();
         }
     }

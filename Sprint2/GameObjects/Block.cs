@@ -44,7 +44,7 @@ public class Block : IBlock
     }
 
     // Temporary method (as for now) to reflect Sprint 2 Functionality (PP):
-    public void shiftByXPos(int x)
+    public void ShiftByXPos(int x)
     {
         currentTextureIndex = (currentTextureIndex + x + textures.Length) % textures.Length;
     }

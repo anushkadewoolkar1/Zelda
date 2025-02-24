@@ -69,21 +69,21 @@ namespace SpriteFactory
             }
         }
 
-        public Rectangle itemCycleLeftFactory()
+        public Rectangle ItemCycleLeftFactory()
         {
             currentIdx = (currentIdx - 1 + spriteFrames.Count) % spriteFrames.Count;
             Rectangle rectangle = spriteFrames[currentIdx];
             return rectangle;
         }
 
-        public Rectangle itemCycleRightFactory()
+        public Rectangle ItemCycleRightFactory()
         {
             currentIdx = (currentIdx + 1) % spriteFrames.Count;
             Rectangle rectangle = spriteFrames[currentIdx];
             return rectangle;
         }
 
-        public String getItemStringFromIdx()
+        public String GetItemStringFromIdx()
         {
             return spriteIndices[currentIdx];
         }

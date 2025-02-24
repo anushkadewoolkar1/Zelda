@@ -51,8 +51,8 @@ public class Link
 
         // Set the default current item 
         CurrentItem = ItemType.Arrow;
-        InitializeItem = false;
-        SpawnedItem = false;
+        initializeItem = false;
+        spawnedItem = false;
 
         linkAttacking = false;
 
@@ -65,7 +65,7 @@ public class Link
         currentSprite.Update(gameTime);
 
         //Updates projectile for sprite movement when projectile exists
-        if (SpawnedItem == true)
+        if (spawnedItem)
         {
             switch (CurrentItem)
             {
@@ -103,15 +103,15 @@ public class Link
 
         //Starts Link's Projectile at Link's location
 
-        if (InitializeItem == true)
+        if (initializeItem == true)
         {
             projectilePosition = this.Position + new Vector2(4 * 4, 4 * 4);
-            InitializeItem = false;
-            SpawnedItem = true;
+            initializeItem = false;
+            spawnedItem = true;
         }
 
         //Draws Projectile Sprite while Projectile exists
-        if (SpawnedItem == true)
+        if (spawnedItem == true)
         {
             switch (CurrentItem)
             {
@@ -219,7 +219,7 @@ public class Link
     {
         System.Diagnostics.Debug.WriteLine("Link picks up item");
         // Implement item pick up logic
-        switch (pickedUpItem.getItemString())
+        switch (pickedUpItem.GetItemString())
         {
             case "ZeldaSpriteArrow": CurrentItem = ItemType.Arrow; System.Diagnostics.Debug.WriteLine("ARROW!");  break;
             case "ZeldaSpriteBoomerang": CurrentItem = ItemType.Boomerang; break;
@@ -230,7 +230,7 @@ public class Link
     public void UseItem()
     {
         System.Diagnostics.Debug.WriteLine("Link uses an item!");
-        SpawnedItem = false;
+        spawnedItem = false;
         switch (CurrentItem)
         {
             case ItemType.Arrow:
@@ -286,7 +286,7 @@ public class Link
 
         // Prepares to draw Link's Projectile and holds item direction information
         projectileDirection = currentDirection;
-        InitializeItem = true;
+        initializeItem = true;
         System.Diagnostics.Debug.WriteLine("Item");
     }
 
