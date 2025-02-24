@@ -21,7 +21,7 @@ namespace Sprint0.Sprites
 
         private float rotation;
         private int directionProjectile;
-        private int projectileScale = 3;
+        private int projectileScale = 2;
         private bool isBoomerang;
         private bool isBomb;
 
