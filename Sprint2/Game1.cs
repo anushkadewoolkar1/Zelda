@@ -62,6 +62,7 @@ namespace Sprint0
 
         protected override void Initialize()
         {
+            _graphics.IsFullScreen = true;
             _graphics.PreferredBackBufferWidth = 1600;
             _graphics.PreferredBackBufferHeight = 900;
             _graphics.ApplyChanges();

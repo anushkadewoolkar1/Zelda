@@ -13,14 +13,20 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Sprint0.Sprites;
 using Zelda.Enums;
+using Sprint0.States;
 
 namespace Sprint0.Level
 {
     public class Level : ILevel
     {
 
-        private int room = 15;
+        private int room = 25;
+        private int roomLength = 5;
         private List<String> Objects = new List<String>();
+        private List<Block> blocksList = new List<Block>();
+        private List<Enemy> enemiesList = new List<Enemy>();
+        int enemiesListIndex = 0;
+        int blocksListIndex = 0;
 
         /* TO DO:
          * 1. Create collections for Enemies, Blocks, Items, etc. for loading
@@ -44,17 +50,35 @@ namespace Sprint0.Level
             }
             */
 
+
+
             
         }
 
+
+
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            for (int i = 0; i < enemiesListIndex;i++)
+            {
+                enemiesList[i].DrawCurrentSprite(spriteBatch);
+            }
+            for (int i = 0; i < blocksListIndex;i++)
+            {
+                blocksList[i].Draw(spriteBatch);
+            }
         }
 
         public void Update(GameTime gametime)
         {
-            
+            for (int i = 0; i < enemiesListIndex; i++)
+            {
+                enemiesList[i].Update(gametime);
+            }
+            for (int i = 0; i < blocksListIndex; i++)
+            {
+                blocksList[i].Update();
+            }
         }
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
@@ -74,29 +98,27 @@ namespace Sprint0.Level
             i += 10;
             int room = i + 50;
             MethodInfo mi;
+            String newConstructor = "new ";
+            enemiesListIndex = 0;
+            blocksListIndex = 0;
+
+            //We'll need to be able to pass position for creating the objects of the entities
 
             while (i < room)
             {
-                if (Objects[i].Contains("Enem"))
+                if (Objects[i].Contains("Enemy"))
                 {
-                    //Enemy = Enemy + ""
+                    mi = enemiesList[enemiesListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(4));
+                    mi.Invoke(enemiesList[enemiesListIndex], null);
                 }
-                else if (Objects[i].Contains("Bloc"))
+                else if (Objects[i].Contains("Block"))
                 {
-
-                    //Blocks = Blocks + ""
+                    mi = blocksList[blocksListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(4));
+                    mi.Invoke(blocksList[blocksListIndex], null);
                 }
-                else if (Objects[i].Contains("Link"))
+                else if (Objects[i].Contains("LinkC"))
                 {
-                    //Get the method information using the method info class
-                    //LinkSprite hello = new LinkSprite();
-                    //mi = hello.GetType().GetMethod(Objects[i].Substring(4));
-
-
-                    //Invoke the method
-                    // (null- no parameter for the method call
-                    // or you can pass the array of parameters...)
-                    //mi.Invoke(this, null);
+                    //This is a Link.cs object = [i % roomLength,i / roomLength];
                 }
             }
         }

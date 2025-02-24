@@ -57,8 +57,7 @@ namespace Sprint0.Sprites
         {
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
             spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0] * projectileScale, (int)_position.Y + deltaPosition[1] * projectileScale),
-                sourceRectangle, Color.White, rotation,
-                destinationOrigin, projectileScale, SpriteEffects.None, 0f);
+                sourceRectangle, Color.White, rotation, destinationOrigin, projectileScale, SpriteEffects.None, 0f);
 
             if (isBomb)
             {
@@ -150,7 +149,10 @@ namespace Sprint0.Sprites
             if (yCoordinate == 185 && (xCoordinate < 29 || xCoordinate == 129))
             {
                 sourceRectangleDimensions[2] = 8;
-                isBomb = true;
+                if (xCoordinate == 129)
+                {
+                    isBomb = true;
+                }
                 return sourceRectangleDimensions;
             } else if (xCoordinate > 30 && xCoordinate < 129)
             {
