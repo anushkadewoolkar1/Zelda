@@ -50,8 +50,12 @@ namespace Sprint0.Level
             }
             */
 
+
+
             
         }
+
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
