@@ -26,7 +26,7 @@ namespace Sprint0.Sprites
             _texture = texture;
             sourceRectangle = new Rectangle(spriteSheetXPos,  spriteSheetYPos, width, height);
             factory = ItemSpriteFactory.Instance;
-            itemString = factory.getItemStringFromIdx();
+            itemString = factory.GetItemStringFromIdx();
             itemString = spriteName;
         }
 
@@ -37,19 +37,19 @@ namespace Sprint0.Sprites
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
         }
 
-        public void itemCycleRight()
+        public void ItemCycleRight()
         {
-            sourceRectangle = factory.itemCycleRightFactory();
-            itemString = factory.getItemStringFromIdx();
+            sourceRectangle = factory.ItemCycleRightFactory();
+            itemString = factory.GetItemStringFromIdx();
         }
 
-        public void itemCycleLeft()
+        public void ItemCycleLeft()
         {
-            sourceRectangle = factory.itemCycleLeftFactory();
-            itemString = factory.getItemStringFromIdx();
+            sourceRectangle = factory.ItemCycleLeftFactory();
+            itemString = factory.GetItemStringFromIdx();
         }
 
-        public string getItemString()
+        public string GetItemString()
         {
             return itemString;
         }
