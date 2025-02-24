@@ -15,11 +15,13 @@ public class LinkIdleState : ILinkState
     public LinkIdleState(Link link, Direction direction)
     {
         this.link = link;
-        currentDirection = direction;
+        link.currentDirection = direction;
+        this.currentDirection = direction;
     }
 
     public void Enter()
     {
+        this.currentDirection = this.link.currentDirection;
         SetIdleSprite();
     }
 

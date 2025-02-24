@@ -24,6 +24,8 @@ public class LinkAttackingState : ILinkState
 
     public void Enter()
     {
+        this.currentDirection = this.link.currentDirection;
+
         attackDuration = 0.5f;
 
         SetAttack();
@@ -33,7 +35,9 @@ public class LinkAttackingState : ILinkState
 
     public void Update(GameTime gameTime)
     {
+
         attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+        this.link.linkAttacking = true;
         if (attackDuration > .375f)
         {
             attackFrame = 2;
@@ -48,8 +52,9 @@ public class LinkAttackingState : ILinkState
             SetAttack();
         } else
         {
+            this.link.linkAttacking = false;
             // After attacking, return idle
-            link.ChangeState(new LinkWalkingState(link, currentDirection));
+            link.ChangeState(new LinkIdleState(link, currentDirection));
         }
     }
 

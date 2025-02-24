@@ -45,6 +45,7 @@ namespace Sprint0
         private TileMap _tileMap;
 
 
+
         //block
         private Block _block;
 
@@ -62,7 +63,7 @@ namespace Sprint0
 
         protected override void Initialize()
         {
-            _graphics.IsFullScreen = true;
+            //_graphics.IsFullScreen = true;
             _graphics.PreferredBackBufferWidth = 256;
             _graphics.PreferredBackBufferHeight = 240;
             _graphics.ApplyChanges();

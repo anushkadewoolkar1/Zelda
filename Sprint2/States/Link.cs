@@ -25,7 +25,9 @@ public class Link
     // property for which item is currently selected
     public ItemType CurrentItem { get; set; }  
     public Direction currentDirection { get; set; }
-    
+
+    public Boolean linkAttacking;
+
     private Boolean InitializeItem;
     private Boolean SpawnedItem;
     private ISprite arrowSprite, boomerangSprite, bombSprite;
@@ -51,6 +53,8 @@ public class Link
         CurrentItem = ItemType.Arrow;
         InitializeItem = false;
         SpawnedItem = false;
+
+        linkAttacking = false;
 
     }
 
@@ -78,6 +82,8 @@ public class Link
                     break;
             }
         }
+
+        
 
         // Update invulnerability timer if Link is invulnerable.
         if (IsInvulnerable)
@@ -127,9 +133,12 @@ public class Link
 
     public void ChangeState(ILinkState newState)
     {
-        currentState.Exit();
-        currentState = newState;
-        currentState.Enter();
+        if (!linkAttacking)
+        {
+            this.currentState.Exit();
+            this.currentState = newState;
+            this.currentState.Enter();
+        }
     }
 
     public void SetSprite(ISprite sprite)
@@ -160,6 +169,8 @@ public class Link
     public void PerformAttack(Direction direction)
     {
         System.Diagnostics.Debug.WriteLine("Link performs an attack!");
+
+
 
         //// Define the dimensions of the attack hitbox.
         //int hitboxWidth = 20;
