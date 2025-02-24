@@ -21,10 +21,18 @@ namespace Sprint0.Sprites
 
         private float rotation;
         private int directionProjectile;
+        private int projectileScale = 3;
+        private bool isBoomerang;
+        private bool isBomb;
+
+        private int boomerangChangeDirection;
+        private int timer;
 
         public ProjectileSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int direction)
         {
             _texture = texture;
+            isBomb = false;
+            isBoomerang = false;
             
             // Rotates projectile depending on direction using mathhelper
             rotation = direction * (MathHelper.Pi / 2);
@@ -38,21 +46,39 @@ namespace Sprint0.Sprites
             deltaPosition = [0, 0];
 
 
-            sourceRectangle = new Rectangle(sourceRectangleDimensions[0], sourceRectangleDimensions[1], sourceRectangleDimensions[2]
-                       , sourceRectangleDimensions[3]);
+            sourceRectangle = new Rectangle(sourceRectangleDimensions[0], sourceRectangleDimensions[1],
+                sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
+
+            boomerangChangeDirection = 0;
         }
 
         //When calling this Draw, Position is the center of sprite
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
-            spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0], (int)_position.Y + deltaPosition[1]), sourceRectangle, Color.White, rotation,
-                destinationOrigin, 1.0f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0] * projectileScale, (int)_position.Y + deltaPosition[1] * projectileScale),
+                sourceRectangle, Color.White, rotation,
+                destinationOrigin, projectileScale, SpriteEffects.None, 0f);
 
-            // Rotates specifically if ProjectileSprite is boomerang
-            if ((int) sourceRectangle.Width == 5)
+            if (isBomb)
             {
-                rotation += (MathHelper.Pi / 8);
+                if (timer == 20)
+                {
+                    sourceRectangle.Offset(13, 0);
+                    sourceRectangle.Inflate(4, 0);
+                }
+                if (timer == 25)
+                {
+                    sourceRectangle.Offset(17, 0);
+                }
+                if (timer == 30)
+                {
+                    sourceRectangle.Offset(17, 0);
+                }
+                if (timer == 35)
+                {
+                    sourceRectangle.Offset(36, 30);
+                }
             }
         }
 
@@ -60,17 +86,54 @@ namespace Sprint0.Sprites
         {
             if (directionProjectile == 0)
             {
-                deltaPosition[1] -= 2;
+                if (boomerangChangeDirection >= 40)
+                {
+                    deltaPosition[1] += 2;
+                } else
+                {
+                    deltaPosition[1] -= 2;
+                }
             } else if (directionProjectile == 1)
             {
-                deltaPosition[0] += 2;
+                if (boomerangChangeDirection >= 40)
+                {
+                    deltaPosition[0] -= 2;
+                }
+                else
+                {
+                    deltaPosition[0] += 2;
+                }
             } else if (directionProjectile == 2)
             {
-                deltaPosition[1] += 2;
+                if (boomerangChangeDirection >= 40)
+                {
+                    deltaPosition[1] -= 2;
+                }
+                else
+                {
+                    deltaPosition[1] += 2;
+                }
             } else if (directionProjectile == 3)
             {
-                deltaPosition[0] -= 2;
+                if (boomerangChangeDirection >= 40)
+                {
+                    deltaPosition[0] += 2;
+                }
+                else
+                {
+                    deltaPosition[0] -= 2;
+                }
             }
+
+            timer++;
+
+            // Rotates specifically if ProjectileSprite is boomerang and has the boomerang change it's direction
+            if (isBoomerang)
+            {
+                rotation += (MathHelper.Pi / 8);
+                boomerangChangeDirection += 1;
+            }
+
         }
 
         public void Draw(SpriteBatch _textures)
@@ -86,12 +149,14 @@ namespace Sprint0.Sprites
             //Checks if projectile is smaller than a 16x16 rectangle and adjusts accordingly
             if (yCoordinate == 185 && (xCoordinate < 29 || xCoordinate == 129))
             {
-                sourceRectangleDimensions[2] = 7;
+                sourceRectangleDimensions[2] = 8;
+                isBomb = true;
                 return sourceRectangleDimensions;
             } else if (xCoordinate > 30 && xCoordinate < 129)
             {
                 sourceRectangleDimensions[2] = 5;
                 sourceRectangleDimensions[3] = 8;
+                isBoomerang = true;
                 return sourceRectangleDimensions;
             }
 

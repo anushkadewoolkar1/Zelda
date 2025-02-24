@@ -24,7 +24,7 @@ namespace Sprint0.Sprites
 
         private int leftAdjustment;
         private int upAdjustment;
-        private int linkScale = 2;
+        private int linkScale = 3;
 
         public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] LinkStates)
         {
