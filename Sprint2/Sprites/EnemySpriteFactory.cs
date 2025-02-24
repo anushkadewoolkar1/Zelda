@@ -17,8 +17,8 @@ namespace Sprint0.Sprites
         private Texture2D bossSpritesheet;
         private Texture2D npcSpritesheet;
         private EnemySprite sprite;
-        private int XSize;
-        private int YSize;
+        private int xSize;
+        private int ySize;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance
@@ -51,8 +51,8 @@ namespace Sprint0.Sprites
         public EnemySprite CreateEnemySprite(EnemyType enemyType, Direction direction)
         {
             // enemies spawn in with an animation, add that in later
-            XSize = 16;
-            YSize = 32;
+            xSize = 16;
+            ySize = 32;
             switch(enemyType)
             {
                 case EnemyType.OldMan:
@@ -68,7 +68,7 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Goriya:
-                    YSize = 16;
+                    ySize = 16;
                     // will need to change this to UpdateSprite so that they still animate
                     switch(direction)
                     {
@@ -91,13 +91,13 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Gel:
-                    XSize = 8;
-                    YSize = 16;
+                    xSize = 8;
+                    ySize = 16;
                     sprite = CreateSmallEnemySprite(enemyType, 2, 2, 1);
                     sprite.spriteSize = 16;
                     return sprite;
                 case EnemyType.Zol:
-                    YSize = 16;
+                    ySize = 16;
                     sprite = CreateLargeEnemySprite(enemyType, 2, 0, 1);
                     sprite.spriteSize = 32;
                     return sprite;
@@ -114,7 +114,7 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 32;
                     return sprite;
                 case EnemyType.Aquamentus:
-                    XSize = 27;
+                    xSize = 27;
                     sprite = CreateBossEnemySprite(enemyType, 2, 0, 0);
                     sprite.spriteSize = 54;
                     return sprite;
@@ -123,12 +123,12 @@ namespace Sprint0.Sprites
                     switch (direction)
                     {
                         case Direction.Left:
-                            XSize = 28;
+                            xSize = 28;
                             sprite = CreateBossEnemySprite(enemyType, 2, 106, 34);
                             sprite.spriteSize = 35;
                             break;
                         case Direction.Right:
-                            XSize = 28;
+                            xSize = 28;
                             sprite = CreateBossEnemySprite(enemyType, 2, 235, 34);
                             sprite.spriteSize = 35;
                             break;
@@ -159,17 +159,17 @@ namespace Sprint0.Sprites
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            return new EnemySprite(smallSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
+            return new EnemySprite(smallSpritesheet, rows, 1, startX, startY, xSize, ySize, enemyType);
         }
 
         public EnemySprite CreateLargeEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            return new EnemySprite(largeSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
+            return new EnemySprite(largeSpritesheet, rows, 1, startX, startY, xSize, ySize, enemyType);
         }
 
         public EnemySprite CreateBossEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
-            return new EnemySprite(bossSpritesheet, rows, 1, startX, startY, XSize, YSize, enemyType);
+            return new EnemySprite(bossSpritesheet, rows, 1, startX, startY, xSize, ySize, enemyType);
         }
     }
 }

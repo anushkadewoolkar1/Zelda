@@ -69,11 +69,11 @@ namespace Sprint0.Level
             }
         }
 
-        public void Update(GameTime gametime)
+        public void Update(GameTime gameTime)
         {
             for (int i = 0; i < enemiesListIndex; i++)
             {
-                enemiesList[i].Update(gametime);
+                enemiesList[i].Update(gameTime);
             }
             for (int i = 0; i < blocksListIndex; i++)
             {

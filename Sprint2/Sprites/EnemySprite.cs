@@ -20,12 +20,12 @@ namespace Sprint0.Sprites
         public int Cols { get; set; }
         private List<Rectangle> SourceRectangles = new();
         public EnemyType EnemyType;
-        private int XSize;
-        private int YSize;
+        private int xSize;
+        private int ySize;
         private int currentFrame;
         private int totalFrames;
         public int spriteSize;
-        private double CurrentDelay = 0.0;
+        private double currentDelay = 0.0;
         private int delay = 150;
 
         public EnemySprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSize, int ySize, EnemyType enemyType)
@@ -33,13 +33,13 @@ namespace Sprint0.Sprites
             Texture = texture;
             Rows = rows;
             Cols = columns;
-            XSize = xSize;
-            YSize = ySize;
+            xSize = xSize;
+            ySize = ySize;
             currentFrame = 0;
             totalFrames = Rows * Cols;
             for (int i = 0; i < totalFrames; i++)
             {
-                SourceRectangles.Add(new Rectangle(startX + (i * XSize), startY, XSize, YSize));
+                SourceRectangles.Add(new Rectangle(startX + (i * xSize), startY, xSize, ySize));
             }
 
             EnemyType = enemyType;
@@ -47,17 +47,17 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            CurrentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (CurrentDelay >= (delay / 2))
+            currentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (currentDelay >= (delay / 2))
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
                 {
                     currentFrame = 0;
                 }
-                if (CurrentDelay >= delay)
+                if (currentDelay >= delay)
                 {
-                    CurrentDelay = 0;
+                    currentDelay = 0;
                 }
             }
         }
@@ -68,16 +68,16 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            Rectangle DestinationRectangle;
+            Rectangle destinationRectangle;
             if (EnemyType == EnemyType.Goriya || EnemyType == EnemyType.Zol)
             {
-                DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize);
             } else
             {
-                DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize * 2);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize * 2);
             }
 
-            spriteBatch.Draw(Texture, DestinationRectangle, SourceRectangles[currentFrame], Color.White);
+            spriteBatch.Draw(Texture, destinationRectangle, SourceRectangles[currentFrame], Color.White);
             
         }
     }

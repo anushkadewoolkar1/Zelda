@@ -26,13 +26,13 @@ namespace Sprint0.Sprites
         private int upAdjustment;
         private int linkScale = 2;
 
-        public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] LinkStates)
+        public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] linkStates)
         {
             _texture = texture;
 
 
             //Sets clock to 0 when Link isn't damaged 
-            linkDamaged = Convert.ToBoolean(LinkStates[3]);
+            linkDamaged = Convert.ToBoolean(linkStates[3]);
             if (!linkDamaged)
             {
                 damageClock = 0;
@@ -43,35 +43,35 @@ namespace Sprint0.Sprites
             upAdjustment = 0;
 
             //Returns initial rectangle containing appropriate coordinates and dimensions without Magical Shield
-            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, LinkStates[1], LinkStates[0]);
+            int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, linkStates[1], linkStates[0]);
 
             // Checks if Link is not facing up and if Link has a MagicalShield before doing adjustment
-            if (LinkStates[0] < 3 && (LinkStates[2] % 2) == 1)
+            if (linkStates[0] < 3 && (linkStates[2] % 2) == 1)
             {
-                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, LinkStates[1]);
+                sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, linkStates[1]);
             }
 
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
-            colorAdjustment = (LinkStates[2] / 2) * 310;
+            colorAdjustment = (linkStates[2] / 2) * 310;
 
 
             //Changes Link's Sprite depending on frame of animation
-            switch (LinkStates[1])
+            switch (linkStates[1])
             {
                 case 1:
-                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0], LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0], linkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
                         sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 2:
-                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 17, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 17, linkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
                         sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 3:
-                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 34, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 34, linkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
                         sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 case 4:
-                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 51, LinkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
+                    sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0] + 51, linkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1] + colorAdjustment,
                         sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
                     break;
                 default:
@@ -123,9 +123,9 @@ namespace Sprint0.Sprites
 
 
         //Adjusts the xCoordinate to rightside of spritesheet if link is facing left
-        private int FixDirection(int xCoordinates, int Direction, int sourceRectangleWidth)
+        private int FixDirection(int xCoordinates, int direction, int sourceRectangleWidth)
         {
-            if (Direction != (int)LinkSpriteDirection.Left)
+            if (direction != (int)LinkSpriteDirection.Left)
             {
                 return xCoordinates;
             }
