@@ -111,75 +111,77 @@ namespace Sprint0
 
             linkSprite = new Link();
 
-            // Create Commands 
-            var quitCommand = new ExitCommand(this, false);
-            var resetCommand = new ExitCommand(this, true);
-            var idleStateCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), Zelda.Enums.Direction.Down)); // Will be changed to current direction, directly accessing Link's direction value once implemented
-            var attackLeftCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Left, SwordType.WoodenSword));
-            var attackRightCommand = new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, Zelda.Enums.Direction.Right, SwordType.WoodenSword));
-            var moveUpCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up));
-            var moveDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
-            var moveLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
-            var moveRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
-            var linkDamagedCommand = new LinkDamaged(linkSprite);
-            var enemyCycleLeftCmd = new CycleEnemy(enemySprite, Direction.Left);
-            var enemyCycleRightCmd = new CycleEnemy(enemySprite, Direction.Right);
-            var itemCycleLeftCmd = new CycleItem(itemSprite, Direction.Left);
-            var itemCycleRightCmd = new CycleItem(itemSprite, Direction.Right);
-            var blockCycleLeftCmd = new CycleBlock(_block, Direction.Left);
-            var blockCycleRightCmd = new CycleBlock(_block, Direction.Right);
-            var useItemArrow = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow"));
-            var useItemBmrg = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang"));
-            var useItemBomb = new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb"));
-
             // Set up KeyboardController with dictionary
             var keyboardCommandMap = new Dictionary<Keys, ICommand>
             {
-                { Keys.Q, quitCommand },
+                //'Q' -> Program Quit:
+                { Keys.Q, new ExitCommand(this, false) },
 
-                { Keys.R, resetCommand },
+                //'R' -> Program Reset:
+                { Keys.R, new ExitCommand(this, true) },
 
-                { Keys.None, idleStateCommand },
+                //No_Key -> Set Player state to default:
+                { Keys.None, new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite),linkSprite.currentDirection)) },
 
-                { Keys.Z, attackLeftCommand },
+                //'Z' -> Player Attack:
+                { Keys.Z, new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, linkSprite.currentDirection, SwordType.WoodenSword))},
 
-                { Keys.N, attackRightCommand },
+                //'N' -> Player Attack:
+                { Keys.N, new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, linkSprite.currentDirection, SwordType.WoodenSword)) },
 
-                { Keys.W, moveUpCommand },
+                //'W' -> Player Walk Up:
+                { Keys.W, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up)) },
 
-                { Keys.Up, moveUpCommand },
+                //'Up Arrow' -> Player Walk Up:
+                { Keys.Up, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up)) },
 
-                { Keys.A, moveLeftCommand },
+                //'A' -> Player Walk Left:
+                { Keys.A, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left)) },
 
-                { Keys.Left, moveLeftCommand },
+                //'Left Arrow' -> Player Walk Left:
+                { Keys.Left, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left)) },
 
-                { Keys.S, moveDownCommand },
+                //'S' -> Player Walk Down:
+                { Keys.S, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down)) },
 
-                { Keys.Down, moveDownCommand },
+                //'Down Arrow' -> Player Walk Down:
+                { Keys.Down, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down)) },
 
-                { Keys.D, moveRightCommand },
+                //'D' -> Player Walk Right:
+                { Keys.D, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right)) },
 
-                { Keys.Right, moveRightCommand },
+                //'Right Arrow' -> Player Walk Right:
+                { Keys.Right, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right)) },
 
-                { Keys.O, enemyCycleLeftCmd },
+                //'O' -> Cycle Enemy Left:
+                { Keys.O, new CycleEnemy(enemySprite, Direction.Left) },
 
-                { Keys.P, enemyCycleRightCmd },
+                //'P' -> Cycle Enemy Right:
+                { Keys.P, new CycleEnemy(enemySprite, Direction.Right) },
 
-                { Keys.I, itemCycleRightCmd },
+                //'I' -> Cycle Item Left:
+                { Keys.I, new CycleItem(itemSprite, Direction.Left) },
 
-                { Keys.U, itemCycleLeftCmd },
+                //'U' -> Cycle Item Right:
+                { Keys.U, new CycleItem(itemSprite, Direction.Right) },
 
-                { Keys.E, linkDamagedCommand },
+                //'E' -> Damage Player:
+                { Keys.E, new LinkDamaged(linkSprite) },
 
-                { Keys.T, blockCycleLeftCmd },
+                //'T' -> Cycle Block Left:
+                { Keys.T, new CycleBlock(_block, Direction.Left) },
 
-                { Keys.Y, blockCycleRightCmd },
+                //'Y' -> Cycle Block Right:
+                { Keys.Y, new CycleBlock(_block, Direction.Right) },
 
-                { Keys.D1, useItemArrow },
+                //'D1' -> Player Use Arrow Item:
+                { Keys.D1, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow")) },
 
-                { Keys.D2, useItemBmrg },
+                //'D2' -> Player Use Boomerang Item:
+                { Keys.D2, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang")) },
 
-                { Keys.D3, useItemBomb }
+                //'D3' -> Player Use Bomb Item:
+                { Keys.D3, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb")) }
 
             };
 
