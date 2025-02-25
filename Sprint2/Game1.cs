@@ -19,6 +19,9 @@ namespace Sprint0
     {
         public bool restart;
 
+        private Texture2D _backgroundTexture;
+        private Rectangle _sourceRectangle;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -73,6 +76,8 @@ namespace Sprint0
 
         protected override void LoadContent()
         {
+            _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
+            _sourceRectangle = new Rectangle(516, 896, 256, 176);
             TileMap.Initialize(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
             _tileMap = TileMap.GetInstance();
 
@@ -215,6 +220,8 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
+            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, 1600, 900), _sourceRectangle, Color.White);
 
             linkSprite.Draw(_spriteBatch);
 
