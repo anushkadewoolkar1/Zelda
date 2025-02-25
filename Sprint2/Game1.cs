@@ -66,7 +66,7 @@ namespace Sprint0
 
         protected override void Initialize()
         {
-            //_graphics.IsFullScreen = true;
+            _graphics.IsFullScreen = true;
             _graphics.PreferredBackBufferWidth = 256;
             _graphics.PreferredBackBufferHeight = 240;
             _graphics.ApplyChanges();
@@ -221,7 +221,8 @@ namespace Sprint0
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0, 1600, 900), _sourceRectangle, Color.White);
+            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
+                645, 360), _sourceRectangle, Color.White);
 
             linkSprite.Draw(_spriteBatch);
 

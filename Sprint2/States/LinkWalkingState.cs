@@ -14,14 +14,14 @@ public class LinkWalkingState : ILinkState
     private int currentFrame;
     private float frameTimer;
     private const float frameInterval = 0.15f; // Time between frames
-    private const int maxFrame = 3; // frames: 0, 1, 2
+    private const int maxFrame = 2; // frames: 0, 1, 2
 
     public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
         this.link.currentDirection =  direction;
         this.currentDirectionWalk = direction;
-        currentFrame = 0;
+        currentFrame = 1;
         frameTimer = 0f;
     }
 
@@ -37,8 +37,8 @@ public class LinkWalkingState : ILinkState
         {
             frameTimer -= frameInterval;
             currentFrame++;
-            if (currentFrame > -maxFrame)
-                currentFrame = 0;
+            if (currentFrame > maxFrame)
+                currentFrame = 1;
             SetMove();
         }
 
