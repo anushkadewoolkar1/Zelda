@@ -28,8 +28,8 @@ public class Link
 
     public Boolean linkAttacking;
 
-    private Boolean InitializeItem;
-    private Boolean SpawnedItem;
+    private Boolean initializeItem;
+    private Boolean spawnedItem;
     private ISprite arrowSprite, boomerangSprite, bombSprite;
     private Vector2 projectilePosition;
     private Direction projectileDirection;

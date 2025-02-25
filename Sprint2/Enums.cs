@@ -37,4 +37,13 @@ namespace Zelda.Enums
         Aquamentus,
         Dodongo
     }
+
+    public enum CollisionSide
+    {
+        None,
+        Left,
+        Right,
+        Top,
+        Bottom
+    }
 }

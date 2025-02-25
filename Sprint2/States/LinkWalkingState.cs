@@ -11,11 +11,18 @@ public class LinkWalkingState : ILinkState
     private Link link;
     private Direction currentDirectionWalk;
 
+    private int currentFrame;
+    private float frameTimer;
+    private const float frameInterval = 0.15f; // Time between frames
+    private const int maxFrame = 3; // frames: 0, 1, 2
+
     public LinkWalkingState(Link link, Direction direction)
     {
         this.link = link;
         this.link.currentDirection =  direction;
         this.currentDirectionWalk = direction;
+        currentFrame = 0;
+        frameTimer = 0f;
     }
 
     public void Enter()
@@ -25,6 +32,16 @@ public class LinkWalkingState : ILinkState
 
     public void Update(GameTime gameTime)
     {
+        frameTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (frameTimer > frameInterval)
+        {
+            frameTimer -= frameInterval;
+            currentFrame++;
+            if (currentFrame > -maxFrame)
+                currentFrame = 0;
+            SetMove();
+        }
+
         // checks if link became invulnerable or vulnerable
         if (link.invulnerabilityTimer == 1f || link.invulnerabilityTimer <= 0f)
         {
@@ -60,16 +77,16 @@ public class LinkWalkingState : ILinkState
         switch (currentDirectionWalk)
         {
             case Direction.Up:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(1, 0, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUpWalk(currentFrame, 0, link.Health));
                 break;
             case Direction.Down:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(1, 0, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateDownWalk(currentFrame, 0, link.Health));
                 break;
             case Direction.Left:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(1, 0, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateLeftWalk(currentFrame, 0, link.Health));
                 break;
             case Direction.Right:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(1, 0, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateRightWalk(currentFrame, 0, link.Health));
                 break;
         }
     }
