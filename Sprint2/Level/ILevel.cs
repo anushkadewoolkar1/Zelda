@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.ILevel;
 
-namespace Sprint0.Level
+namespace Sprint0.ILevel
 {
     // Interface for game sprites
     public interface ILevel

@@ -11,6 +11,7 @@ using Sprint0.States;
 using System;
 using System.Net.Http.Headers;
 using ZeldaGame.Zelda.CollisionMap;
+using Sprint0.ILevel;
 
 
 namespace Sprint0
@@ -47,6 +48,9 @@ namespace Sprint0
 
         private TileMap _tileMap;
 
+        Level levelMap;
+
+
 
 
         //block
@@ -76,6 +80,9 @@ namespace Sprint0
 
         protected override void LoadContent()
         {
+
+            
+
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
             _sourceRectangle = new Rectangle(516, 896, 256, 176);
             TileMap.Initialize(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
@@ -112,6 +119,9 @@ namespace Sprint0
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             enemySprite = new Enemy();
+
+            levelMap = new Level();
+            levelMap.LoadRoom(5, 2);
 
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
@@ -222,7 +232,9 @@ namespace Sprint0
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
-                645, 360), _sourceRectangle, Color.White);
+               645, 360), _sourceRectangle, Color.White);
+
+            levelMap.Draw(_spriteBatch);
 
             linkSprite.Draw(_spriteBatch);
 
