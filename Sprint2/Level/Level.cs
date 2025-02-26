@@ -39,7 +39,7 @@ namespace Sprint0.ILevel
          * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
          * 2. Implement Load Room to invoke constructor calls for each object
          * 3. DONE - Implement Draw and Read (Iterate through each of the collections)
-         * 4. Optimize Code with correct Room size information
+         * 4. DONE (MAYBE REIMPLEMENT) - Optimize Code with correct Room size information
          * 5. Populate txt file with two rooms for Functionality check
          * 6. BASICALLY DONE - Implement the Level Background Correctly
          */
@@ -48,8 +48,8 @@ namespace Sprint0.ILevel
         public Level(ContentManager Content)
         {
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
-            roomWidth = _backgroundTexture.Width / 6;
-            roomHeight = _backgroundTexture.Height / 6;
+            roomWidth = (_backgroundTexture.Width - 5) / 6;
+            roomHeight = (_backgroundTexture.Height - 5) / 6;
             _sourceRectangle = new Rectangle(
                 roomWidth * 2 + 1, roomHeight * 5 + 1, roomWidth, roomHeight);
             roomDimensions = new Vector2(roomWidth * 2 - 64, roomHeight * 2 - 64);
@@ -96,7 +96,8 @@ namespace Sprint0.ILevel
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
             _sourceRectangle = new Rectangle(
-                roomWidth * (xCoordinate) + 1, roomHeight * (yCoordinate) + 1, roomWidth, roomHeight);
+                roomWidth * (xCoordinate) + 1 *(xCoordinate + 1), roomHeight * (yCoordinate) + 1*(yCoordinate + 1),
+                roomWidth, roomHeight);
 
             int count = Objects.Count;
             int i = 1;
@@ -110,7 +111,7 @@ namespace Sprint0.ILevel
                 }
                 i++;
             }
-            if (i == count)
+            if (!foundRoom)
             {
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
                 return;
@@ -137,7 +138,6 @@ namespace Sprint0.ILevel
                     Enum.TryParse(Objects[i].Substring(5).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
-                    System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
                 }
                 else if (Objects[i].Contains("Block"))
                 {
