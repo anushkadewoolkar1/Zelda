@@ -216,6 +216,8 @@ namespace Sprint0
 
             //_currentSprite.Update(gameTime);
 
+            levelMap.Update(gameTime);
+
             enemySprite.Update(gameTime);
 
             itemSprite.Update(gameTime);

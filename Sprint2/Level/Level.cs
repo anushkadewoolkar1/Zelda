@@ -30,11 +30,12 @@ namespace Sprint0.ILevel
         private int blocksListIndex = 0;
 
         /* TO DO:
-         * 1. Create collections for Enemies, Blocks, Items, etc. for loading
-         * 2. Implement Load Room to invoke contructor calls for each object
-         * 3. Implement Draw and Read (Iterate through each of the collections)
+         * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
+         * 2. Implement Load Room to invoke constructor calls for each object
+         * 3. DONE - Implement Draw and Read (Iterate through each of the collections)
          * 4. Optimize Code with correct Room size information
          * 5. Populate txt file with two rooms for Functionality check
+         * 6. Implement the Level Background Correctly
          */
 
 
