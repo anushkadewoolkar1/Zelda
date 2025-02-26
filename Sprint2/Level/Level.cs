@@ -95,6 +95,9 @@ namespace Sprint0.ILevel
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
+            _sourceRectangle = new Rectangle(
+                roomWidth * (xCoordinate) + 1, roomHeight * (yCoordinate) + 1, roomWidth, roomHeight);
+
             int count = Objects.Count;
             int i = 1;
             Boolean foundRoom = false;
