@@ -101,19 +101,25 @@ namespace SpriteFactory
             }
         }
 
+        public Texture2D GetTexture()
+        {
+            return itemSpriteSheet;
+        }
+        /*
         public ItemSprite FetchItemSprite(string spriteName)
         {
             if (spriteRectangles.TryGetValue(spriteName, out int index))
             {
                 Rectangle rectangle = spriteFrames[index];
 
-                return new ItemSprite(itemSpriteSheet, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, spriteName);
+                return new ItemSprite(spriteName);
             }
             else
             {
                 throw new ArgumentException($"Sprite '{spriteName}' not found in the data txt file.");
             }
         }
+        */
 
         
     }

@@ -15,38 +15,45 @@ namespace Sprint0.Sprites
         private Texture2D _texture;
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
-        private ItemSpriteFactory factory;
+        private ItemSpriteFactory _factory;
         private String itemString;
 
-        private double elapsedTime = 0; 
+        private Vector2 _position;
+
+        private double elapsedTime = 0;
         private double frameDuration = 0.2;
 
-        public ItemSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int width, int height, String spriteName)
+        int _scale = 2;
+
+        public ItemSprite(String spriteName, int posX, int posY)
         {
-            _texture = texture;
-            sourceRectangle = new Rectangle(spriteSheetXPos,  spriteSheetYPos, width, height);
-            factory = ItemSpriteFactory.Instance;
-            itemString = factory.GetItemStringFromIdx();
+            _factory = ItemSpriteFactory.Instance;
+            sourceRectangle = _factory.FetchItemSourceFromString(spriteName);
+            _texture = _factory.GetTexture();
+            itemString = _factory.GetItemStringFromIdx();
             itemString = spriteName;
+
+            _position.X = posX;
+            _position.Y = posY;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, sourceRectangle.Width, sourceRectangle.Height);
+            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
 
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
         }
 
         public void ItemCycleRight()
         {
-            sourceRectangle = factory.ItemCycleRightFactory();
-            itemString = factory.GetItemStringFromIdx();
+            sourceRectangle = _factory.ItemCycleRightFactory();
+            itemString = _factory.GetItemStringFromIdx();
         }
 
         public void ItemCycleLeft()
         {
-            sourceRectangle = factory.ItemCycleLeftFactory();
-            itemString = factory.GetItemStringFromIdx();
+            sourceRectangle = _factory.ItemCycleLeftFactory();
+            itemString = _factory.GetItemStringFromIdx();
         }
 
         public string GetItemString()
@@ -60,7 +67,7 @@ namespace Sprint0.Sprites
 
             if (elapsedTime >= frameDuration)
             {
-                elapsedTime -= frameDuration; 
+                elapsedTime -= frameDuration;
 
                 if (itemString.Contains("_frame_000"))
                 {
@@ -70,13 +77,13 @@ namespace Sprint0.Sprites
                 {
                     itemString = itemString.Replace("_frame_001", "_frame_000");
                 }
-                sourceRectangle = factory.FetchItemSourceFromString(itemString);
+                sourceRectangle = _factory.FetchItemSourceFromString(itemString);
             }
         }
 
-        public void Draw(SpriteBatch _textures)
+        public void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
-            //...
+
         }
     }
 }
