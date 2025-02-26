@@ -122,6 +122,8 @@ namespace Sprint0.ILevel
             enemiesListIndex = 0;
             blocksListIndex = 0;
 
+            EnemyType enemyType;
+
             //We'll need to be able to pass position for creating the objects of the entities
             int hold = i;
 
@@ -132,10 +134,10 @@ namespace Sprint0.ILevel
                     enemiesList.Add(new Enemy());
                     enemiesList[enemiesListIndex].position =
                         new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 30, (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 30);
+                    Enum.TryParse(Objects[i].Substring(5).ToString(), out enemyType);
+                    enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
-                    //mi = enemiesList[enemiesListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));
-                    //mi.Invoke(enemiesList[enemiesListIndex], null);
                 }
                 else if (Objects[i].Contains("Block"))
                 {
