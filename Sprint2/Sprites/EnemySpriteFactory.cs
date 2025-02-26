@@ -119,7 +119,6 @@ namespace Sprint0.Sprites
                     sprite.spriteSize = 54;
                     return sprite;
                 case EnemyType.Dodongo:
-                    // will need to change CreateBossEnemySprite to UpdateSprite so they still animate (the frames are being reset each time methinks) 
                     switch (direction)
                     {
                         case Direction.Left:
@@ -152,10 +151,23 @@ namespace Sprint0.Sprites
             }
         }
 
-        //public ProjectileSprite CreateProjectileSprite(ItemType itemType)
-        //{
+        public EnemyProjectileSprite CreateEnemyProjectileSprite(ItemType itemType, Direction direction)
+        {
+            EnemyProjectileSprite sprite;
+            switch (itemType)
+            {
+                case ItemType.Boomerang:
+                    // return new CreateBoomerangeSprite(itemType, ___, ___, ___);
+                case ItemType.Fireball:
+                    sprite = CreateFireballSprite(itemType, 4, 124, 4);
+                    break;
+                default:
+                    sprite = null;
+                    break;
+            }
 
-        //}
+            return sprite;
+        }
         
         public EnemySprite CreateSmallEnemySprite(EnemyType enemyType, int rows, int startX, int startY)
         {
@@ -171,5 +183,15 @@ namespace Sprint0.Sprites
         {
             return new EnemySprite(bossSpritesheet, rows, 1, startX, startY, xSize, ySize, enemyType);
         }
+
+        public EnemyProjectileSprite CreateFireballSprite(ItemType itemType, int rows, int startX, int startY)
+        {
+            return new EnemyProjectileSprite(bossSpritesheet, 3, 1, startX, startY, xSize, ySize, itemType);
+        }
+
+        //public EnemyProjectileSprite CreateBoomerangSprite(ItemType itemType, int rows, int startX, int startY)
+        //{
+        //    return new EnemyProjectileSprite()
+        //}
     }
 }
