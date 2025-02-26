@@ -106,14 +106,14 @@ namespace Sprint0
 
             // Create the block at position (200, 200)
             //_block = new Block(new Vector2(200, 200), blockTextures);
-            _block = new Block(new Vector2(15, 1), blockTextures);
+            //_block = new Block(new Vector2(15, 1), blockTextures);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
 
             ItemSpriteFactory.Instance.ItemTextures(Content);
-            itemSprite = ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow");
+            itemSprite = new ItemSprite("ZeldaSpriteArrow", 300, 100);
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
@@ -192,13 +192,15 @@ namespace Sprint0
                 { Keys.Y, new CycleBlock(_block, Direction.Right) },
 
                 //'D1' -> Player Use Arrow Item:
-                { Keys.D1, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteArrow")) },
+                { Keys.D1, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteArrow", 300, 100)) },
 
                 //'D2' -> Player Use Boomerang Item:
-                { Keys.D2, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang")) },
+                { Keys.D2, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBoomerang", 300, 100)) },
+                //{ Keys.D2, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang")) },
 
                 //'D3' -> Player Use Bomb Item:
-                { Keys.D3, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb")) }
+                { Keys.D3, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBomb", 300, 100)) },
+                //{ Keys.D3, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb")) }
 
             };
 
@@ -220,7 +222,7 @@ namespace Sprint0
 
             linkSprite.Update(gameTime);
 
-            _block.Update();
+            //_block.Update();
 
             base.Update(gameTime);
         }
@@ -240,9 +242,9 @@ namespace Sprint0
 
             enemySprite.DrawCurrentSprite(_spriteBatch);
 
-            _block.Draw(_spriteBatch);
+            //_block.Draw(_spriteBatch);
 
-            itemSprite.Draw(_spriteBatch, new Vector2(300, 100));
+            itemSprite.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
