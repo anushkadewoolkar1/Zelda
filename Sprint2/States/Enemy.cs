@@ -47,9 +47,12 @@ namespace Sprint0.States
 
         }
 
-        public EnemyType GetEnemy()
+        public Enemy CreateEnemy(EnemyType enemyCreated)
         {
-            return enemyType;
+            sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
+            enemyState = new EnemyMovingState(this);
+            enemyState.Load();
+            return this;
         }
 
         public void ChangeEnemyBackward()
