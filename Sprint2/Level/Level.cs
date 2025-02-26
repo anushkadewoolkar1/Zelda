@@ -14,18 +14,24 @@ using System.Reflection;
 using Sprint0.Sprites;
 using Zelda.Enums;
 using Sprint0.States;
+using System.Reflection.Metadata;
 
 namespace Sprint0.ILevel
 {
     public class Level : ILevel
     {
 
+        private int roomWidth;
+        private int roomHeight;
+        private Texture2D _backgroundTexture;
+        private Rectangle _sourceRectangle;
+
         private int room = 14 * 9;
-        private int roomLength = 15;
+        private int roomLength = 14;
         private List<String> Objects = new List<String>();
         private List<Block> blocksList = new List<Block>();
         private List<Enemy> enemiesList = new List<Enemy>();
-        private Vector2 RoomDimensions = new Vector2(645, 360);
+        private Vector2 roomDimensions;
         private int enemiesListIndex = 0;
         private int blocksListIndex = 0;
 
@@ -39,8 +45,15 @@ namespace Sprint0.ILevel
          */
 
 
-        public Level()
+        public Level(ContentManager Content)
         {
+            _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
+            roomWidth = _backgroundTexture.Width / 6;
+            roomHeight = _backgroundTexture.Height / 6;
+            _sourceRectangle = new Rectangle(
+                roomWidth * 2 + 1, roomHeight * 5 + 1, roomWidth, roomHeight);
+            roomDimensions = new Vector2(roomWidth * 2 - 64, roomHeight * 2 - 64);
+
             foreach (var line in File.ReadLines("../../../Content/LevelFile.txt"))
             {
                 var nums = line.Split(',');
@@ -55,6 +68,9 @@ namespace Sprint0.ILevel
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
+               roomWidth * 2, roomHeight * 2), _sourceRectangle, Color.White);
+
             for (int i = 0; i < enemiesListIndex;i++)
             {
                 enemiesList[i].DrawCurrentSprite(spriteBatch);
@@ -96,7 +112,7 @@ namespace Sprint0.ILevel
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
                 return;
             }
-            i += 14;
+            i += 13;
             int room = i + 14 * 9;
             //MethodInfo mi;
             //String newConstructor = "new ";
@@ -112,7 +128,7 @@ namespace Sprint0.ILevel
                 {
                     enemiesList.Add(new Enemy());
                     enemiesList[enemiesListIndex].position =
-                        new Vector2((RoomDimensions.X / roomLength) * ((i - hold) % roomLength), (RoomDimensions.Y / 9) * ((i - hold) / roomLength));
+                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 30, (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 30);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
                     //mi = enemiesList[enemiesListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));

@@ -70,9 +70,9 @@ namespace Sprint0
 
         protected override void Initialize()
         {
-            _graphics.IsFullScreen = true;
-            _graphics.PreferredBackBufferWidth = 256;
-            _graphics.PreferredBackBufferHeight = 240;
+            //_graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = 1440;
+            _graphics.PreferredBackBufferHeight = 1080;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -81,10 +81,6 @@ namespace Sprint0
         protected override void LoadContent()
         {
 
-            
-
-            _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
-            _sourceRectangle = new Rectangle(516, 896, 256, 176);
             TileMap.Initialize(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
             _tileMap = TileMap.GetInstance();
 
@@ -120,7 +116,7 @@ namespace Sprint0
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             enemySprite = new Enemy();
 
-            levelMap = new Level();
+            levelMap = new Level(Content);
             levelMap.LoadRoom(5, 2);
 
             //Load sprite font
@@ -234,9 +230,6 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-
-            _spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
-               645, 360), _sourceRectangle, Color.White);
 
             levelMap.Draw(_spriteBatch);
 
