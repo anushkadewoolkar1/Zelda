@@ -41,7 +41,7 @@ namespace Sprint0.ILevel
          * 3. DONE - Implement Draw and Read (Iterate through each of the collections)
          * 4. Optimize Code with correct Room size information
          * 5. Populate txt file with two rooms for Functionality check
-         * 6. Implement the Level Background Correctly
+         * 6. BASICALLY DONE - Implement the Level Background Correctly
          */
 
 
@@ -122,6 +122,8 @@ namespace Sprint0.ILevel
             enemiesListIndex = 0;
             blocksListIndex = 0;
 
+            EnemyType enemyType;
+
             //We'll need to be able to pass position for creating the objects of the entities
             int hold = i;
 
@@ -132,10 +134,10 @@ namespace Sprint0.ILevel
                     enemiesList.Add(new Enemy());
                     enemiesList[enemiesListIndex].position =
                         new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 30, (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 30);
+                    Enum.TryParse(Objects[i].Substring(5).ToString(), out enemyType);
+                    enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
-                    //mi = enemiesList[enemiesListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));
-                    //mi.Invoke(enemiesList[enemiesListIndex], null);
                 }
                 else if (Objects[i].Contains("Block"))
                 {
@@ -143,9 +145,12 @@ namespace Sprint0.ILevel
                     //mi = blocksList[blocksListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));
                     //mi.Invoke(blocksList[blocksListIndex], null);
                 }
-                else if (Objects[i].Contains("LinkC"))
+                else if (Objects[i].Contains("Link"))
                 {
                     //This is a Link.cs object = [i % roomLength,i / roomLength];
+                } else if (Objects[i].Contains(""))
+                {
+
                 }
                 i++;
             }
