@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.States;
@@ -19,6 +20,53 @@ namespace Sprint0.CollisionHandling
             if (enemy == null || block == null) return;
 
             // TODO: Implement enemy response logic.
+            // enemy will use ChangeDirection() method based on the side of the block it collides on
+            switch(side)
+            {
+                case CollisionSide.Left:
+                    int random = RandomNumberGenerator.GetInt32(-1, 1);
+                    if(random == 1)
+                    {
+                        enemy.ChangeDirection(Direction.Down);
+                    } else
+                    {
+                        enemy.ChangeDirection(Direction.Up);
+                    }
+                    break;
+                case CollisionSide.Right:
+                    random = RandomNumberGenerator.GetInt32(-1, 1);
+                    if (random == 1)
+                    {
+                        enemy.ChangeDirection(Direction.Down);
+                    }
+                    else
+                    {
+                        enemy.ChangeDirection(Direction.Up);
+                    }
+                    break;
+                case CollisionSide.Top:
+                    random = RandomNumberGenerator.GetInt32(-1, 1);
+                    if (random == 1)
+                    {
+                        enemy.ChangeDirection(Direction.Down);
+                    }
+                    else
+                    {
+                        enemy.ChangeDirection(Direction.Up);
+                    }
+                    break;
+                case CollisionSide.Bottom:
+                    random = RandomNumberGenerator.GetInt32(-1, 1);
+                    if (random == 1)
+                    {
+                        enemy.ChangeDirection(Direction.Down);
+                    }
+                    else
+                    {
+                        enemy.ChangeDirection(Direction.Up);
+                    }
+                    break;
+            }
         }
     }
 }
