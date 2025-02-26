@@ -231,7 +231,7 @@ namespace Sprint0.States
                         move = new Vector2(-1, 0);
                     } else if (timer == 100)
                     {
-                        // spawn projectiles
+                        enemy.SpawnProjectile();
                     }
                     break;
                 case EnemyType.Dodongo:

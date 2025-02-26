@@ -25,7 +25,7 @@ namespace Sprint0.States
         private ISprite boomerangSprite, fireballSprite;
         private Boolean itemSpawn;
         private Boolean itemSpawned;
-        private ItemType itemType;
+        ItemType itemType;
         private Vector2 projectilePosition;
 
         public Enemy()
