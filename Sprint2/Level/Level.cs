@@ -26,7 +26,6 @@ namespace Sprint0.ILevel
         private Texture2D _backgroundTexture;
         private Rectangle _sourceRectangle;
 
-        private int room = 14 * 9;
         private int roomLength = 14;
         private List<String> Objects = new List<String>();
         private List<Block> blocksList = new List<Block>();
@@ -96,14 +95,14 @@ namespace Sprint0.ILevel
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
             _sourceRectangle = new Rectangle(
-                roomWidth * (xCoordinate) + 1 *(xCoordinate + 1), roomHeight * (yCoordinate) + 1*(yCoordinate + 1),
+                roomWidth * (xCoordinate) + 1 *(xCoordinate + 1), roomHeight * (yCoordinate) + 1*(yCoordinate  + 1),
                 roomWidth, roomHeight);
 
             int count = Objects.Count;
             int i = 1;
             Boolean foundRoom = false;
 
-            while (i < count && foundRoom)
+            while (i < count && !foundRoom)
             {
                 if (xCoordinate.ToString() == Objects[i - 1] && yCoordinate.ToString() == Objects[i])
                 {
@@ -111,12 +110,12 @@ namespace Sprint0.ILevel
                 }
                 i++;
             }
-            if (!foundRoom)
+            if (i == count || !foundRoom)
             {
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
                 return;
             }
-            i += 13;
+            i += 12;
             int room = i + 14 * 9;
             //MethodInfo mi;
             //String newConstructor = "new ";
@@ -134,10 +133,12 @@ namespace Sprint0.ILevel
                 {
                     enemiesList.Add(new Enemy());
                     enemiesList[enemiesListIndex].position =
-                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 30, (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 30);
+                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36,
+                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36);
                     Enum.TryParse(Objects[i].Substring(5).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
+                    System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
                 }
                 else if (Objects[i].Contains("Block"))
                 {
