@@ -40,6 +40,7 @@ namespace Sprint0
         // Sprite font
         private SpriteFont _spriteFont;
 
+        private Item item = new Item();
         private ItemSprite itemSprite;
 
         Link linkSprite;
@@ -109,7 +110,8 @@ namespace Sprint0
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
 
             ItemSpriteFactory.Instance.ItemTextures(Content);
-            itemSprite = new ItemSprite("ZeldaSpriteArrow", 300, 100);
+            item = item.CreateItem(ItemType.Arrow, 300, 100);
+            itemSprite = item.GetItemSprite(); 
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
@@ -216,7 +218,7 @@ namespace Sprint0
 
             enemySprite.Update(gameTime);
 
-            itemSprite.Update(gameTime);
+            item.Update(gameTime);
 
             linkSprite.Update(gameTime);
 
@@ -239,7 +241,7 @@ namespace Sprint0
 
             //_block.Draw(_spriteBatch);
 
-            itemSprite.Draw(_spriteBatch);
+            item.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
