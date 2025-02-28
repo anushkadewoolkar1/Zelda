@@ -33,6 +33,10 @@ namespace Sprint0.ILevel
         private Vector2 roomDimensions;
         private int enemiesListIndex = 0;
         private int blocksListIndex = 0;
+        private ContentManager contentManager;
+
+
+        
 
         /* TO DO:
          * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
@@ -46,6 +50,7 @@ namespace Sprint0.ILevel
 
         public Level(ContentManager Content)
         {
+            this.contentManager = Content;
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
             roomWidth = (_backgroundTexture.Width - 5) / 6;
             roomHeight = (_backgroundTexture.Height - 5) / 6;
@@ -63,6 +68,27 @@ namespace Sprint0.ILevel
             }
         }
 
+        private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures, int targetX = 0, int targetY = 0)
+        {
+            switch (blockType)
+            {
+                case "InvisibleBlock":
+                    return new InvisibleBlock(position, textures);
+                case "LoadRoomBlock":
+                    return new LoadRoomBlock(position, textures, this, targetX, targetY);
+                default: // Default to a normal solid block
+                    return new Block(position, textures);
+            }
+        }
+
+
+        private Texture2D[] LoadBlockTextures()
+        {
+            return new Texture2D[]
+            {
+                contentManager.Load<Texture2D>("transparent_block") // Change filename as needed
+            };
+        }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -142,6 +168,20 @@ namespace Sprint0.ILevel
                 }
                 else if (Objects[i].Contains("Block"))
                 {
+                    Vector2 position = new Vector2(
+                        (roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36,
+                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36
+                    );
+
+                    Texture2D[] blockTextures = LoadBlockTextures(); 
+
+                    string blockType = Objects[i]; // Get the block type from the level file
+
+                    Block newBlock = CreateBlock(blockType, position, blockTextures); 
+                    blocksList.Add(newBlock);
+                    blocksListIndex++;
+
+                    System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
                     //blocksList = new Block(0, 0);
                     //mi = blocksList[blocksListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));
                     //mi.Invoke(blocksList[blocksListIndex], null);

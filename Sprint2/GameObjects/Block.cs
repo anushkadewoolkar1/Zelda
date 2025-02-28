@@ -8,10 +8,11 @@ using ZeldaGame.Zelda.CollisionMap;
 public class Block : IBlock, IGameObject
 {
     // Removed Keyboard property to refactor input behavior to be the responsibility of Keyboard/Command classes (PP):
+    private KeyboardState _previousState;
     private Vector2 tilePosition;
-    private Texture2D[] textures;
+    protected Texture2D[] textures;
     private int currentTextureIndex = 0;
-    TileMap tileMap = TileMap.GetInstance();
+    protected TileMap tileMap = TileMap.GetInstance();
 
     private const float scaleFactor = 0.3f;
 
@@ -19,6 +20,11 @@ public class Block : IBlock, IGameObject
     {
         tilePosition = startPosition;
         textures = blockTextures;
+        System.Diagnostics.Debug.WriteLine("Loaded Block Textures:");
+        for (int i = 0; i < textures.Length; i++)
+        {
+            System.Diagnostics.Debug.WriteLine($"Index {i}: {textures[i].Name}");
+        }
     }
 
     public Vector2 GetPosition() => tilePosition;
@@ -28,7 +34,7 @@ public class Block : IBlock, IGameObject
 
     public void Update()
     {
-        /*
+        
         KeyboardState state = Keyboard.GetState();
 
         // Change to previous texture when T is input
@@ -43,7 +49,7 @@ public class Block : IBlock, IGameObject
         }
 
         _previousState = state;
-        */
+        
     }
 
     // Temporary method (as for now) to reflect Sprint 2 Functionality (PP):

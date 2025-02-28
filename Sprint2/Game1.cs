@@ -48,6 +48,9 @@ namespace Sprint0
         Enemy enemySprite;
 
         private TileMap _tileMap;
+        private Block _invisibleBlock;
+        private LoadRoomBlock _loadRoomBlock;   
+        
 
         Level levelMap;
 
@@ -96,15 +99,17 @@ namespace Sprint0
                 Content.Load<Texture2D>("block7"),
                 Content.Load<Texture2D>("block8"),
                 Content.Load<Texture2D>("block9"),
-                Content.Load<Texture2D>("block10")
+                Content.Load<Texture2D>("block10"),
+                Content.Load<Texture2D>("transparent_block")
             };
 
             restart = false;
 
-            // Create the block at position (200, 200)
-            //_block = new Block(new Vector2(200, 200), blockTextures);
+            Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") }; 
+            _block = new Block(new Vector2(15, 1), blockTextures);
             //_block = new Block(new Vector2(15, 1), blockTextures);
-
+            _invisibleBlock = new InvisibleBlock(new Vector2(10, 5), invisibleBlockTextures);
+            _loadRoomBlock = new LoadRoomBlock(new Vector2(12, 3), blockTextures, levelMap, 1, 2);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
@@ -224,7 +229,9 @@ namespace Sprint0
 
             linkSprite.Update(gameTime);
 
-            //_block.Update();
+            _block.Update();
+
+            _loadRoomBlock.CheckCollision(linkSprite.Position);
 
             base.Update(gameTime);
         }
@@ -241,7 +248,9 @@ namespace Sprint0
 
             enemySprite.DrawCurrentSprite(_spriteBatch);
 
-            //_block.Draw(_spriteBatch);
+            _block.Draw(_spriteBatch);
+            _invisibleBlock.Draw(_spriteBatch);
+            _loadRoomBlock.Draw(_spriteBatch);
 
             item.Draw(_spriteBatch);
 

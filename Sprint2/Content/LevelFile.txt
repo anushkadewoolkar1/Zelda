@@ -2,9 +2,9 @@
 EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel
 EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel
 EnemyGel,,,,,,,,,,,,,
+EnemyGel,,,,Block,,,,,,,,,
 EnemyGel,,,,,,,,,,,,,
-EnemyGel,,,,,,,,,,,,,
-EnemyGel,,,,,,,,,,,,,
+EnemyGel,,LoadRoomBlock,,,InvisibleBlock,,,,,
 EnemyGel,,,,,,,,,,,,,
 EnemyGel,,,,,,,,,,,,,
 EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel,EnemyGel
