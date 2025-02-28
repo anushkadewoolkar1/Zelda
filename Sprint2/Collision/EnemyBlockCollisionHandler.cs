@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Sprint0.States;
 using Zelda.Enums;
 
@@ -19,8 +20,6 @@ namespace Sprint0.CollisionHandling
             Block block = objB as Block;
             if (enemy == null || block == null) return;
 
-            // TODO: Implement enemy response logic.
-            // enemy will use ChangeDirection() method based on the side of the block it collides on
             switch(side)
             {
                 case CollisionSide.Left:
@@ -32,6 +31,8 @@ namespace Sprint0.CollisionHandling
                     {
                         enemy.ChangeDirection(Direction.Up);
                     }
+
+                    enemy.position = new Vector2(block.BoundingBox.Left - enemy.BoundingBox.Width, enemy.position.Y);
                     break;
                 case CollisionSide.Right:
                     random = RandomNumberGenerator.GetInt32(-1, 1);
@@ -43,6 +44,8 @@ namespace Sprint0.CollisionHandling
                     {
                         enemy.ChangeDirection(Direction.Up);
                     }
+
+                    enemy.position = new Vector2(block.BoundingBox.Right, enemy.position.Y);
                     break;
                 case CollisionSide.Top:
                     random = RandomNumberGenerator.GetInt32(-1, 1);
@@ -54,6 +57,8 @@ namespace Sprint0.CollisionHandling
                     {
                         enemy.ChangeDirection(Direction.Up);
                     }
+
+                    enemy.position = new Vector2(enemy.position.X, block.BoundingBox.Top - enemy.position.Y);
                     break;
                 case CollisionSide.Bottom:
                     random = RandomNumberGenerator.GetInt32(-1, 1);
@@ -65,6 +70,8 @@ namespace Sprint0.CollisionHandling
                     {
                         enemy.ChangeDirection(Direction.Up);
                     }
+
+                    enemy.position = new Vector2(enemy.position.X, block.BoundingBox.Bottom);
                     break;
             }
         }
