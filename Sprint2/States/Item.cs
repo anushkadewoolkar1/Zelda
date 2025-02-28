@@ -35,6 +35,15 @@ namespace Sprint0.States
 
             switch (itemType)
             {
+                case ItemType.None:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("transparent_block", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
                 case ItemType.Arrow:
 
                     currItem = new Item
