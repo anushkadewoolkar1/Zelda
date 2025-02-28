@@ -14,7 +14,7 @@ namespace ZeldaGame.Zelda.CollisionMap
         private int[,] tileMap;
         private float tilePixelWidth;
         private float tilePixelHeight;
-        private int tilesWidth = 16, tilesHeight = 11;
+        private int tilesWidth = 12, tilesHeight = 7;
 
         private TileMap(int screenWidth, int screenHeight)
         {

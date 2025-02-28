@@ -40,7 +40,7 @@ namespace Sprint0
         // Sprite font
         private SpriteFont _spriteFont;
 
-        private Item item = new Item();
+        private Item item;
         private ItemSprite itemSprite;
 
         Link linkSprite;
@@ -82,7 +82,7 @@ namespace Sprint0
         protected override void LoadContent()
         {
 
-            TileMap.Initialize(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            TileMap.Initialize(256, 240);
             _tileMap = TileMap.GetInstance();
 
             Texture2D[] blockTextures = new Texture2D[]
@@ -109,8 +109,10 @@ namespace Sprint0
 
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
 
+            
+            item = new Item();
             ItemSpriteFactory.Instance.ItemTextures(Content);
-            item = item.CreateItem(ItemType.Arrow, 300, 100);
+            item = item.CreateItem(ItemType.Arrow, 1, 1);
             itemSprite = item.GetItemSprite(); 
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);

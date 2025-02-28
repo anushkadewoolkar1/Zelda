@@ -37,9 +37,10 @@ namespace Sprint0.Sprites
             _position.Y = posY;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 pixelPosition)
         {
-            destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
+            // destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
+            destinationRectangle = new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
 
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
         }
@@ -81,7 +82,7 @@ namespace Sprint0.Sprites
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 pos)
+        public void Draw(SpriteBatch spriteBatch)
         {
 
         }

@@ -10,6 +10,7 @@ using Zelda.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
+using ZeldaGame.Zelda.CollisionMap;
 
 namespace Sprint0.States
 {
@@ -19,6 +20,8 @@ namespace Sprint0.States
         public ItemSprite itemSprite;
         public Vector2 position;
 
+        TileMap tileMap = TileMap.GetInstance();
+        private Vector2 tilePosition;
         public Item()
         {
 
@@ -35,7 +38,8 @@ namespace Sprint0.States
                     newItem = new Item
                     {
                         itemSprite = new ItemSprite("ZeldaSpriteArrow", posX, posY),
-                        position = new Vector2 { X = posX, Y = posY }
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
                     };
                     break;
 
@@ -58,7 +62,8 @@ namespace Sprint0.States
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            itemSprite.Draw(spriteBatch);
+            Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
+            itemSprite.Draw(spriteBatch, pixelPosition);
         }
 
 
