@@ -153,8 +153,10 @@ namespace Sprint0.ILevel
             //String newConstructor = "new ";
             enemiesListIndex = 0;
             blocksListIndex = 0;
+            itemsListIndex = 0;
 
             EnemyType enemyType;
+            ItemType itemType;
 
             //We'll need to be able to pass position for creating the objects of the entities
             int hold = i;
@@ -188,16 +190,17 @@ namespace Sprint0.ILevel
                     blocksListIndex++;
 
                     System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
-                    //blocksList = new Block(0, 0);
-                    //mi = blocksList[blocksListIndex].GetType().GetMethod(newConstructor + Objects[i].Substring(5));
-                    //mi.Invoke(blocksList[blocksListIndex], null);
                 }
                 else if (Objects[i].Contains("Link"))
                 {
-                    //This is a Link.cs object = [i % roomLength,i / roomLength];
-                } else if (Objects[i].Contains(""))
+                    
+                } else if (Objects[i].Contains("Item"))
                 {
-
+                    itemsList.Add(new Item());
+                    Enum.TryParse(Objects[i], out itemType);
+                    itemsList[itemsListIndex].CreateItem(itemType,
+                        (int)((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36),
+                        (int)((roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36));
                 }
                 i++;
             }
