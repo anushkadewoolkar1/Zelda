@@ -17,8 +17,8 @@ namespace Sprint0.Sprites
         private Texture2D bossSpritesheet;
         private Texture2D npcSpritesheet;
         private EnemySprite sprite;
-        private int xSize;
-        private int ySize;
+        public int xSize;
+        public int ySize;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance
