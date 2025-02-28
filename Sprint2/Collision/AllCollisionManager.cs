@@ -13,6 +13,9 @@ namespace Sprint0.Collision
     // The AllCollisionManager central dispatcher.
     public class AllCollisionManager
     {
+        // Constructor needed (PP):
+        public AllCollisionManager() {}
+
         /// Dispatches collision responses based on the types of the colliding objects.
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {

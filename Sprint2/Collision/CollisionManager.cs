@@ -10,11 +10,11 @@ using Zelda.Enums;
 
 public class CollisionManager
 {
-    private AllCollisionManager allCollsionManager;
+    private AllCollisionManager allCollisionManager;
 
     public CollisionManager()
     {
-        allCollsionManager = new AllCollisionManager();
+        allCollisionManager = new AllCollisionManager();
     }
 
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
