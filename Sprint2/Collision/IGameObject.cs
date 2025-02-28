@@ -12,5 +12,6 @@ namespace Sprint0.CollisionHandling
         Rectangle BoundingBox { get; }
         Vector2 Velocity { get; }
 
+        public void Destroy();
     }
 }

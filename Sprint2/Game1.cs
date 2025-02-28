@@ -201,11 +201,9 @@ namespace Sprint0
 
                 //'D2' -> Player Use Boomerang Item:
                 { Keys.D2, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBoomerang", 300, 100)) },
-                //{ Keys.D2, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBoomerang")) },
 
                 //'D3' -> Player Use Bomb Item:
                 { Keys.D3, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBomb", 300, 100)) },
-                //{ Keys.D3, new LinkUseItem(linkSprite, ItemSpriteFactory.Instance.FetchItemSprite("ZeldaSpriteBomb")) }
 
             };
 
