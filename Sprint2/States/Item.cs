@@ -47,6 +47,17 @@ namespace Sprint0.States
                     };
                     break;
 
+                case ItemType.None:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("transparent_block", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
+
+
                 default:
                     throw new ArgumentException("Invalid item type", nameof(itemType));
             }
