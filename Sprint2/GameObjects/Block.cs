@@ -2,15 +2,18 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint0.CollisionHandling;
 using ZeldaGame.Zelda.CollisionMap;
 
-public class Block : IBlock
+public class Block : IBlock, IGameObject
 {
     // Removed Keyboard property to refactor input behavior to be the responsibility of Keyboard/Command classes (PP):
     private Vector2 tilePosition;
     private Texture2D[] textures;
     private int currentTextureIndex = 0;
     TileMap tileMap = TileMap.GetInstance();
+
+    private const float scaleFactor = 0.3f;
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)
     {
@@ -55,8 +58,30 @@ public class Block : IBlock
         {
 
             Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);            
-            float scaleFactor = 0.3f;
             spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
         }
     }
+
+    // IGameObject Implementatio (KD)
+    public Rectangle BoundingBox
+    {
+        get
+        {
+            if (textures.Length > 0)
+            {
+                Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
+                int width = (int)(textures[0].Width * scaleFactor);
+                int height = (int)(textures[0].Height * scaleFactor);
+                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
+            }
+            else
+            {
+                // return empty if no texture exists
+                return Rectangle.Empty;
+            }
+        }
+    }
+
+    // No velocity for blocks
+    public Vector2 Velocity => Vector2.Zero;
 }

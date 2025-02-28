@@ -7,7 +7,7 @@ using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Sprint0.States;
 using Zelda.Enums;
-/*
+
 namespace Sprint0.Collision
 {
     // The AllCollisionManager central dispatcher.
@@ -37,7 +37,7 @@ namespace Sprint0.Collision
             // Example: If objA is Link and objB is an Enemy Projectile.
             else if (objA is Link && objB is EnemyProjectile)
             {
-                ICollisionHandler handler = new PlayerEnemyProjectileCollisionHandler();
+                ICollisionHandler handler = new LinkEnemyProjectileCollisionHandler();
                 handler.HandleCollision(objA, objB, side);
             }
             else
@@ -47,4 +47,4 @@ namespace Sprint0.Collision
         }
     }
 }
-*/
+

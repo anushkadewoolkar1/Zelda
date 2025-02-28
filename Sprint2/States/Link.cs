@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Zelda.Enums;
 
 
-public class Link
+public class Link : IGameObject
 {
     private ILinkState currentState;
     public Vector2 Position { get; set; }
@@ -33,6 +34,8 @@ public class Link
     private ISprite arrowSprite, boomerangSprite, bombSprite;
     private Vector2 projectilePosition;
     private Direction projectileDirection;
+
+    private Vector2 velocity;
 
     public Link()
     {
@@ -166,53 +169,21 @@ public class Link
         Position += direction * Speed * dt;
     }
 
+    public Rectangle BoundingBox
+    {
+        get
+        {
+            return new Rectangle((int)Position.X, (int)Position.Y, 16, 16);
+        }
+    }
+    public Vector2 Velocity
+    {
+        get { return velocity;  }
+    }
+
     public void PerformAttack(Direction direction)
     {
         System.Diagnostics.Debug.WriteLine("Link performs an attack!");
-
-
-
-        //// Define the dimensions of the attack hitbox.
-        //int hitboxWidth = 20;
-        //int hitboxHeight = 20;
-        //Rectangle attackHitbox;
-
-        //// Determine the hitbox location based on Link's current facing direction.
-        //switch (FacingDirection)
-        //{
-        //    case Direction.Up:
-        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y - hitboxHeight, hitboxWidth, hitboxHeight);
-        //        break;
-        //    case Direction.Down:
-        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y + hitboxHeight, hitboxWidth, hitboxHeight);
-        //        break;
-        //    case Direction.Left:
-        //        attackHitbox = new Rectangle((int)Position.X - hitboxWidth, (int)Position.Y, hitboxWidth, hitboxHeight);
-        //        break;
-        //    case Direction.Right:
-        //        attackHitbox = new Rectangle((int)Position.X + hitboxWidth, (int)Position.Y, hitboxWidth, hitboxHeight);
-        //        break;
-        //    default:
-        //        // Fallback if FacingDirection isn't set.
-        //        attackHitbox = new Rectangle((int)Position.X, (int)Position.Y, hitboxWidth, hitboxHeight);
-        //        break;
-        //}
-
-        //Console.WriteLine("Attack hitbox: " + attackHitbox.ToString());
-
-        // Uncomment the following code when enemy collision is implemented:
-        /*
-        foreach (var enemy in EnemyManager.Instance.Enemies)
-        {
-            if (attackHitbox.Intersects(enemy.BoundingBox))
-            {
-                enemy.TakeDamage(1); // Apply damage to the enemy.
-            }
-        }
-        */
-
-        // play an attack sound.
-        // SoundManager.Instance.PlaySound("LinkAttack");
     }
 
     public void PickUpItem(ItemSprite pickedUpItem)

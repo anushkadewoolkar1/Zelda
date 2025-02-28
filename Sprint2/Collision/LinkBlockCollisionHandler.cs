@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Sprint0.CollisionHandling;
 using Zelda.Enums;
-/*
+
 public class LinkBlockCollisionHandler : ICollisionHandler
 {
     public void HandleCollision(IGameObject linkObject, IGameObject blockObject, CollisionSide collisionSide)
@@ -40,4 +41,3 @@ public class LinkBlockCollisionHandler : ICollisionHandler
         }
     }
 }
-*/

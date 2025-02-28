@@ -37,11 +37,12 @@ Two key parts: collision detection and collision response.
 	examines the types of the colliding objects and calls the appropriate collision handler. 
 
 ### TODO: 
-- Implement IGameObject interface for each game object
+- Implement IGameObject interface for each game object (enemy i think is the only one not implemented, 
+														also probably the level to so link cant walk out of the map)
+
 - Complete Response Logic for each collision handler
-  We still need to implement the actual response logic, such as adjusting positions, 
-  applying damage, or removing items from the game world.
+
 - We need to integrate the collision detection and response into the game’s main update loop. 
-- Once everything is hooked up, we can test with various objects (Link, enemies, items, projectiles, blocks) 
+
 - We might need to add additional collision handlers (Link vs. enemy collisions, enemy vs. enemy)
 

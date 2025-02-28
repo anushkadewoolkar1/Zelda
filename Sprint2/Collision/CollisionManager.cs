@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Sprint0.Collision;
 using Sprint0.CollisionHandling;
 using Zelda.Enums;
-/*
+
 public class CollisionManager
 {
+    private AllCollisionManager allCollsionManager;
+
+    public CollisionManager()
+    {
+        allCollsionManager = new AllCollisionManager();
+    }
+
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
     public void CheckDynamicCollisions(List<IGameObject> dynamicObjects)
     {
@@ -34,10 +43,8 @@ public class CollisionManager
                     // Determine collision side. We use the objects' velocities and the intersection rectangle.
                     CollisionSide side = DetermineCollisionSide(objA, objB);
 
-                    // Here, we call your appropriate collision response handler.
-                    // For example:
-                    // if (objA is Link && objB is Block)
-                    //     new LinkBlockCollisionHandler().HandleCollision(objA, objB, side);
+                    // Here, we call appropriate collision response handler.
+                  
 
                     // For now, debug message.
                     Console.WriteLine($"Collision detected between {objA} and {objB} on side: {side}");
@@ -70,4 +77,4 @@ public class CollisionManager
         }
     }
 }
-*/
+

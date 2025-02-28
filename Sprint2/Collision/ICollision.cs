@@ -9,9 +9,9 @@ namespace Sprint0.CollisionHandling
 {
     public interface ICollision
     {
-        // Two objects invloced in collion
-        // IGameObject ObjectA { get; }
-        // IGameObject ObjectB { get; }
+        // Two objects involved in collion
+        IGameObject ObjectA { get; }
+        IGameObject ObjectB { get; }
 
         // Side of collision
         CollisionSide Side { get; }
