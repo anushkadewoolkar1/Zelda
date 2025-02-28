@@ -52,6 +52,12 @@ namespace Sprint0.States
             return newItem ?? throw new InvalidOperationException("Item creation failed.");
         }
 
+        // Item should disappear after being picked up (PP):
+        public void DestroyItem()
+        {
+
+        }
+
         public ItemSprite GetItemSprite()
         {
             return itemSprite;

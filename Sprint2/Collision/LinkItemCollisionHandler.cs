@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
 using Zelda.Enums;
+using Sprint0.States;
 
 namespace Sprint0.CollisionHandling
 {
@@ -15,11 +16,12 @@ namespace Sprint0.CollisionHandling
         {
             // Assume objA is Link and objB is an Item.
             Link link = objA as Link;
-            ItemSprite item = objB as ItemSprite;
+            Item item = objB as Item;
             if (link == null || item == null) return;
 
-            // TODO: Implement item pickup logic.
-          
+            // Do not need to go by case of side, as colliding with any item from any side should result in a pickup (PP):
+            link.PickUpItem(item.itemSprite);
+            item.DestroyItem();
         }
     }
 }
