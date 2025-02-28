@@ -12,6 +12,7 @@ using System;
 using System.Net.Http.Headers;
 using ZeldaGame.Zelda.CollisionMap;
 using Sprint0.ILevel;
+using Sprint0.CollisionHandling;
 
 
 namespace Sprint0
@@ -41,6 +42,7 @@ namespace Sprint0
         private SpriteFont _spriteFont;
 
         private Item item;
+        private Item item2;
         private ItemSprite itemSprite;
 
         Link linkSprite;
@@ -54,7 +56,9 @@ namespace Sprint0
 
         Level levelMap;
 
-
+        // Collision
+        private List<IGameObject> gameObjects = new List<IGameObject>();
+        private CollisionManager collisionManager = new CollisionManager();
 
 
         //block
@@ -114,9 +118,8 @@ namespace Sprint0
 
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
 
-            
-            item = new Item();
             ItemSpriteFactory.Instance.ItemTextures(Content);
+            item = new Item();
             item = item.CreateItem(ItemType.Arrow, 11, 6);
             itemSprite = item.GetItemSprite(); 
 
@@ -208,6 +211,13 @@ namespace Sprint0
             };
 
             _keyboardController = new KeyboardController(keyboardCommandMap);
+
+
+            item2 = new Item();
+            item2 = item2.CreateItem(ItemType.Arrow, 1, 6);
+            gameObjects.Add(item);
+            gameObjects.Add(linkSprite);
+            gameObjects.Add(item2);
         }
 
         protected override void Update(GameTime gameTime)
@@ -231,6 +241,8 @@ namespace Sprint0
 
             _loadRoomBlock.CheckCollision(linkSprite.Position);
 
+            collisionManager.CheckDynamicCollisions(gameObjects);
+
             base.Update(gameTime);
         }
 
@@ -251,6 +263,7 @@ namespace Sprint0
             _loadRoomBlock.Draw(_spriteBatch);
 
             item.Draw(_spriteBatch);
+            item2.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
