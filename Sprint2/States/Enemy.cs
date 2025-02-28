@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Zelda.Enums;
 
 
 namespace Sprint0.States
 {
-    public class Enemy
+    public class Enemy : IGameObject
     {
         public IEnemyState enemyState;
         public double EnemyHealth;
@@ -25,8 +26,9 @@ namespace Sprint0.States
         private ISprite boomerangSprite, fireballSprite;
         private Boolean itemSpawn;
         private Boolean itemSpawned;
-        ItemType itemType;
+        public ItemType itemType;
         private Vector2 projectilePosition;
+        private Vector2 velocity;
 
         public Enemy()
         {
@@ -228,12 +230,14 @@ namespace Sprint0.States
 
         public void Move(Vector2 move, GameTime gameTime)
         {
-            if (move != Vector2.Zero)
+            if (!itemSpawned) 
+            {
+                if (move != Vector2.Zero)
                 move.Normalize();
 
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            this.position += move * Speed * dt;
-
+                float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                this.position += move * Speed * dt;
+            }
         }
 
         public void SpawnProjectile()
@@ -282,6 +286,11 @@ namespace Sprint0.States
             {
                 return new Rectangle((int)position.X, (int)position.Y, spriteFactory.xSize, spriteFactory.ySize);
             }
+        }
+
+        public Vector2 Velocity
+        {
+            get { return velocity; }
         }
 
         public void Update(GameTime gameTime)

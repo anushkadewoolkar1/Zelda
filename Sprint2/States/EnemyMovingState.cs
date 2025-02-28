@@ -221,6 +221,7 @@ namespace Sprint0.States
                     }
                     break;
                 case EnemyType.Aquamentus:
+                    enemy.itemType = ItemType.Fireball;
                     if (timer >= 0 && timer < 50)
                     {
                         move = MoveDirection(Direction.Left);
