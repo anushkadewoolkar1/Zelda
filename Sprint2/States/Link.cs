@@ -288,4 +288,9 @@ public class Link : IGameObject
         System.Diagnostics.Debug.WriteLine("Link has died. Game Over.");
         // Trigger game over or level reset logic here.
     }
+
+    public void Destroy()
+    {
+
+    }
 }

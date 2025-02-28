@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Sprint0.Collision;
 using Sprint0.CollisionHandling;
 using Zelda.Enums;
+using Sprint0.States;
 
 public class CollisionManager
 {
@@ -44,10 +45,15 @@ public class CollisionManager
                     CollisionSide side = DetermineCollisionSide(objA, objB);
 
                     // Here, we call appropriate collision response handler.
-                  
+                  if (objA is Item || objB is Item)
+                    {
+                        PlayerItemCollisionHandler itemCollisionHandler = new PlayerItemCollisionHandler();
+                        itemCollisionHandler.HandleCollision(objA, objB, side);
+                    }
 
                     // For now, debug message.
                     Console.WriteLine($"Collision detected between {objA} and {objB} on side: {side}");
+
                 }
             }
         }

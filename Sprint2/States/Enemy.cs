@@ -348,5 +348,10 @@ namespace Sprint0.States
             enemyState.Load();
 
         }
+
+        public void Destroy()
+        {
+
+        }
     }
 }
