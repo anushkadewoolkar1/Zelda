@@ -10,6 +10,7 @@ namespace Zelda.Enums
 
     public enum SwordType
     {
+        None,
         WoodenSword,
         WhiteSword,
         MagicalSword
@@ -17,6 +18,7 @@ namespace Zelda.Enums
 
     public enum ItemType
     {
+        None,
         Arrow,
         Boomerang,
         Bomb,
@@ -25,6 +27,7 @@ namespace Zelda.Enums
 
     public enum EnemyType
     {
+        None,
         OldMan,
         Keese,
         Stalfos,

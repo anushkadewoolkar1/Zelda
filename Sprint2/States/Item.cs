@@ -17,6 +17,7 @@ namespace Sprint0.States
 {
     public class Item : IGameObject
     {
+        public Item currItem;
         public ItemType itemType;
         public ItemSprite itemSprite;
         public Vector2 position;
@@ -31,13 +32,12 @@ namespace Sprint0.States
 
         public Item CreateItem(ItemType itemType, int posX, int posY)
         {
-            Item newItem;
 
             switch (itemType)
             {
                 case ItemType.Arrow:
 
-                    newItem = new Item
+                    currItem = new Item
                     {
                         itemSprite = new ItemSprite("ZeldaSpriteArrow", posX, posY),
                         position = new Vector2 { X = posX, Y = posY },
@@ -49,13 +49,13 @@ namespace Sprint0.States
                     throw new ArgumentException("Invalid item type", nameof(itemType));
             }
 
-            return newItem ?? throw new InvalidOperationException("Item creation failed.");
+            return currItem ?? throw new InvalidOperationException("Item creation failed.");
         }
 
         // Item should disappear after being picked up (PP):
-        public void DestroyItem()
+        public void Destroy()
         {
-
+            CreateItem(ItemType.None, (int)position.X, (int)position.Y);
         }
 
         public ItemSprite GetItemSprite()
