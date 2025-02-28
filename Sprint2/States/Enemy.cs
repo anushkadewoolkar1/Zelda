@@ -276,6 +276,14 @@ namespace Sprint0.States
             
         }
 
+        public Rectangle BoundingBox
+        {
+            get 
+            {
+                return new Rectangle((int)position.X, (int)position.Y, spriteFactory.xSize, spriteFactory.ySize);
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
 

@@ -25,7 +25,6 @@ namespace Sprint0.States
         {
             this.enemy = enemy;
 
-            // need facing directions for Goriya
         }
 
 
@@ -74,16 +73,16 @@ namespace Sprint0.States
                 case EnemyType.Stalfos:
                     if (timer >= 0 && timer < 25)
                     {
-                        move = new Vector2(1, 0);
+                        move = MoveDirection(Direction.Right);
                     } else if (timer >= 25 && timer < 50)
                     {
-                        move = new Vector2(0, -1);
+                        move = MoveDirection(Direction.Up);
                     } else if (timer >= 50 && timer < 75)
                     {
-                        move = new Vector2(-1, 0);
+                        move = MoveDirection(Direction.Left);
                     } else if (timer >= 75 && timer < 100)
                     {
-                        move = new Vector2(0, 1);
+                        move = MoveDirection(Direction.Down);
                     } 
                     break;
                 case EnemyType.Goriya:
@@ -137,21 +136,7 @@ namespace Sprint0.States
                     }
                     if (moving)
                     {
-                        switch (enemy.Direction)
-                        {
-                            case Direction.Up:
-                                move = new Vector2(0, -1);
-                                break;
-                            case Direction.Down:
-                                move = new Vector2(0, 1);
-                                break;
-                            case Direction.Left:
-                                move = new Vector2(1, 0);
-                                break;
-                            case Direction.Right:
-                                move = new Vector2(-1, 0);
-                                break;
-                        }
+                        move = MoveDirection(enemy.Direction);
                     }
                     else
                     {
@@ -193,12 +178,12 @@ namespace Sprint0.States
                     else if (timer >= 25 && timer < 50)
                     {
                         enemy.Speed = 200f;
-                        move = new Vector2(0, 1);
+                        move = MoveDirection(Direction.Down);
                     }
                     else if (timer >= 50 && timer < 100)
                     {
                         enemy.Speed = 100f;
-                        move = new Vector2(0, -1);
+                        move = MoveDirection(Direction.Up);
                     }
                     break;
                 case EnemyType.Wallmaster:
@@ -211,24 +196,37 @@ namespace Sprint0.States
                     // set to a timer in sprint2, rope's double movement speed needs to be triggered by lining up with link, not doing it eveyr once in a while
                     if (timer >= 0 && timer < 50)
                     {
-                        move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), 0);
+                        if (RandomNumberGenerator.GetInt32(-1, 1) == 1)
+                        {
+                            move = MoveDirection(Direction.Right);
+                        } else
+                        {
+                            move = MoveDirection(Direction.Left);
+                        }
                     } else if (timer >= 50 && timer < 75)
                     {
                         enemy.Speed = 200f;
-                        move = new Vector2(0, 1);
+                        move = MoveDirection(Direction.Down);
                     } else
                     {
                         enemy.Speed = 100f;
-                        move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), 0);
+                        if (RandomNumberGenerator.GetInt32(-1, 1) == 1)
+                        {
+                            move = MoveDirection(Direction.Right);
+                        }
+                        else
+                        {
+                            move = MoveDirection(Direction.Left);
+                        }
                     }
                     break;
                 case EnemyType.Aquamentus:
                     if (timer >= 0 && timer < 50)
                     {
-                        move = new Vector2(1, 0);
+                        move = MoveDirection(Direction.Left);
                     } else if (timer >= 50 && timer < 100)
                     {
-                        move = new Vector2(-1, 0);
+                        move = MoveDirection(Direction.Right);
                     } else if (timer == 100)
                     {
                         enemy.SpawnProjectile();
@@ -253,21 +251,7 @@ namespace Sprint0.States
                         enemy.ChangeDirection(Direction.Down);
                     }
 
-                    switch (enemy.Direction)
-                    {
-                        case Direction.Up:
-                            move = new Vector2(0, -1);
-                            break;
-                        case Direction.Down:
-                            move = new Vector2(0, 1);
-                            break;
-                        case Direction.Left:
-                            move = new Vector2(1, 0);
-                            break;
-                        case Direction.Right:
-                            move = new Vector2(-1, 0);
-                            break;
-                    }
+                    move = MoveDirection(enemy.Direction);
                     break;
                 default:
                     move = new Vector2(0, 1); ;
@@ -281,6 +265,23 @@ namespace Sprint0.States
             }
 
             enemy.Move(move, gameTime);
+        }
+
+        private Vector2 MoveDirection(Direction dir)
+        {
+            switch(dir)
+            {
+                case Direction.Up:
+                    return new Vector2(0, -1);
+                case Direction.Down:
+                    return new Vector2(0, 1);
+                case Direction.Left:
+                    return new Vector2(1, 0);
+                case Direction.Right:
+                    return new Vector2(-1, 0);
+                default:
+                    return new Vector2(0, 0);
+            }
         }
 
         public void Stop()
