@@ -23,7 +23,7 @@ namespace Sprint0.Sprites
         private double elapsedTime = 0;
         private double frameDuration = 0.2;
 
-        int _scale = 2;
+        float _scale = 1.7f;
 
         public ItemSprite(String spriteName, int posX, int posY)
         {
@@ -40,7 +40,7 @@ namespace Sprint0.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 pixelPosition)
         {
             // destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
-            destinationRectangle = new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, sourceRectangle.Width * _scale, sourceRectangle.Height * _scale);
+            destinationRectangle = new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, (int)(sourceRectangle.Width * _scale), (int)(sourceRectangle.Height * _scale));
 
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
         }

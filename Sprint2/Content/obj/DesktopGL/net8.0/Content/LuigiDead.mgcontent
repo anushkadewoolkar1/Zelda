@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>/Users/anushkadewoolkar/cleanclone/Zelda/Sprint2/Content/LuigiDead.png</SourceFile>
-  <SourceTime>2025-02-27T18:10:45.1016682-05:00</SourceTime>
-  <DestFile>/Users/anushkadewoolkar/cleanclone/Zelda/Sprint2/Content/bin/DesktopGL/Content/LuigiDead.xnb</DestFile>
-  <DestTime>2025-02-27T18:11:08.0499811-05:00</DestTime>
+  <SourceFile>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiDead.png</SourceFile>
+  <SourceTime>2025-02-10T16:37:16.642425-05:00</SourceTime>
+  <DestFile>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/bin/DesktopGL/Content/LuigiDead.xnb</DestFile>
+  <DestTime>2025-02-28T00:53:04.7005463-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

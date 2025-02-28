@@ -11,14 +11,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
 using ZeldaGame.Zelda.CollisionMap;
+using Sprint0.CollisionHandling;
 
 namespace Sprint0.States
 {
-    public class Item
+    public class Item : IGameObject
     {
         public ItemType itemType;
         public ItemSprite itemSprite;
         public Vector2 position;
+        public Vector2 pixelPosition;
 
         TileMap tileMap = TileMap.GetInstance();
         private Vector2 tilePosition;
@@ -62,8 +64,24 @@ namespace Sprint0.States
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
+            pixelPosition = tileMap.GetTileCenter(tilePosition);
             itemSprite.Draw(spriteBatch, pixelPosition);
+        }
+
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, 14, 14);
+            }
+        }
+
+        public Vector2 Velocity
+        {
+            get
+            {
+                return new Vector2(0, 0);
+            }
         }
 
 

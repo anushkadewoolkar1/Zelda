@@ -18,8 +18,8 @@ namespace ZeldaGame.Zelda.CollisionMap
 
         private TileMap(int screenWidth, int screenHeight)
         {
-            tilePixelWidth = screenWidth / (float)tilesWidth;
-            tilePixelHeight = screenHeight / (float)tilesHeight;
+            tilePixelWidth = 31.6f;
+            tilePixelHeight = 31.6f;
             tileMap = new int[tilesWidth, tilesHeight];
         }
 
@@ -60,8 +60,8 @@ namespace ZeldaGame.Zelda.CollisionMap
         public Vector2 GetTileCenter(Vector2 tilePosition)
         {
             return new Vector2(
-                tilePosition.X * tilePixelWidth + tilePixelWidth / 2f,
-                tilePosition.Y * tilePixelHeight + tilePixelHeight / 2f
+                (tilePosition.X * tilePixelWidth + tilePixelWidth / 2f) + 64,
+                (tilePosition.Y * tilePixelHeight + tilePixelHeight / 2f) + 50
             );
         }
 

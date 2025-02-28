@@ -30,9 +30,11 @@ namespace Sprint0.ILevel
         private List<String> Objects = new List<String>();
         private List<Block> blocksList = new List<Block>();
         private List<Enemy> enemiesList = new List<Enemy>();
+        private List<Item> itemsList = new List<Item>();
         private Vector2 roomDimensions;
         private int enemiesListIndex = 0;
         private int blocksListIndex = 0;
+        private int itemsListIndex = 0;
         private ContentManager contentManager;
 
 
@@ -103,6 +105,10 @@ namespace Sprint0.ILevel
             for (int i = 0; i < blocksListIndex;i++)
             {
                 blocksList[i].Draw(spriteBatch);
+            }
+            for (int i = 0; i < itemsListIndex;i++)
+            {
+                itemsList[i].Draw(spriteBatch);
             }
         }
 

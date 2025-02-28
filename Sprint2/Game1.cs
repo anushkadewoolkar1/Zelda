@@ -117,7 +117,7 @@ namespace Sprint0
             
             item = new Item();
             ItemSpriteFactory.Instance.ItemTextures(Content);
-            item = item.CreateItem(ItemType.Arrow, 1, 1);
+            item = item.CreateItem(ItemType.Arrow, 11, 6);
             itemSprite = item.GetItemSprite(); 
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
