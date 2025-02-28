@@ -29,10 +29,6 @@ namespace ZeldaGame.Zelda.CollisionMap
             {
                 instance = new TileMap(screenWidth, screenHeight);
             }
-            else
-            {
-                throw new InvalidOperationException("TileMap already init and its singleton.");
-            }
         }
 
         public static TileMap GetInstance()
