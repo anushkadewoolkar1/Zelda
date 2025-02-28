@@ -47,5 +47,10 @@ namespace Sprint0.Collision
                 return new Rectangle((int)Position.X, (int)Position.Y, width, height);
             }
         }
+
+        public void Destroy()
+        {
+
+        }
     }
 }

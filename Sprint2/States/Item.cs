@@ -23,6 +23,8 @@ namespace Sprint0.States
         public Vector2 position;
         public Vector2 pixelPosition;
 
+        public bool isVisible = true;
+
         TileMap tileMap = TileMap.GetInstance();
         private Vector2 tilePosition;
         public Item()
@@ -55,7 +57,9 @@ namespace Sprint0.States
         // Item should disappear after being picked up (PP):
         public void Destroy()
         {
-            CreateItem(ItemType.None, (int)position.X, (int)position.Y);
+
+            isVisible = false;
+            //CreateItem(ItemType.None, (int)position.X, (int)position.Y);
         }
 
         public ItemSprite GetItemSprite()
@@ -69,7 +73,9 @@ namespace Sprint0.States
         }
 
         public void Draw(SpriteBatch spriteBatch)
+
         {
+            if (!isVisible) return;
             pixelPosition = tileMap.GetTileCenter(tilePosition);
             itemSprite.Draw(spriteBatch, pixelPosition);
         }

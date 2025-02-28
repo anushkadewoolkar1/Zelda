@@ -15,10 +15,11 @@ using Sprint0.Sprites;
 using Zelda.Enums;
 using Sprint0.States;
 using System.Reflection.Metadata;
+using Sprint0.CollisionHandling;
 
 namespace Sprint0.ILevel
 {
-    public class Level : ILevel
+    public class Level : ILevel, IGameObject
     {
 
         private int roomWidth;
@@ -201,6 +202,23 @@ namespace Sprint0.ILevel
                 }
                 i++;
             }
+        }
+
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle(30, 30, 200, 100);
+            }
+        }
+        public Vector2 Velocity
+        {
+            get { return new Vector2(0, 0); }
+        }
+
+        public void Destroy()
+        {
+
         }
     }
 }

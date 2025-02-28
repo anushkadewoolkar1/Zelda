@@ -88,6 +88,11 @@ public class Block : IBlock, IGameObject
         }
     }
 
+    public void Destroy()
+    {
+
+    }
+
     // No velocity for blocks
     public Vector2 Velocity => Vector2.Zero;
 }

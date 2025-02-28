@@ -21,7 +21,7 @@ namespace Sprint0.CollisionHandling
 
             // Do not need to go by case of side, as colliding with any item from any side should result in a pickup (PP):
             link.PickUpItem(item.itemSprite);
-            item.DestroyItem();
+            item.Destroy();
         }
     }
 }
