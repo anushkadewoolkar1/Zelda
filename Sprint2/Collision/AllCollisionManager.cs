@@ -42,6 +42,10 @@ namespace Sprint0.Collision
             {
                 ICollisionHandler handler = new LinkEnemyProjectileCollisionHandler();
                 handler.HandleCollision(objA, objB, side);
+            } else if (objA is Link && objB is Enemy)
+            {
+                ICollisionHandler handler = new LinkEnemyCollisionHandler();
+                handler.HandleCollision(objA, objB, side);
             }
             else
             {
