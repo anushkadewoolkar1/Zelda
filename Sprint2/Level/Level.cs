@@ -210,7 +210,7 @@ namespace Sprint0.ILevel
         {
             get
             {
-                return new Rectangle(64, 64, (int)roomDimensions.X - 64, (int)roomDimensions.Y - 64);
+                return new Rectangle(64, 64, (int)roomDimensions.X - 2 * 64, (int)roomDimensions.Y - 2 * 64);
             }
         }
         public Vector2 Velocity
