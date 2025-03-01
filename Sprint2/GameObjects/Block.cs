@@ -15,6 +15,9 @@ public class Block : IBlock, IGameObject
     private int currentTextureIndex = 0;
     protected TileMap tileMap = TileMap.GetInstance();
 
+
+
+
     private const float scaleFactor = 0.3f;
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)

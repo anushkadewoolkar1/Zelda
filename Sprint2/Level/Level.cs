@@ -28,14 +28,14 @@ namespace Sprint0.ILevel
         private Rectangle _sourceRectangle;
 
         private int roomLength = 14;
-        private List<String> Objects = new List<String>();
-        private List<Block> blocksList = new List<Block>();
-        private List<Enemy> enemiesList = new List<Enemy>();
-        private List<Item> itemsList = new List<Item>();
+        public List<String> Objects = new List<String>();
+        public List<Block> blocksList { get; set; }
+        public List<Enemy> enemiesList { get; set; }
+        public List<Item> itemsList { get; set; }
         private Vector2 roomDimensions;
-        private int enemiesListIndex = 0;
-        private int blocksListIndex = 0;
-        private int itemsListIndex = 0;
+        public int enemiesListIndex { get; set; }
+        public int blocksListIndex { get; set; }
+        public int itemsListIndex { get; set; }
 
         private ContentManager contentManager;
 
@@ -54,6 +54,10 @@ namespace Sprint0.ILevel
 
         public Level(ContentManager Content)
         {
+            blocksList = new List<Block>();
+            enemiesList = new List<Enemy>();
+            itemsList = new List<Item>();
+
             this.contentManager = Content;
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
             roomWidth = (_backgroundTexture.Width - 5) / 6;
@@ -171,7 +175,7 @@ namespace Sprint0.ILevel
                     enemiesList[enemiesListIndex].position =
                         new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36,
                         (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36);
-                    Enum.TryParse(Objects[i].Substring(5).ToString(), out enemyType);
+                    Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
