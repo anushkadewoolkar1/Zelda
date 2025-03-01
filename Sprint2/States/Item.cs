@@ -56,16 +56,33 @@ namespace Sprint0.States
                     };
                     break;
 
-                case ItemType.None:
+                case ItemType.Bomb:
                     currItem = new Item
                     {
-                        itemSprite = new ItemSprite("transparent_block", posX, posY),
+                        itemSprite = new ItemSprite("ZeldaSpriteBomb", posX, posY),
                         position = new Vector2 { X = posX, Y = posY },
                         tilePosition = new Vector2 { X = posX, Y = posY }
                     };
                     break;
 
 
+                case ItemType.Boomerang:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteBoomerang", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
+                case ItemType.Fireball:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteFireball", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
 
                 default:
                     throw new ArgumentException("Invalid item type", nameof(itemType));
@@ -77,9 +94,7 @@ namespace Sprint0.States
         // Item should disappear after being picked up (PP):
         public void Destroy()
         {
-
             isVisible = false;
-            //CreateItem(ItemType.None, (int)position.X, (int)position.Y);
         }
 
         public ItemSprite GetItemSprite()
