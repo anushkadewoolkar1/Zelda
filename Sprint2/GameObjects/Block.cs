@@ -66,7 +66,10 @@ public class Block : IBlock, IGameObject
         {
 
             //Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);            
+            //spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
+            float scaleFactor = 0.2f; 
             spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
+
         }
     }
 
