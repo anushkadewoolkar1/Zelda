@@ -113,7 +113,7 @@ namespace Sprint0
             _block = new Block(new Vector2(15, 1), blockTextures);
             //_block = new Block(new Vector2(15, 1), blockTextures);
             _invisibleBlock = new InvisibleBlock(new Vector2(10, 5), invisibleBlockTextures);
-            _loadRoomBlock = new LoadRoomBlock(new Vector2(12, 3), blockTextures, levelMap, 1, 2);
+            _loadRoomBlock = new LoadRoomBlock(new Vector2(100, 100), blockTextures, levelMap, 1, 2);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
