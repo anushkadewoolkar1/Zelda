@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ZeldaGame.Zelda.CollisionMap;
-
-public class InvisibleBlock : Block
+using Sprint0.CollisionHandling;
+public class InvisibleBlock : Block, IGameObject
 
 {
 
@@ -31,5 +31,25 @@ public class InvisibleBlock : Block
             // Draw it at the correct position, scaling it
             spriteBatch.Draw(solidColor, pixelPosition, null, Color.Red, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
         }
+    }
+
+    public new Rectangle BoundingBox
+    {
+        get
+        {
+            return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, 14, 14);
+        }
+    }
+
+    public new Vector2 Velocity
+    {
+        get
+        {
+            return new Vector2(0, 0);
+        }
+    }
+
+    public new void Destroy()
+    {
     }
 }
