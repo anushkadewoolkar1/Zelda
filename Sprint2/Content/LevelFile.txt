@@ -1,9 +1,9 @@
 2,5,,,,,,,,,,,,
-,,,,,,,,,,,,,
-,,,,,,,,,,,,,
-,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
+,,,,,,LoadRoomBlock2.4,LoadRoomBlock2.4,,,,,,
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
+,,,,,,,,,,,,,
+LoadRoomBlock1.5,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,LoadRoomBlock3.5
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
 ,,,,,Item.Bomb,Item.Boomerang,,,,,,,
