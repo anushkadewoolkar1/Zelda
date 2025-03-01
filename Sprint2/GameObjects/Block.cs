@@ -10,6 +10,7 @@ public class Block : IBlock, IGameObject
     // Removed Keyboard property to refactor input behavior to be the responsibility of Keyboard/Command classes (PP):
     private KeyboardState _previousState;
     private Vector2 tilePosition;
+    private Vector2 pixelPosition;
     protected Texture2D[] textures;
     private int currentTextureIndex = 0;
     protected TileMap tileMap = TileMap.GetInstance();
@@ -18,7 +19,8 @@ public class Block : IBlock, IGameObject
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)
     {
-        tilePosition = startPosition;
+        //tilePosition = startPosition;
+        pixelPosition = startPosition;
         textures = blockTextures;
         System.Diagnostics.Debug.WriteLine("Loaded Block Textures:");
         for (int i = 0; i < textures.Length; i++)
@@ -63,7 +65,7 @@ public class Block : IBlock, IGameObject
         if (textures.Length > 0)
         {
 
-            Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);            
+            //Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);            
             spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
         }
     }
@@ -75,10 +77,11 @@ public class Block : IBlock, IGameObject
         {
             if (textures.Length > 0)
             {
-                Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
-                int width = (int)(textures[0].Width * scaleFactor);
-                int height = (int)(textures[0].Height * scaleFactor);
-                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
+                //Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
+               // int width = (int)(textures[0].Width * scaleFactor);
+               // int height = (int)(textures[0].Height * scaleFactor);
+               // return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
+                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y,  16, 16);
             }
             else
             {

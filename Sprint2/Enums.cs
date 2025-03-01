@@ -25,9 +25,7 @@ namespace Zelda.Enums
         DownDPad,
         LeftDPad,
         RightDPad,
-        UpDPad,
-        Start,
-        Select
+        UpDPad
     }
 
     public enum Direction
