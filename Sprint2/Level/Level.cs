@@ -36,6 +36,7 @@ namespace Sprint0.ILevel
         private int enemiesListIndex = 0;
         private int blocksListIndex = 0;
         private int itemsListIndex = 0;
+
         private ContentManager contentManager;
 
 
@@ -186,15 +187,13 @@ namespace Sprint0.ILevel
 
                     string blockType = Objects[i]; // Get the block type from the level file
 
-                    Block newBlock = CreateBlock(blockType, position, blockTextures); 
+                    Block newBlock = CreateBlock(blockType, position, blockTextures);
+
+                    //Block newBlock = CreateBlock(blockType, position, blockTextures); 
                     blocksList.Add(newBlock);
                     blocksListIndex++;
 
                     System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
-                }
-                else if (Objects[i].Contains("Link"))
-                {
-                    
                 } else if (Objects[i].Contains("Item"))
                 {
                     itemsList.Add(new Item());
@@ -211,7 +210,7 @@ namespace Sprint0.ILevel
         {
             get
             {
-                return new Rectangle(30, 30, 200, 100);
+                return new Rectangle(64, 64, (int)roomDimensions.X - 64, (int)roomDimensions.Y - 64);
             }
         }
         public Vector2 Velocity
