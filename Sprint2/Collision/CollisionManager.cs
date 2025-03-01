@@ -45,10 +45,16 @@ public class CollisionManager
                     CollisionSide side = DetermineCollisionSide(objA, objB);
 
                     // Here, we call appropriate collision response handler.
-                  if (objA is Item || objB is Item)
+                    if (objA is Item || objB is Item)
                     {
                         PlayerItemCollisionHandler itemCollisionHandler = new PlayerItemCollisionHandler();
                         itemCollisionHandler.HandleCollision(objA, objB, side);
+                    }
+
+                    if (objA is Block ||  objB is Block)
+                    {
+                        LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
+                        blockCollisionHandler.HandleCollision(objA, objB, side);
                     }
 
                     // For now, debug message.

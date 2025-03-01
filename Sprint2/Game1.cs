@@ -218,6 +218,8 @@ namespace Sprint0
             gameObjects.Add(item);
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
+            gameObjects.Add(_block);
+            gameObjects.Add(_loadRoomBlock);
         }
 
         protected override void Update(GameTime gameTime)
