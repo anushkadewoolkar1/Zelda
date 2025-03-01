@@ -28,9 +28,13 @@ namespace Sprint0.Sprites
         private int boomerangChangeDirection;
         private int timer;
 
+        public bool destroy { get; set; }
+
         public ProjectileSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int direction)
         {
             _texture = texture;
+
+            destroy = false;
             isBomb = false;
             isBoomerang = false;
             
@@ -55,6 +59,12 @@ namespace Sprint0.Sprites
         //When calling this Draw, Position is the center of sprite
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
+
+            if (destroy)
+            {
+                return;
+            }
+
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
             spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0] * projectileScale, (int)_position.Y + deltaPosition[1] * projectileScale),
                 sourceRectangle, Color.White, rotation, destinationOrigin, projectileScale, SpriteEffects.None, 0f);
@@ -76,16 +86,22 @@ namespace Sprint0.Sprites
                 }
                 if (timer == 35)
                 {
-                    sourceRectangle.Offset(36, 30);
+                    destroy = true;
                 }
             }
         }
 
         public void Update(GameTime gameTime)
         {
+
+            if (destroy)
+            {
+                return;
+            }
+
             if (directionProjectile == 0)
             {
-                if (boomerangChangeDirection >= 40)
+                if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[1] += 2;
                 } else
@@ -94,7 +110,7 @@ namespace Sprint0.Sprites
                 }
             } else if (directionProjectile == 1)
             {
-                if (boomerangChangeDirection >= 40)
+                if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[0] -= 2;
                 }
@@ -104,7 +120,7 @@ namespace Sprint0.Sprites
                 }
             } else if (directionProjectile == 2)
             {
-                if (boomerangChangeDirection >= 40)
+                if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[1] -= 2;
                 }
@@ -114,7 +130,7 @@ namespace Sprint0.Sprites
                 }
             } else if (directionProjectile == 3)
             {
-                if (boomerangChangeDirection >= 40)
+                if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[0] += 2;
                 }
@@ -133,6 +149,11 @@ namespace Sprint0.Sprites
                 boomerangChangeDirection += 1;
             }
 
+
+            if ((timer >= 60 && isBoomerang) || timer >= 70)
+            {
+                destroy = true;
+            }
         }
 
         public void Draw(SpriteBatch _textures)
