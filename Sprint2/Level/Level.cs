@@ -78,6 +78,20 @@ namespace Sprint0.ILevel
 
         private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures, int targetX = 0, int targetY = 0)
         {
+            if (blockType.Contains("invisible"))
+            {
+                return new InvisibleBlock(position, textures);
+            }
+            else if (blockType.Contains("load"))
+            {
+                //swap in Int32.Parse(blockType.Substring(13,1)), Int32.Parse(blockType.Substring(15, 1)
+                //when you are done checking
+                return new LoadRoomBlock(position, textures, this, targetX, targetY);
+            } else
+            {
+                return new Block(position, textures);
+            }
+            /*
             switch (blockType)
             {
                 case "InvisibleBlock":
@@ -85,8 +99,9 @@ namespace Sprint0.ILevel
                 case "LoadRoomBlock":
                     return new LoadRoomBlock(position, textures, this, targetX, targetY);
                 default: // Default to a normal solid block
-                    return new Block(position, textures);
+                    
             }
+            */
         }
 
 
