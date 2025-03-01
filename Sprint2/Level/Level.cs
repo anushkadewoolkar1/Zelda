@@ -173,8 +173,8 @@ namespace Sprint0.ILevel
                 {
                     enemiesList.Add(new Enemy());
                     enemiesList[enemiesListIndex].position =
-                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36,
-                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36);
+                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 32,
+                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 32);
                     Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType);
                     enemiesListIndex++;
@@ -183,8 +183,8 @@ namespace Sprint0.ILevel
                 else if (Objects[i].Contains("Block"))
                 {
                     Vector2 position = new Vector2(
-                        (roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36,
-                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36
+                        (roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 32,
+                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 32
                     );
 
                     Texture2D[] blockTextures = LoadBlockTextures(); 
