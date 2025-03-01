@@ -143,6 +143,10 @@ namespace Sprint0.ILevel
             {
                 blocksList[i].Update();
             }
+            for (int i = 0; i < itemsListIndex; i++)
+            {
+                itemsList[i].Update(gameTime);
+            }
         }
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
@@ -216,10 +220,11 @@ namespace Sprint0.ILevel
                 } else if (Objects[i].Contains("Item"))
                 {
                     itemsList.Add(new Item());
-                    Enum.TryParse(Objects[i], out itemType);
-                    itemsList[itemsListIndex].CreateItem(itemType,
-                        (int)((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 36),
-                        (int)((roomDimensions.Y / 9) * ((i - hold) / roomLength) + 36));
+                    Enum.TryParse(Objects[i].Substring(5), out itemType);
+                    itemsList[itemsListIndex] = itemsList[itemsListIndex].CreateItem(itemType,
+                        ((i - hold) % roomLength) - 1,
+                        ((i - hold) / roomLength) - 1);
+                    itemsListIndex++;
                 }
                 i++;
             }

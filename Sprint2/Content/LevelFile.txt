@@ -6,7 +6,7 @@
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
-,,,,,,,,,,,,,
+,,,,,Item.Bomb,Item.Boomerang,,,,,,,
 ,,,,,,,,,,,,,
 1,5,,,,,,,,,,,,
 ,,,,,,,,,,,,,
