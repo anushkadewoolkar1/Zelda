@@ -1,5 +1,35 @@
 namespace Zelda.Enums
 {
+    public enum GamePadInputs
+    {
+        DownBtn,
+        LeftBtn,
+        RightBtn,
+        UpBtn,
+        DownLJS,
+        LeftLJS,
+        RightLJS,
+        UpLJS,
+        PressLJS,
+        DownRJS,
+        LeftRJS,
+        RightRJS,
+        UpRJS,
+        PressRJS,
+        LeftBump,
+        RightBump,
+        LeftTrig,
+        RightTrig,
+        Start,
+        Select,
+        DownDPad,
+        LeftDPad,
+        RightDPad,
+        UpDPad,
+        Start,
+        Select
+    }
+
     public enum Direction
     {
         Up,
