@@ -160,9 +160,9 @@ namespace Sprint0.Commands
     public class LinkUseItem : ICommand
     {
         private Link _link;
-        private ItemSprite _item;
+        private ItemType _item;
 
-        public LinkUseItem(Link link, ItemSprite item)
+        public LinkUseItem(Link link, ItemType item)
         {
             _link = link;
             _item = item;
@@ -170,8 +170,8 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            _link.PickUpItem(_item);
-            _link.UseItem();
+            //_link.PickUpItem(_item);
+            _link.ChangeState(new LinkUsingItemState(_link, _link.currentDirection, _item));
         }
     }
 }

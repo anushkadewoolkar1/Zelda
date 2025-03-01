@@ -5,22 +5,30 @@ using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
 using Sprint0.Sprites;
 using SpriteFactory;
+using Sprint0.States;
 
 public class LinkUsingItemState : ILinkState
 {
     private Link link;
     private Direction currentDirection;
+    private ItemType item;
     private float useItemDuration;
 
-    public LinkUsingItemState(Link link, Direction direction)
+    public LinkUsingItemState(Link link, Direction direction, ItemType item)
     {
         this.link = link;
         this.currentDirection = direction;
-        useItemDuration = 0.5f; // Using an item lasts for half a second.
+        this.item = item;
+        //useItemDuration = 0.5f; // Using an item lasts for half a second.
     }
 
     public void Enter()
     {
+        this.currentDirection = this.link.currentDirection;
+        this.link.CurrentItem = this.item;
+        this.link.linkUseItem = true;
+
+        useItemDuration = 0.2f; // Using an item lasts for half a second.
         // Set the using item animation 
         switch (currentDirection)
         {
@@ -49,7 +57,8 @@ public class LinkUsingItemState : ILinkState
         if (useItemDuration <= 0)
         {
             // Return to Idle once done.
-            link.ChangeState(new LinkWalkingState(link, currentDirection));
+            this.link.linkUseItem = false;
+            link.ChangeState(new LinkIdleState(link, currentDirection));
         }
     }
 

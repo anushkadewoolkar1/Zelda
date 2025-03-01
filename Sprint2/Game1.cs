@@ -152,7 +152,7 @@ namespace Sprint0
                 { Keys.Z, new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, linkSprite.currentDirection, SwordType.WoodenSword))},
 
                 //'N' -> Player Attack:
-                { Keys.N, new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, linkSprite.currentDirection, SwordType.WoodenSword)) },
+                { Keys.N,  new ChangeLinkState(linkSprite, new LinkAttackingState(linkSprite, linkSprite.currentDirection, SwordType.WoodenSword))},
 
                 //'W' -> Player Walk Up:
                 { Keys.W, new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Up)) },
@@ -200,13 +200,13 @@ namespace Sprint0
                 { Keys.Y, new CycleBlock(_block, Direction.Right) },
 
                 //'D1' -> Player Use Arrow Item:
-                { Keys.D1, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteArrow", 300, 100)) },
+                { Keys.D1, new LinkUseItem(linkSprite, ItemType.Arrow) },
 
                 //'D2' -> Player Use Boomerang Item:
-                { Keys.D2, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBoomerang", 300, 100)) },
+                { Keys.D2, new LinkUseItem(linkSprite, ItemType.Boomerang) },
 
                 //'D3' -> Player Use Bomb Item:
-                { Keys.D3, new LinkUseItem(linkSprite, new ItemSprite("ZeldaSpriteBomb", 300, 100)) },
+                { Keys.D3, new LinkUseItem(linkSprite, ItemType.Bomb) },
 
             };
 

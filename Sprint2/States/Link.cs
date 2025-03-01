@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Zelda.Enums;
@@ -27,7 +28,8 @@ public class Link : IGameObject
     public ItemType CurrentItem { get; set; }  
     public Direction currentDirection { get; set; }
 
-    public Boolean linkAttacking;
+    public Boolean linkAttacking { get; set; }
+    public Boolean linkUseItem { get; set; }
 
     private Boolean initializeItem;
     private Boolean spawnedItem;
@@ -136,7 +138,7 @@ public class Link : IGameObject
 
     public void ChangeState(ILinkState newState)
     {
-        if (!linkAttacking)
+        if (!linkAttacking && !linkUseItem)
         {
             this.currentState.Exit();
             this.currentState = newState;
@@ -200,7 +202,11 @@ public class Link : IGameObject
 
     public void UseItem()
     {
-        System.Diagnostics.Debug.WriteLine("Link uses an item!");
+        if (linkAttacking)
+        {
+            return;
+        }
+        System.Diagnostics.Debug.WriteLine("Link uses an");
         spawnedItem = false;
         switch (CurrentItem)
         {
@@ -255,9 +261,14 @@ public class Link : IGameObject
                 }
         }
 
+        //this.currentState.Exit();
+        //this.currentState = new LinkUsingItemState(this, currentDirection);
+        //this.currentState.Enter();
+
         // Prepares to draw Link's Projectile and holds item direction information
         projectileDirection = currentDirection;
         initializeItem = true;
+        
         System.Diagnostics.Debug.WriteLine("Item");
     }
 
