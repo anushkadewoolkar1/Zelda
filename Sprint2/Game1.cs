@@ -129,7 +129,7 @@ namespace Sprint0
             enemySprite = new Enemy();
 
             levelMap = new Level(Content);
-            levelMap.LoadRoom(1, 5);
+            levelMap.LoadRoom(2, 5);
 
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
