@@ -52,6 +52,7 @@ namespace Sprint0.States
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
         {
             position = tileMap.GetTileCenter(spawnPosition);
+            position.X -= 12;
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
