@@ -87,7 +87,7 @@ public class Block : IBlock, IGameObject
                // int width = (int)(textures[0].Width * scaleFactor);
                // int height = (int)(textures[0].Height * scaleFactor);
                // return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
-                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y,  16, 16);
+                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y,  30, 30);
             }
             else
             {

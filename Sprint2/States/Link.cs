@@ -169,13 +169,14 @@ public class Link : IGameObject
 
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         Position += direction * Speed * dt;
+        velocity = direction;
     }
 
     public Rectangle BoundingBox
     {
         get
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, 16, 16);
+            return new Rectangle((int)Position.X, (int)Position.Y, 30, 30);
         }
     }
     public Vector2 Velocity

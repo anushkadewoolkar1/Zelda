@@ -41,8 +41,16 @@ public class CollisionManager
                 // Check if objA and objB actually intersect.
                 if (objA.BoundingBox.Intersects(objB.BoundingBox))
                 {
+                    CollisionSide side;
                     // Determine collision side. We use the objects' velocities and the intersection rectangle.
-                    CollisionSide side = DetermineCollisionSide(objA, objB);
+                    if (objA is Block)
+                    {
+                        side = DetermineCollisionSide(objB, objA);
+                    }
+                    else
+                    {
+                        side = DetermineCollisionSide(objA, objB);
+                    }
 
                     // Here, we call appropriate collision response handler.
                     if (objA is Item || objB is Item)
@@ -54,7 +62,14 @@ public class CollisionManager
                     if (objA is Block ||  objB is Block)
                     {
                         LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
-                        blockCollisionHandler.HandleCollision(objA, objB, side);
+                        if (objA is Block)
+                        {
+                            blockCollisionHandler.HandleCollision(objB, objA, side);
+                        }
+                        else
+                        {
+                            blockCollisionHandler.HandleCollision(objA, objB, side);
+                        }     
                     }
 
                     // For now, debug message.
@@ -74,7 +89,7 @@ public class CollisionManager
         if (intersection.Width < intersection.Height)
         {
             // Use the velocity of objA to decide: if moving right, collision is on the right; else, left.
-            if (objA.Velocity.X > 0)
+            if (objA.Velocity.X < 0)
                 return CollisionSide.Right;
             else
                 return CollisionSide.Left;
@@ -82,7 +97,7 @@ public class CollisionManager
         else
         {
             // Vertical collision: if moving down, collision is at the bottom; else, top.
-            if (objA.Velocity.Y > 0)
+            if (objA.Velocity.Y < 0)
                 return CollisionSide.Bottom;
             else
                 return CollisionSide.Top;
