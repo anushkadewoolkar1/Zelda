@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Commands;
+using Sprint0.ILevel;
 
 namespace Sprint0.Controllers
 {
@@ -49,6 +50,11 @@ namespace Sprint0.Controllers
                 lastInput = Keys.None;
                 _keyCommandMap[Keys.None].Execute();
             }
+        }
+
+        public void Update(Level Level)
+        {
+            //no-op
         }
     }
 }

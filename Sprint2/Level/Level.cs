@@ -16,6 +16,7 @@ using Zelda.Enums;
 using Sprint0.States;
 using System.Reflection.Metadata;
 using Sprint0.CollisionHandling;
+using System.Reflection.Emit;
 
 namespace Sprint0.ILevel
 {
@@ -36,6 +37,8 @@ namespace Sprint0.ILevel
         public int enemiesListIndex { get; set; }
         public int blocksListIndex { get; set; }
         public int itemsListIndex { get; set; }
+
+        public int[] currentRoom { get; set; }
 
         private ContentManager contentManager;
 
@@ -74,6 +77,8 @@ namespace Sprint0.ILevel
                     Objects.Add(nums[i]);
                 }
             }
+
+            currentRoom = [2, 5];
         }
 
         private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures, int targetX = 0, int targetY = 0)
@@ -151,9 +156,6 @@ namespace Sprint0.ILevel
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
-            _sourceRectangle = new Rectangle(
-                roomWidth * (xCoordinate) + 1 *(xCoordinate + 1), roomHeight * (yCoordinate) + 1*(yCoordinate  + 1),
-                roomWidth, roomHeight);
 
             int count = Objects.Count;
             int i = 1;
@@ -161,6 +163,7 @@ namespace Sprint0.ILevel
 
             while (i < count && !foundRoom)
             {
+                
                 if (xCoordinate.ToString() == Objects[i - 1] && yCoordinate.ToString() == Objects[i])
                 {
                     foundRoom = true;
@@ -172,10 +175,18 @@ namespace Sprint0.ILevel
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
                 return;
             }
+
+            _sourceRectangle = new Rectangle(
+                roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
+                roomWidth, roomHeight);
+
             i += 12;
             int room = i + 14 * 9;
             //MethodInfo mi;
             //String newConstructor = "new ";
+            blocksList.Clear();
+            enemiesList.Clear();
+            itemsList.Clear();
             enemiesListIndex = 0;
             blocksListIndex = 0;
             itemsListIndex = 0;
@@ -228,6 +239,7 @@ namespace Sprint0.ILevel
                 }
                 i++;
             }
+            currentRoom = [xCoordinate, yCoordinate];
         }
 
         public Rectangle BoundingBox

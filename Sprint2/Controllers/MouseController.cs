@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Commands;
+using Sprint0.ILevel;
 
 namespace Sprint0.Controllers
 {
@@ -20,24 +21,29 @@ namespace Sprint0.Controllers
         private int _windowWidth;
         private int _windowHeight;
 
-        public MouseController(
+        public MouseController(/*
             ICommand nonMovingNonAnimatedCommand,
             ICommand nonMovingAnimatedCommand,
             ICommand movingNonAnimatedCommand,
             ICommand movingAnimatedCommand,
-            ICommand quitCommand,
+            ICommand quitCommand,*/
             int windowWidth, int windowHeight)
         {
-            _nonMovingNonAnimatedCommand = nonMovingNonAnimatedCommand;
+            /*_nonMovingNonAnimatedCommand = nonMovingNonAnimatedCommand;
             _nonMovingAnimatedCommand = nonMovingAnimatedCommand;
             _movingNonAnimatedCommand = movingNonAnimatedCommand;
             _movingAnimatedCommand = movingAnimatedCommand;
-            _quitCommand = quitCommand;
+            _quitCommand = quitCommand;*/
             _windowWidth = windowWidth;
             _windowHeight = windowHeight;
         }
 
         public void Update()
+        {
+            //no-op
+        }
+
+        public void Update(Level level)
         {
             MouseState state = Mouse.GetState();
 
@@ -57,26 +63,33 @@ namespace Sprint0.Controllers
                 bool topHalf = mouseY < _windowHeight / 2;
                 bool leftHalf = mouseX < _windowWidth / 2;
 
+
+                
+
                 // top left
                 if (topHalf && leftHalf)
                 {
-                    _nonMovingNonAnimatedCommand.Execute();
+                    
+                    level.LoadRoom(level.currentRoom[0], level.currentRoom[1] - 1);
                 }
                 // top right
                 else if (topHalf && !leftHalf)
                 {
-                    _nonMovingAnimatedCommand.Execute();
+                    level.LoadRoom(level.currentRoom[0] + 1, level.currentRoom[1]);
                 }
                 // bottom left
                 else if (!topHalf && leftHalf)
                 {
-                    _movingNonAnimatedCommand.Execute();
+                    level.LoadRoom(level.currentRoom[0] - 1, level.currentRoom[1]);
                 }
                 // bottom right
                 else
                 {
-                    _movingAnimatedCommand.Execute();
+                    level.LoadRoom(level.currentRoom[0], level.currentRoom[1] + 1);
                 }
+
+                System.Diagnostics.Debug.WriteLine(level.currentRoom[0].ToString() + "||"
+                    + level.currentRoom[1].ToString());
             }
         }
     }

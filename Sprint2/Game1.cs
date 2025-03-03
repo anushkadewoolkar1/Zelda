@@ -35,6 +35,7 @@ namespace Sprint0
 
         // Controllers
         private IController _keyboardController;
+        private IController _mouseController;
 
         // Textures
 
@@ -218,6 +219,9 @@ namespace Sprint0
 
             _keyboardController = new KeyboardController(keyboardCommandMap);
 
+            _mouseController = new MouseController(_graphics.PreferredBackBufferWidth,
+                _graphics.PreferredBackBufferHeight);
+
 
             item2 = new Item();
             item2 = item2.CreateItem(ItemType.Arrow, 1, 6);
@@ -234,6 +238,8 @@ namespace Sprint0
                 Exit();
 
             _keyboardController.Update();
+
+            _mouseController.Update(levelMap);
 
             //_currentSprite.Update(gameTime);
 
