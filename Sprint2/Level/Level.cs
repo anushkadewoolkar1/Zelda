@@ -40,6 +40,8 @@ namespace Sprint0.ILevel
 
         public int[] currentRoom { get; set; }
 
+        public bool doubleClickTemp { get; set; }
+
         private ContentManager contentManager;
 
 
@@ -77,6 +79,8 @@ namespace Sprint0.ILevel
                     Objects.Add(nums[i]);
                 }
             }
+
+            doubleClickTemp = false;
 
             currentRoom = [2, 5];
         }
@@ -156,6 +160,15 @@ namespace Sprint0.ILevel
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
+
+            if (!doubleClickTemp)
+            {
+                doubleClickTemp = true;
+            } else
+            {
+                doubleClickTemp = false;
+                return;
+            }
 
             int count = Objects.Count;
             int i = 1;
