@@ -191,11 +191,11 @@ namespace Sprint0.ILevel
                 if (Objects[i].Contains("Enemy"))
                 {
                     enemiesList.Add(new Enemy());
-                    enemiesList[enemiesListIndex].position =
-                        new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 32,
-                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 32);
+                    //enemiesList[enemiesListIndex].position;
                     Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
-                    enemiesList[enemiesListIndex].CreateEnemy(enemyType, enemiesList[enemiesListIndex].position);
+                    enemiesList[enemiesListIndex].CreateEnemy(enemyType,
+                        new Vector2(((i - hold) % roomLength) - 1,
+                        ((i - hold) / roomLength) - 1));
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
                 }

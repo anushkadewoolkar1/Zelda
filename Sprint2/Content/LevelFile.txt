@@ -6,7 +6,7 @@
 LoadRoomBlock1.5,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,LoadRoomBlock3.5
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
-,,,,,Item.Bomb,Item.Boomerang,,,,,,,
+,,,,,Item.Bomb,Item.Boomerang,,,,Enemy.Keese,,,
 ,,,,,,,,,,,,,
 1,5,,,,,,,,,,,,
 ,,,,,,,,,,,,,
