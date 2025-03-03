@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Zelda.Enums;
+using ZeldaGame.Zelda.CollisionMap;
 
 
 namespace Sprint0.States
@@ -29,15 +30,14 @@ namespace Sprint0.States
         public ItemType itemType;
         private Vector2 projectilePosition;
         private Vector2 velocity;
+        TileMap tileMap = TileMap.GetInstance();
 
         public Enemy()
         {
             spriteFactory = EnemySpriteFactory.Instance;
-            position = new Vector2(500, 250);
 
-            enemyType = EnemyType.OldMan;
-            this.sprite = spriteFactory.CreateEnemySprite(enemyType, Direction);
-            this.sprite.spriteSize = 32;
+            sprite = spriteFactory.CreateEnemySprite(enemyType, Direction);
+            sprite.spriteSize = 32;
 
 
             enemyState = new EnemyMovingState(this);
@@ -49,8 +49,9 @@ namespace Sprint0.States
 
         }
 
-        public Enemy CreateEnemy(EnemyType enemyCreated)
+        public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
         {
+            position = tileMap.GetTileCenter(spawnPosition);
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
@@ -207,6 +208,32 @@ namespace Sprint0.States
             }
         }
 
+        public void DrawCurrentSprite(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch, this.position);
+
+            if (itemSpawn)
+            {
+                projectilePosition = position + new Vector2(2, 2);
+                itemSpawn = false;
+                itemSpawned = true;
+            }
+            if (itemSpawned)
+            {
+                switch (itemType)
+                {
+                    case ItemType.Boomerang:
+                        boomerangSprite.Draw(spriteBatch, projectilePosition);
+                        break;
+                    case ItemType.Fireball:
+                        fireballSprite.Draw(spriteBatch, projectilePosition);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         public void ChangeDirection(Direction newDirection)
         {
             Direction = newDirection;
@@ -230,7 +257,7 @@ namespace Sprint0.States
 
         public void Move(Vector2 move, GameTime gameTime)
         {
-            if (!itemSpawned) 
+            if (!itemSpawned && enemyType == EnemyType.Goriya) 
             {
                 if (move != Vector2.Zero)
                 move.Normalize();
@@ -308,32 +335,6 @@ namespace Sprint0.States
                         break;
                     case ItemType.Fireball:
                         fireballSprite.Update(gameTime);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        public void DrawCurrentSprite(SpriteBatch spriteBatch)
-        {
-            sprite.Draw(spriteBatch, this.position);
-
-            if (itemSpawn)
-            {
-                projectilePosition = position + new Vector2(2, 2);
-                itemSpawn = false;
-                itemSpawned = true;
-            }
-            if (itemSpawned)
-            {
-                switch (itemType)
-                {
-                    case ItemType.Boomerang:
-                        boomerangSprite.Draw(spriteBatch, projectilePosition);
-                        break;
-                    case ItemType.Fireball:
-                        fireballSprite.Draw(spriteBatch, projectilePosition);
                         break;
                     default:
                         break;

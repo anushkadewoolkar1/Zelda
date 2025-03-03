@@ -195,7 +195,7 @@ namespace Sprint0.ILevel
                         new Vector2((roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 32,
                         (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 32);
                     Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
-                    enemiesList[enemiesListIndex].CreateEnemy(enemyType);
+                    enemiesList[enemiesListIndex].CreateEnemy(enemyType, enemiesList[enemiesListIndex].position);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
                 }

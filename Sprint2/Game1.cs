@@ -47,6 +47,7 @@ namespace Sprint0
 
         Link linkSprite;
 
+        List<Enemy> enemySprites = new List<Enemy>();
         Enemy enemySprite;
 
         private TileMap _tileMap;
@@ -126,7 +127,12 @@ namespace Sprint0
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
+            Enemy gelEnemySprite = new Enemy();
+            gelEnemySprite = gelEnemySprite.CreateEnemy(EnemyType.Gel, new Vector2(8, 6));
+            gelEnemySprite.SetHealth();
+            enemySprites.Add(gelEnemySprite);
             enemySprite = new Enemy();
+            enemySprite = enemySprite.CreateEnemy(EnemyType.Stalfos, new Vector2(6, 4));
 
             levelMap = new Level(Content);
             levelMap.LoadRoom(2, 5);
@@ -233,7 +239,7 @@ namespace Sprint0
 
             levelMap.Update(gameTime);
 
-            enemySprite.Update(gameTime);
+            enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
 
             item.Update(gameTime);
 
@@ -258,7 +264,7 @@ namespace Sprint0
 
             linkSprite.Draw(_spriteBatch);
 
-            enemySprite.DrawCurrentSprite(_spriteBatch);
+            enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
 
             _block.Draw(_spriteBatch);
             _invisibleBlock.Draw(_spriteBatch);
