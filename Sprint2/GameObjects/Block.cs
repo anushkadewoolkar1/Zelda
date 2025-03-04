@@ -19,6 +19,7 @@ public class Block : IBlock, IGameObject
 
 
     private const float scaleFactor = 0.3f;
+    private const int BOUNDING_BOX_DIM = 30;
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)
     {
@@ -87,7 +88,7 @@ public class Block : IBlock, IGameObject
                // int width = (int)(textures[0].Width * scaleFactor);
                // int height = (int)(textures[0].Height * scaleFactor);
                // return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
-                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y,  30, 30);
+                return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y,  BOUNDING_BOX_DIM, BOUNDING_BOX_DIM);
             }
             else
             {

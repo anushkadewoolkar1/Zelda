@@ -10,6 +10,8 @@ public class LoadRoomBlock : Block
     private Level level;
     private int targetX, targetY;
 
+    private const int COLLISION_THRESH = 10;
+
     public LoadRoomBlock(Vector2 startPosition, Texture2D[] blockTextures, Level level, int x, int y)
         : base(startPosition, blockTextures)
     {
@@ -22,7 +24,7 @@ public class LoadRoomBlock : Block
 
     public void CheckCollision(Vector2 playerPosition)
     {
-        if (Vector2.Distance(playerPosition, GetPosition()) < 10) 
+        if (Vector2.Distance(playerPosition, GetPosition()) < COLLISION_THRESH) 
         {
             level.LoadRoom(targetX, targetY);
         }

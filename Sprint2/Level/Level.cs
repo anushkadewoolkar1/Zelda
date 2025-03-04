@@ -27,8 +27,6 @@ namespace Sprint0.ILevel
         public int roomHeight;
         private Texture2D _backgroundTexture;
         private Rectangle _sourceRectangle;
-
-        private int roomLength = 14;
         public List<String> Objects = new List<String>();
         public List<Block> blocksList { get; set; }
         public List<Enemy> enemiesList { get; set; }
@@ -44,9 +42,6 @@ namespace Sprint0.ILevel
 
         private ContentManager contentManager;
 
-
-        
-
         /* TO DO:
          * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
          * 2. Implement Load Room to invoke constructor calls for each object
@@ -57,6 +52,12 @@ namespace Sprint0.ILevel
          */
 
 
+        private const int ROOM_LENGTH = 14;
+        private const int LEVEL_CENTER_POSITION = 64;
+        private const int WIDTH_POSITION_SCALAR = 2;
+        private const int HEIGHT_POSITION_SCALAR = 5;
+        private const int LEVEL_TEXTURE_SCALAR = 6;
+
         public Level(ContentManager Content)
         {
             blocksList = new List<Block>();
@@ -65,11 +66,11 @@ namespace Sprint0.ILevel
 
             this.contentManager = Content;
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
-            roomWidth = (_backgroundTexture.Width - 5) / 6;
-            roomHeight = (_backgroundTexture.Height - 5) / 6;
+            roomWidth = (_backgroundTexture.Width - 5) / LEVEL_TEXTURE_SCALAR;
+            roomHeight = (_backgroundTexture.Height - 5) / LEVEL_TEXTURE_SCALAR;
             _sourceRectangle = new Rectangle(
-                roomWidth * 2 + 1, roomHeight * 5 + 1, roomWidth, roomHeight);
-            roomDimensions = new Vector2(roomWidth * 2 - 64, roomHeight * 2 - 64);
+                roomWidth * WIDTH_POSITION_SCALAR + 1, roomHeight * HEIGHT_POSITION_SCALAR + 1, roomWidth, roomHeight);
+            roomDimensions = new Vector2(roomWidth * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION, roomHeight * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION);
 
             foreach (var line in File.ReadLines("../../../Content/LevelFile.txt"))
             {
@@ -194,7 +195,7 @@ namespace Sprint0.ILevel
                 roomWidth, roomHeight);
 
             i += 12;
-            int room = i + 14 * 9;
+            int room = i + ROOM_LENGTH * 9;
             //MethodInfo mi;
             //String newConstructor = "new ";
             blocksList.Clear();
@@ -218,16 +219,16 @@ namespace Sprint0.ILevel
                     //enemiesList[enemiesListIndex].position;
                     Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType,
-                        new Vector2(((i - hold) % roomLength) - 1,
-                        ((i - hold) / roomLength) - 1));
+                        new Vector2(((i - hold) % ROOM_LENGTH) - 1,
+                        ((i - hold) / ROOM_LENGTH) - 1));
                     enemiesListIndex++;
-                    System.Diagnostics.Debug.WriteLine(((i - hold) / roomLength).ToString());
+                    System.Diagnostics.Debug.WriteLine(((i - hold) / ROOM_LENGTH).ToString());
                 }
                 else if (Objects[i].Contains("Block"))
                 {
                     Vector2 position = new Vector2(
-                        (roomDimensions.X / roomLength) * ((i - hold) % roomLength) + 32,
-                        (roomDimensions.Y / 9) * ((i - hold) / roomLength) + 32
+                        (roomDimensions.X / ROOM_LENGTH) * ((i - hold) % ROOM_LENGTH) + 32,
+                        (roomDimensions.Y / 9) * ((i - hold) / ROOM_LENGTH) + 32
                     );
 
                     Texture2D[] blockTextures = LoadBlockTextures(); 
@@ -246,8 +247,8 @@ namespace Sprint0.ILevel
                     itemsList.Add(new Item());
                     Enum.TryParse(Objects[i].Substring(5), out itemType);
                     itemsList[itemsListIndex] = itemsList[itemsListIndex].CreateItem(itemType,
-                        ((i - hold) % roomLength) - 1,
-                        ((i - hold) / roomLength) - 1);
+                        ((i - hold) % ROOM_LENGTH) - 1,
+                        ((i - hold) / ROOM_LENGTH) - 1);
                     itemsListIndex++;
                 }
                 i++;
@@ -259,7 +260,7 @@ namespace Sprint0.ILevel
         {
             get
             {
-                return new Rectangle(64, 64, (int)roomDimensions.X - 2 * 64, (int)roomDimensions.Y - 2 * 64);
+                return new Rectangle(LEVEL_CENTER_POSITION, LEVEL_CENTER_POSITION, (int)roomDimensions.X - WIDTH_POSITION_SCALAR * LEVEL_CENTER_POSITION, (int)roomDimensions.Y - WIDTH_POSITION_SCALAR * LEVEL_CENTER_POSITION);
             }
         }
         public Vector2 Velocity
