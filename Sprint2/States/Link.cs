@@ -10,7 +10,7 @@ using Zelda.Enums;
 
 public class Link : IGameObject
 {
-    private ILinkState currentState;
+    public ILinkState currentState;
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
     private LinkSpriteFactory spriteFactory;
