@@ -8,6 +8,9 @@ using Sprint0.Collision;
 using Sprint0.CollisionHandling;
 using Zelda.Enums;
 using Sprint0.States;
+using Sprint0.ILevel;
+using System.ComponentModel.Design;
+
 
 public class CollisionManager
 {
@@ -19,15 +22,24 @@ public class CollisionManager
     }
 
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
-    public void CheckDynamicCollisions(List<IGameObject> dynamicObjects)
+    public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, Level currLevel)
     {
+
         // Sort dynamic objects by the left side (X coordinate) of their bounding boxes.
         dynamicObjects.Sort((a, b) => a.BoundingBox.X.CompareTo(b.BoundingBox.X));
 
         // Loop through the sorted objects.
         for (int i = 0; i < dynamicObjects.Count; i++)
         {
+
             IGameObject objA = dynamicObjects[i];
+
+            Rectangle levelIntersection = Rectangle.Intersect(objA.BoundingBox, currLevel.BoundingBox);
+
+            if ((levelIntersection.Width * levelIntersection.Height) < (objA.BoundingBox.Width * objA.BoundingBox.Height))
+            {
+                DispatchLevelCollisions(objA, currLevel, levelIntersection);
+            }
 
             // Compare with subsequent objects.
             for (int j = i + 1; j < dynamicObjects.Count; j++)
@@ -102,6 +114,45 @@ public class CollisionManager
                 }
             }
         }
+    }
+
+    private void DispatchLevelCollisions(IGameObject objA, Level currLevel, Rectangle intersection)
+    {
+        ICollisionHandler collisionHandler = null;
+        if (objA is Link)
+        {
+            collisionHandler = new LinkLevelCollisionHandler();
+        }
+        else if (objA is Enemy)
+        {
+            collisionHandler = new EnemyLevelCollisionHandler();
+        }
+        else if (objA is Block)
+        {
+            collisionHandler = new BlockLevelCollisionHandler();
+        }
+        CollisionSide side;
+        int heightDiff = (objA.BoundingBox.Height - intersection.Height), widthDiff = (objA.BoundingBox.Width - intersection.Width);
+        if (heightDiff > widthDiff)
+        {
+            if (objA.Velocity.Y > 0)
+            {
+                side = CollisionSide.Bottom;
+            } else
+            {
+                side = CollisionSide.Top;
+            } 
+        } else
+        {
+            if (objA.Velocity.X > 0)
+            {
+                side = CollisionSide.Left;  
+            } else
+            {
+                side = CollisionSide.Right;
+            }
+        }
+        collisionHandler.HandleCollision(objA, currLevel, side);
     }
 
     /// Determines the collision side for objA relative to objB using their velocities and intersection.

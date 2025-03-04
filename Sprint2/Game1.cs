@@ -56,7 +56,7 @@ namespace Sprint0
         private LoadRoomBlock _loadRoomBlock;   
         
 
-        Level levelMap;
+        public Level levelMap;
 
         // Collision
         private List<IGameObject> gameObjects = new List<IGameObject>();
@@ -256,7 +256,7 @@ namespace Sprint0
 
             _loadRoomBlock.CheckCollision(linkSprite.Position);
 
-            collisionManager.CheckDynamicCollisions(gameObjects);
+            collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
 
             base.Update(gameTime);
         }
