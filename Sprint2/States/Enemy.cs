@@ -51,6 +51,7 @@ namespace Sprint0.States
 
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
         {
+            enemyType = enemyCreated;
             position = tileMap.GetTileCenter(spawnPosition);
             position.X -= 12;
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
@@ -265,6 +266,24 @@ namespace Sprint0.States
 
                 float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
                 this.position += move * Speed * dt;
+                switch (Direction)
+                {
+                    case Direction.Up:
+                        velocity = new Vector2(0, -1);
+                        break;
+                    case Direction.Down:
+                        velocity = new Vector2(0, 1);
+                        break;
+                    case Direction.Left:
+                        velocity = new Vector2(1, 0);
+                        break;
+                    case Direction.Right:
+                        velocity = new Vector2(-1, 0);
+                        break;
+                    default:
+                        velocity = Vector2.Zero;
+                        break;
+                }
             }
         }
 
