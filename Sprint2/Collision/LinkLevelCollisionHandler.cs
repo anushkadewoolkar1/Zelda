@@ -26,15 +26,12 @@ namespace Sprint0.Collision
                     link.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE, link.Position.Y);
                     break;
                 case CollisionSide.Right:
-                    enemy.ChangeDirection(Direction.Left);
                     link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, link.Position.Y);
                     break;
                 case CollisionSide.Top:
-                    enemy.ChangeDirection(Direction.Down);
                     link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE);
                     break;
                 case CollisionSide.Bottom:
-                    enemy.ChangeDirection(Direction.Up);
                     link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE);
                     break;
             }

@@ -23,8 +23,8 @@ namespace Sprint0.ILevel
     public class Level : ILevel, IGameObject
     {
 
-        private int roomWidth;
-        private int roomHeight;
+        public int roomWidth;
+        public int roomHeight;
         private Texture2D _backgroundTexture;
         private Rectangle _sourceRectangle;
 
