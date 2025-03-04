@@ -225,6 +225,7 @@ namespace Sprint0
 
             item2 = new Item();
             item2 = item2.CreateItem(ItemType.Arrow, 1, 6);
+            enemySprites.ForEach(enemySprite => gameObjects.Add(enemySprite));
             gameObjects.Add(item);
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
