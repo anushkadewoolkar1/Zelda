@@ -61,15 +61,39 @@ public class CollisionManager
 
                     if (objA is Block ||  objB is Block)
                     {
-                        LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
-                        if (objA is Block)
+                        if (objA is Link || objB is Link)
                         {
-                            blockCollisionHandler.HandleCollision(objB, objA, side);
+                            LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
+                            if (objA is Block)
+                            {
+                                blockCollisionHandler.HandleCollision(objB, objA, side);
+                            }
+                            else
+                            {
+                                blockCollisionHandler.HandleCollision(objA, objB, side);
+                            }
+                        } else if (objA is Enemy || objB is Enemy)
+                        {
+                            EnemyBlockCollisionHandler blockCollisionHandler = new EnemyBlockCollisionHandler();
+                            if (objA is Enemy) {
+                                blockCollisionHandler.HandleCollision(objA, objB, side);
+                            } else
+                            {
+                                blockCollisionHandler.HandleCollision(objB, objA, side);
+                            }
                         }
-                        else
+                    }
+
+                    if (objA is Enemy || objB is Enemy)
+                    {
+                        LinkEnemyCollisionHandler enemyCollisionHandler = new LinkEnemyCollisionHandler();
+                        if (objA is Link)
                         {
-                            blockCollisionHandler.HandleCollision(objA, objB, side);
-                        }     
+                            enemyCollisionHandler.HandleCollision(objA, objB, side);
+                        } else
+                        {
+                            enemyCollisionHandler.HandleCollision(objB, objA, side);
+                        }
                     }
 
                     // For now, debug message.
