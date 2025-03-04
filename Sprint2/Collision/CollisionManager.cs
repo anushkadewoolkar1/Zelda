@@ -129,7 +129,8 @@ public class CollisionManager
         }
         else if (objA is Block)
         {
-            collisionHandler = new BlockLevelCollisionHandler();
+            objA.Destroy();
+            return;
         }
         CollisionSide side;
         int heightDiff = (objA.BoundingBox.Height - intersection.Height), widthDiff = (objA.BoundingBox.Width - intersection.Width);
