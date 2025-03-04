@@ -22,6 +22,19 @@ namespace Sprint0.Sprites
 
         private LinkDirection direction = LinkDirection.RightFacing;
 
+        private const int DEFAULT_YPOS = 185;
+        private const int BROWN_ARROW_XPOS = 1;
+        private const int BLUE_ARROW_XPOS = 29;
+        private const int BROWN_BMRNG_XPOS = 65;
+        private const int BLUE_BMRNG_XPOS = 92;
+        private const int BOMB_XPOS = 129;
+        private const int LADDER_XPOS = 280;
+        private const int BMRNG_YPOS = 189;
+        private const int COLOR_SCALAR = 17;
+        private const int BASE_POSITION = 171;
+        private const int UPRIGHT_ORIENT = -4;
+
+
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();
 
         public static ProjectileSpriteFactory Instance
@@ -46,78 +59,78 @@ namespace Sprint0.Sprites
         public ISprite CreateDownArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.DownFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.UpFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.LeftFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 1, 185, (int)LinkDirection.RightFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing);
         }
 
         public ISprite CreateDownArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.DownFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BLUE_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.UpFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BLUE_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.LeftFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BLUE_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightArrowBlue()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 29, 185, (int)LinkDirection.RightFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BLUE_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing);
         }
 
         public ISprite CreateBoomerangBrown(int direction)
         {
-            return new ProjectileSprite(projectileSpriteSheet, 65, 189, direction);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_BMRNG_XPOS, BMRNG_YPOS, direction);
         }
 
         public ISprite CreateBoomerangBlue(int direction)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 92, 189, direction);
+            return new ProjectileSprite(projectileSpriteSheet, BLUE_BMRNG_XPOS, BMRNG_YPOS, direction);
         }
 
         public ISprite CreateBomb()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 129, 185, -4);
+            return new ProjectileSprite(projectileSpriteSheet, BOMB_XPOS, DEFAULT_YPOS, UPRIGHT_ORIENT);
         }
 
         public ISprite CreateLadderVertical()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 280, 185, (int)LinkDirection.DownFacing - notMoving);
+            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing - notMoving);
         }
 
         public ISprite CreateLadderHorizontal()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 280, 185, (int)LinkDirection.RightFacing - notMoving);
+            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing - notMoving);
         }
 
         /* Color
@@ -130,25 +143,25 @@ namespace Sprint0.Sprites
         public ISprite CreateDownAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.DownFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BASE_POSITION + (color * COLOR_SCALAR), (BASE_POSITION - COLOR_SCALAR), (int)LinkDirection.DownFacing);
         }
 
         public ISprite CreateUpAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.UpFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BASE_POSITION + (color * COLOR_SCALAR), (BASE_POSITION - COLOR_SCALAR), (int)LinkDirection.UpFacing);
         }
 
         public ISprite CreateLeftAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.LeftFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BASE_POSITION + (color * COLOR_SCALAR), (BASE_POSITION - COLOR_SCALAR), (int)LinkDirection.LeftFacing);
         }
 
         public ISprite CreateRightAttackWaves(int color)
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, 171 + (color * 17), 154, (int)LinkDirection.RightFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BASE_POSITION + (color * COLOR_SCALAR), (BASE_POSITION - COLOR_SCALAR), (int)LinkDirection.RightFacing);
         }
 
     }

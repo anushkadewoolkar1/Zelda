@@ -20,6 +20,8 @@ namespace SpriteFactory
         private int currentIdx = 0;
         List<Rectangle> spriteFrames;
 
+        private const int LINES_PER_BLOCK = 5;
+
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance
@@ -51,7 +53,7 @@ namespace SpriteFactory
             foreach (var line in File.ReadLines(FilePath))
             {
                 var nums = line.Split(',');
-                if (nums.Length == 5)  
+                if (nums.Length == LINES_PER_BLOCK)  
                 {
                     string name = nums[0];
                     int x = int.Parse(nums[1]);

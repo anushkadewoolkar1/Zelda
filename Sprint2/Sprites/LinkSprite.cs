@@ -26,6 +26,11 @@ namespace Sprint0.Sprites
         private int upAdjustment;
         private int linkScale = 2;
 
+        private const int UP_DIRECTION = 3;
+        private const int COLOR_SCALE = 310;
+        private const int RIGHT_BOUNDARY_COORD = 742;
+        private const int RECTANGLE_DIM = 16;
+
         public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] linkStates)
         {
             _texture = texture;
@@ -46,13 +51,13 @@ namespace Sprint0.Sprites
             int[] sourceRectangleDimensions = AdjustAttacks(spriteSheetXPos, spriteSheetYPos, linkStates[1], linkStates[0]);
 
             // Checks if Link is not facing up and if Link has a MagicalShield before doing adjustment
-            if (linkStates[0] < 3 && (linkStates[2] % 2) == 1)
+            if (linkStates[0] < UP_DIRECTION && (linkStates[2] % 2) == 1)
             {
                 sourceRectangleDimensions = MagicalShield(sourceRectangleDimensions, linkStates[1]);
             }
 
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
-            colorAdjustment = (linkStates[2] / 2) * 310;
+            colorAdjustment = (linkStates[2] / 2) * COLOR_SCALE;
 
 
             //Changes Link's Sprite depending on frame of animation
@@ -131,13 +136,13 @@ namespace Sprint0.Sprites
             }
             else
             {
-                return 742 - xCoordinates - sourceRectangleWidth;
+                return RIGHT_BOUNDARY_COORD - xCoordinates - sourceRectangleWidth;
             }
         }
 
         private int[] AdjustAttacks(int xCoordinate, int yCoordinate, int frame, int facingDirection)
         {
-            int[] sourceRectangleDimensions = { xCoordinate, yCoordinate, 16, 16 };
+            int[] sourceRectangleDimensions = { xCoordinate, yCoordinate, RECTANGLE_DIM, RECTANGLE_DIM };
 
 
             //Exits if Link is not attacking
