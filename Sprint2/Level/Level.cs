@@ -198,6 +198,19 @@ namespace Sprint0.ILevel
                 roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
+            for (int j = 0; j < blocksList.Count; j++)
+            {
+                this.gameObjects.Remove(blocksList[j]);
+            }
+            for (int j = 0; j < enemiesList.Count; j++)
+            {
+                this.gameObjects.Remove(enemiesList[j]);
+            }
+            for (int j = 0; j < itemsList.Count; j++)
+            {
+                this.gameObjects.Remove(itemsList[j]);
+            }
+
             i += 12;
             int room = i + ROOM_LENGTH * 9;
             //MethodInfo mi;
