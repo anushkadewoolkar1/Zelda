@@ -135,7 +135,7 @@ namespace Sprint0
             enemySprite = new Enemy();
             enemySprite = enemySprite.CreateEnemy(EnemyType.Stalfos, new Vector2(6, 4));
 
-            levelMap = new Level(Content);
+            levelMap = new Level(Content, gameObjects);
             levelMap.LoadRoom(2, 5);
 
             //Load sprite font

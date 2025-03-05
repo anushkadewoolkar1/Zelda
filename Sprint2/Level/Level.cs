@@ -42,6 +42,8 @@ namespace Sprint0.ILevel
 
         private ContentManager contentManager;
 
+        private List<IGameObject> gameObjects;
+
         /* TO DO:
          * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
          * 2. Implement Load Room to invoke constructor calls for each object
@@ -58,7 +60,7 @@ namespace Sprint0.ILevel
         private const int HEIGHT_POSITION_SCALAR = 5;
         private const int LEVEL_TEXTURE_SCALAR = 6;
 
-        public Level(ContentManager Content)
+        public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
             blocksList = new List<Block>();
             enemiesList = new List<Enemy>();
@@ -82,6 +84,8 @@ namespace Sprint0.ILevel
             }
 
             doubleClickTemp = false;
+
+            gameObjects = _gameObjects;
 
             currentRoom = [2, 5];
         }
@@ -221,6 +225,7 @@ namespace Sprint0.ILevel
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType,
                         new Vector2(((i - hold) % ROOM_LENGTH) - 1,
                         ((i - hold) / ROOM_LENGTH) - 1));
+                    gameObjects.Add(enemiesList[enemiesListIndex]);
                     enemiesListIndex++;
                     System.Diagnostics.Debug.WriteLine(((i - hold) / ROOM_LENGTH).ToString());
                 }
@@ -239,6 +244,8 @@ namespace Sprint0.ILevel
 
                     //Block newBlock = CreateBlock(blockType, position, blockTextures); 
                     blocksList.Add(newBlock);
+
+                    gameObjects.Add(blocksList[blocksListIndex]);
                     blocksListIndex++;
 
                     System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
@@ -249,6 +256,7 @@ namespace Sprint0.ILevel
                     itemsList[itemsListIndex] = itemsList[itemsListIndex].CreateItem(itemType,
                         ((i - hold) % ROOM_LENGTH) - 1,
                         ((i - hold) / ROOM_LENGTH) - 1);
+                    gameObjects.Add((itemsList[itemsListIndex]));
                     itemsListIndex++;
                 }
                 i++;
