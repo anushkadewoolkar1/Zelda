@@ -18,7 +18,7 @@ namespace Sprint0.Sprites
 
         private Rectangle sourceRectangle;
         private Vector2 destinationOrigin;
-        private int[] deltaPosition;
+        private double[] deltaPosition;
 
         private float rotation;
         private int directionProjectile;
@@ -26,6 +26,7 @@ namespace Sprint0.Sprites
         private bool isBoomerang;
         private bool isBomb;
         public Vector2 velocity;
+        private Vector2 linkPosition;
         private Vector2 position;
 
         private int boomerangChangeDirection;
@@ -71,7 +72,7 @@ namespace Sprint0.Sprites
             }
 
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
-            spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0] * projectileScale, (int)_position.Y + deltaPosition[1] * projectileScale),
+            spriteBatch.Draw(_texture, new Vector2((int)(_position.X + deltaPosition[0] * projectileScale), (int)(_position.Y + deltaPosition[1] * projectileScale)),
                 sourceRectangle, Color.White, rotation, destinationOrigin, projectileScale, SpriteEffects.None, 0f);
 
             _position = position;
@@ -93,7 +94,7 @@ namespace Sprint0.Sprites
                 }
                 if (timer == 35)
                 {
-                    sourceRectangle = new Rectangle(deltaPosition[0], deltaPosition[1], 0, 0);
+                    sourceRectangle = new Rectangle((int)deltaPosition[0], (int)deltaPosition[1], 0, 0);
                     destroy = true;
                 }
             }
@@ -119,11 +120,6 @@ namespace Sprint0.Sprites
                     deltaPosition[1] -= 2;
                     velocity = new Vector2(0, 2 * projectileScale);
                 }
-                if (isBoomerang)
-                {
-                    //deltaPosition[0] += 
-                    //    (int)(position.X + deltaPosition[0] * projectileScale - link.Position.X) / 2;
-                }
             } else if (directionProjectile == 1)
             {
                 if (boomerangChangeDirection >= 30)
@@ -135,11 +131,6 @@ namespace Sprint0.Sprites
                 {
                     deltaPosition[0] += 2;
                     velocity = new Vector2(2 * projectileScale, 0);
-                }
-                if (isBoomerang)
-                {
-                    //deltaPosition[1] += 
-                    //    (int)(position.Y + deltaPosition[0] * projectileScale - link.Position.Y) / 2;
                 }
             } else if (directionProjectile == 2)
             {
@@ -153,11 +144,6 @@ namespace Sprint0.Sprites
                     deltaPosition[1] += 2;
                     velocity = new Vector2(0, 2 * projectileScale);
                 }
-                if (isBoomerang)
-                {
-                    //deltaPosition[0] += 
-                    //    (int)(position.X + deltaPosition[0] * projectileScale - link.Position.X) / 2;
-                }
             } else if (directionProjectile == 3)
             {
                 if (boomerangChangeDirection >= 30)
@@ -170,12 +156,44 @@ namespace Sprint0.Sprites
                     deltaPosition[0] -= 2;
                     velocity = new Vector2(-2 * projectileScale, 0);
                 }
+            }
+
+            if (directionProjectile % 2 == 1)
+            {
                 if (isBoomerang)
                 {
-                    //deltaPosition[1] += 
-                    //    (int)(position.Y + deltaPosition[0] * projectileScale - link.Position.Y) / 2;
+                    //System.Diagnostics.Debug.WriteLine((((int)link.Position.Y)).ToString());
+                    System.Diagnostics.Debug.WriteLine(
+                        ((int)(linkPosition.Y - link.Position.Y)).ToString());
+                    if ((int)(linkPosition.Y - link.Position.Y) > 0)
+                    {
+                        deltaPosition[1] -= 1.75;
+                    }
+                    else if ((int)(linkPosition.Y - link.Position.Y) < 0)
+                    {
+                        deltaPosition[1] += 1.75;
+                    }
                 }
             }
+            else
+            {
+                if (isBoomerang)
+                {
+                    //System.Diagnostics.Debug.WriteLine((((int)link.Position.Y)).ToString());
+                    System.Diagnostics.Debug.WriteLine(
+                        ((int)(linkPosition.X - link.Position.X)).ToString());
+                    if ((int)(linkPosition.X - link.Position.X) > 0)
+                    {
+                        deltaPosition[0] -= 1.75;
+                    }
+                    else if ((int)(linkPosition.X - link.Position.X) < 0)
+                    {
+                        deltaPosition[0] += 1.75;
+                    }
+                }
+            }
+
+            linkPosition = link.Position;
 
             timer++;
 
@@ -231,7 +249,7 @@ namespace Sprint0.Sprites
 
         public void Destroy()
         {
-            sourceRectangle = new Rectangle(deltaPosition[0], deltaPosition[1], 0, 0);
+            sourceRectangle = new Rectangle((int)deltaPosition[0], (int)deltaPosition[1], 0, 0);
             destroy = true;
         }
 
@@ -247,7 +265,7 @@ namespace Sprint0.Sprites
         {
             get
             {
-                return new Rectangle((int)position.X + deltaPosition[0] * projectileScale, (int)position.Y + deltaPosition[1] * projectileScale,
+                return new Rectangle((int)(position.X + deltaPosition[0] * projectileScale), (int)(position.Y + deltaPosition[1] * projectileScale),
                     sourceRectangle.X, sourceRectangle.Y);
             }
         }
