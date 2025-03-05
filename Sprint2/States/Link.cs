@@ -84,13 +84,13 @@ public class Link : IGameObject
             switch (CurrentItem[i])
             {
                 case ItemType.Arrow:
-                    arrowSprite.Update(gameTime);
+                    arrowSprite.Update(gameTime, this);
                     break;
                 case ItemType.Boomerang:
-                    boomerangSprite.Update(gameTime);
+                    boomerangSprite.Update(gameTime, this);
                     break;
                 case ItemType.Bomb:
-                    bombSprite.Update(gameTime);
+                    bombSprite.Update(gameTime, this);
                     break;
                 default:
                     break;

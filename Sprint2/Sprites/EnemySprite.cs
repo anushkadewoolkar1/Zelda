@@ -80,5 +80,10 @@ namespace Sprint0.Sprites
             spriteBatch.Draw(Texture, destinationRectangle, SourceRectangles[currentFrame], Color.White);
             
         }
+
+        public void Update(GameTime gameTime, Link link)
+        {
+            //no-op
+        }
     }
 }

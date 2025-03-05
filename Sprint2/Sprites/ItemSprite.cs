@@ -86,5 +86,10 @@ namespace Sprint0.Sprites
         {
 
         }
+
+        public void Update(GameTime gameTime, Link link)
+        {
+            //no-op
+        }
     }
 }

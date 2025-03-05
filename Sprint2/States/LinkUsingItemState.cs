@@ -53,7 +53,6 @@ public class LinkUsingItemState : ILinkState
                 link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemRight(1, link.Health));
                 break;
         }
-
         link.UseItem();
     }
 

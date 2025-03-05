@@ -267,5 +267,10 @@ namespace Sprint0.Sprites
 
             return sourceRectangleDimensions;
         }
+
+        public void Update(GameTime gameTime, Link link)
+        {
+            //no-op
+        }
     }
 }

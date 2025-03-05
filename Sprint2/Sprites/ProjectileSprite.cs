@@ -99,7 +99,7 @@ namespace Sprint0.Sprites
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Link link)
         {
 
             if (destroy)
@@ -119,6 +119,11 @@ namespace Sprint0.Sprites
                     deltaPosition[1] -= 2;
                     velocity = new Vector2(0, 2 * projectileScale);
                 }
+                if (isBoomerang)
+                {
+                    //deltaPosition[0] += 
+                    //    (int)(position.X + deltaPosition[0] * projectileScale - link.Position.X) / 2;
+                }
             } else if (directionProjectile == 1)
             {
                 if (boomerangChangeDirection >= 30)
@@ -130,6 +135,11 @@ namespace Sprint0.Sprites
                 {
                     deltaPosition[0] += 2;
                     velocity = new Vector2(2 * projectileScale, 0);
+                }
+                if (isBoomerang)
+                {
+                    //deltaPosition[1] += 
+                    //    (int)(position.Y + deltaPosition[0] * projectileScale - link.Position.Y) / 2;
                 }
             } else if (directionProjectile == 2)
             {
@@ -143,6 +153,11 @@ namespace Sprint0.Sprites
                     deltaPosition[1] += 2;
                     velocity = new Vector2(0, 2 * projectileScale);
                 }
+                if (isBoomerang)
+                {
+                    //deltaPosition[0] += 
+                    //    (int)(position.X + deltaPosition[0] * projectileScale - link.Position.X) / 2;
+                }
             } else if (directionProjectile == 3)
             {
                 if (boomerangChangeDirection >= 30)
@@ -154,6 +169,11 @@ namespace Sprint0.Sprites
                 {
                     deltaPosition[0] -= 2;
                     velocity = new Vector2(-2 * projectileScale, 0);
+                }
+                if (isBoomerang)
+                {
+                    //deltaPosition[1] += 
+                    //    (int)(position.Y + deltaPosition[0] * projectileScale - link.Position.Y) / 2;
                 }
             }
 
@@ -172,6 +192,11 @@ namespace Sprint0.Sprites
                 sourceRectangle = new Rectangle(200, 200, 0, 0);
                 destroy = true;
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            //no-op
         }
 
         public void Draw(SpriteBatch _textures)

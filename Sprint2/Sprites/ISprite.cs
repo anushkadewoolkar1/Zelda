@@ -13,6 +13,10 @@ namespace Sprint0.Sprites
     {
         // Called once per frame to update sprites
         void Update(GameTime gameTime);
+        
+        //Only for Boomerang
+
+        void Update(GameTime gameTime, Link link);
 
         // Draws sprite on the screen
         void Draw(SpriteBatch spriteBatch);
