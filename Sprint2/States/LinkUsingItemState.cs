@@ -25,7 +25,13 @@ public class LinkUsingItemState : ILinkState
     public void Enter()
     {
         this.currentDirection = this.link.currentDirection;
-        this.link.CurrentItem = this.item;
+        if (this.link.CurrentItem.Exists(x => x.Equals(this.item))) {
+            this.link.chooseItem = this.link.CurrentItem.IndexOf(this.item);
+        } else
+        {
+            this.link.CurrentItem.Add(this.item);
+            this.link.chooseItem = this.link.CurrentItem.Count - 1;
+        }
         this.link.linkUseItem = true;
 
         useItemDuration = 0.2f; // Using an item lasts for half a second.

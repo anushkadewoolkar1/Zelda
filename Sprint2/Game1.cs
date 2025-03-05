@@ -250,7 +250,7 @@ namespace Sprint0
 
             item.Update(gameTime);
 
-            linkSprite.Update(gameTime);
+            linkSprite.Update(gameObjects, gameTime);
 
             _block.Update();
 

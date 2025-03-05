@@ -7,10 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.CollisionHandling;
 
 namespace Sprint0.Sprites
 {
-    public class ProjectileSprite : ISprite
+    public class ProjectileSprite : IGameObject, ISprite
     {
 
         private Texture2D _texture;
@@ -24,6 +25,8 @@ namespace Sprint0.Sprites
         private int projectileScale = 2;
         private bool isBoomerang;
         private bool isBomb;
+        public Vector2 velocity;
+        private Vector2 position;
 
         private int boomerangChangeDirection;
         private int timer;
@@ -54,6 +57,8 @@ namespace Sprint0.Sprites
                 sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
 
             boomerangChangeDirection = 0;
+
+            velocity = new Vector2(0, 0);
         }
 
         //When calling this Draw, Position is the center of sprite
@@ -68,6 +73,8 @@ namespace Sprint0.Sprites
             destinationOrigin = new Vector2(((int)sourceRectangle.Width) / 2, ((int)sourceRectangle.Height) / 2);
             spriteBatch.Draw(_texture, new Vector2((int)_position.X + deltaPosition[0] * projectileScale, (int)_position.Y + deltaPosition[1] * projectileScale),
                 sourceRectangle, Color.White, rotation, destinationOrigin, projectileScale, SpriteEffects.None, 0f);
+
+            _position = position;
 
             if (isBomb)
             {
@@ -86,6 +93,7 @@ namespace Sprint0.Sprites
                 }
                 if (timer == 35)
                 {
+                    sourceRectangle = new Rectangle(deltaPosition[0], deltaPosition[1], 0, 0);
                     destroy = true;
                 }
             }
@@ -104,39 +112,48 @@ namespace Sprint0.Sprites
                 if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[1] += 2;
+                    velocity = new Vector2(0, -2 * projectileScale);
+
                 } else
                 {
                     deltaPosition[1] -= 2;
+                    velocity = new Vector2(0, 2 * projectileScale);
                 }
             } else if (directionProjectile == 1)
             {
                 if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[0] -= 2;
+                    velocity = new Vector2(-2 * projectileScale, 0);
                 }
                 else
                 {
                     deltaPosition[0] += 2;
+                    velocity = new Vector2(2 * projectileScale, 0);
                 }
             } else if (directionProjectile == 2)
             {
                 if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[1] -= 2;
+                    velocity = new Vector2(0, -2 * projectileScale);
                 }
                 else
                 {
                     deltaPosition[1] += 2;
+                    velocity = new Vector2(0, 2 * projectileScale);
                 }
             } else if (directionProjectile == 3)
             {
                 if (boomerangChangeDirection >= 30)
                 {
                     deltaPosition[0] += 2;
+                    velocity = new Vector2(2 * projectileScale, 0);
                 }
                 else
                 {
                     deltaPosition[0] -= 2;
+                    velocity = new Vector2(-2 * projectileScale, 0);
                 }
             }
 
@@ -152,6 +169,7 @@ namespace Sprint0.Sprites
 
             if ((timer >= 60 && isBoomerang) || timer >= 70)
             {
+                sourceRectangle = new Rectangle(200, 200, 0, 0);
                 destroy = true;
             }
         }
@@ -184,6 +202,29 @@ namespace Sprint0.Sprites
             }
 
             return sourceRectangleDimensions;
+        }
+
+        public void Destroy()
+        {
+            sourceRectangle = new Rectangle(deltaPosition[0], deltaPosition[1], 0, 0);
+            destroy = true;
+        }
+
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+        }
+        
+        public Rectangle BoundingBox
+        {
+            get
+            {
+                return new Rectangle((int)position.X + deltaPosition[0] * projectileScale, (int)position.Y + deltaPosition[1] * projectileScale,
+                    sourceRectangle.X, sourceRectangle.Y);
+            }
         }
     }
 }

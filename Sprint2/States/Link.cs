@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,17 +26,19 @@ public class Link : IGameObject
     // Health property 
     public int Health { get; set; } = 0;
     // property for which item is currently selected
-    public ItemType CurrentItem { get; set; }  
+    public List<ItemType> CurrentItem { get; set; }  
     public Direction currentDirection { get; set; }
 
     public Boolean linkAttacking { get; set; }
     public Boolean linkUseItem { get; set; }
 
     private Boolean initializeItem;
+    public int chooseItem { get; set; }
     private Boolean spawnedItem;
     private ISprite arrowSprite, boomerangSprite, bombSprite;
     private Vector2 projectilePosition;
     private Direction projectileDirection;
+    private List<IGameObject> gameObjects;
 
     private Vector2 velocity;
 
@@ -55,24 +58,30 @@ public class Link : IGameObject
         invulnerabilityTimer = 0f;
 
         // Set the default current item 
-        CurrentItem = ItemType.Arrow;
         initializeItem = false;
         spawnedItem = false;
 
         linkAttacking = false;
 
+        CurrentItem = new List<ItemType>();
+
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
     {
-
+        gameObjects = _gameObjects;
         currentState.Update(gameTime);
         currentSprite.Update(gameTime);
 
         //Updates projectile for sprite movement when projectile exists
         if (spawnedItem)
         {
-            switch (CurrentItem)
+            
+        }
+
+        for (int i = 0; i < CurrentItem.Count; i++)
+        {
+            switch (CurrentItem[i])
             {
                 case ItemType.Arrow:
                     arrowSprite.Update(gameTime);
@@ -88,7 +97,7 @@ public class Link : IGameObject
             }
         }
 
-        
+
 
         // Update invulnerability timer if Link is invulnerable.
         if (IsInvulnerable)
@@ -118,7 +127,10 @@ public class Link : IGameObject
         //Draws Projectile Sprite while Projectile exists
         if (spawnedItem == true)
         {
-            switch (CurrentItem)
+        }
+        for (int i = 0; i < CurrentItem.Count; i++)
+        {
+            switch (CurrentItem[i])
             {
                 case ItemType.Arrow:
 
@@ -195,9 +207,9 @@ public class Link : IGameObject
         // Implement item pick up logic
         switch (pickedUpItem.GetItemString())
         {
-            case "ZeldaSpriteArrow": CurrentItem = ItemType.Arrow; System.Diagnostics.Debug.WriteLine("ARROW!");  break;
-            case "ZeldaSpriteBoomerang": CurrentItem = ItemType.Boomerang; break;
-            case "ZeldaSpriteBomb": CurrentItem = ItemType.Bomb; break;
+            case "ZeldaSpriteArrow": CurrentItem.Add(ItemType.Arrow); System.Diagnostics.Debug.WriteLine("ARROW!");  break;
+            case "ZeldaSpriteBoomerang": CurrentItem.Add(ItemType.Boomerang); break;
+            case "ZeldaSpriteBomb": CurrentItem.Add(ItemType.Bomb); break;
         }
     }
 
@@ -209,7 +221,7 @@ public class Link : IGameObject
         }
         System.Diagnostics.Debug.WriteLine("Link uses an");
         spawnedItem = false;
-        switch (CurrentItem)
+        switch (CurrentItem[chooseItem])
         {
             case ItemType.Arrow:
                 {
@@ -231,6 +243,7 @@ public class Link : IGameObject
                             arrowSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
                             break;
                     }
+                    gameObjects.Add((IGameObject)arrowSprite);
                     break;
                 }
             case ItemType.Boomerang:
@@ -247,13 +260,15 @@ public class Link : IGameObject
                     {
                         boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection + 1);
                     }
-                    
+                    gameObjects.Add((IGameObject)boomerangSprite);
                     break;
                 }
             case ItemType.Bomb:
                 {
                     bombSprite = ProjectileSpriteFactory.Instance.CreateBomb();
+                    gameObjects.Add((IGameObject)bombSprite);
                     break;
+
                 }
             default:
                 {
@@ -261,10 +276,6 @@ public class Link : IGameObject
                     break;
                 }
         }
-
-        //this.currentState.Exit();
-        //this.currentState = new LinkUsingItemState(this, currentDirection);
-        //this.currentState.Enter();
 
         // Prepares to draw Link's Projectile and holds item direction information
         projectileDirection = currentDirection;

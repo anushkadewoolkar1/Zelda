@@ -10,6 +10,7 @@ using Zelda.Enums;
 using Sprint0.States;
 using Sprint0.ILevel;
 using System.ComponentModel.Design;
+using Sprint0.Sprites;
 
 
 public class CollisionManager
@@ -134,7 +135,12 @@ public class CollisionManager
         } else if (objA is Item)
         {
             collisionHandler = new PlayerItemCollisionHandler();
+        } else if (objA is ProjectileSprite)
+        {
+            return;
         }
+
+
         CollisionSide side;
         int heightDiff = (objA.BoundingBox.Height - intersection.Height), widthDiff = (objA.BoundingBox.Width - intersection.Width);
         if (heightDiff > widthDiff)
