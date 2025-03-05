@@ -24,19 +24,19 @@ namespace Sprint0.Collision
             {
                 case CollisionSide.Left:
                     enemy.ChangeDirection(Direction.Right);
-                    enemy.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE, link.Position.Y);
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE, enemy.position.Y);
                     break;
                 case CollisionSide.Right:
                     enemy.ChangeDirection(Direction.Left);
-                    enemy.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, link.Position.Y);
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, enemy.position.Y);
                     break;
                 case CollisionSide.Top:
                     enemy.ChangeDirection(Direction.Down);
-                    enemy.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE);
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, BORDER_POSITION_VALUE);
                     break;
                 case CollisionSide.Bottom:
                     enemy.ChangeDirection(Direction.Up);
-                    enemy.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE);
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, level.roomHeight - BORDER_POSITION_VALUE);
                     break;
             }
         }

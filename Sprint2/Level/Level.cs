@@ -260,7 +260,7 @@ namespace Sprint0.ILevel
         {
             get
             {
-                return new Rectangle(LEVEL_CENTER_POSITION, LEVEL_CENTER_POSITION, (int)roomDimensions.X - WIDTH_POSITION_SCALAR * LEVEL_CENTER_POSITION, (int)roomDimensions.Y - WIDTH_POSITION_SCALAR * LEVEL_CENTER_POSITION);
+                return new Rectangle(LEVEL_CENTER_POSITION, LEVEL_CENTER_POSITION, (int)roomDimensions.X - LEVEL_CENTER_POSITION, (int)roomDimensions.Y - LEVEL_CENTER_POSITION);
             }
         }
         public Vector2 Velocity

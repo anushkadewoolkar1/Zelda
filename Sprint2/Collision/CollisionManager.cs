@@ -131,6 +131,9 @@ public class CollisionManager
         {
             objA.Destroy();
             return;
+        } else if (objA is Item)
+        {
+            collisionHandler = new PlayerItemCollisionHandler();
         }
         CollisionSide side;
         int heightDiff = (objA.BoundingBox.Height - intersection.Height), widthDiff = (objA.BoundingBox.Width - intersection.Width);
