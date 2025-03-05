@@ -138,7 +138,6 @@ public class CollisionManager
         } else if (objA is ProjectileSprite)
         {
             return;
-            //DOESN'T WORK = collisionHandler = new ProjectileCollisionHandler();
         }
 
 
