@@ -111,19 +111,87 @@ namespace Sprint0
 
             restart = false;
 
-            Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") }; 
+            Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") };
             _block = new Block(new Vector2(15, 1), blockTextures);
             //_block = new Block(new Vector2(15, 1), blockTextures);
             _invisibleBlock = new InvisibleBlock(new Vector2(10, 5), invisibleBlockTextures);
             _loadRoomBlock = new LoadRoomBlock(new Vector2(100, 100), blockTextures, levelMap, 1, 2);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            LoadDynamicObjects();
+
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            _keyboardController.Update();
+
+            _mouseController.Update(levelMap);
+
+            //_currentSprite.Update(gameTime);
+
+            levelMap.Update(gameTime);
+
+            enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
+
+            item.Update(gameTime);
+
+            linkSprite.Update(gameObjects, gameTime);
+
+            _block.Update();
+
+            _loadRoomBlock.CheckCollision(linkSprite.Position);
+
+            collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
+
+            levelMap.Draw(_spriteBatch);
+
+            linkSprite.Draw(_spriteBatch);
+
+            enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
+
+            _block.Draw(_spriteBatch);
+            _invisibleBlock.Draw(_spriteBatch);
+            _loadRoomBlock.Draw(_spriteBatch);
+
+            item.Draw(_spriteBatch);
+            item2.Draw(_spriteBatch);
+
+            _spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
+
+        public ISprite CurrentSprite
+        {
+            get => _currentSprite;
+            set => _currentSprite = value;
+        }
+
+        public void LoadDynamicObjects()
+        {
+            // Clear objects
+            gameObjects.Clear();
+
+
             ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
 
             ItemSpriteFactory.Instance.ItemTextures(Content);
             item = new Item();
             item = item.CreateItem(ItemType.Arrow, 11, 6);
-            itemSprite = item.GetItemSprite(); 
+            itemSprite = item.GetItemSprite();
 
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
@@ -150,7 +218,7 @@ namespace Sprint0
                 { Keys.Q, new ExitCommand(this, false) },
 
                 //'R' -> Program Reset:
-                { Keys.R, new ExitCommand(this, true) },
+                { Keys.R, new ResetCommand(this) },
 
                 //No_Key -> Set Player state to default:
                 { Keys.None, new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite),linkSprite.currentDirection)) },
@@ -233,62 +301,5 @@ namespace Sprint0
             gameObjects.Add(_loadRoomBlock);
         }
 
-        protected override void Update(GameTime gameTime)
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            _keyboardController.Update();
-
-            _mouseController.Update(levelMap);
-
-            //_currentSprite.Update(gameTime);
-
-            levelMap.Update(gameTime);
-
-            enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
-
-            item.Update(gameTime);
-
-            linkSprite.Update(gameObjects, gameTime);
-
-            _block.Update();
-
-            _loadRoomBlock.CheckCollision(linkSprite.Position);
-
-            collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
-
-            base.Update(gameTime);
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            _spriteBatch.Begin();
-
-            levelMap.Draw(_spriteBatch);
-
-            linkSprite.Draw(_spriteBatch);
-
-            enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
-
-            _block.Draw(_spriteBatch);
-            _invisibleBlock.Draw(_spriteBatch);
-            _loadRoomBlock.Draw(_spriteBatch);
-
-            item.Draw(_spriteBatch);
-            item2.Draw(_spriteBatch);
-
-            _spriteBatch.End();
-
-            base.Draw(gameTime);
-        }
-
-        public ISprite CurrentSprite
-        {
-            get => _currentSprite;
-            set => _currentSprite = value;
-        }
     }
 }
