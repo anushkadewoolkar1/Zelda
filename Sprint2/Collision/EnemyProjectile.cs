@@ -50,7 +50,9 @@ namespace Sprint0.Collision
 
         public void Destroy()
         {
-
+            Sprite = null;
+            Position = Vector2.Zero;
+            Velocity = Vector2.Zero;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Sprint0.CollisionHandling
 
             link.TakeDamage(1);
             // Remove projectile once that method is implemented
-            //EnemyProjectile.Destroy();
+            enemyProj.Destroy();
 
             // TODO: Apply damage to Link, trigger hit effects, any other logic
             System.Diagnostics.Debug.WriteLine("Link collided with an enemy projectile on side: " + side);

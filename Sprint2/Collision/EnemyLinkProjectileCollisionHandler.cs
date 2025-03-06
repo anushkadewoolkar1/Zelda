@@ -17,12 +17,12 @@ namespace Sprint0.CollisionHandling
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {
             Enemy enemy = objA as Enemy;
-            IGameObject linkProjectile = objB;
+            ProjectileSprite linkProjectile = objB as ProjectileSprite;
 
             if (enemy == null || !IsLinkProjectile(linkProjectile))
             {
                 enemy = objB as Enemy;
-                linkProjectile = objA;
+                linkProjectile = objA as ProjectileSprite;
             }
 
             if (enemy == null || !IsLinkProjectile(linkProjectile))
@@ -34,11 +34,11 @@ namespace Sprint0.CollisionHandling
             System.Diagnostics.Debug.WriteLine("Enemy hit by link's projectile!");
 
             // once implemented
-            // enemy.TakeDamage(1);
+            enemy.TakeDamage(linkProjectile);
 
             // This needs to call the destroy method in ProjectileSprite.cs
             // probably need to create a representation of linkprojectile just like the enemyprojectile
-            // linkProjectile.Destroy();
+            linkProjectile.Destroy();
         }
 
         // Determines if given object is Link projectile
