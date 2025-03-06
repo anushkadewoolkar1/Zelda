@@ -30,7 +30,6 @@ namespace Sprint0.States
         public void Update(GameTime gameTime)
         {
             // vector work done here
-            enemy.TakeDamage();
             enemy.Move(position, gameTime);
             
             timer--;

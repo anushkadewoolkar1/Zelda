@@ -39,6 +39,8 @@ namespace Sprint0.States
             sprite = spriteFactory.CreateEnemySprite(enemyType, Direction);
             sprite.spriteSize = 32;
 
+            SetHealth();
+
 
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
@@ -52,6 +54,7 @@ namespace Sprint0.States
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
         {
             enemyType = enemyCreated;
+            SetHealth();
             position = tileMap.GetTileCenter(spawnPosition);
             position.X -= 12;
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
@@ -206,6 +209,33 @@ namespace Sprint0.States
                 case EnemyType.Stalfos:
                     EnemyHealth = 2.0;
                     break;
+                case EnemyType.Goriya:
+                    EnemyHealth = 3.0;
+                    break;
+                case EnemyType.Gel:
+                    EnemyHealth = 0.5;
+                    break;
+                case EnemyType.Zol:
+                    EnemyHealth = 2.0;
+                    break;
+                case EnemyType.Trap:
+                    EnemyHealth = 99.0;
+                    break;
+                case EnemyType.Wallmaster:
+                    EnemyHealth = 2.0;
+                    break;
+                case EnemyType.Rope:
+                    EnemyHealth = 0.5;
+                    break;
+                case EnemyType.Aquamentus:
+                    EnemyHealth = 6.0;
+                    break;
+                case EnemyType.Dodongo:
+                    EnemyHealth = 8.0;
+                    break;
+                default:
+                    EnemyHealth = 0;
+                    break;
 
             }
         }
@@ -322,9 +352,26 @@ namespace Sprint0.States
             itemSpawn = true;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(ProjectileSprite projectile)
         {
-            
+
+            switch (projectile.currentProjectile)
+             {
+                   case ItemType.Arrow:
+                            EnemyHealth -= 2.0;
+                            break;
+                   case ItemType.Boomerang:
+                            EnemyHealth -= 0.5;
+                            break;
+                   case ItemType.Bomb:
+                            EnemyHealth -= 4.0;
+                            break;
+            }
+            if (EnemyHealth <= 0)
+            {
+                EnemyHealth = 0;
+                Destroy();
+            }
         }
 
         public Rectangle BoundingBox
@@ -372,7 +419,9 @@ namespace Sprint0.States
 
         public void Destroy()
         {
-
+            sprite = spriteFactory.CreateEnemySprite(EnemyType.None, Direction);
+            velocity = new Vector2(0, 0);
+            position = new Vector2(0, 0);
         }
     }
 }
