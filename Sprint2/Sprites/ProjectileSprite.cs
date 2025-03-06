@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionHandling;
+using Zelda.Enums;
 
 namespace Sprint0.Sprites
 {
@@ -28,6 +29,7 @@ namespace Sprint0.Sprites
         public Vector2 velocity;
         private Vector2 linkPosition;
         private Vector2 position;
+        public ItemType currentProjectile;
 
         private int boomerangChangeDirection;
         private int timer;
@@ -60,6 +62,17 @@ namespace Sprint0.Sprites
             boomerangChangeDirection = 0;
 
             velocity = new Vector2(0, 0);
+
+            if (isBomb)
+            {
+                currentProjectile = ItemType.Bomb;
+            } else if (isBoomerang)
+            {
+                currentProjectile = ItemType.Boomerang;
+            } else
+            {
+                currentProjectile = ItemType.Arrow;
+            }
         }
 
         //When calling this Draw, Position is the center of sprite
