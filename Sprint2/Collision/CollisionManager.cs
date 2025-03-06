@@ -13,9 +13,10 @@ using System.ComponentModel.Design;
 using Sprint0.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 
-
 public class CollisionManager
+    
 {
+    public int debug = 0;
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
     public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, Level currLevel)
     {
@@ -69,6 +70,15 @@ public class CollisionManager
                     // handle Link-Block and Enemy-Block collisions
                     if (objA is Block || objB is Block)
                     {
+                        // this is necessary for collision to work for blocks please dont delete it again
+                        if (objA is Block)
+                        {
+                            side = DetermineCollisionSide(objB, objA);
+                        }
+                        else
+                        {
+                            side = DetermineCollisionSide(objA, objB);
+                        }
                         if (objA is Link || objB is Link)
                         {
                             LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
@@ -164,6 +174,7 @@ public class CollisionManager
     /// Determines the collision side for objA relative to objB using their velocities and intersection.
     private CollisionSide DetermineCollisionSide(IGameObject objA, IGameObject objB)
     {
+        debug++;
         Rectangle intersection = Rectangle.Intersect(objA.BoundingBox, objB.BoundingBox);
 
         // If the intersection width is smaller than its height, assume a horizontal collision.
