@@ -16,13 +16,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class CollisionManager
 {
-    private AllCollisionManager allCollisionManager;
-
-    public CollisionManager()
-    {
-        allCollisionManager = new AllCollisionManager();
-    }
-
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
     public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, Level currLevel)
     {
