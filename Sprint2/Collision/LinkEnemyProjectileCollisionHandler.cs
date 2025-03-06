@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Collision;
+using Sprint0.CollisionHandling;
 using Zelda.Enums;
 
 namespace Sprint0.CollisionHandling
@@ -24,13 +25,19 @@ namespace Sprint0.CollisionHandling
             }
 
             if (link == null || enemyProj == null)
-                return;
+            { 
+            System.Diagnostics.Debug.WriteLine("LinkEnemyProjectileCollisionHandler: Collision objects not valid.");
+            return;
+            }
+
+            if (link.IsInvulnerable) return;
+
+            link.TakeDamage(1);
+            // Remove projectile once that method is implemented
+            //EnemyProjectile.Destroy();
 
             // TODO: Apply damage to Link, trigger hit effects, any other logic
             System.Diagnostics.Debug.WriteLine("Link collided with an enemy projectile on side: " + side);
-
-            //TODO: Apply damage to link which means making takeDamge method
-                    // and remove the projectile so probable add remove method for Enemeyprojectile
         }
     }
 }

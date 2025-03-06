@@ -18,28 +18,13 @@ public class LinkDamagedState : ILinkState
         this.link = link;
         this.currentDirection = direction;
         this.previousState = previousState;
-        damagedDuration = 1.0f; // Damaged state lasts for 1 second.
+        damagedDuration = 2.0f; // Damaged state lasts for 1 second.
     }
 
     public void Enter()
     {
-        //switch (currentDirection)
-        //{
-        //    case Direction.Up:
-        //        link.SetSprite(LinkSpriteFactory.Instance.CreateUpDamaged(0, 1, link.Health));
-        //        break;
-        //    case Direction.Down:
-        //        link.SetSprite(LinkSpriteFactory.Instance.CreateDownDamaged(0, 1, link.Health));
-        //        break;
-        //    case Direction.Left:
-        //        link.SetSprite(LinkSpriteFactory.Instance.CreateLeftDamaged(0, 1, link.Health));
-        //        break;
-        //    case Direction.Right:
-        //        link.SetSprite(LinkSpriteFactory.Instance.CreateRightDamaged(0, 1, link.Health));
-        //        break;
-        //}
-
         link.StartInvulnerability();
+        //link.LinkSprite.SetDamaged(true);
     }
 
     public void Update(GameTime gameTime)
@@ -64,5 +49,6 @@ public class LinkDamagedState : ILinkState
     {
         // End the invulnerability 
         link.EndInvulnerability();
+        //link.LinkSprite.SetDamaged(false);
     }
 }

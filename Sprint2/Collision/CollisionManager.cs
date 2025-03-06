@@ -11,6 +11,7 @@ using Sprint0.States;
 using Sprint0.ILevel;
 using System.ComponentModel.Design;
 using Sprint0.Sprites;
+using Microsoft.Xna.Framework.Graphics;
 
 
 public class CollisionManager
@@ -54,59 +55,61 @@ public class CollisionManager
                 // Check if objA and objB actually intersect.
                 if (objA.BoundingBox.Intersects(objB.BoundingBox))
                 {
-                    CollisionSide side;
-                    // Determine collision side. We use the objects' velocities and the intersection rectangle.
-                    if (objA is Block)
+                    // HERE WE CALL COLLISION RESPONSE HANDLERS
+                    CollisionSide side = DetermineCollisionSide(objA, objB);
+
+                    // Handle Link-EnemyProjectile collisions
+                    if ((objA is Link && objB is EnemyProjectile) || (objA is EnemyProjectile && objB is Link))
                     {
-                        side = DetermineCollisionSide(objB, objA);
-                    }
-                    else
-                    {
-                        side = DetermineCollisionSide(objA, objB);
+                        LinkEnemyProjectileCollisionHandler projectileCollisionHandler = new LinkEnemyProjectileCollisionHandler();
+                        projectileCollisionHandler.HandleCollision(objA, objB, side);
+                        continue;
                     }
 
-                    // Here, we call appropriate collision response handler.
+                    // Handle Link-Item collisions
                     if (objA is Item || objB is Item)
                     {
                         PlayerItemCollisionHandler itemCollisionHandler = new PlayerItemCollisionHandler();
                         itemCollisionHandler.HandleCollision(objA, objB, side);
                     }
 
-                    if (objA is Block ||  objB is Block)
+                    // handle Link-Block and Enemy-Block collisions
+                    if (objA is Block || objB is Block)
                     {
                         if (objA is Link || objB is Link)
                         {
                             LinkBlockCollisionHandler blockCollisionHandler = new LinkBlockCollisionHandler();
-                            if (objA is Block)
-                            {
-                                blockCollisionHandler.HandleCollision(objB, objA, side);
-                            }
-                            else
-                            {
-                                blockCollisionHandler.HandleCollision(objA, objB, side);
-                            }
-                        } else if (objA is Enemy || objB is Enemy)
+                            if (objA is Block) blockCollisionHandler.HandleCollision(objB, objA, side);
+                            else blockCollisionHandler.HandleCollision(objA, objB, side);
+                        }
+                        else if (objA is Enemy || objB is Enemy)
                         {
                             EnemyBlockCollisionHandler blockCollisionHandler = new EnemyBlockCollisionHandler();
-                            if (objA is Enemy) {
-                                blockCollisionHandler.HandleCollision(objA, objB, side);
-                            } else
-                            {
-                                blockCollisionHandler.HandleCollision(objB, objA, side);
-                            }
+                            if (objA is Enemy) blockCollisionHandler.HandleCollision(objA, objB, side);
+                            else blockCollisionHandler.HandleCollision(objB, objA, side);
+                        }
+                    }    
+
+                    // Handle Link-Enemy collisions
+                    if (objA is Enemy || objB is Enemy)
+                    {
+                        if (objA is Link || objB is Enemy)
+                        {
+                            LinkEnemyCollisionHandler enemyCollisionHandler = new LinkEnemyCollisionHandler();
+                            if (objA is Link) enemyCollisionHandler.HandleCollision(objA, objB, side);
+                            else enemyCollisionHandler.HandleCollision(objB, objA, side);
+
                         }
                     }
 
-                    if (objA is Enemy || objB is Enemy)
+                    // Handle Enemy-LinkProjectiles collisions
+                    if ((objA is Enemy && IsLinkProjectile(objB)) || (objB is Enemy && IsLinkProjectile(objA)))
                     {
-                        LinkEnemyCollisionHandler enemyCollisionHandler = new LinkEnemyCollisionHandler();
-                        if (objA is Link)
-                        {
-                            enemyCollisionHandler.HandleCollision(objA, objB, side);
-                        } else
-                        {
-                            enemyCollisionHandler.HandleCollision(objB, objA, side);
-                        }
+                        EnemyLinkProjectileCollisionHandler projectileHandler = new EnemyLinkProjectileCollisionHandler();
+                        if (objA is Enemy)
+                            projectileHandler.HandleCollision(objA, objB, side);
+                        else
+                            projectileHandler.HandleCollision(objB, objA, side);
                     }
 
                     // For now, debug message.
@@ -187,6 +190,13 @@ public class CollisionManager
             else
                 return CollisionSide.Top;
         }
+    }
+
+    // Helper method for determining if object is Link's projectile 
+    private bool IsLinkProjectile(IGameObject obj)
+    {
+        // For example, if Link projectiles are of type ProjectileSprite or LinkProjectile:
+        return obj is ProjectileSprite;
     }
 }
 

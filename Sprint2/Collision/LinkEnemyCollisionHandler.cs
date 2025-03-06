@@ -16,11 +16,11 @@ namespace Sprint0.Collision
             Link link = objA as Link;
             Enemy enemy = objB as Enemy;
             if(link == null || enemy == null) return;
+            if (link.IsInvulnerable) return;
 
-            // link takes damage, enemies will immediately walk the opposite direction (doesn't matter whether they continue to walk in that direction or not tho)
-
-            // start the invulnerability, change later to TakeDamage() method like in another collision case if that's added
-            // push link back 3 blocks
+            // link takes damage, enemies will immediately walk the opposite direction
+            // (doesn't matter whether they continue to walk in that direction or not tho)
+            link.TakeDamage(1);
             link.ChangeState(new LinkDamagedState(link, link.currentDirection, link.currentState));
             link.currentState.Enter();
 

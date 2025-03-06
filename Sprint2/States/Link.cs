@@ -15,6 +15,7 @@ public class Link : IGameObject
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
     private LinkSpriteFactory spriteFactory;
+    //public LinkSprite LinkSprite { get; set; }
 
     // Invulnerability settings.
     public bool IsInvulnerable { get; private set; }
@@ -24,7 +25,7 @@ public class Link : IGameObject
     private const float Speed = 100f;
 
     // Health property 
-    public int Health { get; set; } = 0;
+    public int Health { get; set; } = 3;
     // property for which item is currently selected
     public List<ItemType> CurrentItem { get; set; }  
     public Direction currentDirection { get; set; }
@@ -272,7 +273,6 @@ public class Link : IGameObject
                 }
             default:
                 {
-                    //Console.WriteLine("No valid item selected.");
                     break;
                 }
         }
@@ -284,11 +284,20 @@ public class Link : IGameObject
         System.Diagnostics.Debug.WriteLine("Item");
     }
 
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            HandleDeathStart();
+        }
+    }
     public void StartInvulnerability()
     {
         IsInvulnerable = true;
-        invulnerabilityTimer = 1.0f; // Link remains invulnerable for 1 second.
-        Health = 1;
+        invulnerabilityTimer = 2.0f; // Link remains invulnerable for 2 second.
         System.Diagnostics.Debug.WriteLine("Link is now invulnerable.");
     }
 
@@ -296,7 +305,6 @@ public class Link : IGameObject
     {
         IsInvulnerable = false;
         invulnerabilityTimer = 0;
-        Health = 0;
         System.Diagnostics.Debug.WriteLine("Link is no longer invulnerable.");
     }
 

@@ -114,6 +114,15 @@ namespace Sprint0.Sprites
                 damageClock++;
             }
         }
+
+        //public void SetDamaged(bool damaged)
+        //{
+        //    linkDamaged = damaged;
+        //    if (!damaged)
+        //    {
+        //        damageClock = 0;
+        //    }
+        //}
         
 
         public void Update(GameTime gameTime)
