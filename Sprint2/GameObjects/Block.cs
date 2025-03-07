@@ -19,7 +19,7 @@ public class Block : IBlock, IGameObject
 
 
     private const float scaleFactor = 0.3f;
-    private const int BOUNDING_BOX_DIM = 30;
+    private const int BOUNDING_BOX_DIM = 20;
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures)
     {
