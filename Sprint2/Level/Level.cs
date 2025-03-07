@@ -55,7 +55,7 @@ namespace Sprint0.ILevel
 
 
         private const int ROOM_LENGTH = 14;
-        private const int LEVEL_CENTER_POSITION = 64;
+        private const int LEVEL_CENTER_POSITION = 60;
         private const int WIDTH_POSITION_SCALAR = 2;
         private const int HEIGHT_POSITION_SCALAR = 5;
         private const int LEVEL_TEXTURE_SCALAR = 6;
