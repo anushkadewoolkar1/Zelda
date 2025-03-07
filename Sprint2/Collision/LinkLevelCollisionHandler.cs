@@ -27,10 +27,10 @@ namespace Sprint0.Collision
                     link.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE - 44, link.Position.Y);
                     break;
                 case CollisionSide.Right:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE + 270, link.Position.Y);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE + 275, link.Position.Y);
                     break;
                 case CollisionSide.Bottom:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE + 153);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE + 150);
                     break;
                 case CollisionSide.Top:
                     link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE - 7);
