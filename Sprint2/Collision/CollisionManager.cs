@@ -17,6 +17,7 @@ public class CollisionManager
     
 {
     public int debug = 0;
+    public int levelDebug = 0;
     /// Checks for collisions among dynamic objects using a sort-and-sweep algorithm.
     public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, Level currLevel)
     {
@@ -34,6 +35,8 @@ public class CollisionManager
 
             if ((levelIntersection.Width * levelIntersection.Height) < (objA.BoundingBox.Width * objA.BoundingBox.Height))
             {
+                levelDebug++;
+
                 DispatchLevelCollisions(objA, currLevel, levelIntersection);
             }
 
@@ -49,6 +52,12 @@ public class CollisionManager
                 // Check if objA and objB actually intersect.
                 if (objA.BoundingBox.Intersects(objB.BoundingBox))
                 {
+
+                    //  this is temporary for debugging
+                    if (objA is Block && objB is Block)
+                    {
+                        break;
+                    }
                     // HERE WE CALL COLLISION RESPONSE HANDLERS
                     CollisionSide side = DetermineCollisionSide(objA, objB);
 
@@ -160,7 +169,7 @@ public class CollisionManager
             } 
         } else
         {
-            if (objA.Velocity.X > 0)
+            if (objA.Velocity.X < 0)
             {
                 side = CollisionSide.Left;  
             } else

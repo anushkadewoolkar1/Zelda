@@ -12,7 +12,7 @@ namespace Sprint0.Collision
 {
     public class LinkLevelCollisionHandler : ICollisionHandler
     {
-        const int BORDER_POSITION_VALUE = 5;
+        const int BORDER_POSITION_VALUE = 110;
 
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {
@@ -22,17 +22,18 @@ namespace Sprint0.Collision
 
             switch (side)
             {
+                // this corresponds to the left side of the level..etc
                 case CollisionSide.Left:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE, link.Position.Y);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE - 44, link.Position.Y);
                     break;
                 case CollisionSide.Right:
-                    //link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, link.Position.Y);
-                    break;
-                case CollisionSide.Top:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE + 270, link.Position.Y);
                     break;
                 case CollisionSide.Bottom:
-                    //link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE + 146);
+                    break;
+                case CollisionSide.Top:
+                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE);
                     break;
             }
         }

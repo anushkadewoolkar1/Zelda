@@ -85,13 +85,22 @@ public class Link : IGameObject
             switch (CurrentItem[i])
             {
                 case ItemType.Arrow:
-                    arrowSprite.Update(gameTime, this);
+                    if (arrowSprite != null)
+                    {
+                        arrowSprite.Update(gameTime, this);
+                    }
                     break;
                 case ItemType.Boomerang:
-                    boomerangSprite.Update(gameTime, this);
+                    if (boomerangSprite != null)
+                    {
+                        boomerangSprite.Update(gameTime, this);
+                    }
                     break;
                 case ItemType.Bomb:
-                    bombSprite.Update(gameTime, this);
+                    if (bombSprite != null)
+                    {
+                        bombSprite.Update(gameTime, this);
+                    }
                     break;
                 default:
                     break;
@@ -132,16 +141,26 @@ public class Link : IGameObject
         for (int i = 0; i < CurrentItem.Count; i++)
         {
             switch (CurrentItem[i])
+
             {
                 case ItemType.Arrow:
-
-                    arrowSprite.Draw(spriteBatch, projectilePosition);
+                    if (arrowSprite != null)
+                    {
+                        arrowSprite.Draw(spriteBatch, projectilePosition);
+                    }
                     break;
                 case ItemType.Boomerang:
-                    boomerangSprite.Draw(spriteBatch, projectilePosition);
+                    if (boomerangSprite != null)
+                    {
+                        boomerangSprite.Draw(spriteBatch, projectilePosition);
+                       
+                    }
                     break;
                 case ItemType.Bomb:
-                    bombSprite.Draw(spriteBatch, projectilePosition);
+                    if (bombSprite != null)
+                    {
+                        bombSprite.Draw(spriteBatch, projectilePosition);
+                    }
                     break;
                 default:
                     break;
