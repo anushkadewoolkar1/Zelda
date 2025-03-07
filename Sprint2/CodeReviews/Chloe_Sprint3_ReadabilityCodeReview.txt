@@ -1,4 +1,4 @@
-﻿Author: Kyle Dietrich
+Author: Kyle Dietrich
 Date: 3/7/2025
 Sprint: 3
 File name: 
@@ -35,7 +35,3 @@ Specific comments on what is readable and what is not:
                                         ...
                                         ...
         Also Gel and Zol have similar movement logic so you might be able to combine those
-
-	
-	
-	
