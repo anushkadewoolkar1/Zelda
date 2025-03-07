@@ -19,7 +19,7 @@ public class InvisibleBlock : Block, IGameObject
         pixelPosition = startPosition;
 
     }
-
+    /*
     public virtual void Draw(SpriteBatch spriteBatch)
     {
         if (textures.Length > 0)
@@ -37,7 +37,7 @@ public class InvisibleBlock : Block, IGameObject
             spriteBatch.Draw(solidColor, pixelPosition, null, Color.Red, 0f, Vector2.Zero, BLOCK_SCALE, SpriteEffects.None, 0f);
         }
     }
-
+    */
     public new Rectangle BoundingBox
     {
         get

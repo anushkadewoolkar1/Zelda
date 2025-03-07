@@ -1,0 +1,37 @@
+Author: Kyle Dietrich
+Date: 3/7/2025
+Sprint: 3
+File name: 
+Author of the .cs file: Chloe
+Time taken: 30 min
+Specific comments on what is readable and what is not:
+	Methods are named well and make it easy to tell the purpose of the code and the structure of the class is overall pretty good
+
+	The Update() method is difficult to read. You could extract logic into helper methods to make easier to understand
+		Something like this maybe:
+			                    Vector2 move = Vector2.Zero;
+                                enemy.Speed = 100f;
+                                int random = RandomNumberGenerator.GetInt32(-1, 2);
+
+                                switch (enemy.enemyType)
+                                {
+                                    case EnemyType.OldMan:
+                                        enemy.Speed = 0; 
+                                        break;
+            
+                                    case EnemyType.Keese:
+                                        move = AdjustMoveForKeese(random);
+                                        break;
+
+                                    case EnemyType.Stalfos:
+                                        if (timer == 0 || timer == 50)
+                                            enemy.ChangeDirection((Direction)random);
+                                        move = MoveDirection(enemy.Direction);
+                                        break;
+                                    case EnemyType.Goriya:
+                                        move = AdjustMoveForGoriya(random);
+                                        break;
+                                        ...
+                                        ...
+                                        ...
+        Also Gel and Zol have similar movement logic so you might be able to combine those
