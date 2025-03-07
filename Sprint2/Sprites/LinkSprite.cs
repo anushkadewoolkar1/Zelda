@@ -97,7 +97,7 @@ namespace Sprint0.Sprites
             }
             else
             {
-                switch ((damageClock / 3) % 3)
+                switch (damageClock % 3)
                 {
                     case 0:
                         spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);

@@ -15,6 +15,7 @@ namespace Sprint0.Controllers
         private readonly Dictionary<Keys, ICommand> _keyCommandMap;
         // Add instance variable to store last input (with a default value for no input): (PP)
         private Keys lastInput;
+        private bool lastKeyIdle = false;
 
         public KeyboardController(Dictionary<Keys, ICommand> keyCommandMap)
         {
@@ -43,12 +44,21 @@ namespace Sprint0.Controllers
                 }
             }
 
+            if (pressedKeys.Length > 0)
+            {
+                lastKeyIdle = false;
+            }
+
 
             // If no input is given, reset lastInput to Keys.None (default state), and return Link to default idle state: (PP)
             if (pressedKeys.Length == 0)
             {
                 lastInput = Keys.None;
-                _keyCommandMap[Keys.None].Execute();
+                if (lastKeyIdle == false)
+                {
+                    _keyCommandMap[Keys.None].Execute();
+                    lastKeyIdle = true;
+                }
             }
         }
 
