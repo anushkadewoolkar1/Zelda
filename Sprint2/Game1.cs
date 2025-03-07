@@ -196,12 +196,6 @@ namespace Sprint0
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
-            Enemy gelEnemySprite = new Enemy();
-            gelEnemySprite = gelEnemySprite.CreateEnemy(EnemyType.Gel, new Vector2(8, 6));
-            gelEnemySprite.SetHealth();
-            enemySprites.Add(gelEnemySprite);
-            enemySprite = new Enemy();
-            enemySprite = enemySprite.CreateEnemy(EnemyType.Stalfos, new Vector2(6, 4));
 
             levelMap = new Level(Content, gameObjects);
             levelMap.LoadRoom(2, 5);
