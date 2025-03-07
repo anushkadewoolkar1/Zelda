@@ -21,8 +21,7 @@ namespace Sprint0.Collision
             // link takes damage, enemies will immediately walk the opposite direction
             // (doesn't matter whether they continue to walk in that direction or not tho)
             link.TakeDamage(1);
-            link.ChangeState(new LinkDamagedState(link, link.currentDirection, link.currentState));
-            link.currentState.Enter();
+            link.StartInvulnerability();
 
             switch (side)
             {
