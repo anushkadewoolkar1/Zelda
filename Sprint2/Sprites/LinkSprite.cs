@@ -91,7 +91,7 @@ namespace Sprint0.Sprites
         {
             destinationRectangle = new Rectangle((int)_position.X - (leftAdjustment * linkScale), (int)_position.Y - (upAdjustment * linkScale),
                             sourceRectangle.Width * linkScale, sourceRectangle.Height * linkScale);
-            if (!linkDamaged)
+            if (linkDamaged)
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             }
