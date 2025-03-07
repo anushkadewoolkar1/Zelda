@@ -50,7 +50,8 @@ namespace Zelda.Enums
         Arrow,
         Boomerang,
         Bomb,
-        Fireball
+        Fireball,
+        Compass
     }
 
     public enum EnemyType

@@ -75,6 +75,16 @@ namespace Sprint0.States
                     };
                     break;
 
+                case ItemType.Compass:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteCompass", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
+                    // this below doesnt work
                 case ItemType.Fireball:
                     currItem = new Item
                     {
