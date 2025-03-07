@@ -115,8 +115,14 @@ public class Link : IGameObject
             invulnerabilityTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (invulnerabilityTimer <= 0)
             {
+                // Once the damaged duration is over, revert to the previous state
+                if (this.currentState != null)
+                    ChangeState(this.currentState);
+                else
+                    ChangeState(new LinkWalkingState(this, currentDirection));
                 EndInvulnerability();
             }
+            
         }
     }
 
