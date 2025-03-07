@@ -140,18 +140,6 @@
 /processorParam:TextureFormat=Color
 /build:block9.png
 
-#begin transparent_block.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:transparent_block.png
-
 #begin BossEnemies.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -200,7 +188,7 @@
 /processorParam:TextureFormat=Color
 /build:LargeEnemies.png
 
-#begin Levels Spritesheet.png
+#begin Levels SpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -210,7 +198,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Levels Spritesheet.png
+/build:Levels SpriteSheet.png
 
 #begin LinkAllOverworldColorsWithReflection.gif
 /importer:TextureImporter
@@ -295,4 +283,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SmallEnemies.png
+
+#begin transparent_block.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:transparent_block.png
 

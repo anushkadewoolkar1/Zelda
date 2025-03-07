@@ -141,9 +141,10 @@ namespace Sprint0
 
             linkSprite.Update(gameObjects, gameTime);
 
+            /*
             _block.Update();
-
             _loadRoomBlock.CheckCollision(linkSprite.Position);
+            */
 
             collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
 
@@ -162,9 +163,11 @@ namespace Sprint0
 
             enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
 
+            /*
             _block.Draw(_spriteBatch);
             _invisibleBlock.Draw(_spriteBatch);
             _loadRoomBlock.Draw(_spriteBatch);
+            */
 
             item.Draw(_spriteBatch);
             item2.Draw(_spriteBatch);
@@ -291,8 +294,8 @@ namespace Sprint0
             gameObjects.Add(item);
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
-            gameObjects.Add(_block);
-            gameObjects.Add(_loadRoomBlock);
+            //gameObjects.Add(_block);
+            //gameObjects.Add(_loadRoomBlock);
         }
 
     }

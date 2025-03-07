@@ -32,6 +32,7 @@ public class InvisibleBlock : Block, IGameObject
             Texture2D solidColor = new Texture2D(spriteBatch.GraphicsDevice, SOLID_BLOCK_DIM, SOLID_BLOCK_DIM);
             solidColor.SetData(new[] { Color.White }); // Make it a solid white
 
+
             // Draw it at the correct position, scaling it
             spriteBatch.Draw(solidColor, pixelPosition, null, Color.Red, 0f, Vector2.Zero, BLOCK_SCALE, SpriteEffects.None, 0f);
         }
