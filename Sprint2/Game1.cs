@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using ZeldaGame.Zelda.CollisionMap;
 using Sprint0.ILevel;
 using Sprint0.CollisionHandling;
+using System.Runtime.Intrinsics.X86;
 
 
 namespace Sprint0
@@ -279,6 +280,9 @@ namespace Sprint0
 
                 //'D3' -> Player Use Bomb Item:
                 { Keys.D3, new LinkUseItem(linkSprite, ItemType.Bomb) },
+
+                //'D4' -> Player Use Sword:
+                { Keys.D4, new LinkUseItem(linkSprite, ItemType.WoodenSword) },
 
             };
 

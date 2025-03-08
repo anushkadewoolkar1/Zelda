@@ -51,7 +51,8 @@ namespace Zelda.Enums
         Boomerang,
         Bomb,
         Fireball,
-        Compass
+        Compass,
+        WoodenSword
     }
 
     public enum EnemyType

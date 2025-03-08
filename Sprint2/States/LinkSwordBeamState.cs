@@ -25,6 +25,7 @@ public class LinkSwordBeamState : ILinkState
 
     public void Enter()
     {
+
         // Set the sword beam sprite via the sprite factory.
         // once createSwordBeam is in sprite factory.)
         //link.SetSprite(LinkSpriteFactory.Instance.CreateSwordBeam(currentDirection, beamFrame, 1, link.Health));
@@ -33,7 +34,6 @@ public class LinkSwordBeamState : ILinkState
         // (Assume you have a SwordBeam projectile class and a projectile manager.)
         // SwordBeam beam = new SwordBeam(link.Position, currentDirection, beamSprite);
         // ProjectileManager.Instance.AddProjectile(beam);
-
         
     }
 

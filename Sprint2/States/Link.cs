@@ -36,7 +36,8 @@ public class Link : IGameObject
     private Boolean initializeItem;
     public int chooseItem { get; set; }
     private Boolean spawnedItem;
-    private ISprite arrowSprite, boomerangSprite, bombSprite;
+    private ISprite arrowSprite, boomerangSprite, bombSprite, woodenSwordSprite;
+    public Boolean swordBeam { get; set; }
     private Vector2 projectilePosition;
     private Direction projectileDirection;
     private List<IGameObject> gameObjects;
@@ -63,6 +64,7 @@ public class Link : IGameObject
         spawnedItem = false;
 
         linkAttacking = false;
+        swordBeam = false;
 
         CurrentItem = new List<ItemType>();
 
@@ -100,6 +102,12 @@ public class Link : IGameObject
                     if (bombSprite != null)
                     {
                         bombSprite.Update(gameTime, this);
+                    }
+                    break;
+                case ItemType.WoodenSword:
+                    if (woodenSwordSprite != null)
+                    {
+                        woodenSwordSprite.Update(gameTime, this);
                     }
                     break;
                 default:
@@ -168,6 +176,12 @@ public class Link : IGameObject
                         bombSprite.Draw(spriteBatch, projectilePosition);
                     }
                     break;
+                case ItemType.WoodenSword:
+                    if (woodenSwordSprite != null)
+                    {
+                        woodenSwordSprite.Draw(spriteBatch, projectilePosition);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -176,7 +190,7 @@ public class Link : IGameObject
 
     public void ChangeState(ILinkState newState)
     {
-        if (!linkAttacking && !linkUseItem)
+        if ((!linkAttacking && !linkUseItem))
         {
             this.currentState.Exit();
             this.currentState = newState;
@@ -295,6 +309,30 @@ public class Link : IGameObject
                     gameObjects.Add((IGameObject)bombSprite);
                     break;
 
+                }
+            case ItemType.WoodenSword:
+                {
+                    switch (currentDirection)
+                    {
+                        case Direction.Up:
+                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateUpWoodenSwordBrown();
+                            break;
+                        case Direction.Down:
+                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateDownWoodenSwordBrown();
+                            break;
+                        case Direction.Left:
+                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateLeftWoodenSwordBrown();
+                            break;
+                        case Direction.Right:
+                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateRightWoodenSwordBrown();
+                            break;
+                        default:
+                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
+                            break;
+                    }
+                    swordBeam = true;
+                    gameObjects.Add((IGameObject)woodenSwordSprite);
+                    break;
                 }
             default:
                 {

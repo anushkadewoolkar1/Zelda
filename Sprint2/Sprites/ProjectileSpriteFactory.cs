@@ -23,6 +23,8 @@ namespace Sprint0.Sprites
         private LinkDirection direction = LinkDirection.RightFacing;
 
         private const int DEFAULT_YPOS = 185;
+        private const int BROWN_SWORD_XPOS = 2;
+        private const int BROWN_SWORD_YPOS = 154;
         private const int BROWN_ARROW_XPOS = 1;
         private const int BLUE_ARROW_XPOS = 29;
         private const int BROWN_BMRNG_XPOS = 65;
@@ -78,6 +80,30 @@ namespace Sprint0.Sprites
         {
 
             return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing);
+        }
+
+        public ISprite CreateDownWoodenSwordBrown()
+        {
+
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_SWORD_XPOS, BROWN_SWORD_YPOS, (int)LinkDirection.DownFacing);
+        }
+
+        public ISprite CreateUpWoodenSwordBrown()
+        {
+
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_SWORD_XPOS, BROWN_SWORD_YPOS, (int)LinkDirection.UpFacing);
+        }
+
+        public ISprite CreateLeftWoodenSwordBrown()
+        {
+
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_SWORD_XPOS, BROWN_SWORD_YPOS, (int)LinkDirection.LeftFacing);
+        }
+
+        public ISprite CreateRightWoodenSwordBrown()
+        {
+
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_SWORD_XPOS, BROWN_SWORD_YPOS, (int)LinkDirection.RightFacing);
         }
 
         public ISprite CreateDownArrowBlue()

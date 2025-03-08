@@ -25,6 +25,11 @@ public class LinkAttackingState : ILinkState
     public void Enter()
     {
         this.currentDirection = this.link.currentDirection;
+        
+        if (this.link.swordBeam)
+        {
+            return;
+        }
 
         attackDuration = 0.5f;
 

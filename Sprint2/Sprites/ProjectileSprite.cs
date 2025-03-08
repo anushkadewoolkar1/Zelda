@@ -26,6 +26,7 @@ namespace Sprint0.Sprites
         private int projectileScale = 2;
         private bool isBoomerang;
         private bool isBomb;
+        private bool isSwordBeam;
         public Vector2 velocity;
         private Vector2 linkPosition;
         private Vector2 position;
@@ -43,6 +44,7 @@ namespace Sprint0.Sprites
             destroy = false;
             isBomb = false;
             isBoomerang = false;
+            isSwordBeam = false;
             
             // Rotates projectile depending on direction using mathhelper
             rotation = direction * (MathHelper.Pi / 2);
@@ -222,6 +224,10 @@ namespace Sprint0.Sprites
             {
                 sourceRectangle = new Rectangle(200, 200, 0, 0);
                 destroy = true;
+                if (isSwordBeam)
+                {
+                    link.swordBeam = false;
+                }
             }
         }
 
@@ -255,6 +261,13 @@ namespace Sprint0.Sprites
                 sourceRectangleDimensions[3] = 8;
                 isBoomerang = true;
                 return sourceRectangleDimensions;
+            }
+
+            if (yCoordinate == 154)
+            {
+                isSwordBeam = true;
+                sourceRectangleDimensions[2] = 5;
+                sourceRectangleDimensions[3] = 16;
             }
 
             return sourceRectangleDimensions;
