@@ -1,0 +1,40 @@
+TeamTingles
+Sprint #3 Reflection
+
+
+Sprint #3 proved to be a tough challenge, as threading the collision logic in the system we already made caused various 
+conflicts within the code itself, forcing us to coordinate often to debug many of our implementations. Many of the behavior 
+implementations we made for Sprint #2 had to be refactored or completely redone in order to work with the requirements for 
+Sprint #3, requiring many last minute changes and debugging in order to coordinate all of our systems together. Despite this, 
+the team was able to successfully coordinate together, and fix many of the collision-related bugs that started to pile up. 
+
+The Sprint took a total of two and a half weeks to complete, with the first half-week after the completion of Sprint #2 
+being used as an impromptu break for the whole team. The following week, however, the responsibilities of the Sprint were 
+officially delegated, and the team began work on the two major functionality updates of the Sprint, that being implementing 
+basic level maps and collision detection in sprites. 
+
+At the time of the functionality check-in, the tile maps for the level were implemented, and the framework of the collision 
+system was implemented. In the following week, many of the bugs with the collision system needed to be fixed, and fixing 
+some of the bugs resulted in creating other bugs, resulting in a frustrating feedback loop of debugging. However, many of 
+the bugs were able to be fixed by communicating with each other via class meetings as well as off-the-clock Zoom meetings 
+that ended up being productive to the debugging process. Overall, this Sprint had a much better balance of work-per-week 
+compared to Sprint #2 (where a majority of the work was completed within the final week of the Sprint).
+
+In the previous Sprint reflection, we stated that it would be useful to continue splitting up unique responsibilities of 
+the system among all group members. However, the team realized that this Sprint consisted of only two major 
+responsibilities, that being the Level system and the Collision system. Thus, in order to implement this behavior, the team 
+decided to split the team into two subgroups, each of which would be responsible for one of the major components. As 
+expected, this resulted in significantly more collaboration among team members, as each member had to compromise and work 
+on implementing the same idea, resulting in some code conflicts between people working on the same component. Even though 
+this made the coding process somewhat harder, this also allowed for experience with many people developing a common process, 
+and gave collaborative experience to all of the members of the project. 
+
+One thing that we might choose to implement in future Sprints is to create a common notes document that we can add to if we 
+have something that we want addressed in the future that isn’t important enough to warrant direct communication, which can 
+be addressed in future class meetings. Another idea that can be implemented in future Sprints would be to develop a rough 
+outline of tasks to complete for each component that would be checked off as they are completed (which is different from the 
+current method of simply indicating whether these large components are complete or not).
+
+Overall, Sprint #3 was a successful stage of the project that saw significant leaps in functionality for the project, and 
+although it produced many bugs, the experience of debugging a common component was good for the personal development of all 
+team members.
