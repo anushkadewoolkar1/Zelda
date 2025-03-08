@@ -62,10 +62,12 @@ namespace Sprint0.ILevel
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
+            //Creates new collection of Blocks, Enemy and Items to be loaded into levels
             blocksList = new List<Block>();
             enemiesList = new List<Enemy>();
             itemsList = new List<Item>();
 
+            //Creates the background room dimensions as well as loading the entire level texture
             this.contentManager = Content;
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
             roomWidth = (_backgroundTexture.Width - 5) / LEVEL_TEXTURE_SCALAR;
@@ -74,6 +76,7 @@ namespace Sprint0.ILevel
                 roomWidth * WIDTH_POSITION_SCALAR + 1, roomHeight * HEIGHT_POSITION_SCALAR + 1, roomWidth, roomHeight);
             roomDimensions = new Vector2(roomWidth * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION, roomHeight * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION);
 
+            //Reads through the levelfile to create the various levels
             foreach (var line in File.ReadLines("../../../Content/LevelFile.txt"))
             {
                 var nums = line.Split(',');
@@ -83,13 +86,18 @@ namespace Sprint0.ILevel
                 }
             }
 
+            //Current implementation involves clicking through rooms
+            //used to avoid accidental skipping rooms
             doubleClickTemp = false;
 
             gameObjects = _gameObjects;
 
+            //Spawn Room
             currentRoom = [2, 5];
         }
 
+
+        //Checks for which type of block to create
         private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures, int targetX = 0, int targetY = 0)
         {
             if (blockType.Contains("invisible"))
@@ -130,9 +138,11 @@ namespace Sprint0.ILevel
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            //Draws room background
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
                roomWidth * 2, roomHeight * 2), _sourceRectangle, Color.White);
 
+            //Goes through each list drawing each object
             for (int i = 0; i < enemiesListIndex;i++)
             {
                 enemiesList[i].DrawCurrentSprite(spriteBatch);
@@ -149,6 +159,7 @@ namespace Sprint0.ILevel
 
         public void Update(GameTime gameTime)
         {
+            //Goes through each list updating each object
             for (int i = 0; i < enemiesListIndex; i++)
             {
                 enemiesList[i].Update(gameTime);
@@ -165,7 +176,7 @@ namespace Sprint0.ILevel
 
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
-
+            //Temporary implementation for clicking through rooms double click bug
             if (!doubleClickTemp)
             {
                 doubleClickTemp = true;
@@ -179,6 +190,7 @@ namespace Sprint0.ILevel
             int i = 1;
             Boolean foundRoom = false;
 
+            //Goes through the level file, looking for the room coordinates to find start of room
             while (i < count && !foundRoom)
             {
                 
@@ -188,6 +200,8 @@ namespace Sprint0.ILevel
                 }
                 i++;
             }
+
+            //Avoids loading room when room is not found
             if (i == count || !foundRoom)
             {
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
@@ -198,6 +212,7 @@ namespace Sprint0.ILevel
                 roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
+            //Removes old objects from collisions handling
             for (int j = 0; j < blocksList.Count; j++)
             {
                 this.gameObjects.Remove(blocksList[j]);
@@ -211,17 +226,20 @@ namespace Sprint0.ILevel
                 this.gameObjects.Remove(itemsList[j]);
             }
 
+            //Get's to the start of the room and sets room size
             i += 12;
             int room = i + ROOM_LENGTH * 9;
-            //MethodInfo mi;
-            //String newConstructor = "new ";
+            
+            //Clears object list
             blocksList.Clear();
             enemiesList.Clear();
             itemsList.Clear();
+
             enemiesListIndex = 0;
             blocksListIndex = 0;
             itemsListIndex = 0;
 
+            //Used for constructing enemies and items
             EnemyType enemyType;
             ItemType itemType;
 
@@ -230,18 +248,20 @@ namespace Sprint0.ILevel
 
             while (i < room)
             {
+                //Constructs Enemies
                 if (Objects[i].Contains("Enemy"))
                 {
                     enemiesList.Add(new Enemy());
-                    //enemiesList[enemiesListIndex].position;
                     Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
                     enemiesList[enemiesListIndex].CreateEnemy(enemyType,
                         new Vector2(((i - hold) % ROOM_LENGTH) - 1,
                         ((i - hold) / ROOM_LENGTH) - 1));
                     gameObjects.Add(enemiesList[enemiesListIndex]);
                     enemiesListIndex++;
-                    System.Diagnostics.Debug.WriteLine(((i - hold) / ROOM_LENGTH).ToString());
+
+                    //System.Diagnostics.Debug.WriteLine(((i - hold) / ROOM_LENGTH).ToString());
                 }
+                //Constructs Blocks
                 else if (Objects[i].Contains("Block"))
                 {
                     Vector2 position = new Vector2(
@@ -263,6 +283,7 @@ namespace Sprint0.ILevel
 
                     System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
                 } else if (Objects[i].Contains("Item"))
+                    //Constructs Items
                 {
                     itemsList.Add(new Item());
                     Enum.TryParse(Objects[i].Substring(5), out itemType);
