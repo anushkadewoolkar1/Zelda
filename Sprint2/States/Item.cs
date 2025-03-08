@@ -119,6 +119,15 @@ namespace Sprint0.States
                     };
                     break;
 
+                case ItemType.Bow:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteBow", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
                 default:
                     throw new ArgumentException("Invalid item type", nameof(itemType));
             }

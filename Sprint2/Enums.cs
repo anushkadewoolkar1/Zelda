@@ -55,7 +55,8 @@ namespace Zelda.Enums
         WoodenSword,
         Key,
         Map,
-        Triforce
+        Triforce,
+        Bow
     }
 
     public enum EnemyType
