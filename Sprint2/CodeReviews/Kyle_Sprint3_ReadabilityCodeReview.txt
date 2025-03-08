@@ -1,0 +1,10 @@
+Author of Code Review: Chloe Feller
+Code Review Date: 3/7/2025
+Sprint Number: 3
+.cs File Reviewed: CollisionManager.cs
+Author of .cs File: Kyle Dietrich
+Minutes Taken for Code Review: 5 minutes
+Comments:
+- Variable names are clear and understandable, plus they follow C# guidelines
+- Comments made in areas where the code might be a bit more complicated to deduce just from taking a glance (helped me understand DetermineCollisionSide when I was implementing my code)
+- Spaces between each if-else statement exist so the whole class isn't ugly to look at from all the cramped code (useful for functions like CheckDynamicCollision)
