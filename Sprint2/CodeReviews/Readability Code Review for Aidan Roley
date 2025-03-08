@@ -1,0 +1,19 @@
+Code Review for Readability:
+
+Code Reviewer: Paul Paciorek
+Code Reviewee: Aidan Roley
+Date: 03-07-2025
+File: Item.cs
+Time Taken: 15 minutes
+
+(+) Variable names are clear and concise, abbreviations are used well to shorten the length of the names without obfuscating their purpose to the reader.
+
+(-) Lack of comments on instance methods make the purpose of some statements unclear, forcing readers to reference other classes in order to know what’s happening in the file, which is not ideal.
+
+(+) Use of exceptions allows for the reader to determine exactly which behavior is not covered by the contract.
+
+(-) The different methods of Item.cs are unclear as to what their purpose is within the code without further commenting.
+
+(+) Use of correct casing for methods results in the general purpose of a variable being evident to the reader.
+
+Overall, I believe that this file is readable to the average person, and they would have some idea of what’s going on in the file without having prior knowledge of the system.
