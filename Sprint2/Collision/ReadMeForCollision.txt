@@ -20,30 +20,4 @@ Two key parts: collision detection and collision response.
 	For instance, if the intersection width is smaller than its height and the object is moving right, 
 	we assume the collision is on its right side.
 
-### Collision Response
-
-	I’ve created an interface ICollisionHandler along with several specific handler classes
-
-	- PlayerBlockCollisionHandler: Handles collisions between Link and blocks.
-
-	- PlayerItemCollisionHandler: Handles when Link collides with an item, triggering the item pickup logic.
-
-	- EnemyBlockCollisionHandler: Adjusts enemy behavior when they hit static objects 
-
-	- PlayerEnemyProjectileCollisionHandler: Applies damage to Link when he collides with enemy projectiles.
-
-	- PlayerEnemyCollisionHandler: Applies damage to Link when he collides with enemies
-
-### AllCollisionManager:
-	This class acts as a central dispatcher. When a collision is detected, the AllCollisionManager 
-	examines the types of the colliding objects and calls the appropriate collision handler. 
-
-### TODO: 
-- Implement IGameObject interface for each game object (also probably Level too so link cant walk out of the map)
-
-- Complete Response Logic for each collision handler
-
-- Need to integrate the collision detection and response into the game’s main update loop. 
-
-- Need to add additional collision handlers
 
