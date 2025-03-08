@@ -155,7 +155,7 @@
 ,,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,,
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,,
-,,,,,,,Enemy.Wallmaster,,,,,,
+,,,,,,,Enemy.Wallmaster,,Item.Key,,,,
 ,,,,,,,,,,,,,
 4,1,,,,,,,,,,,,
 ,,,,,,,,,,,,,
