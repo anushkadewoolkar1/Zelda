@@ -53,6 +53,7 @@ R: Reset the program to its initial state.
   (it will eventually be impassable by link and enemies but not by projectiles)
 - Room 0,0 is a 2d section that still acts 3d and the enemies dont move around
 - Projectile collision with enemies is detected but handling is bugged out
+  (Link can start using projectiles again when they enter a new room)
 
 # Code Reviews
 We performed code reviews focusing on:
