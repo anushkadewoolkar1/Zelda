@@ -1,0 +1,11 @@
+Author of Code Review: Chloe Feller
+Code Review Date: 3/7/2025
+Sprint Number: 3
+.cs File Reviewed: CollisionManager.cs
+Author of .cs File: Kyle Dietrich
+Minutes Taken for Code Review: 10 minutes
+Comments:
+- Could change the public debug variables to private
+- I think the DispatchLevelCollisions function was written by somebody else, but that could possibly eventually be integrated / refactored with CheckDynamicCollision
+- Should probably make more functions for CheckDynamicCollisions to call (like maybe making a function that sets the CollisionHandler) (honestly it makes the same point at the last bullet I made about merging DispatchLevelCollisions and CheckDynamicCollision)
+- Some of the directories could be removed so the class isn't loading quite as much whenever the program first starts running
