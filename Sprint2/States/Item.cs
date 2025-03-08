@@ -94,6 +94,31 @@ namespace Sprint0.States
                     };
                     break;
 
+                case ItemType.Key:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteKey", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+                case ItemType.Map:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteMap", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+                case ItemType.Triforce:
+                    currItem = new Item
+                    {
+                        itemSprite = new ItemSprite("ZeldaSpriteTriforce_frame_000", posX, posY),
+                        position = new Vector2 { X = posX, Y = posY },
+                        tilePosition = new Vector2 { X = posX, Y = posY }
+                    };
+                    break;
+
                 default:
                     throw new ArgumentException("Invalid item type", nameof(itemType));
             }

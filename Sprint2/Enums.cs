@@ -52,7 +52,10 @@ namespace Zelda.Enums
         Bomb,
         Fireball,
         Compass,
-        WoodenSword
+        WoodenSword,
+        Key,
+        Map,
+        Triforce
     }
 
     public enum EnemyType
