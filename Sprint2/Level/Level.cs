@@ -104,17 +104,6 @@ namespace Sprint0.ILevel
             {
                 return new Block(position, textures);
             }
-            /*
-            switch (blockType)
-            {
-                case "InvisibleBlock":
-                    return new InvisibleBlock(position, textures);
-                case "LoadRoomBlock":
-                    return new LoadRoomBlock(position, textures, this, targetX, targetY);
-                default: // Default to a normal solid block
-                    
-            }
-            */
         }
 
 
@@ -165,6 +154,8 @@ namespace Sprint0.ILevel
             }
         }
 
+        //Finds requested room from objects list and adds objects according to levelFile.txt
+        //Returns and prints failed to find room if failed to find requested room
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
             //Temporary implementation for clicking through rooms double click bug
@@ -195,41 +186,24 @@ namespace Sprint0.ILevel
             //Avoids loading room when room is not found
             if (currentPosition == count || !foundRoom)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to Find Room");
+                System.Diagnostics.Debug.WriteLine($"Failed to Find Room {xCoordinate}, {yCoordinate}");
                 return;
             }
 
+            //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
                 roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
-            //Removes old objects from collisions handling
-            for (int j = 0; j < blocksList.Count; j++)
-            {
-                this.gameObjects.Remove(blocksList[j]);
-            }
-            for (int j = 0; j < enemiesList.Count; j++)
-            {
-                this.gameObjects.Remove(enemiesList[j]);
-            }
-            for (int j = 0; j < itemsList.Count; j++)
-            {
-                this.gameObjects.Remove(itemsList[j]);
-            }
+
+            //Removes object from various lists
+            RemoveOldObjects();
 
             //Get's to the start of the room and sets room size
             currentPosition += 12;
             int room = currentPosition + ROOM_LENGTH * 9;
             
-            //Clears object list
-            blocksList.Clear();
-            enemiesList.Clear();
-            itemsList.Clear();
             
-
-            //Used for constructing enemies and items
-            
-            ItemType itemType;
 
             //We'll need to be able to pass position for creating the objects of the entities
             int startOfRoom = currentPosition;
@@ -244,32 +218,12 @@ namespace Sprint0.ILevel
                 //Constructs Blocks
                 else if (Objects[currentPosition].Contains("Block"))
                 {
-                    Vector2 position = new Vector2(
-                        (roomDimensions.X / ROOM_LENGTH) * ((currentPosition - startOfRoom) % ROOM_LENGTH) + 32,
-                        (roomDimensions.Y / 9) * ((currentPosition - startOfRoom) / ROOM_LENGTH) + 32
-                    );
-
-                    Texture2D[] blockTextures = LoadBlockTextures(); 
-
-                    string blockType = Objects[currentPosition]; // Get the block type from the level file
-
-                    Block newBlock = CreateBlock(blockType, position, blockTextures);
-
-                    //Block newBlock = CreateBlock(blockType, position, blockTextures); 
-                    blocksList.Add(newBlock);
-
-                    gameObjects.Add(blocksList[blocksList.Count - 1]);
-
-                    System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
-                } else if (Objects[currentPosition].Contains("Item"))
-                    //Constructs Items
+                    CreateBlock(currentPosition , startOfRoom);
+                } 
+                else if (Objects[currentPosition].Contains("Item"))
+                //Constructs Items
                 {
-                    itemsList.Add(new Item());
-                    Enum.TryParse(Objects[currentPosition].Substring(5), out itemType);
-                    itemsList[itemsList.Count - 1] = itemsList[itemsListIndex].CreateItem(itemType,
-                        ((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
-                        ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1);
-                    gameObjects.Add((itemsList[itemsList.Count - 1]));
+                    CreateItem(currentPosition , startOfRoom);
                 }
                 currentPosition++;
             }
@@ -287,9 +241,58 @@ namespace Sprint0.ILevel
             gameObjects.Add(enemiesList[enemiesList.Count - 1]);
         }
 
-        private void CreateBlock()
+        private void CreateBlock(int currentPosition, int startOfRoom)
         {
+            Vector2 position = new Vector2(
+                        (roomDimensions.X / ROOM_LENGTH) * ((currentPosition - startOfRoom) % ROOM_LENGTH) + 32,
+                        (roomDimensions.Y / 9) * ((currentPosition - startOfRoom) / ROOM_LENGTH) + 32
+                    );
 
+            Texture2D[] blockTextures = LoadBlockTextures();
+
+            string blockType = Objects[currentPosition]; // Get the block type from the level file
+
+            Block newBlock = CreateBlock(blockType, position, blockTextures);
+
+            //Block newBlock = CreateBlock(blockType, position, blockTextures); 
+            blocksList.Add(newBlock);
+
+            gameObjects.Add(blocksList[blocksList.Count - 1]);
+
+            //System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
+        }
+
+        private void CreateItem(int currentPosition, int startOfRoom)
+        {
+            ItemType itemType;
+            itemsList.Add(new Item());
+            Enum.TryParse(Objects[currentPosition].Substring(5), out itemType);
+            itemsList[itemsList.Count - 1] = itemsList[itemsListIndex].CreateItem(itemType,
+                ((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
+                ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1);
+            gameObjects.Add((itemsList[itemsList.Count - 1]));
+        }
+
+        private void RemoveOldObjects()
+        {
+            //Removes old objects from collisions handling
+            for (int j = 0; j < blocksList.Count; j++)
+            {
+                this.gameObjects.Remove(blocksList[j]);
+            }
+            for (int j = 0; j < enemiesList.Count; j++)
+            {
+                this.gameObjects.Remove(enemiesList[j]);
+            }
+            for (int j = 0; j < itemsList.Count; j++)
+            {
+                this.gameObjects.Remove(itemsList[j]);
+            }
+
+            //Clears object list
+            blocksList.Clear();
+            enemiesList.Clear();
+            itemsList.Clear();
         }
 
         public Rectangle BoundingBox
