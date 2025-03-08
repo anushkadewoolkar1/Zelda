@@ -104,17 +104,6 @@ namespace Sprint0.ILevel
             {
                 return new Block(position, textures);
             }
-            /*
-            switch (blockType)
-            {
-                case "InvisibleBlock":
-                    return new InvisibleBlock(position, textures);
-                case "LoadRoomBlock":
-                    return new LoadRoomBlock(position, textures, this, targetX, targetY);
-                default: // Default to a normal solid block
-                    
-            }
-            */
         }
 
 
@@ -165,6 +154,8 @@ namespace Sprint0.ILevel
             }
         }
 
+        //Finds requested room from objects list and adds objects according to levelFile.txt
+        //Returns and prints failed to find room if failed to find requested room
         public void LoadRoom(int xCoordinate, int yCoordinate)
         {
             //Temporary implementation for clicking through rooms double click bug
@@ -195,10 +186,11 @@ namespace Sprint0.ILevel
             //Avoids loading room when room is not found
             if (currentPosition == count || !foundRoom)
             {
-                System.Diagnostics.Debug.WriteLine("Failed to Find Room");
+                System.Diagnostics.Debug.WriteLine($"Failed to Find Room {xCoordinate}, {yCoordinate}");
                 return;
             }
 
+            //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
                 roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
                 roomWidth, roomHeight);
@@ -227,7 +219,8 @@ namespace Sprint0.ILevel
                 else if (Objects[currentPosition].Contains("Block"))
                 {
                     CreateBlock(currentPosition , startOfRoom);
-                } else if (Objects[currentPosition].Contains("Item"))
+                } 
+                else if (Objects[currentPosition].Contains("Item"))
                 //Constructs Items
                 {
                     CreateItem(currentPosition , startOfRoom);
