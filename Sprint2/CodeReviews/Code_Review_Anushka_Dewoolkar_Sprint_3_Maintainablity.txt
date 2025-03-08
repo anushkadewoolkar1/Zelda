@@ -1,0 +1,16 @@
+Author: Roy Acapulcco
+Date: 3/7/2025
+Sprint3
+Block.cs
+Author of Code: Anushka Dewoolkar
+Time: 10 minutes
+
+Notes:
+Variables names are easily parsed
+Constructor is succinct without unnecessary bloat
+IsSolid and IsPushable are good for future proofing
+Block currently acts as an abstract class, therefore, the class's draw "hides" the invisibleblock class's draw underneath
+Update requires keyboardstate, which is low cohesion
+
+Potential Change:
+Maybe make Block abstract if you want to continue using inheritance and remove the keyboardState from update.
