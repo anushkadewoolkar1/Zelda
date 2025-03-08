@@ -1,0 +1,19 @@
+Author: Roy Acapulcco
+Date: 3/7/2025
+Sprint3
+InvisibleBlock.cs
+Author of Code: Anushka Dewoolkar
+Time: 10 minutes
+
+Notes:
+DIM is an unconventional shortening of dimensions, fore readability, I think it would be better to type out dimensions fully
+Otherwise, constants are well named
+Parameter names are well defined and understandable
+Comments inside draw are helpful, even with the structure being intuitive
+BoundingBox method's rectangle easily parsed.
+
+
+Overall,
+Methods are short and self-explanatory.
+Constants are very illustrative.
+All this results in nice readable code.
