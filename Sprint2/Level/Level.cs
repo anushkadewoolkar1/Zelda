@@ -44,15 +44,6 @@ namespace Sprint0.ILevel
 
         private List<IGameObject> gameObjects;
 
-        /* TO DO:
-         * 1. DONE - Create collections for Enemies, Blocks, Items, etc. for loading
-         * 2. Implement Load Room to invoke constructor calls for each object
-         * 3. DONE - Implement Draw and Read (Iterate through each of the collections)
-         * 4. DONE (MAYBE REIMPLEMENT) - Optimize Code with correct Room size information
-         * 5. Populate txt file with two rooms for Functionality check
-         * 6. BASICALLY DONE - Implement the Level Background Correctly
-         */
-
 
         private const int ROOM_LENGTH = 14;
         private const int LEVEL_CENTER_POSITION = 60;
@@ -143,15 +134,15 @@ namespace Sprint0.ILevel
                roomWidth * 2, roomHeight * 2), _sourceRectangle, Color.White);
 
             //Goes through each list drawing each object
-            for (int i = 0; i < enemiesListIndex;i++)
+            for (int i = 0; i < enemiesList.Count;i++)
             {
                 enemiesList[i].DrawCurrentSprite(spriteBatch);
             }
-            for (int i = 0; i < blocksListIndex;i++)
+            for (int i = 0; i < blocksList.Count; i++)
             {
                 blocksList[i].Draw(spriteBatch);
             }
-            for (int i = 0; i < itemsListIndex;i++)
+            for (int i = 0; i < itemsList.Count;i++)
             {
                 itemsList[i].Draw(spriteBatch);
             }
@@ -160,15 +151,15 @@ namespace Sprint0.ILevel
         public void Update(GameTime gameTime)
         {
             //Goes through each list updating each object
-            for (int i = 0; i < enemiesListIndex; i++)
+            for (int i = 0; i < enemiesList.Count; i++)
             {
                 enemiesList[i].Update(gameTime);
             }
-            for (int i = 0; i < blocksListIndex; i++)
+            for (int i = 0; i < blocksList.Count; i++)
             {
                 blocksList[i].Update();
             }
-            for (int i = 0; i < itemsListIndex; i++)
+            for (int i = 0; i < itemsList.Count; i++)
             {
                 itemsList[i].Update(gameTime);
             }
@@ -187,22 +178,22 @@ namespace Sprint0.ILevel
             }
 
             int count = Objects.Count;
-            int i = 1;
+            int currentPosition = 1;
             Boolean foundRoom = false;
 
             //Goes through the level file, looking for the room coordinates to find start of room
-            while (i < count && !foundRoom)
+            while (currentPosition < count && !foundRoom)
             {
                 
-                if (xCoordinate.ToString() == Objects[i - 1] && yCoordinate.ToString() == Objects[i])
+                if (xCoordinate.ToString() == Objects[currentPosition - 1] && yCoordinate.ToString() == Objects[currentPosition])
                 {
                     foundRoom = true;
                 }
-                i++;
+                currentPosition++;
             }
 
             //Avoids loading room when room is not found
-            if (i == count || !foundRoom)
+            if (currentPosition == count || !foundRoom)
             {
                 System.Diagnostics.Debug.WriteLine("Failed to Find Room");
                 return;
@@ -227,75 +218,78 @@ namespace Sprint0.ILevel
             }
 
             //Get's to the start of the room and sets room size
-            i += 12;
-            int room = i + ROOM_LENGTH * 9;
+            currentPosition += 12;
+            int room = currentPosition + ROOM_LENGTH * 9;
             
             //Clears object list
             blocksList.Clear();
             enemiesList.Clear();
             itemsList.Clear();
-
-            enemiesListIndex = 0;
-            blocksListIndex = 0;
-            itemsListIndex = 0;
+            
 
             //Used for constructing enemies and items
-            EnemyType enemyType;
+            
             ItemType itemType;
 
             //We'll need to be able to pass position for creating the objects of the entities
-            int hold = i;
+            int startOfRoom = currentPosition;
 
-            while (i < room)
+            while (currentPosition < room)
             {
                 //Constructs Enemies
-                if (Objects[i].Contains("Enemy"))
+                if (Objects[currentPosition].Contains("Enemy"))
                 {
-                    enemiesList.Add(new Enemy());
-                    Enum.TryParse(Objects[i].Substring(6).ToString(), out enemyType);
-                    enemiesList[enemiesListIndex].CreateEnemy(enemyType,
-                        new Vector2(((i - hold) % ROOM_LENGTH) - 1,
-                        ((i - hold) / ROOM_LENGTH) - 1));
-                    gameObjects.Add(enemiesList[enemiesListIndex]);
-                    enemiesListIndex++;
-
-                    //System.Diagnostics.Debug.WriteLine(((i - hold) / ROOM_LENGTH).ToString());
+                    CreateEnemy(currentPosition , startOfRoom);
                 }
                 //Constructs Blocks
-                else if (Objects[i].Contains("Block"))
+                else if (Objects[currentPosition].Contains("Block"))
                 {
                     Vector2 position = new Vector2(
-                        (roomDimensions.X / ROOM_LENGTH) * ((i - hold) % ROOM_LENGTH) + 32,
-                        (roomDimensions.Y / 9) * ((i - hold) / ROOM_LENGTH) + 32
+                        (roomDimensions.X / ROOM_LENGTH) * ((currentPosition - startOfRoom) % ROOM_LENGTH) + 32,
+                        (roomDimensions.Y / 9) * ((currentPosition - startOfRoom) / ROOM_LENGTH) + 32
                     );
 
                     Texture2D[] blockTextures = LoadBlockTextures(); 
 
-                    string blockType = Objects[i]; // Get the block type from the level file
+                    string blockType = Objects[currentPosition]; // Get the block type from the level file
 
                     Block newBlock = CreateBlock(blockType, position, blockTextures);
 
                     //Block newBlock = CreateBlock(blockType, position, blockTextures); 
                     blocksList.Add(newBlock);
 
-                    gameObjects.Add(blocksList[blocksListIndex]);
-                    blocksListIndex++;
+                    gameObjects.Add(blocksList[blocksList.Count - 1]);
 
                     System.Diagnostics.Debug.WriteLine($"Created {blockType} at {position}");
-                } else if (Objects[i].Contains("Item"))
+                } else if (Objects[currentPosition].Contains("Item"))
                     //Constructs Items
                 {
                     itemsList.Add(new Item());
-                    Enum.TryParse(Objects[i].Substring(5), out itemType);
-                    itemsList[itemsListIndex] = itemsList[itemsListIndex].CreateItem(itemType,
-                        ((i - hold) % ROOM_LENGTH) - 1,
-                        ((i - hold) / ROOM_LENGTH) - 1);
-                    gameObjects.Add((itemsList[itemsListIndex]));
-                    itemsListIndex++;
+                    Enum.TryParse(Objects[currentPosition].Substring(5), out itemType);
+                    itemsList[itemsList.Count - 1] = itemsList[itemsListIndex].CreateItem(itemType,
+                        ((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
+                        ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1);
+                    gameObjects.Add((itemsList[itemsList.Count - 1]));
                 }
-                i++;
+                currentPosition++;
             }
             currentRoom = [xCoordinate, yCoordinate];
+        }
+
+        private void CreateEnemy(int currentPosition, int startOfRoom)
+        {
+            EnemyType enemyType;
+            enemiesList.Add(new Enemy());
+            Enum.TryParse(Objects[currentPosition].Substring(6).ToString(), out enemyType);
+            enemiesList[enemiesList.Count - 1].CreateEnemy(enemyType,
+                new Vector2(((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
+                ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1));
+            gameObjects.Add(enemiesList[enemiesList.Count - 1]);
+        }
+
+        private void CreateBlock()
+        {
+
         }
 
         public Rectangle BoundingBox
