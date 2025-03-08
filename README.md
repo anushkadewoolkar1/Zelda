@@ -52,7 +52,7 @@ R: Reset the program to its initial state.
 - The water still currently acts as a normal collidable block
   (it will eventually be impassable by link and enemies but not by projectiles)
 - Room 0,0 is a 2d section that still acts 3d and the enemies dont move around
-- Projectile collision with enemies is detected but deletion is bugged out
+- Projectile collision with enemies is detected but handling is bugged out
 
 # Code Reviews
 We performed code reviews focusing on:
