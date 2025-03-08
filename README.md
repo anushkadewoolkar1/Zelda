@@ -1,22 +1,38 @@
 # Project Overview
-This project is the second sprint of our game development series. The primary objectives for Sprint 2 include:
+This project is Sprint 3 of our game development series. 
+The primary objectives for Sprint 3 that were implemented were:
 
-- Creating and refining interfaces for different aspects of the game (players, enemies, items, etc.).
-- Implementing classes for each game object in our initial dungeon/level.
-- Drawing, animating, and moving these objects as they will appear in the final game.
-- Managing state changes for objects (e.g., directional facing, taking damage, etc.).
-- Handling user input to control the player character 
+Interface and Class Development:
+We Created and refined interfaces for various aspects of the game (players, enemies, items, projectiles, blocks, etc.)
+and implemented classes for each game object in our initial dungeon/level.
+
+Rendering and Animation:
+Implemented drawing, animating, and movement logic for game objects 
+so that they visually behave as expected in the final game.
+
+State Management:
+Managed state changes for objects, including directional facing, taking damage, 
+and triggering invulnerability. 
+
+Collision Handling:
+Developing a comprehensive collision system that:
+
+Uses bounding boxes (via an IGameObject interface) for collision detection.
+Implements a sort-and-sweep algorithm to optimize collision checks between dynamic objects.
+Separates collision detection from collision response by dispatching events to dedicated 
+collision handler classes  Uses velocity vectors to help determine collision sides for 
+proper response logic.
 
 # Team Members
 - Aidan Roley
 - Anushka Dewoolkar 
-- Chlore Feller
+- Chloe Feller
 - Kyle Dietrich
 - Paul Paciorek
 - Roy Volker Acapulco
 
 # Controls
-Below are the key mappings implemented for Sprint 2. 
+Below are the key mappings implemented for Sprint 3. 
 
 # Player Controls
 Arrow Keys or WASD: Move the player character (e.g., Link) and change facing direction.
@@ -24,31 +40,18 @@ Z or N: Perform a sword attack.
 Num Key 1: Link uses an arrow
 Num key 2: Link uses a boomerang 
 Num key 3: Link ues a bomb
-E: Cause the player to take damage (player enters damaged state).
-
-Block/Obstacle Controls
-T: Cycle to the previous block type in the block list.
-Y: Cycle to the next block type in the block list.
-(Blocks are currently stationary and non-interactive with other objects.)
-
-Item Controls
-U: Cycle to the previous item in the item list.
-I: Cycle to the next item in the item list.
-(Items move/animate as they would in the final game but do not interact with other objects yet.)
-
-Enemy/NPC Controls
-O: Cycle to the previous enemy/NPC in the list.
-P: Cycle to the next enemy/NPC in the list.
-(Enemies/NPCs move, animate, and may fire projectiles, but no collisions or damage checks are implemented yet.)
+Num key 4: Link uses sword beam
+E: Cause the player to take damage 
 
 Other Controls
+Left Click: Moves to next room
 Q: Quit the game.
 R: Reset the program to its initial state.
 
 # Known Bugs and Issues
-- Link's sword attacks do not go Link's facing direction
-- Aquamentus and Goriyas doesn't throw projectiles
-- Dodongo and Goriyas dont't face the directions based on the direction they are walking (they only face forward but they animate)
+- The water still currently acts as a normal collidable block
+  (it will eventually be impassable by link and enemies but not by projectiles)
+- Room 0,0 is a 2d section that still acts 3d and the enemies dont move around
 
 # Code Reviews
 We performed code reviews focusing on:
