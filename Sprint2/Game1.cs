@@ -35,8 +35,8 @@ namespace Sprint0
         private ISprite _textSprite;
 
         // Controllers
-        private IController _keyboardController;
-        private IController _mouseController;
+        private PlayerController _keyboardController;
+        private DebugController _mouseController;
 
         // Textures
 

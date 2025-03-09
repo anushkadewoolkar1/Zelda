@@ -11,7 +11,6 @@ namespace Sprint0.Controllers
     public interface IController
     {
         // Update is called once per frame to handle input
-        void Update();
-        void Update(Level level);
+        public void Update();
     }
 }

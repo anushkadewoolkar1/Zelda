@@ -10,7 +10,7 @@ using Sprint0.ILevel;
 
 namespace Sprint0.Controllers
 {
-    public class KeyboardController : IController
+    public class KeyboardController : PlayerController
     {
         private readonly Dictionary<Keys, ICommand> _keyCommandMap;
         // Add instance variable to store last input (with a default value for no input): (PP)
@@ -24,7 +24,7 @@ namespace Sprint0.Controllers
             lastInput = Keys.None;
         }
 
-        public void Update()
+        public override void Update()
         {
             KeyboardState state = Keyboard.GetState();
 
