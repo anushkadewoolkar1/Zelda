@@ -61,10 +61,5 @@ namespace Sprint0.Controllers
                 }
             }
         }
-
-        public void Update(Level Level)
-        {
-            //no-op
-        }
     }
 }
