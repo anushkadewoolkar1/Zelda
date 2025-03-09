@@ -16,20 +16,17 @@ using Zelda.Enums;
 
 namespace Sprint0.Commands
 {
-    public class ExitCommand : ICommand
+    public class QuitCommand : ICommand
     {
         private readonly Game1 _game;
-        private bool _reset;
 
-        public ExitCommand(Game1 game, bool reset)
+        public QuitCommand(Game1 game)
         {
             _game = game;
-            _reset = reset;
         }
 
         public void Execute()
         {
-            _game.restart = _reset;
             _game.Exit();
         }
     }
