@@ -133,6 +133,8 @@ namespace Sprint0
 
             _mouseController.Update(levelMap);
 
+            _gamePadController.Update();
+
             //_currentSprite.Update(gameTime);
 
             levelMap.Update(gameTime);
@@ -315,13 +317,59 @@ namespace Sprint0
             {
 
                 //'A' -> Player Attack:
-                
+                { GamePadButtonEnums.DownBtn, setAttackCommand },
+
+                //'B' -> Player Use Item:
+                { GamePadButtonEnums.RightBtn, useItemArrow }, // Will be set to current item once full item system is implemented
+
+                //'Start' -> Open Menu (Pause Game):
+                //{ GamePadButtonEnums.Start, openMenuCommand } // Waiting until I complete menu implementations
+
+                //'Select' -> Open Options (Pause Game):
+                //{ GamePadButtonEnums.Select, openOptionsCommand } // Waiting until I complete menu implementation
+
+            };
+
+            var joystickCommandMap = new Dictionary<GamePadJoystickEnums, ICommand>
+            {
+
+                //'Up' -> Move Up
+                { GamePadJoystickEnums.UpLJS, setWalkUpCommand },
+
+                //'Left' -> Move Left
+                { GamePadJoystickEnums.LeftLJS, setWalkLeftCommand },
+
+                //'Right' -> Move Right
+                { GamePadJoystickEnums.RightLJS, setWalkRightCommand },
+
+                //'Down' -> Move Down
+                { GamePadJoystickEnums.DownLJS, setWalkDownCommand }
+
+            };
+
+            var dPadCommandMap = new Dictionary<GamePadDPadEnums, ICommand>
+            {
+
+                //'Up' -> Move Up
+                { GamePadDPadEnums.Up, setWalkUpCommand },
+
+                //'Left' -> Move Left
+                { GamePadDPadEnums.Left, setWalkLeftCommand },
+
+                //'Right' -> Move Right
+                { GamePadDPadEnums.Right, setWalkRightCommand },
+
+                //'Down' -> Move Down
+                { GamePadDPadEnums.Down, setWalkDownCommand }
 
             };
 
 
             _mouseController = new MouseController(_graphics.PreferredBackBufferWidth,
                 _graphics.PreferredBackBufferHeight);
+
+
+            _gamePadController = new GamePadController(buttonCommandMap, joystickCommandMap, dPadCommandMap);
 
 
             item2 = new Item();

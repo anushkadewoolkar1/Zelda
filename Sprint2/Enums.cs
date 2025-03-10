@@ -3,10 +3,10 @@ namespace Zelda.Enums
     public enum GamePadButtonEnums
     {
         None,
-        Down,
-        Left,
-        Right,
-        Up,
+        DownBtn,
+        LeftBtn,
+        RightBtn,
+        UpBtn,
         LeftBump,
         RightBump,
         Start,
@@ -25,12 +25,6 @@ namespace Zelda.Enums
         RightRJS,
         UpRJS,
         PressRJS
-    }
-    public enum GamePadTriggerEnums
-    {
-        None,
-        Left,
-        Right
     }
     public enum GamePadDPadEnums
     {
