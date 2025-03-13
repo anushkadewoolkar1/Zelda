@@ -16,6 +16,9 @@ namespace ZeldaGame.Zelda.CollisionMap
         private float tilePixelHeight;
         private int tilesWidth = 12, tilesHeight = 7;
 
+        private const int STARTING_X_POS = 64;
+        private const int STARTING_Y_POS = 50;
+
         private TileMap(int screenWidth, int screenHeight)
         {
             tilePixelWidth = 31.6f;
@@ -56,8 +59,8 @@ namespace ZeldaGame.Zelda.CollisionMap
         public Vector2 GetTileCenter(Vector2 tilePosition)
         {
             return new Vector2(
-                (tilePosition.X * tilePixelWidth + tilePixelWidth / 2f) + 64,
-                (tilePosition.Y * tilePixelHeight + tilePixelHeight / 2f) + 50
+                (tilePosition.X * tilePixelWidth + tilePixelWidth / 2f) + STARTING_X_POS,
+                (tilePosition.Y * tilePixelHeight + tilePixelHeight / 2f) + STARTING_Y_POS
             );
         }
 
