@@ -44,12 +44,18 @@ namespace Sprint0.ILevel
 
         private List<IGameObject> gameObjects;
 
-
-        private const int ROOM_LENGTH = 14;
         private const int LEVEL_CENTER_POSITION = 60;
-        private const int WIDTH_POSITION_SCALAR = 2;
-        private const int HEIGHT_POSITION_SCALAR = 5;
+        private const int WIDTH_POSITION = 2;
+        private const int HEIGHT_POSITION = 5;
         private const int LEVEL_TEXTURE_SCALAR = 6;
+        private const int BACKGROUND_SIZE_SCALAR = 2;
+        private const int ITEM_START_INDEX = 5;
+        private const int ENEMY_START_INDEX = 6;
+        private const int BLOCKS_PER_ROOM_X = 14;
+        private const int BLOCKS_PER_ROOM_Y = 9;
+        private const int BLOCK_X_ADJUST = 32;
+        private const int SHIFT_INTO_RANGE = 1;
+        private const int ROOM_STARTING_POINT = 12;
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
@@ -61,11 +67,11 @@ namespace Sprint0.ILevel
             //Creates the background room dimensions as well as loading the entire level texture
             this.contentManager = Content;
             _backgroundTexture = Content.Load<Texture2D>("Levels Spritesheet");
-            roomWidth = (_backgroundTexture.Width - 5) / LEVEL_TEXTURE_SCALAR;
-            roomHeight = (_backgroundTexture.Height - 5) / LEVEL_TEXTURE_SCALAR;
+            roomWidth = (_backgroundTexture.Width - HEIGHT_POSITION) / LEVEL_TEXTURE_SCALAR;
+            roomHeight = (_backgroundTexture.Height - HEIGHT_POSITION) / LEVEL_TEXTURE_SCALAR;
             _sourceRectangle = new Rectangle(
-                roomWidth * WIDTH_POSITION_SCALAR + 1, roomHeight * HEIGHT_POSITION_SCALAR + 1, roomWidth, roomHeight);
-            roomDimensions = new Vector2(roomWidth * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION, roomHeight * WIDTH_POSITION_SCALAR - LEVEL_CENTER_POSITION);
+                (roomWidth * WIDTH_POSITION) + SHIFT_INTO_RANGE, (roomHeight * HEIGHT_POSITION) + SHIFT_INTO_RANGE, roomWidth, roomHeight);
+            roomDimensions = new Vector2((roomWidth * WIDTH_POSITION) - LEVEL_CENTER_POSITION, (roomHeight * WIDTH_POSITION) - LEVEL_CENTER_POSITION);
 
             //Reads through the levelfile to create the various levels
             foreach (var line in File.ReadLines("../../../Content/LevelFile.txt"))
@@ -84,7 +90,7 @@ namespace Sprint0.ILevel
             gameObjects = _gameObjects;
 
             //Spawn Room
-            currentRoom = [2, 5];
+            currentRoom = [WIDTH_POSITION, HEIGHT_POSITION];
         }
 
 
@@ -120,7 +126,7 @@ namespace Sprint0.ILevel
         {
             //Draws room background
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
-               roomWidth * 2, roomHeight * 2), _sourceRectangle, Color.White);
+               roomWidth * BACKGROUND_SIZE_SCALAR, roomHeight * BACKGROUND_SIZE_SCALAR), _sourceRectangle, Color.White);
 
             //Goes through each list drawing each object
             for (int i = 0; i < enemiesList.Count;i++)
@@ -176,7 +182,7 @@ namespace Sprint0.ILevel
             while (currentPosition < count && !foundRoom)
             {
                 
-                if (xCoordinate.ToString() == Objects[currentPosition - 1] && yCoordinate.ToString() == Objects[currentPosition])
+                if (xCoordinate.ToString() == Objects[currentPosition - SHIFT_INTO_RANGE] && yCoordinate.ToString() == Objects[currentPosition])
                 {
                     foundRoom = true;
                 }
@@ -192,7 +198,7 @@ namespace Sprint0.ILevel
 
             //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
-                roomWidth * (xCoordinate) + 1 * (xCoordinate + 1), roomHeight * (yCoordinate) + 1 * (yCoordinate + 1),
+                roomWidth * (xCoordinate) + (xCoordinate + SHIFT_INTO_RANGE), roomHeight * (yCoordinate) * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
 
@@ -200,8 +206,8 @@ namespace Sprint0.ILevel
             RemoveOldObjects();
 
             //Get's to the start of the room and sets room size
-            currentPosition += 12;
-            int room = currentPosition + ROOM_LENGTH * 9;
+            currentPosition += ROOM_STARTING_POINT;
+            int room = currentPosition + BLOCKS_PER_ROOM_X * BLOCKS_PER_ROOM_Y;
             
             
 
@@ -234,18 +240,18 @@ namespace Sprint0.ILevel
         {
             EnemyType enemyType;
             enemiesList.Add(new Enemy());
-            Enum.TryParse(Objects[currentPosition].Substring(6).ToString(), out enemyType);
+            Enum.TryParse(Objects[currentPosition].Substring(ENEMY_START_INDEX).ToString(), out enemyType);
             enemiesList[enemiesList.Count - 1].CreateEnemy(enemyType,
-                new Vector2(((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
-                ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1));
+                new Vector2(((currentPosition - startOfRoom) % BLOCKS_PER_ROOM_X) - SHIFT_INTO_RANGE,
+                ((currentPosition - startOfRoom) / BLOCKS_PER_ROOM_X) - SHIFT_INTO_RANGE));
             gameObjects.Add(enemiesList[enemiesList.Count - 1]);
         }
 
         private void CreateBlock(int currentPosition, int startOfRoom)
         {
             Vector2 position = new Vector2(
-                        (roomDimensions.X / ROOM_LENGTH) * ((currentPosition - startOfRoom) % ROOM_LENGTH) + 32,
-                        (roomDimensions.Y / 9) * ((currentPosition - startOfRoom) / ROOM_LENGTH) + 32
+                        (roomDimensions.X / BLOCKS_PER_ROOM_X) * ((currentPosition - startOfRoom) % BLOCKS_PER_ROOM_X) + BLOCK_X_ADJUST,
+                        (roomDimensions.Y / BLOCKS_PER_ROOM_Y) * ((currentPosition - startOfRoom) / BLOCKS_PER_ROOM_X) 
                     );
 
             Texture2D[] blockTextures = LoadBlockTextures();
@@ -266,10 +272,10 @@ namespace Sprint0.ILevel
         {
             ItemType itemType;
             itemsList.Add(new Item());
-            Enum.TryParse(Objects[currentPosition].Substring(5), out itemType);
+            Enum.TryParse(Objects[currentPosition].Substring(ITEM_START_INDEX), out itemType);
             itemsList[itemsList.Count - 1] = itemsList[itemsListIndex].CreateItem(itemType,
-                ((currentPosition - startOfRoom) % ROOM_LENGTH) - 1,
-                ((currentPosition - startOfRoom) / ROOM_LENGTH) - 1);
+                ((currentPosition - startOfRoom) % BLOCKS_PER_ROOM_X) - SHIFT_INTO_RANGE,
+                ((currentPosition - startOfRoom) / BLOCKS_PER_ROOM_X) - SHIFT_INTO_RANGE);
             gameObjects.Add((itemsList[itemsList.Count - 1]));
         }
 
