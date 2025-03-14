@@ -22,7 +22,8 @@ namespace Sprint0.Sprites
         private int totalFrames;
         public int spriteSize;
         private double currentDelay = 0.0;
-        private int delay = 150;
+
+        private const int DELAY_LENGTH = 150;
         public EnemyProjectileSprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSize, int ySize, ItemType itemType)
         {
             Texture = texture;
@@ -43,14 +44,14 @@ namespace Sprint0.Sprites
         public void Update(GameTime gameTime)
         {
             currentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (currentDelay >= (delay / 2))
+            if (currentDelay >= (DELAY_LENGTH / 2))
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
                 {
                     currentFrame = 0;
                 }
-                if (currentDelay >= delay)
+                if (currentDelay >= DELAY_LENGTH)
                 {
                     currentDelay = 0;
                 }

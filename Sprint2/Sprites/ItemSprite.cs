@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace Sprint0.Sprites
         private Rectangle destinationRectangle;
         private ItemSpriteFactory _factory;
         private String itemString;
+
+        private const string START_FRAME = "_frame_000";
+        private const string ALT_FRAME = "_frame_001";
 
         private Vector2 _position;
 
@@ -70,13 +74,13 @@ namespace Sprint0.Sprites
             {
                 elapsedTime -= frameDuration;
 
-                if (itemString.Contains("_frame_000"))
+                if (itemString.Contains(START_FRAME))
                 {
-                    itemString = itemString.Replace("_frame_000", "_frame_001");
+                    itemString = itemString.Replace(START_FRAME, ALT_FRAME);
                 }
-                else if (itemString.Contains("_frame_001"))
+                else if (itemString.Contains(ALT_FRAME))
                 {
-                    itemString = itemString.Replace("_frame_001", "_frame_000");
+                    itemString = itemString.Replace(ALT_FRAME, START_FRAME);
                 }
                 sourceRectangle = _factory.FetchItemSourceFromString(itemString);
             }

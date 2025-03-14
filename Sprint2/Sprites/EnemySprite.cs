@@ -26,15 +26,17 @@ namespace Sprint0.Sprites
         private int totalFrames;
         public int spriteSize;
         private double currentDelay = 0.0;
-        private int delay = 150;
 
-        public EnemySprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSize, int ySize, EnemyType enemyType)
+        private const int DELAY_LENGTH = 150;
+        private const int TALL_ENEMY_SCALAR = 2;
+
+        public EnemySprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSizeArg, int ySizeArg, EnemyType enemyType)
         {
             Texture = texture;
             Rows = rows;
             Cols = columns;
-            xSize = xSize;
-            ySize = ySize;
+            xSize = xSizeArg;
+            ySize = ySizeArg;
             currentFrame = 0;
             totalFrames = Rows * Cols;
             for (int i = 0; i < totalFrames; i++)
@@ -48,14 +50,14 @@ namespace Sprint0.Sprites
         public void Update(GameTime gameTime)
         {
             currentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (currentDelay >= (delay / 2))
+            if (currentDelay >= (DELAY_LENGTH / 2))
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
                 {
                     currentFrame = 0;
                 }
-                if (currentDelay >= delay)
+                if (currentDelay >= DELAY_LENGTH)
                 {
                     currentDelay = 0;
                 }
@@ -74,7 +76,7 @@ namespace Sprint0.Sprites
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize);
             } else
             {
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize * 2);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, spriteSize, spriteSize * TALL_ENEMY_SCALAR);
             }
 
             spriteBatch.Draw(Texture, destinationRectangle, SourceRectangles[currentFrame], Color.White);
