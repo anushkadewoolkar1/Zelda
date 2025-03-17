@@ -350,6 +350,8 @@ namespace Sprint0
             var dPadCommandMap = new Dictionary<GamePadDPadEnums, ICommand>
             {
 
+                { GamePadDPadEnums.None, setIdleCommand },
+
                 //'Up' -> Move Up
                 { GamePadDPadEnums.Up, setWalkUpCommand },
 
