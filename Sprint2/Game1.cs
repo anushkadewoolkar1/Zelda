@@ -139,7 +139,8 @@ namespace Sprint0
 
             levelMap.Update(gameTime);
 
-            enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
+            //enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
+            levelMap.enemiesList.ForEach(x => x.Update(gameTime));
 
             item.Update(gameTime);
 
@@ -165,7 +166,8 @@ namespace Sprint0
 
             linkSprite.Draw(_spriteBatch);
 
-            enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
+            // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
+            levelMap.enemiesList.ForEach(x => x.DrawCurrentSprite(_spriteBatch));
 
             /*
             _block.Draw(_spriteBatch);
@@ -349,8 +351,6 @@ namespace Sprint0
 
             var dPadCommandMap = new Dictionary<GamePadDPadEnums, ICommand>
             {
-
-                { GamePadDPadEnums.None, setIdleCommand },
 
                 //'Up' -> Move Up
                 { GamePadDPadEnums.Up, setWalkUpCommand },
