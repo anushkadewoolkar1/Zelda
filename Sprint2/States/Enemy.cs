@@ -289,7 +289,7 @@ namespace Sprint0.States
 
         public void Move(Vector2 move, GameTime gameTime)
         {
-            if (!itemSpawned && enemyType == EnemyType.Goriya) 
+            if (!itemSpawned) 
             {
                 if (move != Vector2.Zero)
                 move.Normalize();

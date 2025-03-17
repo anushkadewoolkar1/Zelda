@@ -55,6 +55,7 @@ namespace Sprint0.States
                     enemy.Speed = 0;
                     break;
                 case EnemyType.Keese:
+                    enemy.Speed = 20f;
                     if (enemy.Direction == Direction.Up || enemy.Direction == Direction.Down)
                     {
                         move = MoveDirection(enemy.Direction);
@@ -67,6 +68,7 @@ namespace Sprint0.States
 
                     break;
                 case EnemyType.Stalfos:
+                    enemy.Speed = 30f;
                     if(timer == 0 || timer == 50)
                     {
                         enemy.ChangeDirection((Direction)random);
@@ -96,6 +98,7 @@ namespace Sprint0.States
                     }
                     break;
                 case EnemyType.Gel:
+                    enemy.Speed = 10f;
                     if ((timer >= 0 && timer < 25) || (timer >= 50 && timer < 75))
                     {
                         move = new Vector2(0, 0);
