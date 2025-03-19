@@ -198,7 +198,7 @@ namespace Sprint0.Display
 
             //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
-                roomWidth * (xCoordinate) + (xCoordinate + SHIFT_INTO_RANGE), roomHeight * (yCoordinate) * (yCoordinate + 1),
+                roomWidth * (xCoordinate) + SHIFT_INTO_RANGE * (xCoordinate + SHIFT_INTO_RANGE), roomHeight * (yCoordinate) + SHIFT_INTO_RANGE * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
 
@@ -251,7 +251,7 @@ namespace Sprint0.Display
         {
             Vector2 position = new Vector2(
                         (roomDimensions.X / BLOCKS_PER_ROOM_X) * ((currentPosition - startOfRoom) % BLOCKS_PER_ROOM_X) + BLOCK_X_ADJUST,
-                        (roomDimensions.Y / BLOCKS_PER_ROOM_Y) * ((currentPosition - startOfRoom) / BLOCKS_PER_ROOM_X) 
+                        (roomDimensions.Y / BLOCKS_PER_ROOM_Y) * ((currentPosition - startOfRoom) / BLOCKS_PER_ROOM_X) + BLOCK_X_ADJUST
                     );
 
             Texture2D[] blockTextures = LoadBlockTextures();

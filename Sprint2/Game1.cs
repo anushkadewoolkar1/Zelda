@@ -129,11 +129,17 @@ namespace Sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _keyboardController.Update();
-
+            // Update Debug inputs:
             _mouseController.Update(levelMap);
 
-            _gamePadController.Update();
+            // Only one player command per frame: If GamePad is connected, use it for input. Otherwise, use keyboard:
+            if (GamePad.GetState(0).IsConnected)
+            {
+                _gamePadController.Update();
+            } else
+            {
+                _keyboardController.Update();
+            }
 
             //_currentSprite.Update(gameTime);
 
