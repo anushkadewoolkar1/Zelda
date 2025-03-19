@@ -11,7 +11,7 @@ using Sprint0.States;
 using System;
 using System.Net.Http.Headers;
 using ZeldaGame.Zelda.CollisionMap;
-using Sprint0.ILevel;
+using Sprint0.Display;
 using Sprint0.CollisionHandling;
 using System.Runtime.Intrinsics.X86;
 
@@ -55,9 +55,9 @@ namespace Sprint0
 
         private TileMap _tileMap;
         private Block _invisibleBlock;
-        private LoadRoomBlock _loadRoomBlock;   
-        
+        private LoadRoomBlock _loadRoomBlock;
 
+        public IDisplay currDisplay;
         public Level levelMap;
 
         // Collision
@@ -351,6 +351,8 @@ namespace Sprint0
 
             var dPadCommandMap = new Dictionary<GamePadDPadEnums, ICommand>
             {
+
+                { GamePadDPadEnums.None, setIdleCommand },
 
                 //'Up' -> Move Up
                 { GamePadDPadEnums.Up, setWalkUpCommand },

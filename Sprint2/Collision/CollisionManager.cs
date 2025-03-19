@@ -8,7 +8,7 @@ using Sprint0.Collision;
 using Sprint0.CollisionHandling;
 using Zelda.Enums;
 using Sprint0.States;
-using Sprint0.ILevel;
+using Sprint0.Display;
 using System.ComponentModel.Design;
 using Sprint0.Sprites;
 using Microsoft.Xna.Framework.Graphics;

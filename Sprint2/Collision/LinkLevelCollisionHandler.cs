@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Sprint0.CollisionHandling;
 using Sprint0.States;
 using Zelda.Enums;
-using Sprint0.ILevel;
+using Sprint0.Display;
 
 namespace Sprint0.Collision
 {

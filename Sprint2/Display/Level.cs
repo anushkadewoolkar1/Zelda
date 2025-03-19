@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.ILevel;
+using Sprint0.Display;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +18,7 @@ using System.Reflection.Metadata;
 using Sprint0.CollisionHandling;
 using System.Reflection.Emit;
 
-namespace Sprint0.ILevel
+namespace Sprint0.Display
 {
     public class Level : ILevel, IGameObject
     {
@@ -122,7 +122,7 @@ namespace Sprint0.ILevel
         }
 
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //Draws room background
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
@@ -143,7 +143,7 @@ namespace Sprint0.ILevel
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Goes through each list updating each object
             for (int i = 0; i < enemiesList.Count; i++)
@@ -162,7 +162,7 @@ namespace Sprint0.ILevel
 
         //Finds requested room from objects list and adds objects according to levelFile.txt
         //Returns and prints failed to find room if failed to find requested room
-        public void LoadRoom(int xCoordinate, int yCoordinate)
+        public override void LoadRoom(int xCoordinate, int yCoordinate)
         {
             //Temporary implementation for clicking through rooms double click bug
             if (!doubleClickTemp)
