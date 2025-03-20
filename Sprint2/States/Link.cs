@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
+using Sprint0.States;
 using Zelda.Enums;
 
 
@@ -15,7 +16,6 @@ public class Link : IGameObject
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
     private LinkSpriteFactory spriteFactory;
-    //public LinkSprite LinkSprite { get; set; }
 
     // Invulnerability settings.
     public bool IsInvulnerable { get; private set; }
@@ -24,27 +24,26 @@ public class Link : IGameObject
     // (pixels per second).
     private const float Speed = 100f;
 
-    // Health property 
+    // Health 
     public int Health { get; set; } = 3;
-    // property for which item is currently selected
-    public List<ItemType> CurrentItem { get; set; }  
-    public Direction currentDirection { get; set; }
 
+    // Iventory and item usage
+    public List<ItemType> CurrentItem { get; set; }
+    public int chooseItem { get; set; }
     public Boolean linkAttacking { get; set; }
     public Boolean linkUseItem { get; set; }
-
-    private Boolean initializeItem;
-    public int chooseItem { get; set; }
-    private Boolean spawnedItem;
-    private ISprite arrowSprite, boomerangSprite, bombSprite, woodenSwordSprite;
     public Boolean swordBeam { get; set; }
-    private Vector2 projectilePosition;
-    private Direction projectileDirection;
-    private List<IGameObject> gameObjects;
 
+    // Current facing direction 
+    public Direction currentDirection { get; set; }
+
+    // other fields for movement
     private Vector2 velocity;
 
-    public Link()
+    private List<IGameObject> gameObjects;
+    private LinkItemManager itemManager;
+
+    public Link(List<IGameObject> _gameObjects)
     {
         // Initialize the sprite factory 
         spriteFactory = LinkSpriteFactory.Instance;
@@ -59,15 +58,13 @@ public class Link : IGameObject
         IsInvulnerable = false;
         invulnerabilityTimer = 0f;
 
-        // Set the default current item 
-        initializeItem = false;
-        spawnedItem = false;
-
+        // item related properties
+        CurrentItem = new List<ItemType>();
         linkAttacking = false;
         swordBeam = false;
 
-        CurrentItem = new List<ItemType>();
-
+        gameObjects = _gameObjects;
+        itemManager = new LinkItemManager(this, gameObjects);
     }
 
     public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
@@ -76,48 +73,9 @@ public class Link : IGameObject
         currentState.Update(gameTime);
         currentSprite.Update(gameTime);
 
-        //Updates projectile for sprite movement when projectile exists
-        if (spawnedItem)
-        {
-            
-        }
+        itemManager.Update(gameTime);
 
-        for (int i = 0; i < CurrentItem.Count; i++)
-        {
-            switch (CurrentItem[i])
-            {
-                case ItemType.Arrow:
-                    if (arrowSprite != null)
-                    {
-                        arrowSprite.Update(gameTime, this);
-                    }
-                    break;
-                case ItemType.Boomerang:
-                    if (boomerangSprite != null)
-                    {
-                        boomerangSprite.Update(gameTime, this);
-                    }
-                    break;
-                case ItemType.Bomb:
-                    if (bombSprite != null)
-                    {
-                        bombSprite.Update(gameTime, this);
-                    }
-                    break;
-                case ItemType.WoodenSword:
-                    if (woodenSwordSprite != null)
-                    {
-                        woodenSwordSprite.Update(gameTime, this);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
-
-        // Update invulnerability timer if Link is invulnerable.
+        // Handle invulnerability timer
         if (IsInvulnerable)
         {
             invulnerabilityTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -130,7 +88,6 @@ public class Link : IGameObject
                     ChangeState(new LinkWalkingState(this, currentDirection));
                 EndInvulnerability();
             }
-            
         }
     }
 
@@ -138,54 +95,8 @@ public class Link : IGameObject
     {
         currentSprite.Draw(spriteBatch, this.Position);
 
-
-        //Starts Link's Projectile at Link's location
-
-        if (initializeItem == true)
-        {
-            projectilePosition = this.Position + new Vector2(4 * 4, 4 * 4);
-            initializeItem = false;
-            spawnedItem = true;
-        }
-
-        //Draws Projectile Sprite while Projectile exists
-        if (spawnedItem == true)
-        {
-        }
-        for (int i = 0; i < CurrentItem.Count; i++)
-        {
-            switch (CurrentItem[i])
-
-            {
-                case ItemType.Arrow:
-                    if (arrowSprite != null)
-                    {
-                        arrowSprite.Draw(spriteBatch, projectilePosition);
-                    }
-                    break;
-                case ItemType.Boomerang:
-                    if (boomerangSprite != null)
-                    {
-                        boomerangSprite.Draw(spriteBatch, projectilePosition);
-                       
-                    }
-                    break;
-                case ItemType.Bomb:
-                    if (bombSprite != null)
-                    {
-                        bombSprite.Draw(spriteBatch, projectilePosition);
-                    }
-                    break;
-                case ItemType.WoodenSword:
-                    if (woodenSwordSprite != null)
-                    {
-                        woodenSwordSprite.Draw(spriteBatch, projectilePosition);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
+        // Draw item/projectiles via item manager
+        itemManager.Draw(spriteBatch);
     }
 
     public void ChangeState(ILinkState newState)
@@ -244,107 +155,32 @@ public class Link : IGameObject
     public void PickUpItem(ItemSprite pickedUpItem)
     {
         System.Diagnostics.Debug.WriteLine("Link picks up item");
-        // Implement item pick up logic
+        
         switch (pickedUpItem.GetItemString())
         {
-            case "ZeldaSpriteArrow": CurrentItem.Add(ItemType.Arrow); System.Diagnostics.Debug.WriteLine("ARROW!");  break;
-            case "ZeldaSpriteBoomerang": CurrentItem.Add(ItemType.Boomerang); break;
-            case "ZeldaSpriteBomb": CurrentItem.Add(ItemType.Bomb); break;
+            case "ZeldaSpriteArrow": 
+                CurrentItem.Add(ItemType.Arrow);  
+                break;
+            case "ZeldaSpriteBoomerang": 
+                CurrentItem.Add(ItemType.Boomerang); 
+                break;
+            case "ZeldaSpriteBomb": 
+                CurrentItem.Add(ItemType.Bomb); 
+                break;
         }
     }
 
     public void UseItem()
     {
-        if (linkAttacking)
+        if (linkAttacking) return;
+        System.Diagnostics.Debug.WriteLine("Link uses an item...");
+
+        // Delegate item logic to itemManager
+        if (chooseItem < CurrentItem.Count)
         {
-            return;
+            var itemType = CurrentItem[chooseItem];
+            itemManager.UseItem(itemType, currentDirection);
         }
-        System.Diagnostics.Debug.WriteLine("Link uses an");
-        spawnedItem = false;
-        switch (CurrentItem[chooseItem])
-        {
-            case ItemType.Arrow:
-                {
-                    switch (currentDirection)
-                    {
-                        case Direction.Up:
-                            arrowSprite = ProjectileSpriteFactory.Instance.CreateUpArrowBrown();
-                            break;
-                        case Direction.Down:
-                            arrowSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
-                            break;
-                        case Direction.Left:
-                            arrowSprite = ProjectileSpriteFactory.Instance.CreateLeftArrowBrown();
-                            break;
-                        case Direction.Right:
-                            arrowSprite = ProjectileSpriteFactory.Instance.CreateRightArrowBrown();
-                            break;
-                        default:
-                            arrowSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
-                            break;
-                    }
-                    gameObjects.Add((IGameObject)arrowSprite);
-                    break;
-                }
-            case ItemType.Boomerang:
-                {
-
-                    //Need to do this for Link Projectile Conversions
-                    if (currentDirection == Direction.Up)
-                    {
-                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection);
-                    } else if (currentDirection == Direction.Right)
-                    {
-                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection - 2);
-                    } else
-                    {
-                        boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)currentDirection + 1);
-                    }
-                    gameObjects.Add((IGameObject)boomerangSprite);
-                    break;
-                }
-            case ItemType.Bomb:
-                {
-                    bombSprite = ProjectileSpriteFactory.Instance.CreateBomb();
-                    gameObjects.Add((IGameObject)bombSprite);
-                    break;
-
-                }
-            case ItemType.WoodenSword:
-                {
-                    switch (currentDirection)
-                    {
-                        case Direction.Up:
-                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateUpWoodenSwordBrown();
-                            break;
-                        case Direction.Down:
-                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateDownWoodenSwordBrown();
-                            break;
-                        case Direction.Left:
-                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateLeftWoodenSwordBrown();
-                            break;
-                        case Direction.Right:
-                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateRightWoodenSwordBrown();
-                            break;
-                        default:
-                            woodenSwordSprite = ProjectileSpriteFactory.Instance.CreateDownArrowBrown();
-                            break;
-                    }
-                    swordBeam = true;
-                    gameObjects.Add((IGameObject)woodenSwordSprite);
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
-        }
-
-        // Prepares to draw Link's Projectile and holds item direction information
-        projectileDirection = currentDirection;
-        initializeItem = true;
-        
-        System.Diagnostics.Debug.WriteLine("Item");
     }
 
     public void TakeDamage(int damage)

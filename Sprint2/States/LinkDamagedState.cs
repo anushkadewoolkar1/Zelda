@@ -24,7 +24,6 @@ public class LinkDamagedState : ILinkState
     public void Enter()
     {
         link.StartInvulnerability();
-        //link.LinkSprite.SetDamaged(true);
     }
 
     public void Update(GameTime gameTime)
@@ -49,6 +48,5 @@ public class LinkDamagedState : ILinkState
     {
         // End the invulnerability 
         link.EndInvulnerability();
-        //link.LinkSprite.SetDamaged(false);
     }
 }

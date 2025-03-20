@@ -29,7 +29,7 @@ namespace Sprint0.Sprites
         private Vector2 velocity;
         private Vector2 linkPosition;
         private Vector2 position;
-        private ItemType currentProjectile;
+        public ItemType currentProjectile;
 
         private int boomerangChangeDirection;
         private int timer;

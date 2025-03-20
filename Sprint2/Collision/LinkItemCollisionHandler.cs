@@ -10,7 +10,7 @@ using Sprint0.States;
 namespace Sprint0.CollisionHandling
 {
     // Collision Handler for Link and Item collisions.
-    public class PlayerItemCollisionHandler : ICollisionHandler
+    public class LinkItemCollisionHandler : ICollisionHandler
     {
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {

@@ -38,11 +38,6 @@ public class LinkAttackingMagicalRodState : ILinkState
                 link.SetSprite(LinkSpriteFactory.Instance.CreateRightAttackMagicalRod(attackFrame, 1, link.Health));
                 break;
         }
-
-        // Execute Link's attack logic for the rod.
-        //link.PerformAttack();
-
-        // Spawn a projectile or apply ranged effects here maybe
     }
 
     public void Update(GameTime gameTime)

@@ -218,7 +218,7 @@ namespace Sprint0
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
 
-            linkSprite = new Link();
+            linkSprite = new Link(gameObjects);
 
             ICommand quitCommand = new QuitCommand(this);
             ICommand resetCommand = new ResetCommand(this);
