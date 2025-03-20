@@ -229,5 +229,10 @@ namespace Sprint0.Sprites
             LinkTotality = [RIGHT, frame, state, health];
             return new LinkSprite(zeldaSpriteSheet, MAGIC_ROD_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
         }
+
+        public ISprite CreateDeath()
+        {
+            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+        }
     }
 }

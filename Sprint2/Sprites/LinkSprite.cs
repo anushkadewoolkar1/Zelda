@@ -13,7 +13,7 @@ namespace Sprint0.Sprites
     {
 
         private Texture2D _texture;
-        private enum LinkSpriteDirection {Down, Left, Right, Up};
+        private enum LinkSpriteDirection { Down, Left, Right, Up };
 
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
@@ -21,6 +21,7 @@ namespace Sprint0.Sprites
         private int colorAdjustment;
         private bool linkDamaged;
         private int damageClock;
+        private bool death;
 
         private int leftAdjustment;
         private int upAdjustment;
@@ -35,6 +36,7 @@ namespace Sprint0.Sprites
         {
             _texture = texture;
 
+            death = false;
 
             //Sets clock to 0 when Link isn't damaged 
             linkDamaged = !(Convert.ToBoolean(linkStates[3]));
@@ -59,6 +61,13 @@ namespace Sprint0.Sprites
             //Because the spritesheet is each color of link stacked on top of each other, this adds to the yposition so that the colors match 
             colorAdjustment = (linkStates[2] / 2) * COLOR_SCALE;
 
+            if (linkStates[2] == -1)
+            {
+                sourceRectangle = new Rectangle(FixDirection(sourceRectangleDimensions[0], linkStates[0], sourceRectangleDimensions[2]), sourceRectangleDimensions[1],
+                        sourceRectangleDimensions[2], sourceRectangleDimensions[3]);
+                death = true;
+                return;
+            }
 
             //Changes Link's Sprite depending on frame of animation
             switch (linkStates[1])
@@ -82,7 +91,6 @@ namespace Sprint0.Sprites
                 default:
                     break;
             }
-            Console.WriteLine("fhesjkgbseghjskdvhskbhkisgjsh");
 
 
         }
@@ -91,6 +99,13 @@ namespace Sprint0.Sprites
         {
             destinationRectangle = new Rectangle((int)_position.X - (leftAdjustment * linkScale), (int)_position.Y - (upAdjustment * linkScale),
                             sourceRectangle.Width * linkScale, sourceRectangle.Height * linkScale);
+
+            if (death)
+            {
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Gray);
+                return;
+            }
+
             if (!linkDamaged)
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
@@ -123,7 +138,7 @@ namespace Sprint0.Sprites
         //        damageClock = 0;
         //    }
         //}
-        
+
 
         public void Update(GameTime gameTime)
         {
@@ -180,59 +195,59 @@ namespace Sprint0.Sprites
                 }
             }
             else if (facingDirection == (int)LinkSpriteDirection.Up)
+            {
+                switch (frame)
                 {
-                    switch (frame)
-                    {
-                        case 2:
-                            upAdjustment = 12;
-                            sourceRectangleDimensions[3] = 28;
-                            sourceRectangleDimensions[1] = yCoordinate - 11;
-                            break;
-                        case 3:
-                            upAdjustment = 11;
-                            sourceRectangleDimensions[3] = 27;
-                            sourceRectangleDimensions[1] = yCoordinate - 10;
-                            break;
-                        case 4:
-                            upAdjustment = 3;
-                            sourceRectangleDimensions[3] = 19;
-                            sourceRectangleDimensions[1] = yCoordinate - 2;
-                            break;
-                        default:
-                            break;
-                    }
+                    case 2:
+                        upAdjustment = 12;
+                        sourceRectangleDimensions[3] = 28;
+                        sourceRectangleDimensions[1] = yCoordinate - 11;
+                        break;
+                    case 3:
+                        upAdjustment = 11;
+                        sourceRectangleDimensions[3] = 27;
+                        sourceRectangleDimensions[1] = yCoordinate - 10;
+                        break;
+                    case 4:
+                        upAdjustment = 3;
+                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[1] = yCoordinate - 2;
+                        break;
+                    default:
+                        break;
                 }
-                else
+            }
+            else
+            {
+                switch (frame)
                 {
-                    switch (frame)
-                    {
-                        case 2:
-                            if (facingDirection == (int)LinkSpriteDirection.Left)
-                            {
-                                leftAdjustment = 12;
-                            }
-                            sourceRectangleDimensions[2] = 27;
-                            break;
-                        case 3:
-                            if (facingDirection == (int)LinkSpriteDirection.Left)
-                            {
-                                leftAdjustment = 7;
-                            }
-                            sourceRectangleDimensions[2] = 23;
-                            sourceRectangleDimensions[0] = xCoordinate + 11;
-                            break;
-                        case 4:
-                            if (facingDirection == (int)LinkSpriteDirection.Left)
-                            {
-                                leftAdjustment = 3;
-                            }
-                            sourceRectangleDimensions[2] = 19;
-                            sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
-                            break;
-                        default:
-                            break;
-                    }
+                    case 2:
+                        if (facingDirection == (int)LinkSpriteDirection.Left)
+                        {
+                            leftAdjustment = 12;
+                        }
+                        sourceRectangleDimensions[2] = 27;
+                        break;
+                    case 3:
+                        if (facingDirection == (int)LinkSpriteDirection.Left)
+                        {
+                            leftAdjustment = 7;
+                        }
+                        sourceRectangleDimensions[2] = 23;
+                        sourceRectangleDimensions[0] = xCoordinate + 11;
+                        break;
+                    case 4:
+                        if (facingDirection == (int)LinkSpriteDirection.Left)
+                        {
+                            leftAdjustment = 3;
+                        }
+                        sourceRectangleDimensions[2] = 19;
+                        sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
+                        break;
+                    default:
+                        break;
                 }
+            }
 
             return sourceRectangleDimensions;
         }
