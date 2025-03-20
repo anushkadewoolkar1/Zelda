@@ -232,7 +232,7 @@ namespace Sprint0.Sprites
 
         public ISprite CreateDeath()
         {
-            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, [0,0,-1,0]);
         }
     }
 }
