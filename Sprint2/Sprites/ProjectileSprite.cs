@@ -26,10 +26,10 @@ namespace Sprint0.Sprites
         private bool isBoomerang;
         private bool isBomb;
         private bool isSwordBeam;
-        public Vector2 velocity;
+        private Vector2 velocity;
         private Vector2 linkPosition;
         private Vector2 position;
-        public ItemType currentProjectile;
+        private ItemType currentProjectile;
 
         private int boomerangChangeDirection;
         private int timer;
@@ -135,8 +135,7 @@ namespace Sprint0.Sprites
                 }
                 if (timer == BOMB_BLOW_FINISH)
                 {
-                    sourceRectangle = new Rectangle((int)deltaPosition[X_INDEX], (int)deltaPosition[Y_INDEX], 0, 0);
-                    destroy = true;
+                    this.Destroy();
                 }
             }
         }
