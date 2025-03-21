@@ -27,19 +27,26 @@ namespace Sprint0.Collision
             switch (side)
             {
                 case CollisionSide.Left:
-                    enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE * enemy.GetEnemySize(true), enemy.position.Y);
+                    if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
+                    {
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE * (float) 1.8 * enemy.GetEnemySize(true), enemy.position.Y);
+                    }
+                    else
+                    {
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE * enemy.GetEnemySize(true), enemy.position.Y);
+                    }
                     break;
                 case CollisionSide.Right:
-                    if (enemy.enemyType == EnemyType.Gel)
+                    if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, enemy.position.Y);
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(2 * level.roomWidth - 85, enemy.position.Y);
                     } else
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE, enemy.position.Y);
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(2 * level.roomWidth - 75, enemy.position.Y);
                     }
                     break;
                 case CollisionSide.Top:
-                    if (enemy.enemyType == EnemyType.Gel)
+                    if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
                     {
                         enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, BORDER_POSITION_VALUE + (float)4 * enemy.GetEnemySize(false));
                     }
