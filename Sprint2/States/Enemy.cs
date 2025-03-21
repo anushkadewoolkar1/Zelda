@@ -31,8 +31,7 @@ namespace Sprint0.States
         private Vector2 projectilePosition;
         private Vector2 velocity;
         TileMap tileMap = TileMap.GetInstance();
-
-        private const int TRUE = 1;
+        private GameAudio _audio = GameAudio.Instance;
 
 
         public Enemy()
@@ -64,140 +63,6 @@ namespace Sprint0.States
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
             return this;
-        }
-
-        public void ChangeEnemyBackward()
-        {
-            switch (enemyType)
-            {
-                case EnemyType.OldMan:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Dodongo;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Keese:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Stalfos:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Keese;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Gel:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Stalfos;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Zol:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Gel;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Goriya:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Zol;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Trap:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Goriya;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Wallmaster:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Trap;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Rope:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Wallmaster;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Aquamentus:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Rope;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Dodongo:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Aquamentus;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                default:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateNPCSprite();
-                    break;
-            }
-        }
-
-        public void ChangeEnemyForward()
-        {
-            switch (enemyType)
-            {
-                case EnemyType.OldMan:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Keese;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Keese:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Stalfos;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Stalfos:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Gel;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Gel:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Zol;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Zol:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Goriya;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Goriya:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Trap;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Trap:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Wallmaster;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Wallmaster:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Rope;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Rope:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Aquamentus;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Aquamentus:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.Dodongo;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case EnemyType.Dodongo:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                default:
-                    position = new Vector2(500, 250);
-                    this.enemyType = EnemyType.OldMan;
-                    this.sprite = spriteFactory.CreateNPCSprite();
-                    break;
-            }
         }
         public void SetHealth()
         {
@@ -357,7 +222,8 @@ namespace Sprint0.States
 
         public void TakeDamage(ItemType projectile)
         {
-
+            _audio.EnemyHit();
+            
             switch (projectile)
             {
                 case ItemType.Arrow:

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint0;
 using Sprint0.CollisionHandling;
 using Sprint0.Sprites;
 using Sprint0.States;
@@ -43,6 +44,9 @@ public class Link : IGameObject
     private List<IGameObject> gameObjects;
     private LinkItemManager itemManager;
 
+    // used for sound effects
+    private GameAudio _audio;
+
     public Link(List<IGameObject> _gameObjects)
     {
         // Initialize the sprite factory 
@@ -65,6 +69,8 @@ public class Link : IGameObject
 
         gameObjects = _gameObjects;
         itemManager = new LinkItemManager(this, gameObjects);
+
+        _audio = GameAudio.Instance;
     }
 
     public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
@@ -155,6 +161,8 @@ public class Link : IGameObject
     public void PickUpItem(ItemSprite pickedUpItem)
     {
         System.Diagnostics.Debug.WriteLine("Link picks up item");
+
+        _audio.PickUpItem();
         
         switch (pickedUpItem.GetItemString())
         {
@@ -187,6 +195,8 @@ public class Link : IGameObject
     {
         Health -= damage;
         System.Diagnostics.Debug.WriteLine("Health: " + Health);
+
+        _audio.LinkHit();
 
         if (Health <= 0)
         {
