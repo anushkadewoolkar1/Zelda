@@ -32,9 +32,18 @@ namespace Sprint0.CollisionHandling
             }
 
             System.Diagnostics.Debug.WriteLine("Enemy hit by link's projectile!");
-
-            // once implemented
-            enemy.TakeDamage(linkProjectile);
+            switch(linkProjectile.ReturnCurrentProjectile())
+            {
+                case ItemType.Arrow:
+                    enemy.TakeDamage(ItemType.Arrow);
+                    break;
+                case ItemType.Boomerang:
+                    enemy.TakeDamage(ItemType.Boomerang);
+                    break;
+                case ItemType.Bomb:
+                    enemy.TakeDamage(ItemType.Bomb);
+                    break;
+            }
 
             // This needs to call the destroy method in ProjectileSprite.cs
             // probably need to create a representation of linkprojectile just like the enemyprojectile
