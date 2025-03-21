@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/cello/OneDrive/Desktop/Spring 2025/Interactive Systems/CSE3902 Repository/Sprint2/Content/Sound Effects/Enemy Hit.wav</SourceFile>
+  <SourceTime>2025-03-17T15:36:47.0764672-04:00</SourceTime>
+  <DestFile>C:/Users/cello/OneDrive/Desktop/Spring 2025/Interactive Systems/CSE3902 Repository/Sprint2/Content/bin/DesktopGL/Content/Sound Effects/Enemy Hit.xnb</DestFile>
+  <DestTime>2025-03-21T14:51:12.423196-04:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
