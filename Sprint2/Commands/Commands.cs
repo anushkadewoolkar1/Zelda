@@ -81,30 +81,6 @@ namespace Sprint0.Commands
         }
     }
 
-    public class CycleEnemy : ICommand
-    {
-        private Enemy _enemy;
-        private Direction _direction;
-
-        public CycleEnemy(Enemy enemy, Direction direction)
-        {
-            _enemy = enemy;
-            _direction = direction;
-        }
-
-        public void Execute()
-        {
-            if (_direction == Direction.Left)
-            {
-                _enemy.ChangeEnemyBackward();
-            }
-            else
-            {
-                _enemy.ChangeEnemyForward();
-            }
-        }
-    }
-
     public class CycleItem : ICommand
     {
         private ItemSprite _itemSprite;
