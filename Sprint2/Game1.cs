@@ -70,7 +70,8 @@ namespace Sprint0
         private Block _block;
 
         // sound effects
-        private Song song;
+        private GameAudio _audio;
+        private Boolean _audio_playing = false;
 
         public Game1()
         {
@@ -117,7 +118,10 @@ namespace Sprint0
 
             restart = false;
 
-            song = Content.Load<Song>(@"Sound Effects\Underworld BGM");
+            // song = Content.Load<Song>(@"Sound Effects\Underworld BGM");
+            _audio = GameAudio.Instance;
+            _audio.LoadAllAudio(Content);
+
 
             Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") };
             _block = new Block(new Vector2(15, 1), blockTextures);
@@ -147,9 +151,15 @@ namespace Sprint0
                 _keyboardController.Update();
             }
 
+            if(!_audio_playing)
+            {
+                _audio.PlayBGM();
+                _audio_playing = true;
+            }
             if (MediaPlayer.State != MediaState.Playing)
             {
-                MediaPlayer.Play(song);
+                // MediaPlayer.Play(song);
+                MediaPlayer.IsRepeating = true;
             }
 
             //_currentSprite.Update(gameTime);
