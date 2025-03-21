@@ -29,7 +29,7 @@ namespace Sprint0.Sprites
         private Vector2 velocity;
         private Vector2 linkPosition;
         private Vector2 position;
-        public ItemType currentProjectile;
+        private ItemType currentProjectile;
 
         private int boomerangChangeDirection;
         private int timer;
@@ -296,6 +296,11 @@ namespace Sprint0.Sprites
             }
 
             return sourceRectangleDimensions;
+        }
+
+        public ItemType ReturnCurrentProjectile()
+        {
+            return currentProjectile;
         }
 
         public void Destroy()
