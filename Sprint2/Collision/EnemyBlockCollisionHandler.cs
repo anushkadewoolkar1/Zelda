@@ -13,6 +13,8 @@ namespace Sprint0.CollisionHandling
     // Collision Handler for Enemy and Block collisions.
     public class EnemyBlockCollisionHandler : ICollisionHandler
     {
+        private const int RANDOM_NUMBER_INTERVAL = 2;
+
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {
             // Assume objA is an Enemy and objB is a Block.
@@ -20,58 +22,87 @@ namespace Sprint0.CollisionHandling
             Block block = objB as Block;
             if (enemy == null || block == null) return;
 
-            switch(side)
+            RandomlyChangeDirection(enemy, enemy.Direction);
+
+            switch (side)
             {
                 case CollisionSide.Left:
-                    int random = RandomNumberGenerator.GetInt32(-1, 1);
-                    if(random == 1)
-                    {
-                        enemy.ChangeDirection(Direction.Down);
-                    } else
-                    {
-                        enemy.ChangeDirection(Direction.Up);
-                    }
-
                     enemy.position = new Vector2(block.BoundingBox.Left - enemy.BoundingBox.Width, enemy.position.Y);
                     break;
                 case CollisionSide.Right:
-                    random = RandomNumberGenerator.GetInt32(-1, 1);
-                    if (random == 1)
-                    {
-                        enemy.ChangeDirection(Direction.Down);
-                    }
-                    else
-                    {
-                        enemy.ChangeDirection(Direction.Up);
-                    }
-
                     enemy.position = new Vector2(block.BoundingBox.Right, enemy.position.Y);
                     break;
                 case CollisionSide.Top:
-                    random = RandomNumberGenerator.GetInt32(-1, 1);
-                    if (random == 1)
-                    {
-                        enemy.ChangeDirection(Direction.Down);
-                    }
-                    else
-                    {
-                        enemy.ChangeDirection(Direction.Up);
-                    }
-
-                    enemy.position = new Vector2(enemy.position.X, block.BoundingBox.Top - enemy.position.Y);
+                    enemy.position = new Vector2(enemy.position.X, block.BoundingBox.Top - enemy.GetEnemySize(false));
                     break;
                 case CollisionSide.Bottom:
-                    random = RandomNumberGenerator.GetInt32(-1, 1);
-                    if (random == 1)
-                    {
-                        enemy.ChangeDirection(Direction.Down);
-                    }
-                    else
-                    {
-                        enemy.ChangeDirection(Direction.Up);
-                    }
-
                     enemy.position = new Vector2(enemy.position.X, block.BoundingBox.Bottom);
+                    break;
+            }
+        }
+
+        public void RandomlyChangeDirection(Enemy enemy, Direction oldDirection)
+        {
+            int random = RandomNumberGenerator.GetInt32(RANDOM_NUMBER_INTERVAL);
+            switch (oldDirection)
+            {
+                case Direction.Left:
+                    switch (random)
+                    {
+                        case 0:
+                            enemy.ChangeDirection(Direction.Right);
+                            break;
+                        case 1:
+                            enemy.ChangeDirection(Direction.Up);
+                            break;
+                        case 2:
+                            enemy.ChangeDirection(Direction.Down);
+                            break;
+                    }
+                    break;
+                case Direction.Right:
+                    switch (random)
+                    {
+                        case 0:
+                            enemy.ChangeDirection(Direction.Left);
+                            break;
+                        case 1:
+                            enemy.ChangeDirection(Direction.Up);
+                            break;
+                        case 2:
+                            enemy.ChangeDirection(Direction.Down);
+                            break;
+                    }
+                    break;
+                case Direction.Up:
+                    switch (random)
+                    {
+                        case 0:
+                            enemy.ChangeDirection(Direction.Right);
+                            break;
+                        case 1:
+                            enemy.ChangeDirection(Direction.Left);
+                            break;
+                        case 2:
+                            enemy.ChangeDirection(Direction.Down);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case Direction.Down:
+                    switch (random)
+                    {
+                        case 0:
+                            enemy.ChangeDirection(Direction.Right);
+                            break;
+                        case 1:
+                            enemy.ChangeDirection(Direction.Up);
+                            break;
+                        case 2:
+                            enemy.ChangeDirection(Direction.Left);
+                            break;
+                    }
                     break;
             }
         }
