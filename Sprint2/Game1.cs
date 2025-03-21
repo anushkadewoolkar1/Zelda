@@ -250,8 +250,6 @@ namespace Sprint0
             ICommand setWalkRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
             ICommand setWalkDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
             ICommand damageLinkCommand = new LinkDamaged(linkSprite);
-            ICommand cycleEnemyLeftCommand = new CycleEnemy(enemySprite, Direction.Left);
-            ICommand cycleEnemyRightCommand = new CycleEnemy(enemySprite, Direction.Right);
             ICommand cycleItemLeftCommand = new CycleItem(itemSprite, Direction.Left);
             ICommand cycleItemRightCommand = new CycleItem(itemSprite, Direction.Right);
             ICommand cycleBlockLeftCommand = new CycleBlock(_block, Direction.Left);
@@ -307,10 +305,10 @@ namespace Sprint0
                 { Keys.E, damageLinkCommand },
 
                 //'O' -> Cycle Enemy Left:
-                { Keys.O, cycleEnemyLeftCommand },
+                //{ Keys.O, cycleEnemyLeftCommand },
 
                 //'P' -> Cycle Enemy Right:
-                { Keys.P, cycleEnemyRightCommand },
+                //{ Keys.P, cycleEnemyRightCommand },
 
                 //'I' -> Cycle Item Left:
                 { Keys.I, cycleItemLeftCommand },

@@ -29,6 +29,8 @@ namespace Sprint0.Sprites
 
         float _scale = 1.7f;
 
+        bool pickedUp = false;
+
         public ItemSprite(String spriteName, int posX, int posY)
         {
             _factory = ItemSpriteFactory.Instance;
@@ -64,6 +66,16 @@ namespace Sprint0.Sprites
         public string GetItemString()
         {
             return itemString;
+        }
+
+        public void SetPickedUp()
+        {
+            pickedUp = true;
+        }
+
+        public bool GetPickedUp()
+        {
+            return pickedUp;
         }
 
         public void Update(GameTime gameTime)

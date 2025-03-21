@@ -162,8 +162,13 @@ public class Link : IGameObject
     {
         System.Diagnostics.Debug.WriteLine("Link picks up item");
 
-        _audio.PickUpItem();
-        
+        if (pickedUpItem.GetPickedUp() == false)
+        {
+            _audio.PickUpItem(); //only play if it hasn't been picked up yet
+        }
+
+        pickedUpItem.SetPickedUp();
+
         switch (pickedUpItem.GetItemString())
         {
             case "ZeldaSpriteArrow": 
