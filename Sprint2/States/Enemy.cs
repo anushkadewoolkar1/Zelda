@@ -32,6 +32,9 @@ namespace Sprint0.States
         private Vector2 velocity;
         TileMap tileMap = TileMap.GetInstance();
 
+        private const int TRUE = 1;
+
+
         public Enemy()
         {
             spriteFactory = EnemySpriteFactory.Instance;
@@ -352,25 +355,31 @@ namespace Sprint0.States
             itemSpawn = true;
         }
 
-        public void TakeDamage(ProjectileSprite projectile)
+        public void TakeDamage(ItemType projectile)
         {
 
-            switch (projectile.currentProjectile)
-             {
-                   case ItemType.Arrow:
-                            EnemyHealth -= 2.0;
-                            break;
-                   case ItemType.Boomerang:
-                            EnemyHealth -= 0.5;
-                            break;
-                   case ItemType.Bomb:
-                            EnemyHealth -= 4.0;
-                            break;
-            }
-            if (EnemyHealth <= 0)
+            switch (projectile)
             {
-                EnemyHealth = 0;
-                Destroy();
+                case ItemType.Arrow:
+                    EnemyHealth -= 2.0;
+                    break;
+                case ItemType.Boomerang:
+                    EnemyHealth -= 0.5;
+                    break;
+                case ItemType.Bomb:
+                    EnemyHealth -= 4.0;
+                    break;
+            }
+        }
+
+        public int GetEnemySize(Boolean x_coordinate)
+        {
+            if (x_coordinate)
+            {
+                return spriteFactory.GetEnemySize(true);
+            } else
+            {
+                return spriteFactory.GetEnemySize(false);
             }
         }
 
@@ -378,7 +387,7 @@ namespace Sprint0.States
         {
             get 
             {
-                return new Rectangle((int)position.X, (int)position.Y, spriteFactory.xSize, spriteFactory.ySize);
+                return new Rectangle((int)position.X, (int)position.Y, spriteFactory.GetEnemySize(true), spriteFactory.GetEnemySize(false));
             }
         }
 
@@ -406,6 +415,13 @@ namespace Sprint0.States
                     default:
                         break;
                 }
+            }
+
+
+            if (EnemyHealth <= 0)
+            {
+                EnemyHealth = 0;
+                Destroy();
             }
         }
 

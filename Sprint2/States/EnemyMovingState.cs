@@ -42,7 +42,7 @@ namespace Sprint0.States
 
         public void Update(GameTime gameTime)
         {
-            Vector2 move = new Vector2(0, 0);
+            Vector2 move = Vector2.Zero;
 
             enemy.Speed = 100f;
 
@@ -94,12 +94,12 @@ namespace Sprint0.States
                     }
                     else
                     {
-                        move = new Vector2(0, 0);
+                        move = Vector2.Zero;
                     }
                     break;
                 case EnemyType.Gel:
-                    enemy.Speed = 10f;
-                    if ((timer >= 0 && timer < 25) || (timer >= 50 && timer < 75))
+                    enemy.Speed = 20f;
+                    if ((timer >= 0 && timer < 50) || (timer >= 100 && timer < 150))
                     {
                         move = new Vector2(0, 0);
                     } else
@@ -108,7 +108,7 @@ namespace Sprint0.States
                     }
                     break;
                 case EnemyType.Zol:
-                    if ((timer >= 0 && timer < 25) || (timer >= 50 && timer < 75))
+                    if ((timer >= 0 && timer < 50) || (timer >= 100 && timer < 150))
                     {
                         move = new Vector2(0, 0);
                     }
@@ -208,7 +208,7 @@ namespace Sprint0.States
             }
 
             timer++;
-            if (timer == 100)
+            if (timer == 200)
             {
                 timer = 0;
             }
