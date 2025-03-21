@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Display;
-/*
+/* i comment this out cuz it was throwing me an error and didnt build
 namespace Sprint0.Display
 {
     //
