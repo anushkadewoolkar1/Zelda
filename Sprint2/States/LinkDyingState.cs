@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Sprites;
 using SpriteFactory;
 using Zelda.Enums;
 
@@ -18,8 +19,8 @@ public class LinkDyingState : ILinkState
 
     public void Enter()
     {
-        // dying logic.
-        // link.SetSprite(ZeldaSpriteFactory.Instance.CreateDyingLink(0, 0, 0);
+        link.SetSprite(LinkSpriteFactory.Instance.CreateDeath());
+        // He still needs to spin
         link.HandleDeathStart();
     }
 

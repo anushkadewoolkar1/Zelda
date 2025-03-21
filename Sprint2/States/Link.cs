@@ -186,17 +186,17 @@ public class Link : IGameObject
     public void TakeDamage(int damage)
     {
         Health -= damage;
+        System.Diagnostics.Debug.WriteLine("Health: " + Health);
 
         if (Health <= 0)
         {
             Health = 0;
-            HandleDeathStart();
+            ChangeState(new LinkDyingState(this));
         }
     }
     public void StartInvulnerability()
     {
         IsInvulnerable = true;
-        Health = 0;
         invulnerabilityTimer = 2.0f; // Link remains invulnerable for 2 second.
         System.Diagnostics.Debug.WriteLine("Link is now invulnerable.");
     }
@@ -204,7 +204,6 @@ public class Link : IGameObject
     public void EndInvulnerability()
     {
         IsInvulnerable = false;
-        Health = 1;
         invulnerabilityTimer = 0;
         System.Diagnostics.Debug.WriteLine("Link is no longer invulnerable.");
     }
