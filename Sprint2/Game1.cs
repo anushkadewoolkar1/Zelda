@@ -14,6 +14,7 @@ using ZeldaGame.Zelda.CollisionMap;
 using Sprint0.Display;
 using Sprint0.CollisionHandling;
 using System.Runtime.Intrinsics.X86;
+using Microsoft.Xna.Framework.Media;
 
 
 namespace Sprint0
@@ -68,6 +69,9 @@ namespace Sprint0
         //block
         private Block _block;
 
+        // sound effects
+        private Song song;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -113,6 +117,8 @@ namespace Sprint0
 
             restart = false;
 
+            song = Content.Load<Song>(@"Sound Effects\Underworld BGM");
+
             Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") };
             _block = new Block(new Vector2(15, 1), blockTextures);
             //_block = new Block(new Vector2(15, 1), blockTextures);
@@ -139,6 +145,11 @@ namespace Sprint0
             } else
             {
                 _keyboardController.Update();
+            }
+
+            if (MediaPlayer.State != MediaState.Playing)
+            {
+                MediaPlayer.Play(song);
             }
 
             //_currentSprite.Update(gameTime);
