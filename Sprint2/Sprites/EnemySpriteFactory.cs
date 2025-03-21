@@ -17,8 +17,8 @@ namespace Sprint0.Sprites
         private Texture2D bossSpritesheet;
         private Texture2D npcSpritesheet;
         private EnemySprite sprite;
-        public int xSize;
-        public int ySize;
+        private int xSize;
+        private int ySize;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance
@@ -145,9 +145,21 @@ namespace Sprint0.Sprites
                     }
                     return sprite;
                 default:
-                    sprite = CreateNPCSprite();
-                    sprite.spriteSize = 32;
+                    sprite = CreateSmallEnemySprite(EnemyType.None, 1, 0, 0);
+                    sprite.spriteSize = 1;
                     return sprite;
+            }
+        }
+
+        // if true, then we are wanting an x coordinate. if false, we want a y coordinate
+        public int GetEnemySize(Boolean x_coordinate)
+        {
+            if (x_coordinate)
+            {
+                return xSize;
+            } else
+            {
+                return ySize;
             }
         }
 
@@ -188,10 +200,5 @@ namespace Sprint0.Sprites
         {
             return new EnemyProjectileSprite(bossSpritesheet, 3, 1, startX, startY, xSize, ySize, itemType);
         }
-
-        //public EnemyProjectileSprite CreateBoomerangSprite(ItemType itemType, int rows, int startX, int startY)
-        //{
-        //    return new EnemyProjectileSprite()
-        //}
     }
 }
