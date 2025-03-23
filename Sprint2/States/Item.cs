@@ -138,7 +138,8 @@ namespace Sprint0.States
         // Item should disappear after being picked up (PP):
         public void Destroy()
         {
-            isVisible = false;
+            tilePosition.X -= 20;
+            isVisible = true;
         }
 
         public ItemSprite GetItemSprite()
@@ -148,6 +149,7 @@ namespace Sprint0.States
 
         public void Update(GameTime gameTime)
         {
+            if (!isVisible) return;
             itemSprite.Update(gameTime);
         }
 
