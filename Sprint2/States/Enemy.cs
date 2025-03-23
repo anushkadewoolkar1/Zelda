@@ -16,18 +16,18 @@ namespace Sprint0.States
 {
     public class Enemy : IGameObject
     {
-        public IEnemyState enemyState;
-        public double EnemyHealth;
-        public EnemySprite sprite;
-        public EnemySpriteFactory spriteFactory;
-        public Vector2 position;
-        public EnemyType enemyType;
-        public float Speed;
-        public Direction Direction;
+        private IEnemyState enemyState;
+        private double EnemyHealth;
+        private EnemySprite sprite;
+        private EnemySpriteFactory spriteFactory;
+        public Vector2 position { get; set; }
+        public EnemyType enemyType { get; set; }
+        public float Speed { get; set; }
+        public Direction Direction { get; set; }
         private ISprite boomerangSprite, fireballSprite;
         private Boolean itemSpawn;
         private Boolean itemSpawned;
-        public ItemType itemType;
+        public ItemType itemType { get; set; }
         private Vector2 projectilePosition;
         private Vector2 velocity;
         TileMap tileMap = TileMap.GetInstance();
@@ -58,7 +58,9 @@ namespace Sprint0.States
             enemyType = enemyCreated;
             SetHealth();
             position = tileMap.GetTileCenter(spawnPosition);
-            position.X -= 12;
+            //I combined the two lines below into one line so that position can be a property
+            position = new Vector2(tileMap.GetTileCenter(spawnPosition).X,
+                tileMap.GetTileCenter(spawnPosition).Y - 12);
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();

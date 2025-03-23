@@ -42,18 +42,20 @@ namespace Sprint0.Sprites
         private const int LGBOMB_OFFSET_X = 17;
         private const int SMBOMB_OFFSET_X = 13;
         private const int SMBOMB_INFLATE_X = 4;
-        private const int DOWN = 0;
-        private const int LEFT = 1;
-        private const int RIGHT = 2;
-        private const int UP = 3;
+        //private const int UP = 0;
+        //private const int LEFT = 1;
+        //private const int DOWN = 2;
+        //private const int RIGHT = 3;
         private const int X_INDEX = 0;
         private const int Y_INDEX = 1;
         private const int WIDTH_INDEX = 2;
         private const int HEIGHT_INDEX = 3;
         private const int ABS_BMRNG_VEL = 2;
-        private const int BOMB_BLOW_ALMOST = 20;
-        private const int BOMB_BLOW_START = 25;
-        private const int BOMB_BLOW_MIDDLE = 30;
+        private const int BOMB_BLOW_BEGIN = 20;
+        private const int BOMB_BLOW_STAGES = 5;
+        //private const int BOMB_BLOW_ALMOST = 20;
+        //private const int BOMB_BLOW_START = 25;
+        //private const int BOMB_BLOW_MIDDLE = 30;
         private const int BOMB_BLOW_FINISH = 35;
         private const int BMRNG_REVERSE_TIME = 30;
         private const int BMRNG_LIFESPAN = 60;
@@ -61,6 +63,10 @@ namespace Sprint0.Sprites
         private const int PROJECTILE_SIZE = 16;
         private const int OOB_COORD = 200;
         private const double ABS_SLOW_BMRNG_VEL = 1.75;
+        private const int SKINNY_PROJECTILE_YCOORD = 185;
+        private const int ARROW_XCOORD = 30;
+        private const int BOMB_XCOORD = 129;
+        private const int SWORDBEAM_YCOORD = 154;
 
 
         public ProjectileSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int direction)
@@ -73,7 +79,7 @@ namespace Sprint0.Sprites
             isSwordBeam = false;
             
             // Rotates projectile depending on direction using mathhelper
-            rotation = direction * (MathHelper.Pi / 2);
+            rotation = -direction * (MathHelper.Pi / 2);
 
             // Used for maintaining direction in Update method
             directionProjectile = direction;
@@ -118,24 +124,22 @@ namespace Sprint0.Sprites
 
             _position = position;
 
+
             if (isBomb)
             {
-                if (timer == BOMB_BLOW_ALMOST)
+                if (timer >= BOMB_BLOW_BEGIN && timer % BOMB_BLOW_STAGES == 0)
                 {
-                    sourceRectangle.Offset(SMBOMB_OFFSET_X, BASE_OFFSET_Y);
-                    sourceRectangle.Inflate(SMBOMB_INFLATE_X, BASE_INFLATE_Y);
-                }
-                if (timer == BOMB_BLOW_START)
-                {
-                    sourceRectangle.Offset(LGBOMB_OFFSET_X, BASE_OFFSET_Y);
-                }
-                if (timer == BOMB_BLOW_MIDDLE)
-                {
-                    sourceRectangle.Offset(LGBOMB_OFFSET_X, BASE_OFFSET_Y);
-                }
-                if (timer == BOMB_BLOW_FINISH)
-                {
-                    this.Destroy();
+                    if (timer == BOMB_BLOW_BEGIN)
+                    {
+                        sourceRectangle.Offset(SMBOMB_OFFSET_X, BASE_OFFSET_Y);
+                        sourceRectangle.Inflate(SMBOMB_INFLATE_X, BASE_INFLATE_Y);
+                    } else if (timer == BOMB_BLOW_FINISH)
+                    {
+                        this.Destroy();
+                    } else
+                    {
+                        sourceRectangle.Offset(LGBOMB_OFFSET_X, BASE_OFFSET_Y);
+                    }
                 }
             }
         }
@@ -148,63 +152,39 @@ namespace Sprint0.Sprites
                 return;
             }
 
-            if (directionProjectile == DOWN)
+            //Handles projectile movement and comeback
+            if (directionProjectile % 2 == 0 && directionProjectile >= 0)
             {
                 if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
                 {
-                    deltaPosition[Y_INDEX] += ABS_BMRNG_VEL;
-                    velocity = new Vector2(0, -1 * ABS_BMRNG_VEL * PROJECTILE_SCALE);
+                    deltaPosition[Y_INDEX] -= (ABS_BMRNG_VEL * (directionProjectile - 1));
+                    velocity = new Vector2(0, -(directionProjectile - 1) * ABS_BMRNG_VEL * PROJECTILE_SCALE);
 
-                } else
-                {
-                    deltaPosition[Y_INDEX] -= ABS_BMRNG_VEL;
-                    velocity = new Vector2(0, ABS_BMRNG_VEL * PROJECTILE_SCALE);
-                }
-            } else if (directionProjectile == LEFT)
-            {
-                if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
-                {
-                    deltaPosition[X_INDEX] -= ABS_BMRNG_VEL;
-                    velocity = new Vector2(-1 * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
                 }
                 else
                 {
-                    deltaPosition[X_INDEX] += ABS_BMRNG_VEL;
-                    velocity = new Vector2(ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
+                    deltaPosition[Y_INDEX] += (ABS_BMRNG_VEL * (directionProjectile - 1));
+                    velocity = new Vector2(0, (directionProjectile - 1) * ABS_BMRNG_VEL * PROJECTILE_SCALE);
                 }
-            } else if (directionProjectile == RIGHT)
+            } else if (directionProjectile >= 0)
             {
                 if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
                 {
-                    deltaPosition[Y_INDEX] -= ABS_BMRNG_VEL;
-                    velocity = new Vector2(0, -1 * ABS_BMRNG_VEL * PROJECTILE_SCALE);
+                    deltaPosition[X_INDEX] -= (ABS_BMRNG_VEL * (directionProjectile - 2));
+                    velocity = new Vector2(-(directionProjectile - 2) * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
                 }
                 else
                 {
-                    deltaPosition[Y_INDEX] += ABS_BMRNG_VEL;
-                    velocity = new Vector2(0, ABS_BMRNG_VEL * PROJECTILE_SCALE);
-                }
-            } else if (directionProjectile == UP)
-            {
-                if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
-                {
-                    deltaPosition[0] += ABS_BMRNG_VEL;
-                    velocity = new Vector2(ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
-                }
-                else
-                {
-                    deltaPosition[0] -= ABS_BMRNG_VEL;
-                    velocity = new Vector2(-1 * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
+                    deltaPosition[X_INDEX] += (ABS_BMRNG_VEL * (directionProjectile - 2));
+                    velocity = new Vector2((directionProjectile - 2) * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
                 }
             }
 
-            if (directionProjectile % 2 == 1)
+            //Handles boomerang tracking
+            if (isBoomerang)
             {
-                if (isBoomerang)
+                if (directionProjectile % 2 == 1)
                 {
-                    //System.Diagnostics.Debug.WriteLine((((int)link.Position.Y)).ToString());
-                    System.Diagnostics.Debug.WriteLine(
-                        ((int)(linkPosition.Y - link.Position.Y)).ToString());
                     if ((int)(linkPosition.Y - link.Position.Y) > 0)
                     {
                         deltaPosition[Y_INDEX] -= ABS_SLOW_BMRNG_VEL;
@@ -214,14 +194,8 @@ namespace Sprint0.Sprites
                         deltaPosition[Y_INDEX] += ABS_SLOW_BMRNG_VEL;
                     }
                 }
-            }
-            else
-            {
-                if (isBoomerang)
+                else
                 {
-                    //System.Diagnostics.Debug.WriteLine((((int)link.Position.Y)).ToString());
-                    System.Diagnostics.Debug.WriteLine(
-                        ((int)(linkPosition.X - link.Position.X)).ToString());
                     if ((int)(linkPosition.X - link.Position.X) > 0)
                     {
                         deltaPosition[X_INDEX] -= ABS_SLOW_BMRNG_VEL;
@@ -231,6 +205,7 @@ namespace Sprint0.Sprites
                         deltaPosition[X_INDEX] += ABS_SLOW_BMRNG_VEL;
                     }
                 }
+
             }
 
             linkPosition = link.Position;
@@ -272,27 +247,21 @@ namespace Sprint0.Sprites
 
 
             //Checks if projectile is smaller than a 16x16 rectangle and adjusts accordingly
-            if (yCoordinate == 185 && (xCoordinate < 29 || xCoordinate == 129))
+            if (yCoordinate == SKINNY_PROJECTILE_YCOORD && (xCoordinate < ARROW_XCOORD || xCoordinate == BOMB_XCOORD))
             {
                 sourceRectangleDimensions[2] = 8;
-                if (xCoordinate == 129)
+                if (xCoordinate == SKINNY_PROJECTILE_YCOORD)
                 {
                     isBomb = true;
                 }
-                return sourceRectangleDimensions;
-            } else if (xCoordinate > 30 && xCoordinate < 129)
+            } else if (xCoordinate > ARROW_XCOORD && xCoordinate < BOMB_XCOORD)
             {
-                sourceRectangleDimensions[WIDTH_INDEX] = 5;
-                sourceRectangleDimensions[HEIGHT_INDEX] = 8;
                 isBoomerang = true;
-                return sourceRectangleDimensions;
-            }
-
-            if (yCoordinate == 154)
+                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 8];
+            } else if (yCoordinate == SWORDBEAM_YCOORD)
             {
                 isSwordBeam = true;
-                sourceRectangleDimensions[WIDTH_INDEX] = 5;
-                sourceRectangleDimensions[HEIGHT_INDEX] = 16;
+                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 16];
             }
 
             return sourceRectangleDimensions;

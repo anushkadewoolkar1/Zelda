@@ -15,7 +15,7 @@ namespace Sprint0.Sprites
     {
         private Texture2D projectileSpriteSheet;
 
-        private enum LinkDirection { UpFacing, RightFacing, DownFacing, LeftFacing };
+        private enum LinkDirection { UpFacing, LeftFacing, DownFacing, RightFacing };
 
         //Subtranction so that rotating sprite works but sprite does not move
         private int notMoving = 4;
@@ -61,7 +61,7 @@ namespace Sprint0.Sprites
         public ISprite CreateDownArrowBrown()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing);
+            return new ProjectileSprite(projectileSpriteSheet, BROWN_ARROW_XPOS, DEFAULT_YPOS, 2);
         }
 
         public ISprite CreateUpArrowBrown()
@@ -132,12 +132,14 @@ namespace Sprint0.Sprites
 
         public ISprite CreateBoomerangBrown(int direction)
         {
+            //Swapping Left and Right directions
+            if (direction % 2 == 1) direction = -(direction - 2) + 2;
             return new ProjectileSprite(projectileSpriteSheet, BROWN_BMRNG_XPOS, BMRNG_YPOS, direction);
         }
 
         public ISprite CreateBoomerangBlue(int direction)
         {
-
+            if (direction % 2 == 1) direction = -(direction - 2) + 1;
             return new ProjectileSprite(projectileSpriteSheet, BLUE_BMRNG_XPOS, BMRNG_YPOS, direction);
         }
 
