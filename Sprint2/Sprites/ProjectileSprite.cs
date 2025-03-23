@@ -122,7 +122,7 @@ namespace Sprint0.Sprites
             spriteBatch.Draw(_texture, new Vector2((int)(_position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(_position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE)),
                 sourceRectangle, Color.White, rotation, destinationOrigin, PROJECTILE_SCALE, SpriteEffects.None, 0f);
 
-            _position = position;
+            position = _position;
 
 
             if (isBomb)
@@ -193,6 +193,11 @@ namespace Sprint0.Sprites
                     {
                         deltaPosition[Y_INDEX] += ABS_SLOW_BMRNG_VEL;
                     }
+                    if ((((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) <= 5 &&
+                        ((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) >= -5)
+                        && boomerangChangeDirection >= BMRNG_REVERSE_TIME) {
+                        this.Destroy();
+                    }
                 }
                 else
                 {
@@ -203,6 +208,12 @@ namespace Sprint0.Sprites
                     else if ((int)(linkPosition.X - link.Position.X) < 0)
                     {
                         deltaPosition[X_INDEX] += ABS_SLOW_BMRNG_VEL;
+                    }
+                    if ((((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) <= 5 &&
+                        ((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) >= -5)
+                        && boomerangChangeDirection >= BMRNG_REVERSE_TIME)
+                    {
+                        this.Destroy();
                     }
                 }
 
@@ -250,7 +261,7 @@ namespace Sprint0.Sprites
             if (yCoordinate == SKINNY_PROJECTILE_YCOORD && (xCoordinate < ARROW_XCOORD || xCoordinate == BOMB_XCOORD))
             {
                 sourceRectangleDimensions[2] = 8;
-                if (xCoordinate == SKINNY_PROJECTILE_YCOORD)
+                if (xCoordinate == BOMB_XCOORD)
                 {
                     isBomb = true;
                 }
