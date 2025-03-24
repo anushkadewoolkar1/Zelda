@@ -37,6 +37,7 @@ namespace Sprint0.Display
         public int itemsListIndex { get; set; }
 
         public int[] currentRoom { get; set; }
+        private int[] newRoom;
 
         public bool doubleClickTemp { get; set; }
 
@@ -56,6 +57,9 @@ namespace Sprint0.Display
         private const int BLOCK_X_ADJUST = 32;
         private const int SHIFT_INTO_RANGE = 1;
         private const int ROOM_STARTING_POINT = 12;
+
+        private int transition;
+        private int loadCurrentPosition;
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
@@ -91,6 +95,8 @@ namespace Sprint0.Display
 
             //Spawn Room
             currentRoom = [WIDTH_POSITION, HEIGHT_POSITION];
+
+            newRoom = [WIDTH_POSITION, HEIGHT_POSITION];
         }
 
 
@@ -128,6 +134,11 @@ namespace Sprint0.Display
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
                roomWidth * BACKGROUND_SIZE_SCALAR, roomHeight * BACKGROUND_SIZE_SCALAR), _sourceRectangle, Color.White);
 
+            if (transition >= 1)
+            {
+                RoomTransition(newRoom[0], newRoom[1], transition);
+            }
+
             //Goes through each list drawing each object
             for (int i = 0; i < enemiesList.Count;i++)
             {
@@ -145,6 +156,7 @@ namespace Sprint0.Display
 
         public override void Update(GameTime gameTime)
         {
+
             //Goes through each list updating each object
             for (int i = 0; i < enemiesList.Count; i++)
             {
@@ -164,6 +176,9 @@ namespace Sprint0.Display
         //Returns and prints failed to find room if failed to find requested room
         public override void LoadRoom(int xCoordinate, int yCoordinate)
         {
+
+            transition = 1;
+
             //Temporary implementation for clicking through rooms double click bug
             if (!doubleClickTemp)
             {
@@ -181,7 +196,7 @@ namespace Sprint0.Display
             //Goes through the level file, looking for the room coordinates to find start of room
             while (currentPosition < count && !foundRoom)
             {
-                
+
                 if (xCoordinate.ToString() == Objects[currentPosition - SHIFT_INTO_RANGE] && yCoordinate.ToString() == Objects[currentPosition])
                 {
                     foundRoom = true;
@@ -196,14 +211,30 @@ namespace Sprint0.Display
                 return;
             }
 
+
+            //Removes object from various lists
+            RemoveOldObjects();
+
+            newRoom[0] = xCoordinate;
+            newRoom[1] = yCoordinate;
+            loadCurrentPosition = currentPosition;
+
+            if (currentRoom == newRoom)
+            {
+                LoadRoomEnd(xCoordinate, yCoordinate, currentPosition);
+            }
+            else
+            {
+                RoomTransition(xCoordinate, yCoordinate, 0);
+            }
+        }
+
+        public void LoadRoomEnd(int xCoordinate, int yCoordinate, int currentPosition)
+        {
             //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
                 roomWidth * (xCoordinate) + SHIFT_INTO_RANGE * (xCoordinate + SHIFT_INTO_RANGE), roomHeight * (yCoordinate) + SHIFT_INTO_RANGE * (yCoordinate + 1),
                 roomWidth, roomHeight);
-
-
-            //Removes object from various lists
-            RemoveOldObjects();
 
             //Get's to the start of the room and sets room size
             currentPosition += ROOM_STARTING_POINT;
@@ -234,6 +265,8 @@ namespace Sprint0.Display
                 currentPosition++;
             }
             currentRoom = [xCoordinate, yCoordinate];
+
+            transition = 0;
         }
 
         private void CreateEnemy(int currentPosition, int startOfRoom)
@@ -316,6 +349,27 @@ namespace Sprint0.Display
         public void Destroy()
         {
 
+        }
+
+        public void RoomTransition(int xCoordinate, int yCoordinate, int transitionNumber)
+        {
+            if (xCoordinate != currentRoom[0])
+            {
+                int oldXcoordinate = roomWidth * (currentRoom[0]) + SHIFT_INTO_RANGE * (currentRoom[0] + SHIFT_INTO_RANGE);
+                int newXcoordinate = roomWidth * (xCoordinate) + SHIFT_INTO_RANGE * (xCoordinate + SHIFT_INTO_RANGE);
+                _sourceRectangle.X = oldXcoordinate + ((newXcoordinate - oldXcoordinate) % 10) * transitionNumber * 3;
+            } else
+            {
+                int oldYcoordinate = roomHeight * (currentRoom[1]) + SHIFT_INTO_RANGE * (currentRoom[1] + SHIFT_INTO_RANGE);
+                int newYcoordinate = roomHeight * (yCoordinate) + SHIFT_INTO_RANGE * (yCoordinate + SHIFT_INTO_RANGE);
+                _sourceRectangle.Y = oldYcoordinate + ((newYcoordinate - oldYcoordinate) % 10) * transitionNumber * 3;
+            }
+            transition++;
+
+            if (transition == 10)
+            {
+                LoadRoomEnd(xCoordinate, yCoordinate, loadCurrentPosition);
+            }
         }
     }
 }
