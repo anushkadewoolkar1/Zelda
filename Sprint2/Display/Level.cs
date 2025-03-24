@@ -37,6 +37,9 @@ namespace Sprint0.Display
         public int itemsListIndex { get; set; }
 
         public int[] currentRoom { get; set; }
+
+        private int transition;
+        private int loadCurrentPosition;
         private int[] newRoom;
 
         public bool doubleClickTemp { get; set; }
@@ -57,9 +60,7 @@ namespace Sprint0.Display
         private const int BLOCK_X_ADJUST = 32;
         private const int SHIFT_INTO_RANGE = 1;
         private const int ROOM_STARTING_POINT = 12;
-
-        private int transition;
-        private int loadCurrentPosition;
+        private const int ROOM_TRANSITION_SPEED = 3;
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
@@ -356,16 +357,16 @@ namespace Sprint0.Display
             {
                 int oldXcoordinate = roomWidth * (currentRoom[0]) + SHIFT_INTO_RANGE * (currentRoom[0] + SHIFT_INTO_RANGE);
                 int newXcoordinate = roomWidth * (xCoordinate) + SHIFT_INTO_RANGE * (xCoordinate + SHIFT_INTO_RANGE);
-                _sourceRectangle.X = oldXcoordinate + ((newXcoordinate - oldXcoordinate) % 10) * transitionNumber * 3;
+                _sourceRectangle.X = oldXcoordinate + ((newXcoordinate - oldXcoordinate) % (ROOM_TRANSITION_SPEED * 6)) * transitionNumber * ROOM_TRANSITION_SPEED;
             } else
             {
                 int oldYcoordinate = roomHeight * (currentRoom[1]) + SHIFT_INTO_RANGE * (currentRoom[1] + SHIFT_INTO_RANGE);
                 int newYcoordinate = roomHeight * (yCoordinate) + SHIFT_INTO_RANGE * (yCoordinate + SHIFT_INTO_RANGE);
-                _sourceRectangle.Y = oldYcoordinate + ((newYcoordinate - oldYcoordinate) % 10) * transitionNumber * 3;
+                _sourceRectangle.Y = oldYcoordinate + ((newYcoordinate - oldYcoordinate) % (ROOM_TRANSITION_SPEED * 2)) * transitionNumber * ROOM_TRANSITION_SPEED;
             }
             transition++;
 
-            if (transition == 10)
+            if (transition == 19)
             {
                 LoadRoomEnd(xCoordinate, yCoordinate, loadCurrentPosition);
             }
