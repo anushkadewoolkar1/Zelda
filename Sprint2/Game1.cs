@@ -171,7 +171,7 @@ namespace Sprint0
 
             item.Update(gameTime);
 
-            linkSprite.Update(gameObjects, gameTime);
+            //linkSprite.Update(gameObjects, gameTime);
 
             /*
             _block.Update();
@@ -191,7 +191,7 @@ namespace Sprint0
 
             levelMap.Draw(_spriteBatch);
 
-            linkSprite.Draw(_spriteBatch);
+            //linkSprite.Draw(_spriteBatch);
 
             // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
             levelMap.enemiesList.ForEach(x => x.DrawCurrentSprite(_spriteBatch));
@@ -407,6 +407,8 @@ namespace Sprint0
             gameObjects.Add(item);
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
+
+            levelMap.AddLink(linkSprite);
             //gameObjects.Add(_block);
             //gameObjects.Add(_loadRoomBlock);
         }

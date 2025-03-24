@@ -61,6 +61,8 @@ namespace Sprint0.Display
         private const int SHIFT_INTO_RANGE = 1;
         private const int ROOM_STARTING_POINT = 12;
         private const int ROOM_TRANSITION_SPEED = 3;
+        
+        private Link myLink;
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
@@ -135,6 +137,8 @@ namespace Sprint0.Display
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
                roomWidth * BACKGROUND_SIZE_SCALAR, roomHeight * BACKGROUND_SIZE_SCALAR), _sourceRectangle, Color.White);
 
+            myLink.Draw(spriteBatch);
+
             if (transition >= 1)
             {
                 RoomTransition(newRoom[0], newRoom[1], transition);
@@ -157,6 +161,7 @@ namespace Sprint0.Display
 
         public override void Update(GameTime gameTime)
         {
+            myLink.Update(gameObjects, gameTime);
 
             //Goes through each list updating each object
             for (int i = 0; i < enemiesList.Count; i++)
@@ -371,5 +376,11 @@ namespace Sprint0.Display
                 LoadRoomEnd(xCoordinate, yCoordinate, loadCurrentPosition);
             }
         }
+
+        public void AddLink(Link link)
+        {
+            this.myLink = link;
+        }
+
     }
 }

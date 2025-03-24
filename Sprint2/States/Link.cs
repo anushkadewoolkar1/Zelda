@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0;
 using Sprint0.CollisionHandling;
+using Sprint0.Display;
 using Sprint0.Sprites;
 using Sprint0.States;
 using Zelda.Enums;
@@ -46,6 +47,7 @@ public class Link : IGameObject
 
     // used for sound effects
     private GameAudio _audio;
+
 
     public Link(List<IGameObject> _gameObjects)
     {

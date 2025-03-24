@@ -42,6 +42,8 @@ namespace Sprint0.Collision
                     link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, link.Position.Y + 38);
                     break;
             }
+
+
         }
     }
 }
