@@ -204,16 +204,15 @@ namespace Sprint0.Display
                 currentPosition++;
             }
 
+            //Removes object from various lists
+            RemoveOldObjects();
+
             //Avoids loading room when room is not found
             if (currentPosition == count || !foundRoom)
             {
                 System.Diagnostics.Debug.WriteLine($"Failed to Find Room {xCoordinate}, {yCoordinate}");
                 return;
             }
-
-
-            //Removes object from various lists
-            RemoveOldObjects();
 
             newRoom[0] = xCoordinate;
             newRoom[1] = yCoordinate;
