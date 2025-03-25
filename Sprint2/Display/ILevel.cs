@@ -13,6 +13,8 @@ namespace Sprint0.Display
     // Interface for game sprites
     public abstract class ILevel : IDisplay
     {
+        protected Game gameCopy;
+
         // Called once per frame to update sprites
         public abstract void Update( GameTime gameTime);
 
@@ -21,5 +23,8 @@ namespace Sprint0.Display
 
         //Load next room
         public abstract void LoadRoom(int xCoordinate, int yCoordinate);
+
+        //Switches from level to menu:
+        public abstract void SwitchDisplay(IDisplay targetDisplay);
     }
 }

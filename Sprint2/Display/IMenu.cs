@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Commands;
 using Sprint0.Display;
+using Zelda.Enums;
 
 
 namespace Sprint0.Display
@@ -14,6 +15,9 @@ namespace Sprint0.Display
     // Interface for menus, extending the behavior of a display (PP):
     public abstract class IMenu : IDisplay
     {
+        // Menu should have control over game state, to switch property currDisplay:
+        protected Game1 gameCopy;
+
         // Called once per frame to update sprites
         public abstract void Update(GameTime gameTime);
 
@@ -25,6 +29,9 @@ namespace Sprint0.Display
 
         // Holds the current state of level to be brought back later:
         public abstract void PauseLevel(Level level);
+
+        // Needed to load other menus (Options -> Inventory), (Death -> Start), or (Options -> Level):
+        public abstract void SwitchDisplay(IDisplay display);
 
         // Maybe we need this? idk yet: 
         // public abstract void UnpauseLevel(Level level);

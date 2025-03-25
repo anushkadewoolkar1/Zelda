@@ -89,4 +89,16 @@ namespace Zelda.Enums
         Top,
         Bottom
     }
+
+    public enum InputCommands
+    {
+        DirectDown,
+        DirectRight,
+        DirectUp,
+        DirectLeft,
+        Action, // Bottom button of controller, can melee attack or execute menu commands
+        UseItem,
+        MenuOptions,
+        MenuInventory,
+    }
 }

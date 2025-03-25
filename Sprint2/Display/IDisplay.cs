@@ -18,5 +18,7 @@ namespace Sprint0.Display
         // Draws sprite on the screen
         void Draw(SpriteBatch spriteBatch);
 
+        // Can swap from level to menu, menu to level, menu to menu, etc.:
+        void SwitchDisplay(IDisplay newDisplay);
     }
 }

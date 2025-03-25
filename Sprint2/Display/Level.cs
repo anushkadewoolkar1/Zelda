@@ -22,7 +22,6 @@ namespace Sprint0.Display
 {
     public class Level : ILevel, IGameObject
     {
-
         public int roomWidth;
         public int roomHeight;
         private Texture2D _backgroundTexture;
@@ -64,8 +63,11 @@ namespace Sprint0.Display
         
         private Link myLink;
 
-        public Level(ContentManager Content, List<IGameObject> _gameObjects)
+        public Level(Game currGame, ContentManager Content, List<IGameObject> _gameObjects)
         {
+            // Saves reference of Game1 to modify current display to a menu (PP):
+            gameCopy = currGame;
+            
             //Creates new collection of Blocks, Enemy and Items to be loaded into levels
             blocksList = new List<Block>();
             enemiesList = new List<Enemy>();
@@ -382,5 +384,9 @@ namespace Sprint0.Display
             this.myLink = link;
         }
 
+        public override void SwitchDisplay(IDisplay targetDisplay)
+        {
+            gameCopy.currDisplay = targetDisplay;
+        }
     }
 }
