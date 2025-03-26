@@ -47,6 +47,7 @@ public class Link : IGameObject
 
     // used for sound effects
     private GameAudio _audio;
+    private double healthTimer = 0;
 
 
     public Link(List<IGameObject> _gameObjects)
@@ -82,6 +83,7 @@ public class Link : IGameObject
         currentSprite.Update(gameTime);
 
         itemManager.Update(gameTime);
+
 
         // Handle invulnerability timer
         if (IsInvulnerable)
@@ -157,6 +159,7 @@ public class Link : IGameObject
 
     public void PerformAttack(Direction direction)
     {
+        _audio.SwordSwing();
         System.Diagnostics.Debug.WriteLine("Link performs an attack!");
     }
 
@@ -166,7 +169,41 @@ public class Link : IGameObject
 
         if (pickedUpItem.GetPickedUp() == false)
         {
-            _audio.PickUpItem(); //only play if it hasn't been picked up yet
+            //only play if it hasn't been picked up yet
+            switch(pickedUpItem.GetItemString())
+            {
+                case "ZeldaSpriteBoomerang":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteBow":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteCompass":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteFairy":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteHeartContainer":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteMap":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteTriforce_frame_000":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSpriteTriforce_frame_001":
+                    _audio.PickUpBetterItem();
+                    break;
+                case "ZeldaSprite5Rupies":
+                    _audio.CollectRupee();
+                    break;
+                default:
+                    _audio.PickUpItem();
+                    break;
+
+            }
         }
 
         pickedUpItem.SetPickedUp();
