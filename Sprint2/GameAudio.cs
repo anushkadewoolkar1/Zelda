@@ -40,9 +40,14 @@ namespace Sprint0
             soundEffects = new SoundEffect[]
             {
                 content.Load<SoundEffect>(@"Sound Effects\Pick Up Item"),
-                content.Load<SoundEffect>(@"Sound Effects\Enemy Hit"),
+                content.Load<SoundEffect>(@"Sound Effects\Enemy Hurt"),
                 content.Load<SoundEffect>(@"Sound Effects\Link Hurt"),
-                content.Load<SoundEffect>(@"Sound Effects\Low Health")
+                content.Load<SoundEffect>(@"Sound Effects\Low Health"),
+                content.Load<SoundEffect>(@"Sound Effects\Sword Swing"),
+                content.Load<SoundEffect>(@"Sound Effects\Enemy Death"),
+                content.Load<SoundEffect>(@"Sound Effects\Pick Up Better Item"),
+                content.Load<SoundEffect>(@"Sound Effects\Item Spawning"),
+                content.Load<SoundEffect>(@"Sound Effects\Collect Rupee")
             };
         }
 
@@ -70,5 +75,32 @@ namespace Sprint0
         {
             soundEffects[3].Play();
         }
+
+        public void SwordSwing()
+        {
+            soundEffects[4].Play();
+        }
+
+        public void EnemyDead()
+        {
+            soundEffects[5].Play();
+        }
+
+        public void PickUpBetterItem()
+        {
+            soundEffects[6].Play();
+        }
+
+        public void ItemSpawn()
+        {
+            soundEffects[7].Play();
+        }
+
+        public void CollectRupee()
+        {
+            soundEffects[8].Play();
+        }
+
+
     }
 }
