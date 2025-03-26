@@ -39,5 +39,8 @@ public class LinkBlockCollisionHandler : ICollisionHandler
             default:
                 break;
         }
+
+        block.LoadRoom();
+
     }
 }

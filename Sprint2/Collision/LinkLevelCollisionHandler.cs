@@ -24,16 +24,16 @@ namespace Sprint0.Collision
             {
                 // this corresponds to the left side of the level..etc
                 case CollisionSide.Left:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE - 44, link.Position.Y);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X, link.Position.Y);
                     break;
                 case CollisionSide.Right:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(level.roomWidth - BORDER_POSITION_VALUE + 275, link.Position.Y);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X + level.BoundingBox.Width - link.BoundingBox.Width, link.Position.Y);
                     break;
                 case CollisionSide.Bottom:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, BORDER_POSITION_VALUE + 150);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.BoundingBox.Y + level.BoundingBox.Height - link.BoundingBox.Height);
                     break;
                 case CollisionSide.Top:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.roomHeight - BORDER_POSITION_VALUE - 7);
+                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.BoundingBox.Y);
                     break;
             }
         }

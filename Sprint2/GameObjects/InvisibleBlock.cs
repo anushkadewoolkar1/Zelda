@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ZeldaGame.Zelda.CollisionMap;
 using Sprint0.CollisionHandling;
+using Sprint0.Display;
 public class InvisibleBlock : Block, IGameObject
 
 {
@@ -13,10 +14,13 @@ public class InvisibleBlock : Block, IGameObject
     private const int BOUNDING_BOX_DIM = 14;
 
     Vector2 pixelPosition;
-    public InvisibleBlock(Vector2 startPosition, Texture2D[] blockTextures)
-        : base(startPosition, blockTextures)
+    public InvisibleBlock(Vector2 startPosition, Texture2D[] blockTextures, Level level)
+        : base(startPosition, blockTextures, level)
     {
         pixelPosition = startPosition;
+
+        base.myLevel = level;
+        base.loadRoom = new Vector2(-1, -1);
 
     }
     public virtual void Draw(SpriteBatch spriteBatch)

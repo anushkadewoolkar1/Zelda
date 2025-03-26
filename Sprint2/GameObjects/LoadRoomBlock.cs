@@ -13,20 +13,15 @@ public class LoadRoomBlock : Block
     private const int COLLISION_THRESH = 10;
 
     public LoadRoomBlock(Vector2 startPosition, Texture2D[] blockTextures, Level level, int x, int y)
-        : base(startPosition, blockTextures)
+        : base(startPosition, blockTextures, level)
     {
         this.level = level;
         targetX = x;
         targetY = y;
+
+        base.myLevel = level;
+        base.loadRoom = new Vector2(x, y);
     }
 
     public virtual bool IsSolid() => true;
-
-    public void CheckCollision(Vector2 playerPosition)
-    {
-        if (Vector2.Distance(playerPosition, GetPosition()) < COLLISION_THRESH) 
-        {
-            level.LoadRoom(targetX, targetY);
-        }
-    }
 }

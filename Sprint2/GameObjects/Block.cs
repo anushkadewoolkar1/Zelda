@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.CollisionHandling;
+using Sprint0.Display;
 using ZeldaGame.Zelda.CollisionMap;
 
 public class Block : IBlock, IGameObject
@@ -15,13 +16,14 @@ public class Block : IBlock, IGameObject
     private int currentTextureIndex = 0;
     protected TileMap tileMap = TileMap.GetInstance();
 
-
+    public Level myLevel { get; set; }
+    public Vector2 loadRoom { get; set; }
 
 
     private const float scaleFactor = 0.3f;
     private const int BOUNDING_BOX_DIM = 22;
 
-    public Block(Vector2 startPosition, Texture2D[] blockTextures)
+    public Block(Vector2 startPosition, Texture2D[] blockTextures, Level level)
     {
         //tilePosition = startPosition;
         pixelPosition = startPosition;
@@ -31,6 +33,9 @@ public class Block : IBlock, IGameObject
         {
             System.Diagnostics.Debug.WriteLine($"Index {i}: {textures[i].Name}");
         }
+
+        loadRoom = new Vector2(-1, -1);
+        myLevel = level;
     }
 
     public Vector2 GetPosition() => tilePosition;
@@ -107,4 +112,15 @@ public class Block : IBlock, IGameObject
 
     // No velocity for blocks
     public Vector2 Velocity => Vector2.Zero;
+
+    public void LoadRoom()
+    {
+        System.Diagnostics.Debug.WriteLine($"Trying to load Room({loadRoom.X},{loadRoom.Y})");
+
+        if (loadRoom.X == -1 && loadRoom.Y == -1)
+        {
+            return;
+        }
+        myLevel.LoadRoom((int)loadRoom.X, (int)loadRoom.Y);
+    }
 }

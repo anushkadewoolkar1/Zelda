@@ -104,20 +104,27 @@ namespace Sprint0.Display
 
 
         //Checks for which type of block to create
-        private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures, int targetX = 0, int targetY = 0)
+        private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures)
         {
             if (blockType.Contains("invisible"))
             {
-                return new InvisibleBlock(position, textures);
+                return new InvisibleBlock(position, textures, this);
             }
-            else if (blockType.Contains("load"))
+            /*else if (blockType.Contains("load"))
             {
+                System.Diagnostics.Debug.WriteLine("LoadRoom");
                 //swap in Int32.Parse(blockType.Substring(13,1)), Int32.Parse(blockType.Substring(15, 1)
                 //when you are done checking
-                return new LoadRoomBlock(position, textures, this, targetX, targetY);
-            } else
+                //return new LoadRoomBlock(position, textures, this, Int32.Parse(blockType.Substring(13, 1)), Int32.Parse(blockType.Substring(15, 1)));
+            }*/ else
             {
-                return new Block(position, textures);
+                Block block = new Block(position, textures, this);
+
+                if (blockType.Contains("Load"))
+                {
+                    block.loadRoom = new Vector2(Int32.Parse(blockType.Substring(14, 1)), Int32.Parse(blockType.Substring(16, 1)));
+                }
+                return block;
             }
         }
 
@@ -343,7 +350,7 @@ namespace Sprint0.Display
         {
             get
             {
-                return new Rectangle(LEVEL_CENTER_POSITION, LEVEL_CENTER_POSITION, (int)roomDimensions.X - LEVEL_CENTER_POSITION, (int)roomDimensions.Y - LEVEL_CENTER_POSITION);
+                return new Rectangle(LEVEL_CENTER_POSITION - 8, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 16, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 16);
             }
         }
         public Vector2 Velocity
