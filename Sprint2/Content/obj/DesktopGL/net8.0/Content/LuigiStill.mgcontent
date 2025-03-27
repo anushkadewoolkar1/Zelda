@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/jorda/source/repos/Sprint4/Sprint2/Content/LuigiStill.png</SourceFile>
-  <SourceTime>2025-03-17T13:05:55.4685339-04:00</SourceTime>
-  <DestFile>C:/Users/jorda/source/repos/Sprint4/Sprint2/Content/bin/DesktopGL/Content/LuigiStill.xnb</DestFile>
-  <DestTime>2025-03-22T21:05:57.2914744-04:00</DestTime>
+  <SourceFile>C:/Users/paxus/Downloads/ZeldaGame/ZeldaGame/Zelda/Sprint2/Content/LuigiStill.png</SourceFile>
+  <SourceTime>2025-03-03T12:47:03.5373902-05:00</SourceTime>
+  <DestFile>C:/Users/paxus/Downloads/ZeldaGame/ZeldaGame/Zelda/Sprint2/Content/bin/DesktopGL/Content/LuigiStill.xnb</DestFile>
+  <DestTime>2025-03-27T13:23:53.8922133-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
