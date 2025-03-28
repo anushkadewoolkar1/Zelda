@@ -14,6 +14,8 @@ using Zelda.Enums;
 
 public class Link : IGameObject
 {
+    // constants
+
     public ILinkState currentState;
     public Vector2 Position { get; set; }
     private ISprite currentSprite;
