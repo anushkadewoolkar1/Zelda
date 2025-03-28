@@ -33,13 +33,24 @@ namespace Sprint0.States
         TileMap tileMap = TileMap.GetInstance();
         private GameAudio _audio = GameAudio.Instance;
 
+        // constants
+        const double ZERO = 0.0;
+        const int DEFAULT_SPRITE_SIZE = 32;
+        const int ONE = 1;
+        const double TWO = 2.0;
+        const double THREE = 3.0;
+        const double NPC_HEALTH = 99.0;
+        const double SMALL_ENEMY_HEALTH = 0.5;
+        const float ENEMY_DEATH_POSITION = -40;
+        const int TWELVE = 12;
+
 
         public Enemy()
         {
             spriteFactory = EnemySpriteFactory.Instance;
 
             sprite = spriteFactory.CreateEnemySprite(enemyType, Direction);
-            sprite.spriteSize = 32;
+            sprite.spriteSize = DEFAULT_SPRITE_SIZE;
 
             SetHealth();
 
@@ -60,7 +71,7 @@ namespace Sprint0.States
             position = tileMap.GetTileCenter(spawnPosition);
             //I combined the two lines below into one line so that position can be a property
             position = new Vector2(tileMap.GetTileCenter(spawnPosition).X,
-                tileMap.GetTileCenter(spawnPosition).Y - 12);
+                tileMap.GetTileCenter(spawnPosition).Y - TWELVE);
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
@@ -71,40 +82,40 @@ namespace Sprint0.States
             switch (enemyType)
             {
                 case EnemyType.OldMan:
-                    EnemyHealth = 99.0;
+                    EnemyHealth = NPC_HEALTH;
                     break;
                 case EnemyType.Keese:
-                    EnemyHealth = 0.5;
+                    EnemyHealth = SMALL_ENEMY_HEALTH;
                     break;
                 case EnemyType.Stalfos:
-                    EnemyHealth = 2.0;
+                    EnemyHealth = TWO;
                     break;
                 case EnemyType.Goriya:
-                    EnemyHealth = 3.0;
+                    EnemyHealth = THREE;
                     break;
                 case EnemyType.Gel:
-                    EnemyHealth = 0.5;
+                    EnemyHealth = SMALL_ENEMY_HEALTH;
                     break;
                 case EnemyType.Zol:
-                    EnemyHealth = 2.0;
+                    EnemyHealth = TWO;
                     break;
                 case EnemyType.Trap:
-                    EnemyHealth = 99.0;
+                    EnemyHealth = NPC_HEALTH;
                     break;
                 case EnemyType.Wallmaster:
-                    EnemyHealth = 2.0;
+                    EnemyHealth = TWO;
                     break;
                 case EnemyType.Rope:
-                    EnemyHealth = 0.5;
+                    EnemyHealth = SMALL_ENEMY_HEALTH;
                     break;
                 case EnemyType.Aquamentus:
-                    EnemyHealth = 6.0;
+                    EnemyHealth = THREE * TWO;
                     break;
                 case EnemyType.Dodongo:
-                    EnemyHealth = 8.0;
+                    EnemyHealth = Math.Pow(TWO, THREE);
                     break;
                 default:
-                    EnemyHealth = 0;
+                    EnemyHealth = ZERO;
                     break;
 
             }
@@ -116,7 +127,7 @@ namespace Sprint0.States
 
             if (itemSpawn)
             {
-                projectilePosition = position + new Vector2(2, 2);
+                projectilePosition = position + new Vector2((float) TWO, (float) TWO);
                 itemSpawn = false;
                 itemSpawned = true;
             }
@@ -139,22 +150,8 @@ namespace Sprint0.States
         public void ChangeDirection(Direction newDirection)
         {
             Direction = newDirection;
-            switch (newDirection)
-            {
-                case Direction.Up:
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Down:
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Left:
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
-                case Direction.Right:
-                    sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
-                    break;
 
-            }
+            sprite = spriteFactory.CreateEnemySprite(this.enemyType, Direction);
         }
 
         public void Move(Vector2 move, GameTime gameTime)
@@ -169,16 +166,16 @@ namespace Sprint0.States
                 switch (Direction)
                 {
                     case Direction.Up:
-                        velocity = new Vector2(0, -1);
+                        velocity = new Vector2((float) ZERO, (float) -ONE);
                         break;
                     case Direction.Down:
-                        velocity = new Vector2(0, 1);
+                        velocity = new Vector2((float) ZERO, (float) ONE);
                         break;
                     case Direction.Left:
-                        velocity = new Vector2(1, 0);
+                        velocity = new Vector2((float) ONE, (float) ZERO);
                         break;
                     case Direction.Right:
-                        velocity = new Vector2(-1, 0);
+                        velocity = new Vector2((float) -ONE, (float) ZERO);
                         break;
                     default:
                         velocity = Vector2.Zero;
@@ -190,20 +187,20 @@ namespace Sprint0.States
         public void SpawnProjectile()
         {
             itemSpawn = false;
-            int directionNumber = -1;
+            int directionNumber = -ONE;
             switch (Direction)
             {
                 case Direction.Up:
-                    directionNumber = 0;
+                    directionNumber = (int) ZERO;
                     break;
                 case Direction.Down:
-                    directionNumber = 1;
+                    directionNumber = ONE;
                     break;
                 case Direction.Left:
-                    directionNumber = 2;
+                    directionNumber = (int) TWO;
                     break;
                 case Direction.Right:
-                    directionNumber = 3;
+                    directionNumber = (int) THREE;
                     break;
             }
             switch (itemType)
@@ -229,13 +226,13 @@ namespace Sprint0.States
             switch (projectile)
             {
                 case ItemType.Arrow:
-                    EnemyHealth -= 2.0;
+                    EnemyHealth -= TWO;
                     break;
                 case ItemType.Boomerang:
-                    EnemyHealth -= 0.5;
+                    EnemyHealth -= SMALL_ENEMY_HEALTH;
                     break;
                 case ItemType.Bomb:
-                    EnemyHealth -= 4.0;
+                    EnemyHealth -= TWO * TWO;
                     break;
             }
         }
@@ -286,9 +283,9 @@ namespace Sprint0.States
             }
 
 
-            if (EnemyHealth <= 0)
+            if (EnemyHealth <= ZERO)
             {
-                EnemyHealth = 0;
+                EnemyHealth = ZERO;
                 Destroy();
             }
         }
@@ -304,8 +301,8 @@ namespace Sprint0.States
         public void Destroy()
         {
             sprite = spriteFactory.CreateEnemySprite(EnemyType.None, Direction);
-            velocity = new Vector2(0, 0);
-            position = new Vector2(0, 0);
+            velocity = new Vector2((float) ZERO, (float) ZERO);
+            position = new Vector2(ENEMY_DEATH_POSITION, (float) ZERO);
         }
     }
 }
