@@ -34,15 +34,15 @@ namespace Sprint0.States
         private GameAudio _audio = GameAudio.Instance;
 
         // constants
-        const double ZERO = 0.0;
-        const int DEFAULT_SPRITE_SIZE = 32;
-        const int ONE = 1;
-        const double TWO = 2.0;
-        const double THREE = 3.0;
-        const double NPC_HEALTH = 99.0;
-        const double SMALL_ENEMY_HEALTH = 0.5;
-        const float ENEMY_DEATH_POSITION = -40;
-        const int TWELVE = 12;
+        private const double ZERO = 0.0;
+        private const int DEFAULT_SPRITE_SIZE = 32;
+        private const int ONE = 1;
+        private const double TWO = 2.0;
+        private const double THREE = 3.0;
+        private const double NPC_HEALTH = 99.0;
+        private const double SMALL_ENEMY_HEALTH = 0.5;
+        private const float ENEMY_DEATH_POSITION = -40;
+        private const int TWELVE = 12;
 
 
         public Enemy()

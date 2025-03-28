@@ -16,10 +16,11 @@ namespace Sprint0.States
         int timer = 1000;
         private Vector2 position;
 
+        const int ZERO = 0;
+
         public EnemyDamagedState(Enemy enemy)
         {
             this.enemy = enemy;
-            // construct sprite here
             ISprite enemySprite = EnemySpriteFactory.Instance.CreateEnemySprite(enemy.enemyType, enemy.Direction);
         }
         public void Load()
@@ -33,7 +34,7 @@ namespace Sprint0.States
             enemy.Move(position, gameTime);
             
             timer--;
-            if (timer == 0)
+            if (timer == ZERO)
             {
                 RemoveDecorator();
             }
