@@ -148,6 +148,35 @@ namespace Sprint0.Commands
             _link.ChangeState(new LinkUsingItemState(_link, _link.currentDirection, _item));
         }
     }
+
+    public class MuteMusic : ICommand
+    {
+        private GameAudio _audio;
+        public MuteMusic(GameAudio audio)
+        {
+            _audio = audio;
+        }
+
+        public void Execute()
+        {
+            _audio.MuteBGM();
+        }
+    }
+
+    public class UnmuteMusic : ICommand
+    {
+        private GameAudio _audio;
+        public UnmuteMusic(GameAudio audio)
+        {
+            _audio = audio;
+        }
+
+        public void Execute()
+        {
+            _audio.UnmuteBGM();
+        }
+    }
+
     public class ResetCommand : ICommand
     {
         private Game1 _game;
