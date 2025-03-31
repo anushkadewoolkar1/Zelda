@@ -268,6 +268,8 @@ namespace Sprint0
             ICommand useItemBmrng = new LinkUseItem(linkSprite, ItemType.Boomerang);
             ICommand useItemBomb = new LinkUseItem(linkSprite, ItemType.Bomb);
             ICommand leaveStartMenu = new LeaveStartMenu(this);
+            ICommand muteBGM = new MuteMusic(_audio);
+            ICommand unmuteBGM = new UnmuteMusic(_audio);
 
 
             // Set up KeyboardController with dictionary
@@ -345,7 +347,11 @@ namespace Sprint0
                 //'D4' -> Player Use Sword:
                 { Keys.D4, setAttackCommand },
 
-                { Keys.Enter, leaveStartMenu }
+                { Keys.Enter, leaveStartMenu },
+
+                { Keys.P, muteBGM },
+
+                { Keys.O, unmuteBGM }
 
             };
 

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Sprint0.Commands;
 
 
 namespace Sprint0
@@ -54,6 +55,22 @@ namespace Sprint0
         public void PlayBGM()
         {
             MediaPlayer.Play(bgm);
+        }
+
+        public void MuteBGM()
+        {
+            if (MediaPlayer.State == MediaState.Playing)
+            {
+                MediaPlayer.Stop();
+            }
+        }
+
+        public void UnmuteBGM()
+        {
+            if (MediaPlayer.State == MediaState.Stopped)
+            {
+                MediaPlayer.Play(bgm);
+            }
         }
 
         public void PickUpItem()
