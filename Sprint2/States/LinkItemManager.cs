@@ -52,7 +52,7 @@ namespace Sprint0.States
                         //boomerangTimer++;
                         //if (boomerangTimer == 10)
                         //{
-                        //    _audio.SwordSwing();
+                        //    _audio.ShootArrow();
                         //    boomerangTimer = 0;
                         //}
 
@@ -111,6 +111,7 @@ namespace Sprint0.States
                 case ItemType.Arrow:
                     arrowSprite = CreateArrowSprite(direction);
                     gameObjects.Add(arrowSprite as IGameObject);
+                    _audio.ShootArrow();
                     break;
 
                 case ItemType.Boomerang:
