@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/PauseScreen.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/../DefaultFont.spritefont</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/block1.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/block10.png</File>
@@ -28,37 +29,11 @@
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiRunMoveSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiRunningSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiStill.png</File>
-    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/PauseScreen.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/SmallEnemies.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/transparent_block.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File>DefaultFont.spritefont</File>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

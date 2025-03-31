@@ -431,7 +431,7 @@ namespace Sprint0
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
 
-            _inventory = new Inventory(Content, linkSprite);
+            _inventory = new Inventory(Content, GraphicsDevice, linkSprite);
 
             levelMap.AddLink(linkSprite);
             levelMap.CollisionManager(collisionManager);
