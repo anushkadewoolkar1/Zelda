@@ -89,4 +89,13 @@ namespace Zelda.Enums
         Top,
         Bottom
     }
+
+    public enum GameState
+    {
+        MainMenu,
+        Playing,
+        Paused,
+        GameOver,
+        Win
+    }
 }

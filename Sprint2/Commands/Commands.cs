@@ -12,6 +12,7 @@ using Sprint0;
 using Sprint0.Controllers;
 using Sprint0.Sprites;
 using Sprint0.States;
+using Sprint0.Display;
 using Zelda.Enums;
 
 namespace Sprint0.Commands
@@ -157,6 +158,20 @@ namespace Sprint0.Commands
         public void Execute()
         {
             _game.LoadDynamicObjects();
+        }
+    }
+
+    public class LeaveStartMenu : ICommand
+    {
+        private Game1 game;
+        public LeaveStartMenu(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            game.GameState = Zelda.Enums.GameState.Playing;
         }
     }
 

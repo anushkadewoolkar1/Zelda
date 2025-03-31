@@ -64,6 +64,8 @@ namespace Sprint0.Display
         
         private Link myLink;
 
+        private GameState UpdateGameState;
+
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
             //Creates new collection of Blocks, Enemy and Items to be loaded into levels
@@ -100,34 +102,22 @@ namespace Sprint0.Display
             currentRoom = [WIDTH_POSITION, HEIGHT_POSITION];
 
             newRoom = [WIDTH_POSITION, HEIGHT_POSITION];
+
+            UpdateGameState = Zelda.Enums.GameState.MainMenu;
         }
 
 
         //Checks for which type of block to create
         private Block CreateBlock(string blockType, Vector2 position, Texture2D[] textures)
         {
-            if (blockType.Contains("invisible"))
-            {
-                return new InvisibleBlock(position, textures, this);
-            }
-            /*else if (blockType.Contains("load"))
-            {
-                System.Diagnostics.Debug.WriteLine("LoadRoom");
-                //swap in Int32.Parse(blockType.Substring(13,1)), Int32.Parse(blockType.Substring(15, 1)
-                //when you are done checking
-                //return new LoadRoomBlock(position, textures, this, Int32.Parse(blockType.Substring(13, 1)), Int32.Parse(blockType.Substring(15, 1)));
-            }*/ else
-            {
-                Block block = new Block(position, textures, this);
+            Block block = new Block(position, textures, this);
 
-                if (blockType.Contains("Load"))
-                {
-                    block.loadRoom = new Vector2(Int32.Parse(blockType.Substring(14, 1)), Int32.Parse(blockType.Substring(16, 1)));
-                }
-                return block;
+            if (blockType.Contains("Load"))
+            {
+                block.loadRoom = new Vector2(Int32.Parse(blockType.Substring(14, 1)), Int32.Parse(blockType.Substring(16, 1)));
             }
+            return block;
         }
-
 
         private Texture2D[] LoadBlockTextures()
         {
@@ -140,6 +130,12 @@ namespace Sprint0.Display
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (UpdateGameState != Zelda.Enums.GameState.Playing &&
+                UpdateGameState != Zelda.Enums.GameState.Paused)
+            {
+                return;
+            }
+
             //Draws room background
             spriteBatch.Draw(_backgroundTexture, new Rectangle(0, 0,
                roomWidth * BACKGROUND_SIZE_SCALAR, roomHeight * BACKGROUND_SIZE_SCALAR), _sourceRectangle, Color.White);
@@ -168,6 +164,11 @@ namespace Sprint0.Display
 
         public override void Update(GameTime gameTime)
         {
+            if (UpdateGameState != Zelda.Enums.GameState.Playing)
+            {
+                return;
+            }
+
             myLink.Update(gameObjects, gameTime);
 
             //Goes through each list updating each object
@@ -387,6 +388,11 @@ namespace Sprint0.Display
         public void AddLink(Link link)
         {
             this.myLink = link;
+        }
+
+        public void GameState(GameState state)
+        {
+            this.UpdateGameState = state;
         }
 
     }

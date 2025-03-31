@@ -61,6 +61,10 @@ namespace Sprint0
         public IDisplay currDisplay;
         public Level levelMap;
 
+        private StartMenu _startMenu { get; set; }
+
+        public GameState GameState { get; set; }
+
         // Collision
         private List<IGameObject> gameObjects = new List<IGameObject>();
         private CollisionManager collisionManager = new CollisionManager();
@@ -164,7 +168,11 @@ namespace Sprint0
 
             //_currentSprite.Update(gameTime);
 
+
             levelMap.Update(gameTime);
+
+            levelMap.GameState(GameState);
+            _startMenu.UpdateGameState(GameState);
 
             //enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
             levelMap.enemiesList.ForEach(x => x.Update(gameTime));
@@ -177,8 +185,10 @@ namespace Sprint0
             _block.Update();
             _loadRoomBlock.CheckCollision(linkSprite.Position);
             */
-
-            collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
+            if (GameState != Zelda.Enums.GameState.MainMenu)
+            {
+                collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
+            }
 
             base.Update(gameTime);
         }
@@ -201,6 +211,8 @@ namespace Sprint0
             _invisibleBlock.Draw(_spriteBatch);
             _loadRoomBlock.Draw(_spriteBatch);
             */
+
+            _startMenu.Draw(_spriteBatch);
 
             item.Draw(_spriteBatch);
             item2.Draw(_spriteBatch);
@@ -241,6 +253,8 @@ namespace Sprint0
 
             linkSprite = new Link(gameObjects);
 
+            _startMenu = new StartMenu(Content);
+
             ICommand quitCommand = new QuitCommand(this);
             ICommand resetCommand = new ResetCommand(this);
             ICommand setIdleCommand = new ChangeLinkState(linkSprite, new LinkIdleState((linkSprite), linkSprite.currentDirection));
@@ -257,6 +271,7 @@ namespace Sprint0
             ICommand useItemArrow = new LinkUseItem(linkSprite, ItemType.Arrow);
             ICommand useItemBmrng = new LinkUseItem(linkSprite, ItemType.Boomerang);
             ICommand useItemBomb = new LinkUseItem(linkSprite, ItemType.Bomb);
+            ICommand leaveStartMenu = new LeaveStartMenu(this);
 
 
             // Set up KeyboardController with dictionary
@@ -333,6 +348,8 @@ namespace Sprint0
 
                 //'D4' -> Player Use Sword:
                 { Keys.D4, setAttackCommand },
+
+                { Keys.Enter, leaveStartMenu }
 
             };
 
@@ -411,7 +428,8 @@ namespace Sprint0
             levelMap.AddLink(linkSprite);
             //gameObjects.Add(_block);
             //gameObjects.Add(_loadRoomBlock);
-        }
 
+            GameState = Zelda.Enums.GameState.MainMenu;
+        }
     }
 }

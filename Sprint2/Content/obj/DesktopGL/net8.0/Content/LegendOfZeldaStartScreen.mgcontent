@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/jorda/source/repos/Sprint4_v2/Sprint2/Content/transparent_block.png</SourceFile>
-  <SourceTime>2025-03-30T11:04:53.1990721-04:00</SourceTime>
-  <DestFile>C:/Users/jorda/source/repos/Sprint4_v2/Sprint2/Content/bin/DesktopGL/Content/transparent_block.xnb</DestFile>
-  <DestTime>2025-03-30T21:51:12.0423984-04:00</DestTime>
+  <SourceFile>C:/Users/jorda/source/repos/Sprint4_v2/Sprint2/Content/LegendOfZeldaStartScreen.png</SourceFile>
+  <SourceTime>2025-03-30T11:20:21.525271-04:00</SourceTime>
+  <DestFile>C:/Users/jorda/source/repos/Sprint4_v2/Sprint2/Content/bin/DesktopGL/Content/LegendOfZeldaStartScreen.xnb</DestFile>
+  <DestTime>2025-03-30T22:33:47.5263363-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
