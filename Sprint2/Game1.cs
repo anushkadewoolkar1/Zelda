@@ -15,6 +15,7 @@ using Sprint0.Display;
 using Sprint0.CollisionHandling;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.Xna.Framework.Media;
+using Zelda.Inventory;
 
 
 namespace Sprint0
@@ -48,6 +49,9 @@ namespace Sprint0
         private Item item;
         private Item item2;
         private ItemSprite itemSprite;
+
+        private Inventory _inventory;
+        public bool isInventoryOpen = false;
 
         Link linkSprite;
 
@@ -188,7 +192,10 @@ namespace Sprint0
             _spriteBatch.Begin();
 
             levelMap.Draw(_spriteBatch);
-
+            if (isInventoryOpen)
+            {
+                _inventory.Draw(_spriteBatch);
+            }
             //linkSprite.Draw(_spriteBatch);
 
             // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
@@ -264,6 +271,7 @@ namespace Sprint0
             ICommand leaveStartMenu = new LeaveStartMenu(this, _audio);
             ICommand muteBGM = new MuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
+            ICommand openInventory = new OpenInventory(this);
 
 
             // Set up KeyboardController with dictionary
@@ -345,7 +353,9 @@ namespace Sprint0
 
                 { Keys.P, muteBGM },
 
-                { Keys.O, unmuteBGM }
+                { Keys.O, unmuteBGM },
+
+                { Keys.K, openInventory }
 
             };
 
@@ -420,6 +430,8 @@ namespace Sprint0
             gameObjects.Add(item);
             gameObjects.Add(linkSprite);
             gameObjects.Add(item2);
+
+            _inventory = new Inventory(Content, linkSprite);
 
             levelMap.AddLink(linkSprite);
             levelMap.CollisionManager(collisionManager);

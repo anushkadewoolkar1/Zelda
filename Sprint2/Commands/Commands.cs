@@ -232,6 +232,20 @@ namespace Sprint0.Commands
         }
     }
 
+    public class OpenInventory : ICommand
+    {
+        private Game1 game;
+        public OpenInventory(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            game.isInventoryOpen = !game.isInventoryOpen;
+        }
+    }
+
 }
 
 
