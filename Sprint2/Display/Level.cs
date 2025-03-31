@@ -61,10 +61,14 @@ namespace Sprint0.Display
         private const int SHIFT_INTO_RANGE = 1;
         private const int ROOM_STARTING_POINT = 12;
         private const int ROOM_TRANSITION_SPEED = 3;
-        
+
+        private Game1 myGame;
+
         private Link myLink;
 
         private GameState UpdateGameState;
+
+        private CollisionManager collisionManager;
 
         public Level(ContentManager Content, List<IGameObject> _gameObjects)
         {
@@ -169,6 +173,8 @@ namespace Sprint0.Display
                 return;
             }
 
+            collisionManager.CheckDynamicCollisions(gameObjects, this);
+
             myLink.Update(gameObjects, gameTime);
 
             //Goes through each list updating each object
@@ -183,6 +189,11 @@ namespace Sprint0.Display
             for (int i = 0; i < itemsList.Count; i++)
             {
                 itemsList[i].Update(gameTime);
+            }
+
+            if (myLink.Health <= 0)
+            {
+                UpdateGameState = Zelda.Enums.GameState.MainMenu;
             }
         }
 
@@ -393,6 +404,16 @@ namespace Sprint0.Display
         public void GameState(GameState state)
         {
             this.UpdateGameState = state;
+        }
+
+        public void CollisionManager(CollisionManager _collisionManager)
+        {
+            collisionManager = _collisionManager;
+        }
+
+        public void Game(Game1 _game)
+        {
+            myGame = _game;
         }
 
     }

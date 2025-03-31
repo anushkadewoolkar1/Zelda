@@ -28,7 +28,6 @@ namespace Sprint0.Display
 
         // Maybe we need this? idk yet: 
         // public abstract void UnpauseLevel(Level level);
-
         public void LeaveMenu();
     }
 }

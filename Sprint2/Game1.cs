@@ -185,10 +185,6 @@ namespace Sprint0
             _block.Update();
             _loadRoomBlock.CheckCollision(linkSprite.Position);
             */
-            if (GameState != Zelda.Enums.GameState.MainMenu)
-            {
-                collisionManager.CheckDynamicCollisions(gameObjects, levelMap);
-            }
 
             base.Update(gameTime);
         }
@@ -426,6 +422,8 @@ namespace Sprint0
             gameObjects.Add(item2);
 
             levelMap.AddLink(linkSprite);
+            levelMap.CollisionManager(collisionManager);
+            levelMap.Game(this);
             //gameObjects.Add(_block);
             //gameObjects.Add(_loadRoomBlock);
 
