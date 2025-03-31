@@ -58,6 +58,7 @@ namespace Sprint0
         private Block _invisibleBlock;
         private LoadRoomBlock _loadRoomBlock;
 
+        //
         public IDisplay currDisplay;
         public Level levelMap;
 

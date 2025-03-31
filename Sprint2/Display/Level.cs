@@ -63,7 +63,7 @@ namespace Sprint0.Display
         
         private Link myLink;
 
-        public Level(Game currGame, ContentManager Content, List<IGameObject> _gameObjects)
+        public Level(Game1 currGame, ContentManager Content, List<IGameObject> _gameObjects)
         {
             // Saves reference of Game1 to modify current display to a menu (PP):
             gameCopy = currGame;
@@ -382,11 +382,6 @@ namespace Sprint0.Display
         public void AddLink(Link link)
         {
             this.myLink = link;
-        }
-
-        public override void SwitchDisplay(IDisplay targetDisplay)
-        {
-            gameCopy.currDisplay = targetDisplay;
         }
     }
 }

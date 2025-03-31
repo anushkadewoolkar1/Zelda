@@ -22,9 +22,10 @@ namespace Sprint0.Display
         protected Dictionary<InputCommands, ICommand> inputCommandMap;
         protected IDisplay returnDisplay;
         
-        // Should not be instantiated
+        // Used by subclasses:
         public BaseMenu(Game1 game, IDisplay defaultDisplay) {
-
+            gameCopy = game;
+            returnDisplay = defaultDisplay;
         }
 
         // Called once per frame to update sprites
@@ -33,32 +34,10 @@ namespace Sprint0.Display
 
         }
 
-        // Empty as sprite drawing is handled in subclasses, common menu textures may be put here but its unlikely they overlap:
-        public override void Draw(SpriteBatch spriteBatch) { }
-
-        // Executes a state modification based on command definition:
-        public override void LoadCommand(ICommand command)
-        {
-
+        // Draws black menu background:
+        public void DrawBackground() { 
+        
         }
 
-        // Holds the current state of level to be brought back later:
-        public override void PauseLevel(Level level)
-        {
-
-        }
-
-        public override void SwitchDisplay(IDisplay display)
-        {
-            gameCopy.currDisplay = display;
-        }
-
-        public Dictionary<InputCommands, ICommand> GetInputCommandMap()
-        {
-            // Create input to command dictionary
-        }
-
-        // Maybe we need this? idk yet: 
-        // public abstract void UnpauseLevel(Level level);
     }
 }

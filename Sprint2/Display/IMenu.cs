@@ -25,15 +25,20 @@ namespace Sprint0.Display
         public abstract void Draw(SpriteBatch spriteBatch);
 
         // Executes a state modification based on command definition:
-        public abstract void LoadCommand(ICommand command);
+        public void LoadCommand(ICommand command)
+        {
 
-        // Holds the current state of level to be brought back later:
-        public abstract void PauseLevel(Level level);
+        }
 
         // Needed to load other menus (Options -> Inventory), (Death -> Start), or (Options -> Level):
-        public abstract void SwitchDisplay(IDisplay display);
+        public void SwitchDisplay(IDisplay display)
+        {
+            gameCopy.currDisplay = display;
+        }
 
-        // Maybe we need this? idk yet: 
-        // public abstract void UnpauseLevel(Level level);
+        public void ActivateLevelInputMap()
+        {
+            //gameCopy.SwitchInputMap();
+        }
     }
 }
