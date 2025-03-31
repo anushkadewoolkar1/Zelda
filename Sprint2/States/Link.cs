@@ -86,6 +86,16 @@ public class Link : IGameObject
 
         itemManager.Update(gameTime);
 
+        if(Health <= 1.0)
+        {
+            healthTimer++;
+            if (healthTimer == 10.0)
+            {
+                healthTimer = 0;
+                _audio.LowHealth();
+            }
+        }
+
 
         // Handle invulnerability timer
         if (IsInvulnerable)

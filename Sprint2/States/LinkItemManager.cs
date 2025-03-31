@@ -27,6 +27,8 @@ namespace Sprint0.States
         private bool initializeItem;
         private Vector2 projectilePosition;
         private Direction projectileDirection;
+        private GameAudio _audio;
+        private int boomerangTimer = 0;
 
         public LinkItemManager (Link link, List<IGameObject> gameObjects)
         {
@@ -34,6 +36,7 @@ namespace Sprint0.States
             this.gameObjects = gameObjects;
             spawnedItem = false;
             initializeItem = false;
+            _audio = GameAudio.Instance;
         }
 
         public void Update(GameTime gameTime)
@@ -46,6 +49,13 @@ namespace Sprint0.States
                         arrowSprite?.Update(gameTime, owner);
                         break;
                     case ItemType.Boomerang:
+                        //boomerangTimer++;
+                        //if (boomerangTimer == 10)
+                        //{
+                        //    _audio.SwordSwing();
+                        //    boomerangTimer = 0;
+                        //}
+
                         boomerangSprite?.Update(gameTime, owner);
                         break;
                     case ItemType.Bomb:
@@ -68,7 +78,9 @@ namespace Sprint0.States
                 spawnedItem = false;
             }
 
-            if (spawnedItem) { }
+            if (spawnedItem) {
+            
+            }
 
             foreach (var itemType in owner.CurrentItem)
             {

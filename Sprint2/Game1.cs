@@ -157,17 +157,6 @@ namespace Sprint0
                 _keyboardController.Update();
             }
 
-            if(!_audio_playing)
-            {
-                _audio.PlayBGM();
-                _audio_playing = true;
-            }
-            if (MediaPlayer.State != MediaState.Playing)
-            {
-                // MediaPlayer.Play(song);
-                MediaPlayer.IsRepeating = true;
-            }
-
             //_currentSprite.Update(gameTime);
 
 
@@ -272,7 +261,7 @@ namespace Sprint0
             ICommand useItemArrow = new LinkUseItem(linkSprite, ItemType.Arrow);
             ICommand useItemBmrng = new LinkUseItem(linkSprite, ItemType.Boomerang);
             ICommand useItemBomb = new LinkUseItem(linkSprite, ItemType.Bomb);
-            ICommand leaveStartMenu = new LeaveStartMenu(this);
+            ICommand leaveStartMenu = new LeaveStartMenu(this, _audio);
             ICommand muteBGM = new MuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
 

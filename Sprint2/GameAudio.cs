@@ -16,7 +16,8 @@ namespace Sprint0
 {
     public class GameAudio
     {
-        private Song bgm;
+        private Song titleBGM;
+        private Song dungeonBGM;
         private SoundEffect[] soundEffects;
 
         private static GameAudio instance = new GameAudio();
@@ -37,7 +38,8 @@ namespace Sprint0
 
         public void LoadAllAudio(ContentManager content)
         {
-            bgm = content.Load<Song>(@"Sound Effects\Underworld BGM");
+            titleBGM = content.Load<Song>(@"Sound Effects\Title BGM");
+            dungeonBGM = content.Load<Song>(@"Sound Effects\Underworld BGM");
             soundEffects = new SoundEffect[]
             {
                 content.Load<SoundEffect>(@"Sound Effects\Pick Up Item"),
@@ -52,9 +54,24 @@ namespace Sprint0
             };
         }
 
-        public void PlayBGM()
+        public void PlayTitleBGM()
         {
-            MediaPlayer.Play(bgm);
+            if (MediaPlayer.State == MediaState.Playing)
+            {
+                MediaPlayer.Stop();
+            }
+
+            MediaPlayer.Play(titleBGM);
+        }
+        
+        public void PlayDungeonBGM()
+        {
+            if (MediaPlayer.State == MediaState.Playing)
+            {
+                MediaPlayer.Stop();
+            }
+
+            MediaPlayer.Play(dungeonBGM);
         }
 
         public void MuteBGM()
@@ -69,7 +86,7 @@ namespace Sprint0
         {
             if (MediaPlayer.State == MediaState.Stopped)
             {
-                MediaPlayer.Play(bgm);
+                MediaPlayer.Play(dungeonBGM);
             }
         }
 

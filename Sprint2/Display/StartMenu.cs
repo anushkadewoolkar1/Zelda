@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Sprint0.Commands;
 using Sprint0.Display;
 using Zelda.Enums;
@@ -18,18 +19,20 @@ namespace Sprint0.Display
     {
         private Texture2D backgroundTexture;
         private GameState GameState;
+        private GameAudio _audio;
 
         public StartMenu(ContentManager content)
         {
             backgroundTexture = content.Load<Texture2D>("LegendOfZeldaStartScreen");
 
             GameState = Zelda.Enums.GameState.StartMenu;
+
+            _audio = GameAudio.Instance;
         }
 
         // Called once per frame to update sprites
         public void Update(GameTime gameTime)
         {
-            
         }
 
         // Draws sprite on the screen
@@ -57,6 +60,10 @@ namespace Sprint0.Display
         public void UpdateGameState(GameState _gameState)
         {
             GameState = _gameState;
+            if (GameState == GameState.StartMenu && MediaPlayer.State != MediaState.Playing)
+            {
+                _audio.PlayTitleBGM();
+            }
         }
     }
 }

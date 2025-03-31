@@ -193,9 +193,12 @@ namespace Sprint0.Commands
     public class LeaveStartMenu : ICommand
     {
         private Game1 game;
-        public LeaveStartMenu(Game1 _game)
+        private GameAudio audio;
+
+        public LeaveStartMenu(Game1 _game, GameAudio _audio)
         {
             game = _game;
+            audio = _audio;
         }
 
         public void Execute()
@@ -203,6 +206,7 @@ namespace Sprint0.Commands
             if (game.GameState == Zelda.Enums.GameState.StartMenu)
             {
                 game.GameState = Zelda.Enums.GameState.Playing;
+                audio.PlayDungeonBGM();
             }
         }
     }
