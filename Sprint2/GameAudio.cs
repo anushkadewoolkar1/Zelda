@@ -50,7 +50,8 @@ namespace Sprint0
                 content.Load<SoundEffect>(@"Sound Effects\Enemy Death"),
                 content.Load<SoundEffect>(@"Sound Effects\Pick Up Better Item"),
                 content.Load<SoundEffect>(@"Sound Effects\Item Spawning"),
-                content.Load<SoundEffect>(@"Sound Effects\Collect Rupee")
+                content.Load<SoundEffect>(@"Sound Effects\Collect Rupee"),
+                content.Load<SoundEffect>(@"Sound Effects\Arrow_Boomerang")
             };
         }
 
@@ -133,6 +134,11 @@ namespace Sprint0
         public void CollectRupee()
         {
             soundEffects[8].Play();
+        }
+
+        public void ShootArrow()
+        {
+            soundEffects[9].Play();
         }
 
 
