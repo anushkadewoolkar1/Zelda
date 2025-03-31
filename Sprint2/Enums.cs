@@ -92,6 +92,7 @@ namespace Zelda.Enums
 
     public enum GameState
     {
+        StartMenu,
         MainMenu,
         Playing,
         Paused,

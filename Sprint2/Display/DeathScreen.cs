@@ -14,28 +14,29 @@ using Zelda.Enums;
 namespace Sprint0.Display
 {
     //
-    public class StartMenu : IMenu
+    public class DeathScreen : IMenu
     {
         private Texture2D backgroundTexture;
         private GameState GameState;
 
-        public StartMenu(ContentManager content)
+        public DeathScreen(ContentManager content)
         {
-            backgroundTexture = content.Load<Texture2D>("LegendOfZeldaStartScreen");
+            backgroundTexture = content.Load<Texture2D>("Game_Over_(The_Adventure_of_Link)");
 
             GameState = Zelda.Enums.GameState.StartMenu;
+
         }
 
         // Called once per frame to update sprites
         public void Update(GameTime gameTime)
         {
-            
+
         }
 
         // Draws sprite on the screen
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (GameState != Zelda.Enums.GameState.StartMenu) return;
+            if (GameState != Zelda.Enums.GameState.GameOver) return;
             spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 1440, 1080), Color.White);
         }
 

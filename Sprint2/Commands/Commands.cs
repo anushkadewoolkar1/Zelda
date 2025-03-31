@@ -200,7 +200,31 @@ namespace Sprint0.Commands
 
         public void Execute()
         {
-            game.GameState = Zelda.Enums.GameState.Playing;
+            if (game.GameState == Zelda.Enums.GameState.StartMenu)
+            {
+                game.GameState = Zelda.Enums.GameState.Playing;
+            }
+        }
+    }
+
+    public class LeaveNotStartMenu : ICommand
+    {
+        private Game1 game;
+        public LeaveNotStartMenu(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            if (game.GameState == Zelda.Enums.GameState.GameOver)
+            {
+                game.GameState = Zelda.Enums.GameState.StartMenu;
+            }
+            if (game.GameState == Zelda.Enums.GameState.Paused)
+            {
+                game.GameState = Zelda.Enums.GameState.Playing;
+            }
         }
     }
 

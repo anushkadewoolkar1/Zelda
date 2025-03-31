@@ -61,7 +61,9 @@ namespace Sprint0
         public IDisplay currDisplay;
         public Level levelMap;
 
-        private StartMenu _startMenu { get; set; }
+
+        private StartMenu _startMenu;
+        private DeathScreen _deathScreen;
 
         public GameState GameState { get; set; }
 
@@ -173,11 +175,12 @@ namespace Sprint0
 
             levelMap.GameState(GameState);
             _startMenu.UpdateGameState(GameState);
+            _deathScreen.UpdateGameState(GameState);
 
             //enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
-            levelMap.enemiesList.ForEach(x => x.Update(gameTime));
+            //levelMap.enemiesList.ForEach(x => x.Update(gameTime));
 
-            item.Update(gameTime);
+            //item.Update(gameTime);
 
             //linkSprite.Update(gameObjects, gameTime);
 
@@ -200,7 +203,7 @@ namespace Sprint0
             //linkSprite.Draw(_spriteBatch);
 
             // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
-            levelMap.enemiesList.ForEach(x => x.DrawCurrentSprite(_spriteBatch));
+            //levelMap.enemiesList.ForEach(x => x.DrawCurrentSprite(_spriteBatch));
 
             /*
             _block.Draw(_spriteBatch);
@@ -209,9 +212,10 @@ namespace Sprint0
             */
 
             _startMenu.Draw(_spriteBatch);
+            _deathScreen.Draw(_spriteBatch);
 
-            item.Draw(_spriteBatch);
-            item2.Draw(_spriteBatch);
+            //item.Draw(_spriteBatch);
+            //item2.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -250,6 +254,7 @@ namespace Sprint0
             linkSprite = new Link(gameObjects);
 
             _startMenu = new StartMenu(Content);
+            _deathScreen = new DeathScreen(Content);
 
             ICommand quitCommand = new QuitCommand(this);
             ICommand resetCommand = new ResetCommand(this);
@@ -433,7 +438,7 @@ namespace Sprint0
             //gameObjects.Add(_block);
             //gameObjects.Add(_loadRoomBlock);
 
-            GameState = Zelda.Enums.GameState.MainMenu;
+            GameState = Zelda.Enums.GameState.StartMenu;
         }
     }
 }

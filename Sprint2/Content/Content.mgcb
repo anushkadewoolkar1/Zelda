@@ -164,6 +164,18 @@
 /processorParam:TextureFormat=Color
 /build:EnemySpawning.png
 
+#begin Game_Over_(The_Adventure_of_Link).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Game_Over_(The_Adventure_of_Link).png
+
 #begin ItemSpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

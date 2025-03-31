@@ -107,7 +107,7 @@ namespace Sprint0.Display
 
             newRoom = [WIDTH_POSITION, HEIGHT_POSITION];
 
-            UpdateGameState = Zelda.Enums.GameState.MainMenu;
+            UpdateGameState = Zelda.Enums.GameState.StartMenu;
         }
 
 
@@ -193,7 +193,7 @@ namespace Sprint0.Display
 
             if (myLink.Health <= 0)
             {
-                myGame.GameState = Zelda.Enums.GameState.MainMenu;
+                myGame.GameState = Zelda.Enums.GameState.GameOver;
                 myLink.Health = 3;
             }
         }
