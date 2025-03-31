@@ -193,7 +193,8 @@ namespace Sprint0.Display
 
             if (myLink.Health <= 0)
             {
-                UpdateGameState = Zelda.Enums.GameState.MainMenu;
+                myGame.GameState = Zelda.Enums.GameState.MainMenu;
+                myLink.Health = 3;
             }
         }
 
