@@ -15,19 +15,22 @@ namespace Sprint0.Display
     {
         private Texture2D _pixel;
         private SpriteFont _font;
+        private GameState _gameState;
 
         public SettingsMenu(ContentManager content, GraphicsDevice graphicsDevice)
         {
             _pixel = new Texture2D(graphicsDevice, 1, 1);
             _pixel.SetData(new[] { Color.White });
             _font = content.Load<SpriteFont>("DefaultFont");
+            _gameState = Zelda.Enums.GameState.StartMenu;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (_gameState != Zelda.Enums.GameState.Paused) return;
             var viewport = spriteBatch.GraphicsDevice.Viewport;
-            int halfWidth = viewport.Width / 3 + 33;
-            int halfHeight = viewport.Height / 3 - 8;
+            int halfWidth = viewport.Width;
+            int halfHeight = viewport.Height;
 
             // Draw black rectangle over 
             spriteBatch.Draw(
@@ -40,5 +43,9 @@ namespace Sprint0.Display
             spriteBatch.DrawString(_font, "Quit Game", new Vector2(200, 200), Color.White);
         }
 
+        public void UpdateGameState(GameState gameState)
+        {
+            _gameState = gameState;
+        }
     }
 }

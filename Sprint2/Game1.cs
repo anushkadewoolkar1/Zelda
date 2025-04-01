@@ -178,6 +178,7 @@ namespace Sprint0
             _startMenu.UpdateGameState(GameState);
             _deathScreen.UpdateGameState(GameState);
             _winScreen.UpdateGameState(GameState);
+            _settings.UpdateGameState(GameState);
 
             base.Update(gameTime);
         }
@@ -264,7 +265,7 @@ namespace Sprint0
             ICommand muteBGM = new MuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
             ICommand openInventory = new OpenInventory(this);
-            ICommand openSettings = new OpenSettings(this);
+            ICommand openSettings = new OpenCloseSettings(this);
             ICommand toggleFullScreen = new ToggleFullScreen(this);
             ICommand lowerVolume = new MasterVolumeDown(_audio);
             ICommand raiseVolume = new MasterVolumeUp(_audio);
@@ -456,18 +457,20 @@ namespace Sprint0
             float scale;
             Rectangle rectangle = new Rectangle();
 
+            //Compares the aspect ratio of the resolution and the screen's ratio and sets scale appropriately
             if (resolutionRatio < screenRatio)
                 scale = (float)bounds.Y / resolution.Y;
             else if (resolutionRatio > screenRatio)
                 scale = (float)bounds.X / resolution.X;
             else
             {
-                // Resolution and window/screen share aspect ratio
                 rectangle.Size = bounds;
                 return rectangle;
             }
             rectangle.Width = (int)(resolution.X * scale);
             rectangle.Height = (int)(resolution.Y * scale);
+
+            //Returns rectangle that either matches screen's X coordinate or Y coordinate
             return rectangle;
         }
 
@@ -486,6 +489,7 @@ namespace Sprint0
             _graphics.IsFullScreen = !_graphics.IsFullScreen;
             _graphics.ApplyChanges();
 
+            //Adjusts rectangle to render
             renderTargetDestination = GetRenderTargetDestination(gameResolution, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
         }
     }
