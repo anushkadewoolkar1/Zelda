@@ -16,19 +16,26 @@ namespace Zelda.Inventory
         private Texture2D _backgroundTexture;
         private List<ItemType> pickedUpItems;
 
-        private Texture2D _pixel;
+        private Texture2D pixel;
 
-        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link link)
+        private Link link;
+        private ItemType currentItem;
+
+        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
-            pickedUpItems = link.CurrentItem;
-            _pixel = new Texture2D(graphicsDevice, 1, 1);
-            _pixel.SetData(new[] { Color.White });
+            pickedUpItems = _link.CurrentItem;
+            link = _link;
+            pixel = new Texture2D(graphicsDevice, 1, 1);
+            pixel.SetData(new[] { Color.White });
         }
 
         public void OpenInventory()
         {
-            
+            if (link.chooseItem != null)
+            {
+                currentItem = link.CurrentItem[link.chooseItem];
+            }
 
         }
 
@@ -42,7 +49,7 @@ namespace Zelda.Inventory
 
             // Draw black rectangle over 
             spriteBatch.Draw(
-                _pixel,
+                pixel,
                 new Rectangle(0, 0, halfWidth, halfHeight),
                 Color.Black
             );
@@ -103,6 +110,22 @@ namespace Zelda.Inventory
                 bottomSource,
                 Color.White
             );
+
+            // draw compass?
+            //if (link.CurrentItem.Contains(ItemType.Compass))
+            //{
+                scale = 2.5f;
+                Rectangle compassSource = new Rectangle(612, 157, 14, 14);
+                int compassWidth = (int)(compassSource.Width * scale);
+                int compassHeight = (int)(compassSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(100, 264, compassWidth, compassHeight),
+                    compassSource,
+                    Color.White
+                );
+           // }
         }
 
     }

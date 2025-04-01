@@ -191,9 +191,11 @@ public class Link : IGameObject
                     break;
                 case "ZeldaSpriteBow":
                     _audio.PickUpBetterItem();
+                    CurrentItem.Add(ItemType.Bow);
                     break;
                 case "ZeldaSpriteCompass":
                     _audio.PickUpBetterItem();
+                    CurrentItem.Add(ItemType.Compass);
                     break;
                 case "ZeldaSpriteFairy":
                     _audio.PickUpBetterItem();
@@ -203,6 +205,7 @@ public class Link : IGameObject
                     break;
                 case "ZeldaSpriteMap":
                     _audio.PickUpBetterItem();
+                    CurrentItem.Add(ItemType.Map);
                     break;
                 case "ZeldaSpriteTriforce_frame_000":
                     _audio.PickUpBetterItem();
