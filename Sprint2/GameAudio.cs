@@ -141,6 +141,15 @@ namespace Sprint0
             soundEffects[9].Play();
         }
 
+        public void LowerVolume()
+        {
+            MediaPlayer.Volume -= 0.1f;
+        }
+
+        public void RaiseVolume()
+        {
+            MediaPlayer.Volume += 0.1f;
+        }
 
     }
 }

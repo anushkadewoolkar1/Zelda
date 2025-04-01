@@ -266,6 +266,8 @@ namespace Sprint0
             ICommand openInventory = new OpenInventory(this);
             ICommand openSettings = new OpenSettings(this);
             ICommand toggleFullScreen = new ToggleFullScreen(this);
+            ICommand lowerVolume = new MasterVolumeDown(_audio);
+            ICommand raiseVolume = new MasterVolumeUp(_audio);
 
 
             // Set up KeyboardController with dictionary
@@ -353,7 +355,11 @@ namespace Sprint0
 
                 { Keys.L, openSettings },
 
-                { Keys.F, toggleFullScreen }
+                { Keys.F, toggleFullScreen },
+
+                { Keys.OemPlus, raiseVolume },
+
+                { Keys.OemMinus, lowerVolume },
 
             };
 

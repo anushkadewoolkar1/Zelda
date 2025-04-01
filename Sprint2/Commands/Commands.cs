@@ -14,6 +14,7 @@ using Sprint0.Sprites;
 using Sprint0.States;
 using Sprint0.Display;
 using Zelda.Enums;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprint0.Commands
 {
@@ -271,6 +272,32 @@ namespace Sprint0.Commands
         public void Execute()
         {
             game.ToggleFullScreen();
+        }
+    }
+
+    public class MasterVolumeUp : ICommand
+    {
+        GameAudio audio;
+        public MasterVolumeUp(GameAudio _audio)
+        {
+            audio = _audio;
+        }
+        public void Execute()
+        {
+            audio.RaiseVolume();
+        }
+    }
+
+    public class MasterVolumeDown : ICommand
+    {
+        GameAudio audio;
+        public MasterVolumeDown(GameAudio _audio)
+        {
+            audio = _audio;
+        }
+        public void Execute()
+        {
+            audio.LowerVolume();
         }
     }
 
