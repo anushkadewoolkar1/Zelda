@@ -247,17 +247,26 @@ namespace Sprint0.Commands
         }
     }
 
-    public class OpenSettings : ICommand
+    public class OpenCloseSettings : ICommand
     {
         private Game1 game;
-        public OpenSettings(Game1 _game)
+        public OpenCloseSettings(Game1 _game)
         {
             game = _game;
         }
 
         public void Execute()
         {
-            game.isSettingsOpen = !game.isSettingsOpen;
+            if (game.GameState == Zelda.Enums.GameState.Playing)
+            {
+                game.GameState = Zelda.Enums.GameState.Paused;
+                game.isSettingsOpen = !game.isSettingsOpen;
+            } else if (game.GameState == Zelda.Enums.GameState.Paused)
+            {
+                game.GameState = Zelda.Enums.GameState.Playing;
+                game.isSettingsOpen = !game.isSettingsOpen;
+            }
+            
         }
     }
 
