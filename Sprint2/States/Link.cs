@@ -58,7 +58,7 @@ public class Link : IGameObject
     {
         // Initialize the sprite factory 
         spriteFactory = LinkSpriteFactory.Instance;
-        Position = new Vector2(100, 100);
+        Position = new Vector2(240, 250);
 
         // Start initial sprite
         currentSprite = LinkSpriteFactory.Instance.CreateDownWalk(1, 0, 0);
@@ -82,6 +82,7 @@ public class Link : IGameObject
 
     public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
     {
+
         gameObjects = _gameObjects;
         currentState.Update(gameTime);
         currentSprite.Update(gameTime);
