@@ -47,6 +47,12 @@ Other Controls
 Left Click: Moves to next room
 Q: Quit the game.
 R: Reset the program to its initial state.
+F: Toggle program in and out of full-screen
+K: Open inventory menu
+L: Open settings menu
++: Increase program volume
+-: Decrease program volume
+
 
 # Known Bugs and Issues
 - The water still currently acts as a normal collidable block
