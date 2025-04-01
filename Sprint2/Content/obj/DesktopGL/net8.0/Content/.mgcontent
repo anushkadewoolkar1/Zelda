@@ -21,6 +21,7 @@
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/ItemSpritesheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LargeEnemies.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LegendOfZeldaStartScreen.png</File>
+    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LegendOfZeldaWinScreen2.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/Levels SpriteSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/lozNPCs.png</File>
@@ -34,6 +35,7 @@
   </SourceFiles>
   <DestFiles>
     <File>DefaultFont.spritefont</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

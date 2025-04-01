@@ -70,6 +70,7 @@ namespace Sprint0
 
         private StartMenu _startMenu;
         private DeathScreen _deathScreen;
+        private WinScreen _winScreen;
 
         public GameState GameState { get; set; }
 
@@ -163,26 +164,12 @@ namespace Sprint0
                 _keyboardController.Update();
             }
 
-            //_currentSprite.Update(gameTime);
-
-
             levelMap.Update(gameTime);
 
             levelMap.GameState(GameState);
             _startMenu.UpdateGameState(GameState);
             _deathScreen.UpdateGameState(GameState);
-
-            //enemySprites.ForEach(enemySprite => enemySprite.Update(gameTime));
-            //levelMap.enemiesList.ForEach(x => x.Update(gameTime));
-
-            //item.Update(gameTime);
-
-            //linkSprite.Update(gameObjects, gameTime);
-
-            /*
-            _block.Update();
-            _loadRoomBlock.CheckCollision(linkSprite.Position);
-            */
+            _winScreen.UpdateGameState(GameState);
 
             base.Update(gameTime);
         }
@@ -215,9 +202,7 @@ namespace Sprint0
 
             _startMenu.Draw(_spriteBatch);
             _deathScreen.Draw(_spriteBatch);
-
-            //item.Draw(_spriteBatch);
-            //item2.Draw(_spriteBatch);
+            _winScreen.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -257,6 +242,7 @@ namespace Sprint0
 
             _startMenu = new StartMenu(Content);
             _deathScreen = new DeathScreen(Content);
+            _winScreen = new WinScreen(Content);
 
             ICommand quitCommand = new QuitCommand(this);
             ICommand resetCommand = new ResetCommand(this);
