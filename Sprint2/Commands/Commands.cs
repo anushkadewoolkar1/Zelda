@@ -246,6 +246,20 @@ namespace Sprint0.Commands
         }
     }
 
+    public class OpenSettings : ICommand
+    {
+        private Game1 game;
+        public OpenSettings(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            game.isSettingsOpen = !game.isSettingsOpen;
+        }
+    }
+
 }
 
 

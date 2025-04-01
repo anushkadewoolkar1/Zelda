@@ -52,6 +52,8 @@ namespace Sprint0
 
         private Inventory _inventory;
         public bool isInventoryOpen = false;
+        private SettingsMenu _settings;
+        public bool isSettingsOpen = false;
 
         Link linkSprite;
 
@@ -196,6 +198,10 @@ namespace Sprint0
             {
                 _inventory.Draw(_spriteBatch);
             }
+            if (isSettingsOpen)
+            {
+                _settings.Draw(_spriteBatch);
+            }
             //linkSprite.Draw(_spriteBatch);
 
             // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
@@ -272,6 +278,7 @@ namespace Sprint0
             ICommand muteBGM = new MuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
             ICommand openInventory = new OpenInventory(this);
+            ICommand openSettings = new OpenSettings(this);
 
 
             // Set up KeyboardController with dictionary
@@ -355,7 +362,9 @@ namespace Sprint0
 
                 { Keys.O, unmuteBGM },
 
-                { Keys.K, openInventory }
+                { Keys.K, openInventory },
+
+                { Keys.L, openSettings }
 
             };
 
@@ -432,6 +441,7 @@ namespace Sprint0
             gameObjects.Add(item2);
 
             _inventory = new Inventory(Content, GraphicsDevice, linkSprite);
+            _settings = new SettingsMenu(Content, GraphicsDevice);
 
             levelMap.AddLink(linkSprite);
             levelMap.CollisionManager(collisionManager);
