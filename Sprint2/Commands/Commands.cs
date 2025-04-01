@@ -260,6 +260,20 @@ namespace Sprint0.Commands
         }
     }
 
+    public class ToggleFullScreen : ICommand
+    {
+        private Game1 game;
+        public ToggleFullScreen(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            game.ToggleFullScreen();
+        }
+    }
+
 }
 
 

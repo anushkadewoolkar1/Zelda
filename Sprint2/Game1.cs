@@ -22,6 +22,11 @@ namespace Sprint0
 {
     public class Game1 : Game
     {
+        Point gameResolution = new Point(512, 480);
+
+        RenderTarget2D renderTarget;
+        Rectangle renderTargetDestination;
+
         public bool restart;
 
         private Texture2D _backgroundTexture;
@@ -101,9 +106,12 @@ namespace Sprint0
         protected override void Initialize()
         {
             //_graphics.IsFullScreen = true;
-            _graphics.PreferredBackBufferWidth = 1440;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = gameResolution.X;
+            _graphics.PreferredBackBufferHeight = gameResolution.Y;
             _graphics.ApplyChanges();
+
+            renderTarget = new RenderTarget2D(GraphicsDevice, gameResolution.X, gameResolution.Y);
+            renderTargetDestination = GetRenderTargetDestination(gameResolution, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
             base.Initialize();
         }
@@ -176,9 +184,11 @@ namespace Sprint0
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
+
+            _spriteBatch.Draw(renderTarget, renderTargetDestination, Color.White);
 
             levelMap.Draw(_spriteBatch);
             if (isInventoryOpen)
@@ -189,16 +199,6 @@ namespace Sprint0
             {
                 _settings.Draw(_spriteBatch);
             }
-            //linkSprite.Draw(_spriteBatch);
-
-            // enemySprites.ForEach(enemySprite => enemySprite.DrawCurrentSprite(_spriteBatch));
-            //levelMap.enemiesList.ForEach(x => x.DrawCurrentSprite(_spriteBatch));
-
-            /*
-            _block.Draw(_spriteBatch);
-            _invisibleBlock.Draw(_spriteBatch);
-            _loadRoomBlock.Draw(_spriteBatch);
-            */
 
             _startMenu.Draw(_spriteBatch);
             _deathScreen.Draw(_spriteBatch);
@@ -265,6 +265,7 @@ namespace Sprint0
             ICommand unmuteBGM = new UnmuteMusic(_audio);
             ICommand openInventory = new OpenInventory(this);
             ICommand openSettings = new OpenSettings(this);
+            ICommand toggleFullScreen = new ToggleFullScreen(this);
 
 
             // Set up KeyboardController with dictionary
@@ -350,7 +351,9 @@ namespace Sprint0
 
                 { Keys.K, openInventory },
 
-                { Keys.L, openSettings }
+                { Keys.L, openSettings },
+
+                { Keys.F, toggleFullScreen }
 
             };
 
@@ -436,6 +439,48 @@ namespace Sprint0
             //gameObjects.Add(_loadRoomBlock);
 
             GameState = Zelda.Enums.GameState.StartMenu;
+        }
+
+        private Rectangle GetRenderTargetDestination(Point resolution, int preferredBackBufferWidth, int preferredBackBufferHeight)
+        {
+            float resolutionRatio = (float)resolution.X / resolution.Y;
+            float screenRatio;
+            Point bounds = new Point(preferredBackBufferWidth, preferredBackBufferHeight);
+            screenRatio = (float)bounds.X / bounds.Y;
+            float scale;
+            Rectangle rectangle = new Rectangle();
+
+            if (resolutionRatio < screenRatio)
+                scale = (float)bounds.Y / resolution.Y;
+            else if (resolutionRatio > screenRatio)
+                scale = (float)bounds.X / resolution.X;
+            else
+            {
+                // Resolution and window/screen share aspect ratio
+                rectangle.Size = bounds;
+                return rectangle;
+            }
+            rectangle.Width = (int)(resolution.X * scale);
+            rectangle.Height = (int)(resolution.Y * scale);
+            return rectangle;
+        }
+
+        public void ToggleFullScreen()
+        {
+            if (!_graphics.IsFullScreen)
+            {
+                _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            }
+            else
+            {
+                _graphics.PreferredBackBufferWidth = gameResolution.X;
+                _graphics.PreferredBackBufferHeight = gameResolution.Y;
+            }
+            _graphics.IsFullScreen = !_graphics.IsFullScreen;
+            _graphics.ApplyChanges();
+
+            renderTargetDestination = GetRenderTargetDestination(gameResolution, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
         }
     }
 }

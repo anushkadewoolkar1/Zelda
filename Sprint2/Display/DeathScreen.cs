@@ -37,7 +37,7 @@ namespace Sprint0.Display
         public void Draw(SpriteBatch spriteBatch)
         {
             if (GameState != Zelda.Enums.GameState.GameOver) return;
-            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 1440, 1080), Color.White);
+            spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 512, 480), Color.White);
         }
 
         public void LoadCommand(ICommand command)
