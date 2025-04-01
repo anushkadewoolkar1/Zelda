@@ -31,7 +31,8 @@ namespace Sprint0.Controllers
             // If right button pressed, quit
             if (state.RightButton == ButtonState.Pressed)
             {
-                _quitCommand.Execute();
+                //commented this out cuz it its null since _quitcommand is not instantiated and we cant here since we dont have game in this file. Just use escape.
+                //_quitCommand.Execute(); 
                 return;
             }
 
