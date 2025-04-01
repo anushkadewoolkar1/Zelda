@@ -44,8 +44,8 @@ namespace Zelda.Inventory
 
             // black screen replace zelda game background first
             var viewport = spriteBatch.GraphicsDevice.Viewport;
-            int halfWidth = viewport.Width / 3 + 33;
-            int halfHeight = viewport.Height / 3 - 8;
+            int halfWidth = viewport.Width / 1 + 33;
+            int halfHeight = viewport.Height / 1 - 8;
 
             // Draw black rectangle over 
             spriteBatch.Draw(
@@ -139,6 +139,39 @@ namespace Zelda.Inventory
                     _backgroundTexture,
                     new Rectangle(105, 175, mapWidth, mapHeight),
                     mapSource,
+                    Color.White
+                );
+            }
+
+            // arrow 
+            if (link.CurrentItem.Contains(ItemType.Arrow))
+            {
+                scale = 2.6f;
+                Rectangle arrowSource = new Rectangle(617, 138, 5, 13);
+                int arrowWidth = (int)(arrowSource.Width * scale);
+                int arrowHeight = (int)(arrowSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(273, 75, arrowWidth, arrowHeight),
+                    arrowSource,
+                    Color.White
+                 );
+            }
+
+
+            // bomb
+            if (link.CurrentItem.Contains(ItemType.Bomb))
+            {
+                scale = 2.5f;
+                Rectangle bombSource = new Rectangle(604, 138, 8, 14);
+                int bombWidth = (int)(bombSource.Width * scale);
+                int bombHeight = (int)(bombSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(310, 75, bombWidth, bombHeight),
+                    bombSource,
                     Color.White
                 );
             }
