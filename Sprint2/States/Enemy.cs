@@ -45,6 +45,10 @@ namespace Sprint0.States
         private const int TWELVE = 12;
 
 
+        private double spriteUpdateTimer = 0;
+        private const double spriteUpdateInterval = 1000.0 / 5.0; 
+
+
         public Enemy()
         {
             spriteFactory = EnemySpriteFactory.Instance;
@@ -265,7 +269,14 @@ namespace Sprint0.States
         {
 
             enemyState.Update(gameTime);
-            sprite.Update(gameTime);
+            spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (spriteUpdateTimer >= spriteUpdateInterval)
+            {
+                sprite.Update(gameTime);
+                spriteUpdateTimer = 0;
+            }
+            //sprite.Update(gameTime);
 
             if (itemSpawned)
             {

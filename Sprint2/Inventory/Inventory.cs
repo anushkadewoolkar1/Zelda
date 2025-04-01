@@ -111,9 +111,9 @@ namespace Zelda.Inventory
                 Color.White
             );
 
-            // draw compass?
-            //if (link.CurrentItem.Contains(ItemType.Compass))
-            //{
+            // draw compass if pick up
+            if (link.CurrentItem.Contains(ItemType.Compass))
+            {
                 scale = 2.5f;
                 Rectangle compassSource = new Rectangle(612, 157, 14, 14);
                 int compassWidth = (int)(compassSource.Width * scale);
@@ -121,11 +121,27 @@ namespace Zelda.Inventory
 
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(100, 264, compassWidth, compassHeight),
+                    new Rectangle(95, 245, compassWidth, compassHeight),
                     compassSource,
                     Color.White
                 );
-           // }
+            }
+
+            // draw map if pick up
+            if (link.CurrentItem.Contains(ItemType.Map))
+            {
+                scale = 2.4f;
+                Rectangle mapSource = new Rectangle(602, 157, 6, 14);
+                int mapWidth = (int)(mapSource.Width * scale);
+                int mapHeight = (int)(mapSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(105, 175, mapWidth, mapHeight),
+                    mapSource,
+                    Color.White
+                );
+            }
         }
 
     }
