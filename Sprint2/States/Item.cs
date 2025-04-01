@@ -132,6 +132,8 @@ namespace Sprint0.States
                     throw new ArgumentException("Invalid item type", nameof(itemType));
             }
 
+            currItem.itemType = itemType;
+
             return currItem ?? throw new InvalidOperationException("Item creation failed.");
         }
 

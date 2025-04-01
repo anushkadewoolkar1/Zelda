@@ -51,6 +51,8 @@ public class Link : IGameObject
     private GameAudio _audio;
     private double healthTimer = 0;
 
+    // used for link winning the game
+    public Level level { get; set; }
 
     public Link(List<IGameObject> _gameObjects)
     {

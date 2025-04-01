@@ -22,6 +22,13 @@ namespace Sprint0.CollisionHandling
             // Do not need to go by case of side, as colliding with any item from any side should result in a pickup (PP):
             link.PickUpItem(item.itemSprite);
             item.Destroy();
+
+            if (item.itemType == ItemType.Triforce)
+            {
+                // Link has won the game.
+                System.Diagnostics.Debug.WriteLine($"Link has won and is in state {Zelda.Enums.GameState.Win}");
+                link.level.GameState(Zelda.Enums.GameState.Win);
+            }
         }
     }
 }

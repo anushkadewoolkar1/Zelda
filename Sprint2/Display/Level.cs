@@ -400,11 +400,16 @@ namespace Sprint0.Display
         public void AddLink(Link link)
         {
             this.myLink = link;
+            myLink.level = this;
         }
 
         public void GameState(GameState state)
         {
             this.UpdateGameState = state;
+            if (UpdateGameState != Zelda.Enums.GameState.StartMenu)
+            {
+                myGame.GameState = state;
+            }
         }
 
         public void CollisionManager(CollisionManager _collisionManager)
