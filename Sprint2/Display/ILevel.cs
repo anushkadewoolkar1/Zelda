@@ -27,7 +27,12 @@ namespace Sprint0.Display
         //Switches from level to menu:
         public void SwitchDisplay(IDisplay targetDisplay)
         {
-            //gameCopy.currDisplay = new OptionsMenu(Game1 gameCopy, this);
+            gameCopy.currDisplay = targetDisplay;
+        }
+
+        public void SwitchesUISet()
+        {
+            gameCopy.menuActive = true;
         }
     }
 }

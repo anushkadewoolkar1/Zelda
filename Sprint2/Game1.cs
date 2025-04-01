@@ -21,8 +21,6 @@ namespace Sprint0
 {
     public class Game1 : Game
     {
-        public bool restart;
-
         private Texture2D _backgroundTexture;
         private Rectangle _sourceRectangle;
 
@@ -36,8 +34,10 @@ namespace Sprint0
         private ISprite _textSprite;
 
         // Controllers
-        private PlayerController _keyboardController;
-        private PlayerController _gamePadController;
+        private PlayerController _playerKeyboardController;
+        private PlayerController _playerGamePadController;
+        private PlayerController _menuKeyboardController;
+        private PlayerController _menuGamePadController;
         private DebugController _mouseController;
 
         // Textures
@@ -61,6 +61,7 @@ namespace Sprint0
         //
         public IDisplay currDisplay;
         public Level levelMap;
+        public bool menuActive = true; // Game starts on start menu
 
         // Collision
         private List<IGameObject> gameObjects = new List<IGameObject>();
@@ -117,8 +118,6 @@ namespace Sprint0
                 Content.Load<Texture2D>("transparent_block")
             };
 
-            restart = false;
-
             // song = Content.Load<Song>(@"Sound Effects\Underworld BGM");
             _audio = GameAudio.Instance;
             _audio.LoadAllAudio(Content);
@@ -146,10 +145,22 @@ namespace Sprint0
             // Only one player command per frame: If GamePad is connected, use it for input. Otherwise, use keyboard:
             if (GamePad.GetState(0).IsConnected)
             {
-                _gamePadController.Update();
+                if (menuActive)
+                {
+                    _menuGamePadController.Update();
+                } else
+                {
+                    _playerGamePadController.Update();
+                }
             } else
             {
-                _keyboardController.Update();
+                if (menuActive)
+                {
+                    _menuKeyboardController.Update();
+                } else
+                {
+                    _playerKeyboardController.Update();
+                }
             }
 
             if(!_audio_playing)
@@ -337,7 +348,7 @@ namespace Sprint0
 
             };
 
-            _keyboardController = new KeyboardController(keyboardCommandMap);
+            _playerKeyboardController = new KeyboardController(keyboardCommandMap);
 
 
             // Set up GamPadController Button dictionary:
@@ -399,7 +410,7 @@ namespace Sprint0
                 _graphics.PreferredBackBufferHeight);
 
 
-            _gamePadController = new GamePadController(buttonCommandMap, joystickCommandMap, dPadCommandMap);
+            _playerGamePadController = new GamePadController(buttonCommandMap, joystickCommandMap, dPadCommandMap);
 
 
             item2 = new Item();

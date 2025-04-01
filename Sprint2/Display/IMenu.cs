@@ -27,7 +27,7 @@ namespace Sprint0.Display
         // Executes a state modification based on command definition:
         public void LoadCommand(ICommand command)
         {
-
+            command.Execute();
         }
 
         // Needed to load other menus (Options -> Inventory), (Death -> Start), or (Options -> Level):
@@ -36,9 +36,9 @@ namespace Sprint0.Display
             gameCopy.currDisplay = display;
         }
 
-        public void ActivateLevelInputMap()
+        public void SwitchesUISet()
         {
-            //gameCopy.SwitchInputMap();
+            gameCopy.menuActive = false;
         }
     }
 }

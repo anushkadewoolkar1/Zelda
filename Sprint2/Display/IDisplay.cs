@@ -20,5 +20,8 @@ namespace Sprint0.Display
 
         // Can swap from level to menu, menu to level, menu to menu, etc.:
         void SwitchDisplay(IDisplay newDisplay);
+
+        // Switches user input set from player controls to menu controls, and vice versa:
+        void SwitchesUISet();
     }
 }

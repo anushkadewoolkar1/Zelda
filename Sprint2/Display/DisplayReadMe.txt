@@ -17,7 +17,7 @@ Subclasses will draw a unique SpriteBatch, as well as hold a unique set of comma
 IDisplay classes:
 	-StartMenu (Enter from *programstart, Options, Score, Win, Death    Exit to Options, Score, NewGame, *programexit)
 	-OptionsMenu (Enter from Level, Start, Credits     Exit to Level, Start, Credits, NewGame, *programexit)
-	-ScoreMenu (Enter from Death, Score, Start     Exit to Start)
+	-ScoreMenu (Enter from Death, Score, Start     Exit to Start) - Maybe?
 	-InventoryMenu (Enter from Level    Exit to Level)
 	-WinMenu (Enter from Level    Exit to Start, NewGame, Score, *programexit)
 	-DeathMenu (Enter from Level    Exit to Start, NewGame, Score, *programexit)
