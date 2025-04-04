@@ -8,6 +8,7 @@ using Sprint0.States;
 using Zelda.Enums;
 using Sprint0.Display;
 using System.Security.Cryptography;
+using Microsoft.Xna.Framework;
 
 namespace Sprint0.Collision
 {
@@ -29,34 +30,29 @@ namespace Sprint0.Collision
                 case CollisionSide.Left:
                     if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE * (float) 1.8 * enemy.GetEnemySize(true), enemy.position.Y);
+                        enemy.position = new Vector2(level.BoundingBox.X, enemy.position.Y);
                     }
                     else
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(BORDER_POSITION_VALUE * enemy.GetEnemySize(true), enemy.position.Y);
+                        enemy.position = new Vector2(level.BoundingBox.X, enemy.position.Y);
                     }
                     break;
                 case CollisionSide.Right:
                     if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(2 * level.roomWidth - 85, enemy.position.Y);
-                    } else
-                    {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(2 * level.roomWidth - 75, enemy.position.Y);
-                    }
-                    break;
-                case CollisionSide.Top:
-                    if (enemy.enemyType == EnemyType.Gel || enemy.enemyType == EnemyType.Keese)
-                    {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, BORDER_POSITION_VALUE + (float)4 * enemy.GetEnemySize(false));
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X + level.BoundingBox.Width - enemy.BoundingBox.Width, enemy.position.Y);
                     }
                     else
                     {
-                        enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, BORDER_POSITION_VALUE + (float)1.8 * enemy.GetEnemySize(false));
+                        enemy.position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X + level.BoundingBox.Width - enemy.BoundingBox.Width, enemy.position.Y);
                     }
                     break;
+                case CollisionSide.Top:
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, level.BoundingBox.Y);
+
+                    break;
                 case CollisionSide.Bottom:
-                    enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, level.roomHeight + 75);
+                    enemy.position = new Microsoft.Xna.Framework.Vector2(enemy.position.X, level.BoundingBox.Y + level.BoundingBox.Height - enemy.BoundingBox.Height);
                     break;
             }
         }

@@ -34,7 +34,10 @@ namespace Sprint0.CollisionHandling
 
             System.Diagnostics.Debug.WriteLine("Enemy hit by link's attack!");
 
+
             enemy.TakeDamage(ItemType.WoodenSword);
+            
+            //Handles Link's attack knockback on enemies
             switch (hitbox.Velocity.X)
             {
                 case -1:

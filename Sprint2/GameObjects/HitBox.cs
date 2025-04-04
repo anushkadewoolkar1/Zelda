@@ -20,6 +20,7 @@ public class HitBox : IGameObject
         }
     }
 
+    //Keeps track of the current direction of the hitbox and creates a hitbox in that direction
     public HitBox(Vector2 startPosition, Direction direction)
     {
         switch (direction)

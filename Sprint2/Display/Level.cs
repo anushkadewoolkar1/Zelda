@@ -133,7 +133,6 @@ namespace Sprint0.Display
             };
         }
 
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (UpdateGameState != Zelda.Enums.GameState.Playing &&
