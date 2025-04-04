@@ -12,11 +12,14 @@ namespace Sprint0.Display
     
     public interface IDisplay
     {
-        // Called once per frame to update sprites
+        // Called once per frame to update the state of sprites in the display
         void Update(GameTime gameTime);
 
-        // Draws sprite on the screen
+        // Draws background texture and SpriteBatch sprites on the screen
         void Draw(SpriteBatch spriteBatch);
+
+        // Switches Game1 property from the current display object to the IDisplay argument:
+        void SwitchDisplay(IDisplay display);
 
     }
 }

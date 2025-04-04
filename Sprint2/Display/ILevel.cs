@@ -21,5 +21,7 @@ namespace Sprint0.Display
 
         //Load next room
         public abstract void LoadRoom(int xCoordinate, int yCoordinate);
+
+        public abstract void SwitchDisplay(IDisplay display);
     }
 }

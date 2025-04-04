@@ -44,6 +44,7 @@ namespace Sprint0
         // Controllers
         private PlayerController _keyboardController;
         private PlayerController _gamePadController;
+        private bool gamePadConnected = false;
         private DebugController _mouseController;
 
         // Textures
@@ -55,10 +56,10 @@ namespace Sprint0
         private Item item2;
         private ItemSprite itemSprite;
 
+        public bool isInventoryOpen { get; set; }
         private Inventory _inventory;
-        public bool isInventoryOpen = false;
+        public bool isSettingsOpen { get; set; }
         private SettingsMenu _settings;
-        public bool isSettingsOpen = false;
 
         Link linkSprite;
 
@@ -157,19 +158,20 @@ namespace Sprint0
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             // Update Debug inputs:
             _mouseController.Update(levelMap);
 
+            if ((_gamePadController == null) && (GamePad.GetState(0).IsConnected)) gamePadConnected = true;
+            if ((_gamePadController != null) && !(GamePad.GetState(0).IsConnected)) gamePadConnected = false;
+
             // Only one player command per frame: If GamePad is connected, use it for input. Otherwise, use keyboard:
-            if (GamePad.GetState(0).IsConnected)
-            {
-                _gamePadController.Update();
-            } else
+            if (!gamePadConnected)
             {
                 _keyboardController.Update();
+            } else
+            {
+                _gamePadController.Update();
             }
 
             levelMap.Update(gameTime);
@@ -253,14 +255,7 @@ namespace Sprint0
             ICommand setWalkLeftCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Left));
             ICommand setWalkRightCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Right));
             ICommand setWalkDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
-            ICommand damageLinkCommand = new LinkDamaged(linkSprite);
-            ICommand cycleItemLeftCommand = new CycleItem(itemSprite, Direction.Left);
-            ICommand cycleItemRightCommand = new CycleItem(itemSprite, Direction.Right);
-            ICommand cycleBlockLeftCommand = new CycleBlock(_block, Direction.Left);
-            ICommand cycleBlockRightCommand = new CycleBlock(_block, Direction.Right);
             ICommand useItemArrow = new LinkUseItem(linkSprite, ItemType.Arrow);
-            ICommand useItemBmrng = new LinkUseItem(linkSprite, ItemType.Boomerang);
-            ICommand useItemBomb = new LinkUseItem(linkSprite, ItemType.Bomb);
             ICommand leaveStartMenu = new LeaveStartMenu(this, _audio);
             ICommand muteBGM = new MuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
@@ -270,163 +265,65 @@ namespace Sprint0
             ICommand lowerVolume = new MasterVolumeDown(_audio);
             ICommand raiseVolume = new MasterVolumeUp(_audio);
 
-
-            // Set up KeyboardController with dictionary
-            var keyboardCommandMap = new Dictionary<Keys, ICommand>
+            Dictionary<UserInputs, ICommand> levelCommandMap = new Dictionary<UserInputs, ICommand> 
             {
-                //'Q' -> Program Quit:
-                { Keys.Q, quitCommand },
+                { UserInputs.NewGame, leaveStartMenu },
 
-                //'R' -> Program Reset:
-                { Keys.R, resetCommand },
+                { UserInputs.None, setIdleCommand },
 
-                //No_Key -> Set Player state to default:
-                { Keys.None, setIdleCommand },
+                { UserInputs.AttackMelee, setAttackCommand },
 
-                //'Z' -> Player Attack:
-                { Keys.Z, setAttackCommand},
+                { UserInputs.UseItem, useItemArrow },
 
-                //'N' -> Player Attack:
-                { Keys.N, setAttackCommand},
+                { UserInputs.MoveUp, setWalkUpCommand },
 
-                //'W' -> Player Walk Up:
-                { Keys.W, setWalkUpCommand},
+                { UserInputs.MoveDown, setWalkDownCommand },
 
-                //'Up Arrow' -> Player Walk Up:
-                { Keys.Up, setWalkUpCommand },
+                { UserInputs.MoveLeft, setWalkLeftCommand },
 
-                //'A' -> Player Walk Left:
-                { Keys.A, setWalkLeftCommand },
+                { UserInputs.MoveRight, setWalkRightCommand },
 
-                //'Left Arrow' -> Player Walk Left:
-                { Keys.Left, setWalkLeftCommand },
+                { UserInputs.ToggleFullscreen, toggleFullScreen },
 
-                //'S' -> Player Walk Down:
-                { Keys.S, setWalkDownCommand },
+                { UserInputs.RaiseVolume, raiseVolume },
 
-                //'Down Arrow' -> Player Walk Down:
-                { Keys.Down, setWalkDownCommand },
+                { UserInputs.LowerVolume, lowerVolume },
 
-                //'D' -> Player Walk Right:
-                { Keys.D, setWalkRightCommand },
+                { UserInputs.ToggleMute, muteBGM },
 
-                //'Right Arrow' -> Player Walk Right:
-                { Keys.Right, setWalkRightCommand },
+                { UserInputs.ToggleOptions, openSettings },
 
-                //'E' -> Damage Player:
-                { Keys.E, damageLinkCommand },
-
-                //'O' -> Cycle Enemy Left:
-                //{ Keys.O, cycleEnemyLeftCommand },
-
-                //'P' -> Cycle Enemy Right:
-                //{ Keys.P, cycleEnemyRightCommand },
-
-                //'I' -> Cycle Item Left:
-                { Keys.I, cycleItemLeftCommand },
-
-                //'U' -> Cycle Item Right:
-                { Keys.U, cycleItemRightCommand },
-
-                //'T' -> Cycle Block Left:
-                { Keys.T, cycleBlockLeftCommand },
-
-                //'Y' -> Cycle Block Right:
-                { Keys.Y, cycleBlockRightCommand },
-
-                //'D1' -> Player Use Arrow Item:
-                { Keys.D1, useItemArrow },
-
-                //'D2' -> Player Use Boomerang Item:
-                { Keys.D2, useItemBmrng },
-
-                //'D3' -> Player Use Bomb Item:
-                { Keys.D3, useItemBomb },
-
-                //'D4' -> Player Use Sword:
-                { Keys.D4, setAttackCommand },
-
-                { Keys.Enter, leaveStartMenu },
-
-                { Keys.P, muteBGM },
-
-                { Keys.O, unmuteBGM },
-
-                { Keys.K, openInventory },
-
-                { Keys.L, openSettings },
-
-                { Keys.F, toggleFullScreen },
-
-                { Keys.OemPlus, raiseVolume },
-
-                { Keys.OemMinus, lowerVolume },
+                { UserInputs.ToggleInventory, openInventory }
 
             };
 
-            _keyboardController = new KeyboardController(keyboardCommandMap);
-
-
-            // Set up GamPadController Button dictionary:
-            var buttonCommandMap = new Dictionary<GamePadButtonEnums, ICommand>
+            Dictionary<UserInputs, ICommand> menuCommandMap = new Dictionary<UserInputs, ICommand>
             {
+                { UserInputs.None, setIdleCommand },
 
-                //'A' -> Player Attack:
-                { GamePadButtonEnums.DownBtn, setAttackCommand },
+                { UserInputs.ToggleOptions, openSettings },
 
-                //'B' -> Player Use Item:
-                { GamePadButtonEnums.RightBtn, useItemArrow }, // Will be set to current item once full item system is implemented
+                { UserInputs.ToggleInventory, openInventory },
 
-                //'Start' -> Open Menu (Pause Game):
-                //{ GamePadButtonEnums.Start, openMenuCommand } // Waiting until I complete menu implementations
+                //{ UserInputs.MoveUp, switchCursorUp },
 
-                //'Select' -> Open Options (Pause Game):
-                //{ GamePadButtonEnums.Select, openOptionsCommand } // Waiting until I complete menu implementation
+                //{ UserInputs.MoveDown, switchCursorDown },
+
+                //{ UserInputs.MoveLeft, switchCursorLeft },
+
+                //{ UserInputs.MoveRight, switchCursorRight },
+
+                //{ UserInputs.MenuAction, menuInput },
+
+                //{ UserInputs.ToggleOptions, setDisplay(IDisplay display) }
 
             };
 
-            var joystickCommandMap = new Dictionary<GamePadJoystickEnums, ICommand>
-            {
-
-                //'Up' -> Move Up
-                { GamePadJoystickEnums.UpLJS, setWalkUpCommand },
-
-                //'Left' -> Move Left
-                { GamePadJoystickEnums.LeftLJS, setWalkLeftCommand },
-
-                //'Right' -> Move Right
-                { GamePadJoystickEnums.RightLJS, setWalkRightCommand },
-
-                //'Down' -> Move Down
-                { GamePadJoystickEnums.DownLJS, setWalkDownCommand }
-
-            };
-
-            var dPadCommandMap = new Dictionary<GamePadDPadEnums, ICommand>
-            {
-
-                { GamePadDPadEnums.None, setIdleCommand },
-
-                //'Up' -> Move Up
-                { GamePadDPadEnums.Up, setWalkUpCommand },
-
-                //'Left' -> Move Left
-                { GamePadDPadEnums.Left, setWalkLeftCommand },
-
-                //'Right' -> Move Right
-                { GamePadDPadEnums.Right, setWalkRightCommand },
-
-                //'Down' -> Move Down
-                { GamePadDPadEnums.Down, setWalkDownCommand }
-
-            };
-
+            _keyboardController = new KeyboardController(levelCommandMap, menuCommandMap);
+            _gamePadController = new GamePadController(levelCommandMap, menuCommandMap);
 
             _mouseController = new MouseController(_graphics.PreferredBackBufferWidth,
                 _graphics.PreferredBackBufferHeight);
-
-
-            _gamePadController = new GamePadController(buttonCommandMap, joystickCommandMap, dPadCommandMap);
 
 
             item2 = new Item();
