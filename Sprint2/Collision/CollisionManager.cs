@@ -153,6 +153,14 @@ public class CollisionManager
             if (objA is Enemy) projectileHandler.HandleCollision(objA, objB, side);
             else projectileHandler.HandleCollision(objB, objA, side);
         }
+
+        if ((objA is Enemy && objB is HitBox) ||
+            (objB is Enemy && objA is HitBox))
+        {
+            var projectileHandler = new EnemyLinkAttackCollisionHandler();
+            if (objA is Enemy) projectileHandler.HandleCollision(objA, objB, side);
+            else projectileHandler.HandleCollision(objB, objA, side);
+        }
     }
 
     // Dispatches collisions involving a single object and the level

@@ -292,6 +292,16 @@ public class Link : IGameObject
         // Trigger game over or level reset logic here.
     }
 
+    public void AddGameObject(IGameObject gameObject)
+    {
+        gameObjects.Add(gameObject);
+    }
+
+    public void RemoveGameObject(IGameObject gameObject)
+    {
+        gameObjects.Remove(gameObject);
+    }
+
     public void Destroy()
     {
 

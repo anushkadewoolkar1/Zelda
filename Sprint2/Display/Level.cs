@@ -18,6 +18,7 @@ using System.Reflection.Metadata;
 using Sprint0.CollisionHandling;
 using System.Reflection.Emit;
 
+
 namespace Sprint0.Display
 {
     public class Level : ILevel, IGameObject
@@ -108,6 +109,7 @@ namespace Sprint0.Display
             newRoom = [WIDTH_POSITION, HEIGHT_POSITION];
 
             UpdateGameState = Zelda.Enums.GameState.StartMenu;
+
         }
 
 
@@ -244,6 +246,19 @@ namespace Sprint0.Display
             newRoom[1] = yCoordinate;
             loadCurrentPosition = currentPosition;
 
+            if (xCoordinate != currentRoom[0])
+            {
+                myLink.Position = new Vector2(
+                    myLink.Position.X + 2 * ((roomWidth) - 16 - myLink.Position.X),
+                    myLink.Position.Y);
+            }
+            else if (yCoordinate != currentRoom[1])
+            {
+                myLink.Position = new Vector2(
+                    myLink.Position.X,
+                    myLink.Position.Y + 2 * ((roomHeight) - 16 - myLink.Position.Y));
+            }
+
             if (currentRoom == newRoom)
             {
                 LoadRoomEnd(xCoordinate, yCoordinate, currentPosition);
@@ -256,6 +271,7 @@ namespace Sprint0.Display
 
         public void LoadRoomEnd(int xCoordinate, int yCoordinate, int currentPosition)
         {
+
             //Creates rectangle for found room. Used for drawing
             _sourceRectangle = new Rectangle(
                 roomWidth * (xCoordinate) + SHIFT_INTO_RANGE * (xCoordinate + SHIFT_INTO_RANGE), roomHeight * (yCoordinate) + SHIFT_INTO_RANGE * (yCoordinate + 1),
@@ -289,6 +305,10 @@ namespace Sprint0.Display
                 }
                 currentPosition++;
             }
+
+            System.Diagnostics.Debug.WriteLine($"Check Middle {(roomHeight) - 16} and {myLink.Position.Y}");
+
+
             currentRoom = [xCoordinate, yCoordinate];
 
             transition = 0;
