@@ -147,7 +147,7 @@ namespace Sprint0
             Texture2D[] invisibleBlockTextures = { Content.Load<Texture2D>("transparent_block") };
             _block = new Block(new Vector2(15, 1), blockTextures, levelMap);
             //_block = new Block(new Vector2(15, 1), blockTextures);
-            _invisibleBlock = new InvisibleBlock(new Vector2(10, 5), invisibleBlockTextures, levelMap);
+            //_invisibleBlock = new InvisibleBlock(new Vector2(10, 5), invisibleBlockTextures, levelMap);
             _loadRoomBlock = new LoadRoomBlock(new Vector2(100, 100), blockTextures, levelMap, 1, 2);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 

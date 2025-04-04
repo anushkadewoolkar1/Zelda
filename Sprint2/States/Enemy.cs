@@ -238,6 +238,9 @@ namespace Sprint0.States
                 case ItemType.Bomb:
                     EnemyHealth -= TWO * TWO;
                     break;
+                case ItemType.WoodenSword:
+                    EnemyHealth -= TWO;
+                    break;
             }
         }
 
