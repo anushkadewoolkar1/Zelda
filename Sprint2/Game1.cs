@@ -301,6 +301,10 @@ namespace Sprint0
             {
                 { UserInputs.None, setIdleCommand },
 
+                { UserInputs.ToggleOptions, openSettings },
+
+                { UserInputs.ToggleInventory, openInventory },
+
                 //{ UserInputs.MoveUp, switchCursorUp },
 
                 //{ UserInputs.MoveDown, switchCursorDown },

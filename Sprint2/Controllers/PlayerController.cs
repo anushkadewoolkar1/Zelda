@@ -79,7 +79,7 @@ namespace Sprint0.Controllers
 
         public void UpdateFlags()
         {
-            if (AnyActionInput !| AnyMoveInput) lastAction = UserInputs.None;
+            if (!AnyActionInput) lastAction = UserInputs.None;
             if (!AnyMoveInput) lastMovement = UserInputs.None;
             AnyActionInput = false;
             AnyMoveInput = false;
