@@ -65,5 +65,7 @@ namespace Sprint0.Display
                 _audio.PlayTitleBGM();
             }
         }
+
+        public void SwitchDisplay(IDisplay display) { }
     }
 }

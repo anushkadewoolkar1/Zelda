@@ -59,5 +59,7 @@ namespace Sprint0.Display
         {
             GameState = _gameState;
         }
+
+        public void SwitchDisplay(IDisplay display) { }
     }
 }

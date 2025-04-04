@@ -247,6 +247,7 @@ namespace Sprint0.Commands
         }
     }
 
+    //Letting this code survive temporarily for continuity purposes, but I plan on reworking (PP):
     public class OpenCloseSettings : ICommand
     {
         private Game1 game;

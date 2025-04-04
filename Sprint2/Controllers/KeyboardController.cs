@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Commands;
 using Sprint0.Display;
+using Zelda.Enums;
 
 namespace Sprint0.Controllers
 {
     public class KeyboardController : PlayerController
     {
-        private readonly Dictionary<Keys, ICommand> _keyCommandMap;
-        // Add instance variable to store last input (with a default value for no input): (PP)
-        private Keys lastInput;
-        private bool lastKeyIdle = false;
-
-        public KeyboardController(Dictionary<Keys, ICommand> keyCommandMap)
+        private readonly Dictionary<Keys, UserInputs> keyCommandMap;
+        private HashSet<UserInputs> directionInputs;
+        public KeyboardController(Dictionary<UserInputs, ICommand> levelCommandMap, Dictionary<UserInputs, ICommand> menuCommandMap)
         {
-            _keyCommandMap = keyCommandMap;
-            // Assign default value for lastInput upon construction:
-            lastInput = Keys.None;
+            keyCommandMap = GenerateKeyToInputMap();
+            SetCommandMaps(levelCommandMap, menuCommandMap);
+
+            // Set up direction HashMap:
+            directionInputs = new HashSet<UserInputs> { UserInputs.MoveUp, UserInputs.MoveDown, UserInputs.MoveLeft, UserInputs.MoveRight, UserInputs.RaiseVolume, UserInputs.LowerVolume };
         }
 
         public override void Update()
@@ -33,33 +34,72 @@ namespace Sprint0.Controllers
             foreach (Keys key in pressedKeys)
             {
                 // if key in map execute
-                if (_keyCommandMap.ContainsKey(key))
+                if (keyCommandMap.ContainsKey(key))
                 {
-                    if (key != lastInput)
-                    {
-                        _keyCommandMap[key].Execute();
-                    }
-                    // Update lastInput if input is valid command: (PP)
-                    lastInput = key;
+                    UserInputs input = keyCommandMap[key];
+                    if (directionInputs.Contains(input)) ExecuteDirectionInput(input);
+                    else ExecuteActionInput(input);
                 }
             }
 
-            if (pressedKeys.Length > 0)
-            {
-                lastKeyIdle = false;
-            }
+            if (pressedKeys.Length == 0) ExecuteNoInput();
 
+            UpdateFlags();
+        }
 
-            // If no input is given, reset lastInput to Keys.None (default state), and return Link to default idle state: (PP)
-            if (pressedKeys.Length == 0)
+        public Dictionary<Keys, UserInputs> GenerateKeyToInputMap()
+        {
+            return new Dictionary<Keys, UserInputs>
             {
-                lastInput = Keys.None;
-                if (lastKeyIdle == false)
-                {
-                    _keyCommandMap[Keys.None].Execute();
-                    lastKeyIdle = true;
-                }
-            }
+                { Keys.None, UserInputs.None },
+
+                //'Z' -> Player Attack:
+                { Keys.Z, UserInputs.AttackMelee },
+
+                //'N' -> Player Attack:
+                { Keys.N, UserInputs.UseItem },
+
+                //'W' -> Player Walk Up:
+                { Keys.W, UserInputs.MoveUp },
+
+                //'Up Arrow' -> Player Walk Up:
+                { Keys.Up, UserInputs.MoveUp },
+
+                //'A' -> Player Walk Left:
+                { Keys.A, UserInputs.MoveLeft },
+
+                //'Left Arrow' -> Player Walk Left:
+                { Keys.Left, UserInputs.MoveLeft },
+
+                //'S' -> Player Walk Down:
+                { Keys.S, UserInputs.MoveDown },
+
+                //'Down Arrow' -> Player Walk Down:
+                { Keys.Down, UserInputs.MoveDown },
+
+                //'D' -> Player Walk Right:
+                { Keys.D, UserInputs.MoveRight },
+
+                //'Right Arrow' -> Player Walk Right:
+                { Keys.Right, UserInputs.MoveRight },
+
+                //'D4' -> Player Use Sword:
+                { Keys.D4, UserInputs.AttackMelee },
+
+                { Keys.Enter, UserInputs.NewGame },
+
+                { Keys.P, UserInputs.ToggleMute },
+
+                { Keys.K, UserInputs.ToggleInventory },
+
+                { Keys.L, UserInputs.ToggleOptions },
+
+                { Keys.F, UserInputs.ToggleFullscreen },
+
+                { Keys.OemPlus, UserInputs.RaiseVolume },
+
+                { Keys.OemMinus, UserInputs.LowerVolume },
+            };
         }
     }
 }
