@@ -7,13 +7,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Commands;
 using Sprint0.Display;
+using Zelda.Enums;
 
 
 namespace Sprint0.Display
 {
     // Interface for menus, extending the behavior of a display (PP):
-    public interface IMenu : IDisplay
+    public abstract class IMenu : IDisplay
     {
+        public readonly GameState identity;
+
         // Called once per frame to update sprites
         public abstract void Update(GameTime gameTime);
 

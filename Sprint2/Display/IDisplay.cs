@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Display;
+using Zelda.Enums;
 
 namespace Sprint0.Display
 {
@@ -17,9 +18,6 @@ namespace Sprint0.Display
 
         // Draws background texture and SpriteBatch sprites on the screen
         void Draw(SpriteBatch spriteBatch);
-
-        // Switches Game1 property from the current display object to the IDisplay argument:
-        void SwitchDisplay(IDisplay display);
 
     }
 }

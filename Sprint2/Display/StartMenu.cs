@@ -31,18 +31,18 @@ namespace Sprint0.Display
         }
 
         // Called once per frame to update sprites
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
         }
 
         // Draws sprite on the screen
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (GameState != Zelda.Enums.GameState.StartMenu) return;
             spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, 512, 480), Color.White);
         }
 
-        public void LoadCommand(ICommand command)
+        public override void LoadCommand(ICommand command)
         {
             //no-op
         }
@@ -65,7 +65,5 @@ namespace Sprint0.Display
                 _audio.PlayTitleBGM();
             }
         }
-
-        public void SwitchDisplay(IDisplay display) { }
     }
 }

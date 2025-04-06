@@ -15,6 +15,7 @@ using Sprint0.Display;
 using Sprint0.CollisionHandling;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.Xna.Framework.Media;
+using System.Threading;
 using Zelda.Inventory;
 
 
@@ -236,7 +237,7 @@ namespace Sprint0
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
             levelMap = new Level(Content, gameObjects);
-            levelMap.LoadRoom(2, 5);
+            levelMap.LoadRoom(2, 5); //Could be key to indicate checkpoints after death? (PP)
 
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
@@ -388,6 +389,61 @@ namespace Sprint0
 
             //Adjusts rectangle to render
             renderTargetDestination = GetRenderTargetDestination(gameResolution, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+        }
+
+        public void SwitchDisplay(GameState gameState)
+        {
+            // Method is not frequently executed, so we can get away with using a switch on all possible states:
+            switch (gameState)
+            {
+                case GameState.Playing:
+                    currDisplay = levelMap;
+                    break;
+                case GameState.StartMenu:
+                    //currDisplay = new StartMenu();
+                    break;
+                case GameState.MainMenu:
+                    //currDisplay = new OptionsMenu();
+                    break;
+                case GameState.Paused:
+                    //EnterPausedMode();
+                    break;
+                case GameState.Death:
+                    //If lives is not 0 then:
+                    //  SwitchDisplay(GameState.NewGame); New game instance with current data in there
+                    //else:
+                    //  SwichDisplay(GameOver);
+                    break;
+                case GameState.NewGame:
+                    StartNewLevelInstance();
+                    break;
+                case GameState.GameOver:
+                    //Clear out data relating to the specific game instance, can encapsulate in Game1 method
+                    //currDisplay = new GameOverMenu();
+                    break;
+                case GameState.Credits:
+                    //currDisplay = new CreditsMenu();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void StartNewLevelInstance()
+        {
+            SwitchDisplay(GameState.NewGame);
+            Thread.Sleep(3000); //Stay on pre-level menu for 3 seconds
+            LoadDynamicObjects();
+            SwitchDisplay(GameState.Playing);
+        }
+
+        public void EnterPausedMode()
+        {
+            //UI elements to overlay on current level (Controls, translucent black filter, etc.)
+
+            while (!Keyboard.GetState().IsKeyDown(Keys.Enter)) { }
+
+            //Revert UI elements
         }
     }
 }

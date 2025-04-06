@@ -441,10 +441,5 @@ namespace Sprint0.Display
             myGame = _game;
         }
 
-        public override void SwitchDisplay(IDisplay display)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

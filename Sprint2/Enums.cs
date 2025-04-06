@@ -76,10 +76,13 @@ namespace Zelda.Enums
 
     public enum GameState
     {
+        Playing,
         StartMenu,
         MainMenu,
-        Playing,
+        NewGame,
+        Credits,
         Paused,
+        Death,
         GameOver,
         Win
     }

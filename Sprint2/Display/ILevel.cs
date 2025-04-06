@@ -7,12 +7,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionHandling;
 using Sprint0.Display;
+using Zelda.Enums;
 
 namespace Sprint0.Display
 {
     // Interface for game sprites
     public abstract class ILevel : IDisplay
     {
+        public readonly GameState identity = GameState.Playing;
+
         // Called once per frame to update sprites
         public abstract void Update( GameTime gameTime);
 
@@ -21,7 +24,5 @@ namespace Sprint0.Display
 
         //Load next room
         public abstract void LoadRoom(int xCoordinate, int yCoordinate);
-
-        public abstract void SwitchDisplay(IDisplay display);
     }
 }
