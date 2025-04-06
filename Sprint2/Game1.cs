@@ -17,6 +17,7 @@ using System.Runtime.Intrinsics.X86;
 using Microsoft.Xna.Framework.Media;
 using System.Threading;
 using Zelda.Inventory;
+using ZeldaGame.HUD;
 
 
 namespace Sprint0
@@ -59,6 +60,7 @@ namespace Sprint0
 
         public bool isInventoryOpen { get; set; }
         private Inventory _inventory;
+        private HUD _hud;
         public bool isSettingsOpen { get; set; }
         private SettingsMenu _settings;
 
@@ -182,6 +184,7 @@ namespace Sprint0
             _deathScreen.UpdateGameState(GameState);
             _winScreen.UpdateGameState(GameState);
             _settings.UpdateGameState(GameState);
+            _hud.UpdateGameState(GameState);
 
             base.Update(gameTime);
         }
@@ -207,6 +210,7 @@ namespace Sprint0
             _startMenu.Draw(_spriteBatch);
             _deathScreen.Draw(_spriteBatch);
             _winScreen.Draw(_spriteBatch);
+            _hud.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -335,6 +339,7 @@ namespace Sprint0
             gameObjects.Add(item2);
 
             _inventory = new Inventory(Content, GraphicsDevice, linkSprite);
+            _hud = new HUD(Content);
             _settings = new SettingsMenu(Content, GraphicsDevice);
 
             levelMap.AddLink(linkSprite);

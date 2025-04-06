@@ -92,22 +92,8 @@ namespace Zelda.Inventory
 
             spriteBatch.Draw(
                 _backgroundTexture,
-                new Rectangle(25, 135, dungeonWidth, dungeonHeight),
+                new Rectangle(25, 165, dungeonWidth, dungeonHeight),
                 dungeonSource,
-                Color.White
-            );
-
-
-            // life and A/B button stuff at the bottom
-            scale = 1.5f;
-            Rectangle bottomSource = new Rectangle(344, 17, 154, 44);
-            int bottomWidth = (int)(bottomSource.Width * scale);
-            int bottomHeight = (int)(bottomSource.Height * scale);
-
-            spriteBatch.Draw(
-                _backgroundTexture,
-                new Rectangle(230, 280, bottomWidth, bottomHeight),
-                bottomSource,
                 Color.White
             );
 
@@ -121,7 +107,7 @@ namespace Zelda.Inventory
 
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(95, 245, compassWidth, compassHeight),
+                    new Rectangle(95, 265, compassWidth, compassHeight),
                     compassSource,
                     Color.White
                 );
@@ -137,7 +123,7 @@ namespace Zelda.Inventory
 
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(105, 175, mapWidth, mapHeight),
+                    new Rectangle(105, 195, mapWidth, mapHeight),
                     mapSource,
                     Color.White
                 );

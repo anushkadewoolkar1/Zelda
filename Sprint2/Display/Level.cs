@@ -382,7 +382,8 @@ namespace Sprint0.Display
         {
             get
             {
-                return new Rectangle(LEVEL_CENTER_POSITION - 8, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 16, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 16);
+                //return new Rectangle(LEVEL_CENTER_POSITION - 8, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 16, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 16);
+                return new Rectangle(LEVEL_CENTER_POSITION - 4, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 10, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 4);
             }
         }
         public Vector2 Velocity
