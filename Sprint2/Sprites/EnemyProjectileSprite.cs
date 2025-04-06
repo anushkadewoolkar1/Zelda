@@ -9,7 +9,7 @@ using Zelda.Enums;
 
 namespace Sprint0.Sprites
 {
-    public class EnemyProjectileSprite
+    public class EnemyProjectileSprite : ISprite
     {
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
@@ -21,7 +21,7 @@ namespace Sprint0.Sprites
         private int currentFrame;
         private int totalFrames;
         public int spriteSize;
-        private double currentDelay = 0.0;
+        private double totalElapsed = 0.0;
 
         private const int DELAY_LENGTH = 150;
         public EnemyProjectileSprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSize, int ySize, ItemType itemType)
@@ -43,18 +43,16 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            currentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (currentDelay >= (DELAY_LENGTH / 2))
+            totalElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (totalElapsed >= DELAY_LENGTH)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
                 {
                     currentFrame = 0;
                 }
-                if (currentDelay >= DELAY_LENGTH)
-                {
-                    currentDelay = 0;
-                }
+
+                totalElapsed -= DELAY_LENGTH;
             }
         }
 

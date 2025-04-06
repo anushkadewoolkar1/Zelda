@@ -25,9 +25,9 @@ namespace Sprint0.Sprites
         private int currentFrame;
         private int totalFrames;
         public int spriteSize;
-        private double currentDelay = 0.0;
+        private double totalElapsed = 0.0;
 
-        private const int DELAY_LENGTH = 150;
+        private const int DELAY_LENGTH = 50;
         private const int TALL_ENEMY_SCALAR = 2;
 
         public EnemySprite(Texture2D texture, int rows, int columns, int startX, int startY, int xSizeArg, int ySizeArg, EnemyType enemyType)
@@ -49,18 +49,16 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            currentDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (currentDelay >= (DELAY_LENGTH / 2))
+            totalElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (totalElapsed >= DELAY_LENGTH)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
                 {
                     currentFrame = 0;
                 }
-                if (currentDelay >= DELAY_LENGTH)
-                {
-                    currentDelay = 0;
-                }
+
+                totalElapsed -= DELAY_LENGTH;
             }
         }
 
