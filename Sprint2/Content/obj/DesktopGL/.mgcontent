@@ -4,7 +4,6 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/PauseScreen.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/../DefaultFont.spritefont</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/block1.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/block10.png</File>
@@ -22,6 +21,7 @@
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/ItemSpritesheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LargeEnemies.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LegendOfZeldaStartScreen.png</File>
+    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LegendOfZeldaWinScreen2.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/Levels SpriteSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LinkAllOverworldColorsWithReflection.gif</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/lozNPCs.png</File>
@@ -29,11 +29,38 @@
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiRunMoveSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiRunningSheet.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/LuigiStill.png</File>
+    <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/PauseScreen.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/SmallEnemies.png</File>
     <File>C:/Users/Aidan/source/repos/ZeldaGame/Zelda/Sprint2/Content/transparent_block.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File>DefaultFont.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -73,16 +73,6 @@ public class Block : IBlock, IGameObject
     public void Draw(SpriteBatch spriteBatch)
     {
         
-        if (textures.Length > 0)
-        {
-
-            //Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);            
-            //spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
-            float scaleFactor = 0.2f;
-            return;
-            spriteBatch.Draw(textures[currentTextureIndex], pixelPosition, null, Color.White, 0f, Vector2.Zero, scaleFactor, SpriteEffects.None, 0f);
-
-        }
     }
 
     // IGameObject Implementatio (KD)
@@ -92,10 +82,6 @@ public class Block : IBlock, IGameObject
         {
             if (textures.Length > 0)
             {
-                //Vector2 pixelPosition = tileMap.GetTileCenter(tilePosition);
-               // int width = (int)(textures[0].Width * scaleFactor);
-               // int height = (int)(textures[0].Height * scaleFactor);
-               // return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y, width, height);
                 return new Rectangle((int)pixelPosition.X, (int)pixelPosition.Y - 3,  BOUNDING_BOX_DIM_X, BOUNDING_BOX_DIM_Y);
             }
             else
@@ -113,6 +99,7 @@ public class Block : IBlock, IGameObject
 
     // No velocity for blocks
     public Vector2 Velocity => Vector2.Zero;
+
 
     public void LoadRoom()
     {
