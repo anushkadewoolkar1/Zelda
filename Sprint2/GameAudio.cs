@@ -62,6 +62,7 @@ namespace MainGame
                 MediaPlayer.Stop();
             }
 
+            MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(titleBGM);
         }
         
@@ -72,6 +73,7 @@ namespace MainGame
                 MediaPlayer.Stop();
             }
 
+            MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(dungeonBGM);
         }
 
@@ -149,6 +151,11 @@ namespace MainGame
         public void RaiseVolume()
         {
             MediaPlayer.Volume += 0.1f;
+        }
+
+        public MediaState MediaPlayerState()
+        {
+            return MediaPlayer.State;
         }
 
     }

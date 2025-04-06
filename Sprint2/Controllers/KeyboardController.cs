@@ -99,6 +99,8 @@ namespace MainGame.Controllers
                 { Keys.OemPlus, UserInputs.RaiseVolume },
 
                 { Keys.OemMinus, UserInputs.LowerVolume },
+
+                { Keys.R, UserInputs.ResetLevel }
             };
         }
     }

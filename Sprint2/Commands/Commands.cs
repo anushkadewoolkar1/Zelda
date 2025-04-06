@@ -14,6 +14,7 @@ using MainGame.Sprites;
 using MainGame.States;
 using MainGame.Display;
 using Zelda.Enums;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
 namespace MainGame.Commands
@@ -150,17 +151,24 @@ namespace MainGame.Commands
         }
     }
 
-    public class MuteMusic : ICommand
+    public class ToggleMuteMusic : ICommand
     {
         private GameAudio _audio;
-        public MuteMusic(GameAudio audio)
+        public ToggleMuteMusic(GameAudio audio)
         {
             _audio = audio;
         }
 
         public void Execute()
         {
-            _audio.MuteBGM();
+            if (_audio.MediaPlayerState() == MediaState.Playing)
+            {
+                _audio.MuteBGM();
+            }
+            else
+            {
+                _audio.UnmuteBGM();
+            }
         }
     }
 
@@ -308,6 +316,20 @@ namespace MainGame.Commands
         public void Execute()
         {
             audio.LowerVolume();
+        }
+    }
+
+    public class ResetLevel : ICommand
+    {
+        private Game1 game;
+        public ResetLevel(Game1 _game)
+        {
+            game = _game;
+        }
+
+        public void Execute()
+        {
+            game.ResetLevel();
         }
     }
 

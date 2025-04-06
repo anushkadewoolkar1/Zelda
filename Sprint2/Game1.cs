@@ -64,10 +64,9 @@ namespace MainGame
         public bool isSettingsOpen { get; set; }
         private SettingsMenu _settings;
 
-        Link linkSprite;
+        public Link linkSprite { get; set; }
 
-        List<Enemy> enemySprites = new List<Enemy>();
-        Enemy enemySprite;
+        private List<Enemy> enemySprites = new List<Enemy>();
 
         private TileMap _tileMap;
         private Block _invisibleBlock;
@@ -263,13 +262,14 @@ namespace MainGame
             ICommand setWalkDownCommand = new ChangeLinkState(linkSprite, new LinkWalkingState(linkSprite, Zelda.Enums.Direction.Down));
             ICommand useItemArrow = new LinkUseItem(linkSprite, ItemType.Arrow);
             ICommand leaveStartMenu = new LeaveStartMenu(this, _audio);
-            ICommand muteBGM = new MuteMusic(_audio);
+            ICommand toggleMuteBGM = new ToggleMuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
             ICommand openInventory = new OpenInventory(this);
             ICommand openSettings = new OpenCloseSettings(this);
             ICommand toggleFullScreen = new ToggleFullScreen(this);
             ICommand lowerVolume = new MasterVolumeDown(_audio);
             ICommand raiseVolume = new MasterVolumeUp(_audio);
+            ICommand resetLevel = new ResetCommand(this);
 
             Dictionary<UserInputs, ICommand> levelCommandMap = new Dictionary<UserInputs, ICommand> 
             {
@@ -295,11 +295,13 @@ namespace MainGame
 
                 { UserInputs.LowerVolume, lowerVolume },
 
-                { UserInputs.ToggleMute, muteBGM },
+                { UserInputs.ToggleMute, toggleMuteBGM },
 
                 { UserInputs.ToggleOptions, openSettings },
 
-                { UserInputs.ToggleInventory, openInventory }
+                { UserInputs.ToggleInventory, openInventory },
+
+                { UserInputs.ResetLevel, resetLevel }
 
             };
 
@@ -450,6 +452,13 @@ namespace MainGame
             while (!Keyboard.GetState().IsKeyDown(Keys.Enter)) { }
 
             //Revert UI elements
+        }
+
+        public void ResetLevel()
+        {
+            levelMap = new Level(Content, gameObjects);
+            levelMap.AddLink(linkSprite);
+            levelMap.LoadRoom(2, 5);
         }
     }
 }
