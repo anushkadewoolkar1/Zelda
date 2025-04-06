@@ -81,7 +81,7 @@ namespace MainGame.States
             position = tileMap.GetTileCenter(spawnPosition);
             //I combined the two lines below into one line so that position can be a property
             position = new Vector2(tileMap.GetTileCenter(spawnPosition).X,
-                tileMap.GetTileCenter(spawnPosition).Y - 100);
+                tileMap.GetTileCenter(spawnPosition).Y);
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
