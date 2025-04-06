@@ -39,18 +39,18 @@ public class LinkUsingItemState : ILinkState
         switch (currentDirection)
         {
             case Direction.Up:
-                // For Up, the factory method takes (state, health) as parameters.
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemUp(1, link.Health));
+                // For Up, the factory method takes (state, LinkHurt) as parameters.
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemUp(1, link.LinkHurt));
                 break;
             case Direction.Down:
-                // For Down, assume the factory method takes (frame, state, health) parameters.
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemDown(1, 1, link.Health));
+                // For Down, assume the factory method takes (frame, state, LinkHurt) parameters.
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemDown(1, 1, link.LinkHurt));
                 break;
             case Direction.Left:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemLeft(1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemLeft(1, link.LinkHurt));
                 break;
             case Direction.Right:
-                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemRight(1, link.Health));
+                link.SetSprite(LinkSpriteFactory.Instance.CreateUseItemRight(1, link.LinkHurt));
                 break;
         }
         link.UseItem();

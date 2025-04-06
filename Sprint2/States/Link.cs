@@ -32,6 +32,9 @@ public class Link : IGameObject
     // Health 
     public int Health { get; set; } = 3;
 
+    // Link's hurt
+    public int LinkHurt { get; set; }
+
     // Iventory and item usage
     public List<ItemType> CurrentItem { get; set; }
     public int chooseItem { get; set; }
@@ -79,6 +82,8 @@ public class Link : IGameObject
         itemManager = new LinkItemManager(this, gameObjects);
 
         _audio = GameAudio.Instance;
+
+        LinkHurt = 1;
     }
 
     public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
@@ -275,6 +280,7 @@ public class Link : IGameObject
     {
         IsInvulnerable = true;
         invulnerabilityTimer = 2.0f; // Link remains invulnerable for 2 second.
+        LinkHurt = 0;
         System.Diagnostics.Debug.WriteLine("Link is now invulnerable.");
     }
 
@@ -282,6 +288,7 @@ public class Link : IGameObject
     {
         IsInvulnerable = false;
         invulnerabilityTimer = 0;
+        LinkHurt = 1;
         System.Diagnostics.Debug.WriteLine("Link is no longer invulnerable.");
     }
 
