@@ -206,7 +206,11 @@ public class CollisionManager
             else side = CollisionSide.Right;
         }
 
-        collisionHandler.HandleCollision(objA, currLevel, side);
+        if (collisionHandler != null)
+        {
+            collisionHandler.HandleCollision(objA, currLevel, side);
+        }
+        
     }
 
     /// Determines the collision side for objA relative to objB using their velocities and intersection.
