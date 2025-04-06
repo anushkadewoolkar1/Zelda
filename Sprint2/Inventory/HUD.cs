@@ -18,9 +18,12 @@ namespace ZeldaGame.HUD
         private Texture2D _backgroundTexture;
         private GameState _gameState;
 
-        public HUD(ContentManager content)
+        private Link _link;
+
+        public HUD(ContentManager content, Link link)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
+            _link = link;
         }
 
         public void UpdateGameState(GameState gameState)
@@ -44,6 +47,42 @@ namespace ZeldaGame.HUD
                 bottomSource,
                 Color.White
             );
+
+            //health
+            int health = _link.Health;
+            scale = 2.5f;
+            Rectangle fullHeartSource = new Rectangle(645, 117, 8, 8);
+            int fullHeartWidth = (int)(fullHeartSource.Width * scale);
+            int fullHeartHeight = (int)(fullHeartSource.Height * scale);
+
+            Rectangle emptyHeartSource = new Rectangle(627, 117, 8, 8);
+            int emptyHeartWidth = (int)(emptyHeartSource.Width * scale);
+            int emptyHeartHeight = (int)(emptyHeartSource.Height * scale);
+
+            for (int i = 0; i <= 2; i++)
+            {
+
+                if (i < health)
+                {
+                    spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(320 + 30 * i, 405, fullHeartWidth, fullHeartHeight),
+                    fullHeartSource,
+                    Color.White
+                );
+
+                }
+
+                if (i >= health)
+                {
+                    spriteBatch.Draw(
+                        _backgroundTexture,
+                        new Rectangle(320 + 30 * i, 405, emptyHeartWidth, emptyHeartHeight),
+                        emptyHeartSource,
+                        Color.White
+                    );
+                }
+            }
         }
     }
 }

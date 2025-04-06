@@ -342,7 +342,7 @@ namespace MainGame
             gameObjects.Add(item2);
 
             _inventory = new Inventory(Content, GraphicsDevice, linkSprite);
-            _hud = new HUD(Content);
+            _hud = new HUD(Content, linkSprite);
             _settings = new SettingsMenu(Content, GraphicsDevice);
 
             
