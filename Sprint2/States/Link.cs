@@ -18,6 +18,7 @@ public class Link : IGameObject
 
     public ILinkState currentState;
     public Vector2 Position { get; set; }
+    public Boolean noMoving { get; set; }
     private ISprite currentSprite;
     private LinkSpriteFactory spriteFactory;
 
@@ -114,6 +115,8 @@ public class Link : IGameObject
                 EndInvulnerability();
             }
         }
+
+        System.Diagnostics.Debug.WriteLine($"Link's Position {Position} and {level.roomHeight}");
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -151,6 +154,8 @@ public class Link : IGameObject
 
     public void Move(Vector2 direction, GameTime gameTime)
     {
+        if (noMoving) return; // Used for level transitions
+
         // Normalize direction if it's not zero.
         if (direction != Vector2.Zero)
             direction.Normalize();

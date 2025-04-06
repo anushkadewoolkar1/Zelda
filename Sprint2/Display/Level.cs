@@ -43,6 +43,7 @@ namespace MainGame.Display
         private int loadCurrentPosition;
         private int[] newRoom;
 
+        public bool moveLink { get; set; }
         public bool doubleClickTemp { get; set; }
 
         private ContentManager contentManager;
@@ -100,6 +101,7 @@ namespace MainGame.Display
             //Current implementation involves clicking through rooms
             //used to avoid accidental skipping rooms
             doubleClickTemp = false;
+            moveLink = true;
 
             gameObjects = _gameObjects;
 
@@ -109,7 +111,6 @@ namespace MainGame.Display
             newRoom = [WIDTH_POSITION, HEIGHT_POSITION];
 
             UpdateGameState = Zelda.Enums.GameState.StartMenu;
-
         }
 
 
@@ -206,15 +207,6 @@ namespace MainGame.Display
 
             transition = 1;
 
-            //Temporary implementation for clicking through rooms double click bug
-            if (!doubleClickTemp)
-            {
-                doubleClickTemp = true;
-            } else
-            {
-                doubleClickTemp = false;
-                return;
-            }
 
             int count = Objects.Count;
             int currentPosition = 1;
@@ -245,18 +237,22 @@ namespace MainGame.Display
             newRoom[1] = yCoordinate;
             loadCurrentPosition = currentPosition;
 
-            if (xCoordinate != currentRoom[0])
+            if (xCoordinate != currentRoom[0] && moveLink)
             {
+                int roomCenterX = roomWidth - 16;
                 myLink.Position = new Vector2(
-                    myLink.Position.X + 2 * ((roomWidth) - 16 - myLink.Position.X),
+                    roomCenterX + (roomCenterX - myLink.Position.X - (4 * Math.Sign(roomCenterX-myLink.Position.X))),
                     myLink.Position.Y);
             }
-            else if (yCoordinate != currentRoom[1])
+            else if (yCoordinate != currentRoom[1] && moveLink)
             {
+                int roomCenterY = roomHeight - 20;
                 myLink.Position = new Vector2(
                     myLink.Position.X,
-                    myLink.Position.Y + 2 * ((roomHeight) - 16 - myLink.Position.Y));
+                    roomCenterY + (roomCenterY - myLink.Position.Y - (6 * Math.Sign(roomCenterY - myLink.Position.Y))));
             }
+
+            myLink.noMoving = true;
 
             if (currentRoom == newRoom)
             {
@@ -305,10 +301,9 @@ namespace MainGame.Display
                 currentPosition++;
             }
 
-            System.Diagnostics.Debug.WriteLine($"Check Middle {(roomHeight) - 16} and {myLink.Position.Y}");
-
-
             currentRoom = [xCoordinate, yCoordinate];
+
+            myLink.noMoving = false;
 
             transition = 0;
         }
@@ -382,8 +377,8 @@ namespace MainGame.Display
         {
             get
             {
-                //return new Rectangle(LEVEL_CENTER_POSITION - 8, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 16, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 16);
-                return new Rectangle(LEVEL_CENTER_POSITION - 4, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 10, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 4);
+                return new Rectangle(LEVEL_CENTER_POSITION - 9, LEVEL_CENTER_POSITION - 9, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 18, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 18);
+                //return new Rectangle(LEVEL_CENTER_POSITION - 4, LEVEL_CENTER_POSITION - 8, (int)roomDimensions.X - LEVEL_CENTER_POSITION + 10, (int)roomDimensions.Y - LEVEL_CENTER_POSITION + 4);
             }
         }
         public Vector2 Velocity

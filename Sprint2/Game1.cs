@@ -240,13 +240,14 @@ namespace MainGame
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
 
-            levelMap = new Level(Content, gameObjects);
-            levelMap.LoadRoom(2, 5); //Could be key to indicate checkpoints after death? (PP)
-
             //Load sprite font
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
 
             linkSprite = new Link(gameObjects);
+
+            levelMap = new Level(Content, gameObjects);
+            levelMap.AddLink(linkSprite);
+            levelMap.LoadRoom(2, 5); //Could be key to indicate checkpoints after death? (PP)
 
             _startMenu = new StartMenu(Content);
             _deathScreen = new DeathScreen(Content);
@@ -342,7 +343,7 @@ namespace MainGame
             _hud = new HUD(Content);
             _settings = new SettingsMenu(Content, GraphicsDevice);
 
-            levelMap.AddLink(linkSprite);
+            
             levelMap.CollisionManager(collisionManager);
             levelMap.Game(this);
             //gameObjects.Add(_block);

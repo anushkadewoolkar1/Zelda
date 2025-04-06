@@ -45,6 +45,7 @@ namespace MainGame.Controllers
                 bool topHalf = mouseY < _windowHeight / 2;
                 bool leftHalf = mouseX < _windowWidth / 2;
 
+                level.moveLink = false;
                 // top left
                 if (topHalf && leftHalf)
                 {
@@ -66,6 +67,7 @@ namespace MainGame.Controllers
                 {
                     level.LoadRoom(level.currentRoom[0], level.currentRoom[1] + 1);
                 }
+                level.moveLink = true;
 
                 System.Diagnostics.Debug.WriteLine(level.currentRoom[0].ToString() + "||"
                     + level.currentRoom[1].ToString());
