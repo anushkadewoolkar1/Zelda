@@ -241,7 +241,7 @@ namespace MainGame.Display
             {
                 int roomCenterX = roomWidth - 16;
                 myLink.Position = new Vector2(
-                    roomCenterX + (roomCenterX - myLink.Position.X - (4 * Math.Sign(roomCenterX-myLink.Position.X))),
+                    roomCenterX + Math.Sign(roomCenterX - myLink.Position.X) * (roomCenterX - this.BoundingBox.X - 10),
                     myLink.Position.Y);
             }
             else if (yCoordinate != currentRoom[1] && moveLink)
@@ -249,7 +249,7 @@ namespace MainGame.Display
                 int roomCenterY = roomHeight - 20;
                 myLink.Position = new Vector2(
                     myLink.Position.X,
-                    roomCenterY + (roomCenterY - myLink.Position.Y - (6 * Math.Sign(roomCenterY - myLink.Position.Y))));
+                    roomCenterY + Math.Sign(roomCenterY- myLink.Position.Y) * (roomCenterY - this.BoundingBox.Y - 4));
             }
 
             myLink.noMoving = true;
