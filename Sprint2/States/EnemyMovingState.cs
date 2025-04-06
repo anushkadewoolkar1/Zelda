@@ -19,6 +19,7 @@ namespace Sprint0.States
         private SpriteBatch spriteBatch;
         private Vector2 position;
         public Direction Direction;
+        private Boolean moving = true;
 
         // constants
         private const int ZERO = 0;
@@ -60,7 +61,8 @@ namespace Sprint0.States
 
             enemy.Speed = HUNDRED;
 
-            int random = RandomNumberGenerator.GetInt32(-ONE, TWO);
+            int random = RandomNumberGenerator.GetInt32(-ONE, ONE);
+            Direction randomDirection = GenerateRandomDirection();
 
             switch (enemy.enemyType)
             {
@@ -70,14 +72,19 @@ namespace Sprint0.States
                     break;
                 case EnemyType.Keese:
                     enemy.Speed = TWENTY;
+                    if(timer == HUNDRED)
+                    {
+                        enemy.Direction = randomDirection;
+                    }
+
                     if (enemy.Direction == Direction.Up || enemy.Direction == Direction.Down)
                     {
-                        move = MoveDirection(enemy.Direction);
                         move.X = random;
+                        move = MoveDirection(enemy.Direction);
                     } else
                     {
-                        move = MoveDirection(enemy.Direction);
                         move.Y = random;
+                        move = MoveDirection(enemy.Direction);
                     }
 
                     break;
@@ -85,17 +92,17 @@ namespace Sprint0.States
                     enemy.Speed = THIRTY;
                     if(timer == ZERO || timer == HUNDRED)
                     {
-                        enemy.ChangeDirection((Direction)random);
+                        enemy.Direction = randomDirection;
                     }
 
                     move = MoveDirection(enemy.Direction);
                     break;
                 case EnemyType.Goriya:
-                    Boolean moving = true;
-                    if(timer == ZERO || timer == FIFTY || timer == HUNDRED)
+                    if(timer == ZERO || timer == HUNDRED)
                     {
-                        enemy.ChangeDirection((Direction)random);
-                    } else if (timer == (HUNDRED + FIFTY))
+                        moving = true;
+                        enemy.ChangeDirection(randomDirection);
+                    } else if (timer == FIFTY || timer == (HUNDRED + FIFTY))
                     {
                         enemy.SpawnProjectile();
                         moving = false;
@@ -115,6 +122,9 @@ namespace Sprint0.States
                     if ((timer >= ZERO && timer < FIFTY) || (timer >= HUNDRED && timer < (HUNDRED + FIFTY)))
                     {
                         move = new Vector2(ZERO, ZERO);
+                    } else if (timer == SEVENTY_FIVE)
+                    {
+                        enemy.ChangeDirection(randomDirection);
                     } else
                     {
                         move = MoveDirection(enemy.Direction);
@@ -227,6 +237,24 @@ namespace Sprint0.States
             }
 
             enemy.Move(move, gameTime);
+        }
+
+        public Direction GenerateRandomDirection()
+        {
+            int random = RandomNumberGenerator.GetInt32(ZERO, 4);
+            switch(random)
+            {
+                case 0:
+                    return Direction.Left;
+                case 1:
+                    return Direction.Right;
+                case 2:
+                    return Direction.Up;
+                case 3:
+                    return Direction.Down;
+                default:
+                    return Direction.Left;
+            }
         }
 
         public Vector2 MoveDirection(Direction dir)

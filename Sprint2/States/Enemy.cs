@@ -28,9 +28,13 @@ namespace Sprint0.States
         private Boolean itemSpawn;
         private Boolean itemSpawned;
         public ItemType itemType { get; set; }
+        public List<ItemType> CurrentItem { get; set; }
+        public int chooseItem { get; set; }
+        private EnemyProjectileManager projectileManager;
+        private List<IGameObject> gameObjects;
         private Vector2 projectilePosition;
         private Vector2 velocity;
-        TileMap tileMap = TileMap.GetInstance();
+        private TileMap tileMap = TileMap.GetInstance();
         private GameAudio _audio = GameAudio.Instance;
 
         // constants
@@ -62,6 +66,8 @@ namespace Sprint0.States
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
 
+            CurrentItem = new List<ItemType>();
+            projectileManager = new EnemyProjectileManager(this, gameObjects);
             itemType = ItemType.Boomerang;
             itemSpawn = false;
             itemSpawned = false;
@@ -75,7 +81,7 @@ namespace Sprint0.States
             position = tileMap.GetTileCenter(spawnPosition);
             //I combined the two lines below into one line so that position can be a property
             position = new Vector2(tileMap.GetTileCenter(spawnPosition).X,
-                tileMap.GetTileCenter(spawnPosition).Y - TWELVE);
+                tileMap.GetTileCenter(spawnPosition).Y - 100);
             sprite = spriteFactory.CreateEnemySprite(enemyCreated, Direction);
             enemyState = new EnemyMovingState(this);
             enemyState.Load();
@@ -128,6 +134,7 @@ namespace Sprint0.States
         public void DrawCurrentSprite(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch, this.position);
+            projectileManager.Draw(spriteBatch);
 
             if (itemSpawn)
             {
@@ -190,37 +197,11 @@ namespace Sprint0.States
 
         public void SpawnProjectile()
         {
-            itemSpawn = false;
-            int directionNumber = -ONE;
-            switch (Direction)
+            if (chooseItem < CurrentItem.Count)
             {
-                case Direction.Up:
-                    directionNumber = (int) ZERO;
-                    break;
-                case Direction.Down:
-                    directionNumber = ONE;
-                    break;
-                case Direction.Left:
-                    directionNumber = (int) TWO;
-                    break;
-                case Direction.Right:
-                    directionNumber = (int) THREE;
-                    break;
+                var itemType = CurrentItem[chooseItem];
+                projectileManager.SpawnProjectile(itemType, Direction);
             }
-            switch (itemType)
-            {
-                case ItemType.Boomerang:
-                    boomerangSprite = ProjectileSpriteFactory.Instance.CreateBoomerangBrown(directionNumber);
-                    break;
-                case ItemType.Fireball:
-                    // create an EnemySprite since Boss sprite sheet has the needed fireballs
-                    //fireballSprite = EnemySpriteFactory.Instance.
-                    break;
-                default:
-                    break;
-            }
-
-            itemSpawn = true;
         }
 
         public void TakeDamage(ItemType projectile)
@@ -272,6 +253,7 @@ namespace Sprint0.States
         {
 
             enemyState.Update(gameTime);
+            projectileManager.Update(gameTime);
             spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (spriteUpdateTimer >= spriteUpdateInterval)

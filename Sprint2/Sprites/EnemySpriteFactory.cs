@@ -116,7 +116,7 @@ namespace Sprint0.Sprites
                 case EnemyType.Aquamentus:
                     xSize = 27;
                     sprite = CreateBossEnemySprite(enemyType, 2, 0, 0);
-                    sprite.spriteSize = 54;
+                    sprite.spriteSize = 45;
                     return sprite;
                 case EnemyType.Dodongo:
                     switch (direction)
@@ -171,7 +171,7 @@ namespace Sprint0.Sprites
                 case ItemType.Boomerang:
                     // return new CreateBoomerangeSprite(itemType, ___, ___, ___);
                 case ItemType.Fireball:
-                    sprite = CreateFireballSprite(itemType, 4, 124, 4);
+                    sprite = CreateFireballSprite(124, 4);
                     break;
                 default:
                     sprite = null;
@@ -196,9 +196,9 @@ namespace Sprint0.Sprites
             return new EnemySprite(bossSpritesheet, rows, 1, startX, startY, xSize, ySize, enemyType);
         }
 
-        public EnemyProjectileSprite CreateFireballSprite(ItemType itemType, int rows, int startX, int startY)
+        public EnemyProjectileSprite CreateFireballSprite(int startX, int startY)
         {
-            return new EnemyProjectileSprite(bossSpritesheet, 3, 1, startX, startY, xSize, ySize, itemType);
+            return new EnemyProjectileSprite(bossSpritesheet, 3, 1, startX, startY, xSize, ySize, ItemType.Fireball);
         }
     }
 }
