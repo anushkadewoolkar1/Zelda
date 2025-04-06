@@ -1,18 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Sprites;
-using Sprint0.Controllers;
-using Sprint0.Commands;
+using MainGame.Sprites;
+using MainGame.Controllers;
+using MainGame.Commands;
 using System.Collections.Generic;
 using SpriteFactory;
 using Zelda.Enums;
-using Sprint0.States;
+using MainGame.States;
 using System;
 using System.Net.Http.Headers;
 using ZeldaGame.Zelda.CollisionMap;
-using Sprint0.Display;
-using Sprint0.CollisionHandling;
+using MainGame.Display;
+using MainGame.CollisionHandling;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.Xna.Framework.Media;
 using System.Threading;
@@ -20,7 +20,7 @@ using Zelda.Inventory;
 using ZeldaGame.HUD;
 
 
-namespace Sprint0
+namespace MainGame
 {
     public class Game1 : Game
     {

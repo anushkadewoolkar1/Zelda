@@ -6,20 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Display;
+using MainGame.Display;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using Zelda.Enums;
-using Sprint0.States;
+using MainGame.States;
 using System.Reflection.Metadata;
-using Sprint0.CollisionHandling;
+using MainGame.CollisionHandling;
 using System.Reflection.Emit;
 
 
-namespace Sprint0.Display
+namespace MainGame.Display
 {
     public class Level : ILevel, IGameObject
     {

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
 
-namespace Sprint0.Sprites
+namespace MainGame.Sprites
 {
     public class EnemyProjectileSprite : ISprite
     {

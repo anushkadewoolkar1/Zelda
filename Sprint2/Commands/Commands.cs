@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0;
-using Sprint0.Controllers;
-using Sprint0.Sprites;
-using Sprint0.States;
-using Sprint0.Display;
+using MainGame;
+using MainGame.Controllers;
+using MainGame.Sprites;
+using MainGame.States;
+using MainGame.Display;
 using Zelda.Enums;
 using Microsoft.Xna.Framework.Audio;
 
-namespace Sprint0.Commands
+namespace MainGame.Commands
 {
     public class QuitCommand : ICommand
     {

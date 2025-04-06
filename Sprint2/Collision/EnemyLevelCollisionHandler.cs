@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.CollisionHandling;
-using Sprint0.States;
+using MainGame.CollisionHandling;
+using MainGame.States;
 using Zelda.Enums;
-using Sprint0.Display;
+using MainGame.Display;
 using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.Collision
+namespace MainGame.Collision
 {
     public class EnemyLevelCollisionHandler : ICollisionHandler
     {

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ZeldaGame.Zelda.CollisionMap;
-using Sprint0.Display;
+using MainGame.Display;
 
 public class LoadRoomBlock : Block
 {

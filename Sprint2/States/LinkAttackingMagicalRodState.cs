@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using SpriteFactory;
 
 public class LinkAttackingMagicalRodState : ILinkState

@@ -5,10 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Commands;
-using Sprint0.Display;
+using MainGame.Commands;
+using MainGame.Display;
 
-namespace Sprint0.Controllers
+namespace MainGame.Controllers
 {
     public abstract class DebugController : IController
     {

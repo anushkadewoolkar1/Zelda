@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Sprites;
-using Sprint0.CollisionHandling;
+using MainGame.Sprites;
+using MainGame.CollisionHandling;
 using Zelda.Enums;
 
-namespace Sprint0.States
+namespace MainGame.States
 {
     public class EnemyProjectileManager
     {

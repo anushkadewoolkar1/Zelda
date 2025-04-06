@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.CollisionHandling; 
-using Sprint0.Sprites;
+using MainGame.CollisionHandling; 
+using MainGame.Sprites;
 
-namespace Sprint0.Collision
+namespace MainGame.Collision
 { 
 
     public class EnemyProjectile : IGameObject

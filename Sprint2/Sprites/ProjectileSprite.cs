@@ -7,10 +7,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.CollisionHandling;
+using MainGame.CollisionHandling;
 using Zelda.Enums;
 
-namespace Sprint0.Sprites
+namespace MainGame.Sprites
 {
     public class ProjectileSprite : IGameObject, ISprite
     {

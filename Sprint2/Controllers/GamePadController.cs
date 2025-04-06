@@ -6,10 +6,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Commands;
+using MainGame.Commands;
 using Zelda.Enums;
 
-namespace Sprint0.Controllers
+namespace MainGame.Controllers
 {
     public class GamePadController : PlayerController
     {

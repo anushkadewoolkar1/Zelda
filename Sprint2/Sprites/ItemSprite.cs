@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
 
-namespace Sprint0.Sprites
+namespace MainGame.Sprites
 {
     public class ItemSprite : ISprite
     {

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Commands;
-using Sprint0.Display;
+using MainGame.Commands;
+using MainGame.Display;
 using Zelda.Enums;
 // i comment this out cuz it was throwing me an error and didnt build
-namespace Sprint0.Display
+namespace MainGame.Display
 {
     //
     public class DeathScreen : IMenu

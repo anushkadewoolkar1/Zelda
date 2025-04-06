@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ZeldaGame.Zelda.CollisionMap;
-using Sprint0.CollisionHandling;
-using Sprint0.Display;
+using MainGame.CollisionHandling;
+using MainGame.Display;
 using Zelda.Enums;
 public class HitBox : IGameObject
 

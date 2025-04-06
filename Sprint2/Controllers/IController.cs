@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Display;
+using MainGame.Display;
 
-namespace Sprint0.Controllers
+namespace MainGame.Controllers
 {
     // Interface for controllers
     public interface IController

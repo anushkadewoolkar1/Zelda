@@ -6,11 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Commands;
-using Sprint0.Display;
+using MainGame.Commands;
+using MainGame.Display;
 using Zelda.Enums;
 
-namespace Sprint0.Controllers
+namespace MainGame.Controllers
 {
     public class KeyboardController : PlayerController
     {

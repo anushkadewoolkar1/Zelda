@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.CollisionHandling;
-using Sprint0.Display;
+using MainGame.CollisionHandling;
+using MainGame.Display;
 using Zelda.Enums;
 
-namespace Sprint0.Display
+namespace MainGame.Display
 {
     // Interface for game sprites
     public abstract class ILevel : IDisplay

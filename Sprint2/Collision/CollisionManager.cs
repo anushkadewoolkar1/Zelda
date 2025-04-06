@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Sprint0.Collision;
-using Sprint0.CollisionHandling;
+using MainGame.Collision;
+using MainGame.CollisionHandling;
 using Zelda.Enums;
-using Sprint0.States;
-using Sprint0.Display;
+using MainGame.States;
+using MainGame.Display;
 using System.ComponentModel.Design;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 
 public class CollisionManager

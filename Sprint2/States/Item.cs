@@ -5,15 +5,15 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using Zelda.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
 using ZeldaGame.Zelda.CollisionMap;
-using Sprint0.CollisionHandling;
+using MainGame.CollisionHandling;
 
-namespace Sprint0.States
+namespace MainGame.States
 {
     public class Item : IGameObject
     {

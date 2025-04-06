@@ -8,10 +8,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Controllers;
+using MainGame.Controllers;
 using Zelda.Enums;
 
-namespace Sprint0.Sprites
+namespace MainGame.Sprites
 {
     public class EnemySprite : ISprite
     {

@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Commands;
-using Sprint0.Display;
+using MainGame.Commands;
+using MainGame.Display;
 using Zelda.Enums;
 
 
-namespace Sprint0.Display
+namespace MainGame.Display
 {
     // Interface for menus, extending the behavior of a display (PP):
     public abstract class IMenu : IDisplay

@@ -2,8 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.CollisionHandling;
-using Sprint0.Display;
+using MainGame.CollisionHandling;
+using MainGame.Display;
 using ZeldaGame.Zelda.CollisionMap;
 
 public class Block : IBlock, IGameObject

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using SpriteFactory;
-using Sprint0.States;
+using MainGame.States;
 
 public class LinkUsingItemState : ILinkState
 {

@@ -5,10 +5,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Sprint0.States;
+using MainGame.States;
 using Zelda.Enums;
 
-namespace Sprint0.CollisionHandling
+namespace MainGame.CollisionHandling
 {
     // Collision Handler for Enemy and Block collisions.
     public class EnemyBlockCollisionHandler : ICollisionHandler

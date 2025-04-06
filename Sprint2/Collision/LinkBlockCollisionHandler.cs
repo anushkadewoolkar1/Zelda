@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Sprint0.CollisionHandling;
+using MainGame.CollisionHandling;
 using Zelda.Enums;
 
 public class LinkBlockCollisionHandler : ICollisionHandler

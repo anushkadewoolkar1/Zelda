@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.CollisionHandling;
-using Sprint0.Sprites;
+using MainGame.CollisionHandling;
+using MainGame.Sprites;
 using Zelda.Enums;
 using ZeldaGame.Zelda.CollisionMap;
 
 
-namespace Sprint0.States
+namespace MainGame.States
 {
     public class Enemy : IGameObject
     {

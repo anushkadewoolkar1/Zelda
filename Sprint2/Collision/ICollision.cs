@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zelda.Enums;
 
-namespace Sprint0.CollisionHandling
+namespace MainGame.CollisionHandling
 {
     public interface ICollision
     {

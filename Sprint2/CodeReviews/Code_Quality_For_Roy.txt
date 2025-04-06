@@ -7,7 +7,7 @@ Specific comments on code quality:
 	Good use of an interface to define ILevel, ensuring that different implementations can adhere to a common structure.
 	No comments to define expected inputs, outputs, and behaviors for each method
 	No error handling in LoadRoom(int xCoordinate, int yCoordinate). What happens if an invalid room coordinate is provided? Should the method return a boolean for success/failure, or should it throw an exception?
-	The interface ILevel is inside the namespace Sprint0.ILevel, which is redundant. You could rename the namespace to Sprint0.Level.
+	The interface ILevel is inside the namespace MainGame.ILevel, which is redundant. You could rename the namespace to MainGame.Level.
 
 	Hypothetical Change:
 	If we wanted to add level transitions with fade-in/fade-out effects, the ILevel interface would need to support animation transitions.

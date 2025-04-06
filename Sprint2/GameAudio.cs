@@ -9,10 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Sprint0.Commands;
+using MainGame.Commands;
 
 
-namespace Sprint0
+namespace MainGame
 {
     public class GameAudio
     {

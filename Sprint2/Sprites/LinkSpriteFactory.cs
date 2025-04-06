@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 
-namespace Sprint0.Sprites
+namespace MainGame.Sprites
 {
     public class LinkSpriteFactory
     {

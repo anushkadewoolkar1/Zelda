@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using Zelda.Enums;
-using Sprint0.States;
+using MainGame.States;
 
-namespace Sprint0.CollisionHandling
+namespace MainGame.CollisionHandling
 {
     // Collision Handler for Link and Item collisions.
     public class LinkItemCollisionHandler : ICollisionHandler

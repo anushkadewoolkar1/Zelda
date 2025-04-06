@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Collision;
-using Sprint0.CollisionHandling;
-using Sprint0.Sprites;
-using Sprint0.States;
+using MainGame.Collision;
+using MainGame.CollisionHandling;
+using MainGame.Sprites;
+using MainGame.States;
 using Zelda.Enums;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.CollisionHandling
+namespace MainGame.CollisionHandling
 {
     // Collision Handler for Enemy-Link projectiles
     public class EnemyLinkAttackCollisionHandler : ICollisionHandler

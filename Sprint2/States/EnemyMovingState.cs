@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Sprites;
+using MainGame.Sprites;
 using Zelda.Enums;
 
-namespace Sprint0.States
+namespace MainGame.States
 {
     public class EnemyMovingState : IEnemyState
     {
