@@ -270,13 +270,14 @@ public class Link : IGameObject
         {
             var itemType = CurrentItem[chooseItem];
             itemManager.UseItem(itemType, currentDirection);
-
+            /*
             if (itemType == ItemType.Arrow || itemType == ItemType.Bomb)
             {
                 CurrentItem.RemoveAt(chooseItem);
                 if (chooseItem >= CurrentItem.Count)
                     chooseItem = 0;
             }
+            */
         }
     }
     public void CycleInventory()

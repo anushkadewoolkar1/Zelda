@@ -20,6 +20,7 @@ namespace ZeldaGame.HUD
 
         private Link _link;
 
+
         public HUD(ContentManager content, Link link)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
@@ -89,7 +90,7 @@ namespace ZeldaGame.HUD
                     Color.White
                 );
             }
-            
+
 
             for (int i = 0; i <= 2; i++)
             {
@@ -115,6 +116,58 @@ namespace ZeldaGame.HUD
                     );
                 }
             }
+
+            if (_link.CurrentItem.Count > 0)
+            {
+                switch (_link.CurrentItem[_link.chooseItem])
+                {
+                    case ItemType.Arrow:
+
+                        scale = 2.3f;
+                        Rectangle arrowSource = new Rectangle(617, 138, 5, 13);
+                        int arrowWidth = (int)(arrowSource.Width * scale);
+                        int arrowHeight = (int)(arrowSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(234, 393, arrowWidth, arrowHeight),
+                            arrowSource,
+                            Color.White
+                         );
+                        break;
+
+                    case ItemType.Bomb:
+
+                        scale = 2.2f;
+                        Rectangle bombSource = new Rectangle(604, 138, 8, 14);
+                        int bombWidth = (int)(bombSource.Width * scale);
+                        int bombHeight = (int)(bombSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(231, 393, bombWidth, bombHeight),
+                            bombSource,
+                            Color.White
+                        );
+                        break;
+
+                    case ItemType.Boomerang:
+
+                        scale = 2.4f;
+                        Rectangle boomerangSource = new Rectangle(585, 138, 7, 14);
+                        int boomerangWidth = (int)(boomerangSource.Width * scale);
+                        int boomerangHeight = (int)(boomerangSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(231, 390, boomerangWidth, boomerangHeight),
+                            boomerangSource,
+                            Color.White
+                        );
+                        break;
+                }
+            }
+            
         }
     }
 }

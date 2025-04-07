@@ -100,7 +100,8 @@ namespace MainGame.Controllers
 
                 { Keys.R, UserInputs.ResetLevel },
 
-                 { Keys.Tab, UserInputs.CycleItem }
+                { Keys.Tab, UserInputs.CycleItem }
+
             };
         }
     }

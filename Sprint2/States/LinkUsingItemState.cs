@@ -18,7 +18,15 @@ public class LinkUsingItemState : ILinkState
     {
         this.link = link;
         this.currentDirection = direction;
-        this.item = item;
+        if (link.CurrentItem.Count != 0)
+        {
+            this.item = link.CurrentItem[link.chooseItem];
+        }
+        else
+        {
+            this.item = item;
+        }
+        
         //useItemDuration = 0.5f; // Using an item lasts for half a second.
     }
 

@@ -191,6 +191,21 @@ namespace Zelda.Inventory
                     Color.White
                 );
             }
+
+            if (link.CurrentItem.Contains(ItemType.Boomerang))
+            {
+                scale = 2.5f;
+                Rectangle boomerangSource = new Rectangle(585, 138, 7, 14);
+                int bombWidth = (int)(boomerangSource.Width * scale);
+                int bombHeight = (int)(boomerangSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(360, 79, bombWidth, bombHeight),
+                    boomerangSource,
+                    Color.White
+                );
+            }
         }
 
     }
