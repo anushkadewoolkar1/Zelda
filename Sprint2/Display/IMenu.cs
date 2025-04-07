@@ -15,6 +15,13 @@ namespace MainGame.Display
     // Interface for menus, extending the behavior of a display (PP):
     public abstract class IMenu : IDisplay
     {
+        private Texture2D background;
+        private Texture2D cursor;
+        protected int cursorIndex = 0;
+        protected Vector2[] positionList;
+        protected Dictionary<UserInputs, ICommand>[] cursorIndexToCommandList;
+        protected int optionCount;
+        private SpriteFont font;
         public readonly GameState identity;
 
         // Called once per frame to update sprites
@@ -23,7 +30,18 @@ namespace MainGame.Display
         // Draws sprites on the screen
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        // Executes a state modification based on command definition:
-        public abstract void LoadCommand(ICommand command);
+        public abstract void PopulateCursorIndexToCommandList();
+
+        public abstract void PopulateCursorIndexToPositionList();
+
+        public ICommand LoadCommand(UserInputs input)
+        {
+            return cursorIndexToCommandList[cursorIndex][input];
+        }
+
+        public void changeCursorIndex(int deltaIndex)
+        {
+            cursorIndex = (cursorIndex + deltaIndex) % (optionCount);
+        }
     }
 }
