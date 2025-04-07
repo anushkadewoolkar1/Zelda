@@ -16,7 +16,7 @@ LoadRoomBlock(1;5),,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,Invisible
 ,,,,,,,,,,,,,LoadRoomBlock(2;5)
 ,Item.Triforce,Item.Key,,,,,,,,,,,
 ,Item.Map,Item.Compass,,,,,,,,,,,
-,Item.Bomb,Item.Arrow,,,,,,,,,,,
+,Item.Bomb,Item.Arrow,Item.Boomerang,,,,,,,,,,
 ,,,,,,,,,,,,,
 3,5,,,,,,,,,,,,
 ,,,,,,,,,,,,,

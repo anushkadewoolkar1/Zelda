@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MainGame.CollisionHandling;
 using Zelda.Enums;
@@ -17,12 +10,12 @@ namespace MainGame.Sprites
 
         private Texture2D _texture;
 
-        private Rectangle sourceRectangle;
+        public Rectangle sourceRectangle { get; set; }
         private Vector2 destinationOrigin;
-        private double[] deltaPosition;
+        public double[] deltaPosition { get; set; }
 
-        private float rotation;
-        private int directionProjectile;
+        public float rotation { get; set; }
+        public int directionProjectile { get; set; }
         private bool isBoomerang;
         private bool isBomb;
         private bool isSwordBeam;
@@ -31,43 +24,22 @@ namespace MainGame.Sprites
         private Vector2 position;
         private ItemType currentProjectile;
 
-        private int boomerangChangeDirection;
-        private int timer;
-
         public bool destroy { get; set; }
 
         private const int PROJECTILE_SCALE = 2;
-        private const int BASE_OFFSET_Y = 0;
-        private const int BASE_INFLATE_Y = 0;
-        private const int LGBOMB_OFFSET_X = 17;
-        private const int SMBOMB_OFFSET_X = 13;
-        private const int SMBOMB_INFLATE_X = 4;
-        //private const int UP = 0;
-        //private const int LEFT = 1;
-        //private const int DOWN = 2;
-        //private const int RIGHT = 3;
         private const int X_INDEX = 0;
         private const int Y_INDEX = 1;
         private const int WIDTH_INDEX = 2;
         private const int HEIGHT_INDEX = 3;
-        private const int ABS_BMRNG_VEL = 2;
-        private const int BOMB_BLOW_BEGIN = 20;
-        private const int BOMB_BLOW_STAGES = 5;
-        //private const int BOMB_BLOW_ALMOST = 20;
-        //private const int BOMB_BLOW_START = 25;
-        //private const int BOMB_BLOW_MIDDLE = 30;
-        private const int BOMB_BLOW_FINISH = 35;
-        private const int BMRNG_REVERSE_TIME = 30;
-        private const int BMRNG_LIFESPAN = 60;
-        private const int ITEM_LIFESPAN = 70;
         private const int PROJECTILE_SIZE = 16;
         private const int OOB_COORD = 200;
-        private const double ABS_SLOW_BMRNG_VEL = 1.75;
         private const int SKINNY_PROJECTILE_YCOORD = 185;
         private const int ARROW_XCOORD = 30;
         private const int BOMB_XCOORD = 129;
         private const int SWORDBEAM_YCOORD = 154;
 
+        private ProjectileClient projectileClient;
+        private ProjectileDecorator projectileDecorator;
 
         public ProjectileSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int direction)
         {
@@ -77,7 +49,7 @@ namespace MainGame.Sprites
             isBomb = false;
             isBoomerang = false;
             isSwordBeam = false;
-            
+
             // Rotates projectile depending on direction using mathhelper
             rotation = -direction * (MathHelper.Pi / 2);
 
@@ -89,21 +61,21 @@ namespace MainGame.Sprites
             // Hold the change in position after constructor call for ProjectileSprite
             deltaPosition = [0, 0];
 
-
             sourceRectangle = new Rectangle(sourceRectangleDimensions[X_INDEX], sourceRectangleDimensions[Y_INDEX],
                 sourceRectangleDimensions[WIDTH_INDEX], sourceRectangleDimensions[HEIGHT_INDEX]);
 
-            boomerangChangeDirection = 0;
-
             velocity = new Vector2(0, 0);
 
+            //Used for handling damaging enemy
             if (isBomb)
             {
                 currentProjectile = ItemType.Bomb;
-            } else if (isBoomerang)
+            }
+            else if (isBoomerang)
             {
                 currentProjectile = ItemType.Boomerang;
-            } else
+            }
+            else
             {
                 currentProjectile = ItemType.Arrow;
             }
@@ -122,124 +94,35 @@ namespace MainGame.Sprites
             spriteBatch.Draw(_texture, new Vector2((int)(_position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(_position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE)),
                 sourceRectangle, Color.White, rotation, destinationOrigin, PROJECTILE_SCALE, SpriteEffects.None, 0f);
 
+            //Keeps track of link's previous position
             position = _position;
 
+            projectileClient.Draw(spriteBatch, position);
 
-            if (isBomb)
-            {
-                if (timer >= BOMB_BLOW_BEGIN && timer % BOMB_BLOW_STAGES == 0)
-                {
-                    if (timer == BOMB_BLOW_BEGIN)
-                    {
-                        sourceRectangle.Offset(SMBOMB_OFFSET_X, BASE_OFFSET_Y);
-                        sourceRectangle.Inflate(SMBOMB_INFLATE_X, BASE_INFLATE_Y);
-                    } else if (timer == BOMB_BLOW_FINISH)
-                    {
-                        this.Destroy();
-                    } else
-                    {
-                        sourceRectangle.Offset(LGBOMB_OFFSET_X, BASE_OFFSET_Y);
-                    }
-                }
-            }
+            return;
         }
 
         public void Update(GameTime gameTime, Link link)
         {
 
-            if (destroy)
+            //Returns when destroyed but let's link know when swordbeam is inactive
+            if (destroy && isSwordBeam!)
             {
-                return;
-            }
-
-            //Handles projectile movement and comeback
-            if (directionProjectile % 2 == 0 && directionProjectile >= 0)
-            {
-                if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
+                if (!isSwordBeam)
                 {
-                    deltaPosition[Y_INDEX] -= (ABS_BMRNG_VEL * (directionProjectile - 1));
-                    velocity = new Vector2(0, -(directionProjectile - 1) * ABS_BMRNG_VEL * PROJECTILE_SCALE);
-
+                    return;
                 }
                 else
-                {
-                    deltaPosition[Y_INDEX] += (ABS_BMRNG_VEL * (directionProjectile - 1));
-                    velocity = new Vector2(0, (directionProjectile - 1) * ABS_BMRNG_VEL * PROJECTILE_SCALE);
-                }
-            } else if (directionProjectile >= 0)
-            {
-                if (boomerangChangeDirection >= BMRNG_REVERSE_TIME)
-                {
-                    deltaPosition[X_INDEX] -= (ABS_BMRNG_VEL * (directionProjectile - 2));
-                    velocity = new Vector2(-(directionProjectile - 2) * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
-                }
-                else
-                {
-                    deltaPosition[X_INDEX] += (ABS_BMRNG_VEL * (directionProjectile - 2));
-                    velocity = new Vector2((directionProjectile - 2) * ABS_BMRNG_VEL * PROJECTILE_SCALE, 0);
-                }
-            }
-
-            //Handles boomerang tracking
-            if (isBoomerang)
-            {
-                if (directionProjectile % 2 == 1)
-                {
-                    if ((int)(linkPosition.Y - link.Position.Y) > 0)
-                    {
-                        deltaPosition[Y_INDEX] -= ABS_SLOW_BMRNG_VEL;
-                    }
-                    else if ((int)(linkPosition.Y - link.Position.Y) < 0)
-                    {
-                        deltaPosition[Y_INDEX] += ABS_SLOW_BMRNG_VEL;
-                    }
-                    if ((((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) <= 5 &&
-                        ((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) >= -5)
-                        && boomerangChangeDirection >= BMRNG_REVERSE_TIME) {
-                        this.Destroy();
-                    }
-                }
-                else
-                {
-                    if ((int)(linkPosition.X - link.Position.X) > 0)
-                    {
-                        deltaPosition[X_INDEX] -= ABS_SLOW_BMRNG_VEL;
-                    }
-                    else if ((int)(linkPosition.X - link.Position.X) < 0)
-                    {
-                        deltaPosition[X_INDEX] += ABS_SLOW_BMRNG_VEL;
-                    }
-                    if ((((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) <= 5 &&
-                        ((int)link.Position.X - (int)position.X - deltaPosition[X_INDEX] * 2) >= -5)
-                        && boomerangChangeDirection >= BMRNG_REVERSE_TIME)
-                    {
-                        this.Destroy();
-                    }
-                }
-
-            }
-
-            linkPosition = link.Position;
-
-            timer++;
-
-            // Rotates specifically if ProjectileSprite is boomerang and has the boomerang change it's direction
-            if (isBoomerang)
-            {
-                rotation += (MathHelper.Pi / 8);
-                boomerangChangeDirection++;
-            }
-
-
-            if ((timer >= BMRNG_LIFESPAN && isBoomerang) || timer >= ITEM_LIFESPAN)
-            {
-                sourceRectangle = new Rectangle(OOB_COORD, OOB_COORD, 0, 0);
-                destroy = true;
-                if (isSwordBeam)
                 {
                     link.swordBeam = false;
+                    isSwordBeam = false;
                 }
             }
+
+            projectileClient.Update(gameTime, link);
+
+
+            return;
         }
 
         public void Update(GameTime gameTime)
@@ -254,7 +137,7 @@ namespace MainGame.Sprites
 
         private int[] AdjustProjectile(int xCoordinate, int yCoordinate, int direction)
         {
-            int[] sourceRectangleDimensions = {xCoordinate, yCoordinate, PROJECTILE_SIZE, PROJECTILE_SIZE};
+            int[] sourceRectangleDimensions = { xCoordinate, yCoordinate, PROJECTILE_SIZE, PROJECTILE_SIZE };
 
 
             //Checks if projectile is smaller than a 16x16 rectangle and adjusts accordingly
@@ -263,17 +146,34 @@ namespace MainGame.Sprites
                 sourceRectangleDimensions[2] = 8;
                 if (xCoordinate == BOMB_XCOORD)
                 {
+                    // Projectile Decorator for bomb
+                    projectileDecorator = new ProjectileDecoratorExplode(new ProjectileConcrete(), this);
                     isBomb = true;
                 }
-            } else if (xCoordinate > ARROW_XCOORD && xCoordinate < BOMB_XCOORD)
-            {
-                isBoomerang = true;
-                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 8];
-            } else if (yCoordinate == SWORDBEAM_YCOORD)
-            {
-                isSwordBeam = true;
-                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 16];
+                else
+                {
+                    // ProjectileDecorator for arrow
+                    projectileDecorator = new ProjectileDecoratorLinear(new ProjectileConcrete(), this);
+                }
             }
+            else if (xCoordinate > ARROW_XCOORD && xCoordinate < BOMB_XCOORD)
+            {
+                // ProjectileDecorator for boomerang
+                projectileDecorator = new ProjectileDecoratorRotate(new ProjectileDecoratorTrack(new ProjectileDecoratorReturn(
+                    new ProjectileDecoratorLinear(new ProjectileConcrete(), this), this), this), this);
+                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 8];
+                isBoomerang = true;
+            }
+            else if (yCoordinate == SWORDBEAM_YCOORD)
+            {
+                //ProjectileDecorator for sword beam
+                projectileDecorator = new ProjectileDecoratorLinear(new ProjectileConcrete(), this);
+                sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 16];
+                isSwordBeam = true;
+            }
+
+            // Sets up client for Draw and Update
+            projectileClient = new ProjectileClient(new ProjectileDecoratorTimeOut(projectileDecorator, this));
 
             return sourceRectangleDimensions;
         }
@@ -285,7 +185,7 @@ namespace MainGame.Sprites
 
         public void Destroy()
         {
-            sourceRectangle = new Rectangle((int)deltaPosition[X_INDEX], (int)deltaPosition[Y_INDEX], 0, 0);
+            sourceRectangle = new Rectangle(OOB_COORD, OOB_COORD, 0, 0);
             destroy = true;
         }
 
@@ -295,8 +195,13 @@ namespace MainGame.Sprites
             {
                 return velocity;
             }
+
+            set
+            {
+                velocity = value;
+            }
         }
-        
+
         public Rectangle BoundingBox
         {
             get
@@ -306,4 +211,5 @@ namespace MainGame.Sprites
             }
         }
     }
+
 }
