@@ -69,7 +69,6 @@ namespace MainGame.Sprites
                     return sprite;
                 case EnemyType.Goriya:
                     ySize = 16;
-                    // will need to change this to UpdateSprite so that they still animate
                     switch(direction)
                     {
                         case Direction.Left:
@@ -152,14 +151,28 @@ namespace MainGame.Sprites
         }
 
         // if true, then we are wanting an x coordinate. if false, we want a y coordinate
-        public int GetEnemySize(Boolean x_coordinate)
+        public int GetEnemySize(Boolean x_coordinate, EnemyType enemyType)
         {
             if (x_coordinate)
             {
-                return xSize;
+                switch(enemyType)
+                {
+                    case EnemyType.Gel:
+                        return 8;
+                    case EnemyType.Aquamentus:
+                        return 27;
+                    default:
+                        return 16;
+                }
             } else
             {
-                return ySize;
+                if(enemyType == EnemyType.Gel || enemyType == EnemyType.Goriya || enemyType == EnemyType.Zol)
+                {
+                    return 16;
+                } else
+                {
+                    return 32;
+                }
             }
         }
 

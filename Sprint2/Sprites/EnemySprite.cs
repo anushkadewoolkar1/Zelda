@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MainGame.Controllers;
 using Zelda.Enums;
+using MainGame.States;
 
 namespace MainGame.Sprites
 {
@@ -84,6 +85,11 @@ namespace MainGame.Sprites
         public void Update(GameTime gameTime, Link link)
         {
             //no-op
+        }
+
+        public void Update(GameTime gameTime, Enemy enemy)
+        {
+            // no-op
         }
     }
 }

@@ -182,7 +182,7 @@ namespace MainGame.Display
             //Goes through each list updating each object
             for (int i = 0; i < enemiesList.Count; i++)
             {
-                enemiesList[i].Update(gameTime);
+                enemiesList[i].Update(gameTime, gameObjects);
             }
             for (int i = 0; i < blocksList.Count; i++)
             {
@@ -311,7 +311,7 @@ namespace MainGame.Display
         private void CreateEnemy(int currentPosition, int startOfRoom)
         {
             EnemyType enemyType;
-            enemiesList.Add(new Enemy());
+            enemiesList.Add(new Enemy(gameObjects));
             Enum.TryParse(Objects[currentPosition].Substring(ENEMY_START_INDEX).ToString(), out enemyType);
             enemiesList[enemiesList.Count - 1].CreateEnemy(enemyType,
                 new Vector2(((currentPosition - startOfRoom) % BLOCKS_PER_ROOM_X) - SHIFT_INTO_RANGE,

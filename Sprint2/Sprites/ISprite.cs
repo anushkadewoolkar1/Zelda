@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MainGame.States;
 
 namespace MainGame.Sprites
 {
@@ -13,9 +14,9 @@ namespace MainGame.Sprites
     {
         // Called once per frame to update sprites
         void Update(GameTime gameTime);
-        
-        //Only for Boomerang
 
+        //Only for Boomerang
+        void Update(GameTime gameTime, Enemy enemy);
         void Update(GameTime gameTime, Link link);
 
         // Draws sprite on the screen

@@ -53,7 +53,7 @@ namespace MainGame.States
         private const double spriteUpdateInterval = 1000.0 / 5.0; 
 
 
-        public Enemy()
+        public Enemy(List<IGameObject> _gameObjects)
         {
             spriteFactory = EnemySpriteFactory.Instance;
 
@@ -67,6 +67,7 @@ namespace MainGame.States
             enemyState.Load();
 
             CurrentItem = new List<ItemType>();
+            gameObjects = _gameObjects;
             projectileManager = new EnemyProjectileManager(this, gameObjects);
             itemType = ItemType.Boomerang;
             itemSpawn = false;
@@ -197,10 +198,20 @@ namespace MainGame.States
 
         public void SpawnProjectile()
         {
-            if (chooseItem < CurrentItem.Count)
+            //if (CurrentItem.Count > 0)
+            //{
+            //    var itemType = CurrentItem[chooseItem];
+            //    projectileManager.SpawnProjectile(itemType, Direction);
+            //}
+
+            if(enemyType == EnemyType.Goriya)
             {
-                var itemType = CurrentItem[chooseItem];
-                projectileManager.SpawnProjectile(itemType, Direction);
+                CurrentItem.Add(ItemType.Boomerang);
+                projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
+            } else if (enemyType == EnemyType.Aquamentus)
+            {
+                CurrentItem.Add(ItemType.Fireball);
+                projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
             }
         }
 
@@ -229,10 +240,10 @@ namespace MainGame.States
         {
             if (x_coordinate)
             {
-                return spriteFactory.GetEnemySize(true);
+                return spriteFactory.GetEnemySize(true, enemyType);
             } else
             {
-                return spriteFactory.GetEnemySize(false);
+                return spriteFactory.GetEnemySize(false, enemyType);
             }
         }
 
@@ -240,7 +251,7 @@ namespace MainGame.States
         {
             get 
             {
-                return new Rectangle((int)position.X, (int)position.Y, spriteFactory.GetEnemySize(true), spriteFactory.GetEnemySize(false));
+                return new Rectangle((int)position.X, (int)position.Y, spriteFactory.GetEnemySize(true, enemyType), spriteFactory.GetEnemySize(false, enemyType));
             }
         }
 
@@ -249,9 +260,9 @@ namespace MainGame.States
             get { return velocity; }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<IGameObject> _gameObjects)
         {
-
+            gameObjects = _gameObjects;
             enemyState.Update(gameTime);
             projectileManager.Update(gameTime);
             spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -268,10 +279,10 @@ namespace MainGame.States
                 switch (itemType)
                 {
                     case ItemType.Boomerang:
-                        boomerangSprite.Update(gameTime);
+                        boomerangSprite.Update(gameTime, this);
                         break;
                     case ItemType.Fireball:
-                        fireballSprite.Update(gameTime);
+                        fireballSprite.Update(gameTime, this);
                         break;
                     default:
                         break;
@@ -284,6 +295,11 @@ namespace MainGame.States
                 EnemyHealth = ZERO;
                 Destroy();
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            // no-op
         }
 
         public void ChangeState(IEnemyState newState)
