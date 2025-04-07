@@ -270,12 +270,13 @@ namespace MainGame.Commands
             {
                 game.GameState = Zelda.Enums.GameState.Paused;
                 game.isSettingsOpen = !game.isSettingsOpen;
-            } else if (game.GameState == Zelda.Enums.GameState.Paused)
+            }
+            else if (game.GameState == Zelda.Enums.GameState.Paused)
             {
                 game.GameState = Zelda.Enums.GameState.Playing;
                 game.isSettingsOpen = !game.isSettingsOpen;
             }
-            
+
         }
     }
 
@@ -333,38 +334,5 @@ namespace MainGame.Commands
         }
     }
 
-    public class ChangeCursorIndex : ICommand
-    {
-        private IMenu menu;
-        private int deltaIndex;
-
-        public ChangeCursorIndex(IMenu targetMenu, int delta)
-        {
-            deltaIndex = delta;
-            menu = targetMenu;
-        }
-
-        public void Execute()
-        {
-            menu.changeCursorIndex(deltaIndex);
-        }
-    }
-
-    public class SelectMenuOption : ICommand
-    {
-        private IMenu menu;
-        
-        public SelectMenuOption(IMenu menu)
-        {
-            this.menu = menu;
-        }
-
-        public void Execute()
-        {
-            menu.LoadCommand(UserInputs.SelectOption);
-        }
-    }
-
 }
-
 

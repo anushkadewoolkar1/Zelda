@@ -16,8 +16,7 @@ namespace Zelda.Enums
         LowerVolume,
         RaiseVolume,
         ToggleFullscreen,
-        ResetLevel,
-        SelectOption
+        ResetLevel
     }
 
     public enum Direction

@@ -74,7 +74,6 @@ namespace MainGame
 
         public IDisplay currDisplay;
         public Level levelMap;
-        public IMenu baseMenu;
 
 
         private StartMenu _startMenu;
@@ -172,7 +171,8 @@ namespace MainGame
             if (!gamePadConnected)
             {
                 _keyboardController.Update();
-            } else
+            }
+            else
             {
                 _gamePadController.Update();
             }
@@ -271,11 +271,8 @@ namespace MainGame
             ICommand lowerVolume = new MasterVolumeDown(_audio);
             ICommand raiseVolume = new MasterVolumeUp(_audio);
             ICommand resetLevel = new ResetCommand(this);
-            ICommand incCursorIndex = new ChangeCursorIndex(baseMenu, 1);
-            ICommand decCursorIndex = new ChangeCursorIndex(baseMenu, -1);
-            ICommand selectMenuOption = new SelectMenuOption(ICommand command);
 
-            Dictionary<UserInputs, ICommand> levelCommandMap = new Dictionary<UserInputs, ICommand> 
+            Dictionary<UserInputs, ICommand> levelCommandMap = new Dictionary<UserInputs, ICommand>
             {
                 { UserInputs.NewGame, leaveStartMenu },
 
@@ -349,7 +346,7 @@ namespace MainGame
             _hud = new HUD(Content, linkSprite);
             _settings = new SettingsMenu(Content, GraphicsDevice);
 
-            
+
             levelMap.CollisionManager(collisionManager);
             levelMap.Game(this);
             //gameObjects.Add(_block);
