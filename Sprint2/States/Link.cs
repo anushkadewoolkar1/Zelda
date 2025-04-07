@@ -260,7 +260,21 @@ public class Link : IGameObject
         {
             var itemType = CurrentItem[chooseItem];
             itemManager.UseItem(itemType, currentDirection);
+
+            if (itemType == ItemType.Arrow || itemType == ItemType.Bomb)
+            {
+                CurrentItem.RemoveAt(chooseItem);
+                if (chooseItem >= CurrentItem.Count)
+                    chooseItem = 0;
+            }
         }
+    }
+    public void CycleInventory()
+    {
+        if (CurrentItem.Count == 0)
+            return;
+        chooseItem = (chooseItem + 1) % CurrentItem.Count;
+        System.Diagnostics.Debug.WriteLine("Selected inventory index: " + chooseItem);
     }
 
     public void TakeDamage(int damage)
@@ -295,13 +309,11 @@ public class Link : IGameObject
     public void HandleDeathStart()
     {
         System.Diagnostics.Debug.WriteLine("Link is dying...");
-        // logic here to disable player input or play a sound.
     }
 
     public void HandleDeathCompletion()
     {
         System.Diagnostics.Debug.WriteLine("Link has died. Game Over.");
-        // Trigger game over or level reset logic here.
     }
 
     public void AddGameObject(IGameObject gameObject)

@@ -86,7 +86,7 @@ namespace Zelda.Inventory
 
             // Map/Compass and minimap
             scale = 1.8f;
-            Rectangle dungeonSource = new Rectangle(260, 114, 252, 84);
+            Rectangle dungeonSource = new Rectangle(260, 114, 83, 84);
             int dungeonWidth = (int)(dungeonSource.Width * scale);
             int dungeonHeight = (int)(dungeonSource.Height * scale);
 
@@ -113,9 +113,11 @@ namespace Zelda.Inventory
                 );
             }
 
-            // draw map if pick up
+            // draw map and minimap if pick up
             if (link.CurrentItem.Contains(ItemType.Map))
             {
+
+                // map icon
                 scale = 2.4f;
                 Rectangle mapSource = new Rectangle(602, 157, 6, 14);
                 int mapWidth = (int)(mapSource.Width * scale);
@@ -125,6 +127,34 @@ namespace Zelda.Inventory
                     _backgroundTexture,
                     new Rectangle(105, 195, mapWidth, mapHeight),
                     mapSource,
+                    Color.White
+                );
+
+                // map in the middle
+                scale = 1.8f;
+                Rectangle middleMiniMapSource = new Rectangle(345, 114, 150, 84);
+                int middleMiniMapWidth = (int)(middleMiniMapSource.Width * scale);
+                int middleMiniMapHeight = (int)(middleMiniMapSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(200, 180, middleMiniMapWidth, middleMiniMapHeight),
+                    middleMiniMapSource,
+                    Color.White
+                );
+            }
+            // otherwise, draw the blank map
+            else
+            {
+                scale = 1.8f;
+                Rectangle emptyMapSource = new Rectangle(348, 214, 125, 80);
+                int emptyMapWidth = (int)(emptyMapSource.Width * scale);
+                int emptyMapHeight = (int)(emptyMapSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(200, 180, emptyMapWidth, emptyMapHeight),
+                    emptyMapSource,
                     Color.White
                 );
             }

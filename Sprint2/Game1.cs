@@ -265,6 +265,7 @@ namespace MainGame
             ICommand leaveStartMenu = new LeaveStartMenu(this, _audio);
             ICommand toggleMuteBGM = new ToggleMuteMusic(_audio);
             ICommand unmuteBGM = new UnmuteMusic(_audio);
+            ICommand cycleItem = new LinkCycleItem(linkSprite);
             ICommand openInventory = new OpenInventory(this);
             ICommand openSettings = new OpenCloseSettings(this);
             ICommand toggleFullScreen = new ToggleFullScreen(this);
@@ -302,7 +303,9 @@ namespace MainGame
 
                 { UserInputs.ToggleInventory, openInventory },
 
-                { UserInputs.ResetLevel, resetLevel }
+                { UserInputs.ResetLevel, resetLevel },
+
+                { UserInputs.CycleItem, cycleItem }
 
             };
 

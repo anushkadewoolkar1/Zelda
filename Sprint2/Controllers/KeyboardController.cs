@@ -98,9 +98,9 @@ namespace MainGame.Controllers
 
                 { Keys.OemPlus, UserInputs.RaiseVolume },
 
-                { Keys.OemMinus, UserInputs.LowerVolume },
+                { Keys.R, UserInputs.ResetLevel },
 
-                { Keys.R, UserInputs.ResetLevel }
+                 { Keys.Tab, UserInputs.CycleItem }
             };
         }
     }

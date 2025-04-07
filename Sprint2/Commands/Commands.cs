@@ -241,6 +241,21 @@ namespace MainGame.Commands
         }
     }
 
+    public class LinkCycleItem : ICommand
+    {
+        private Link _link;
+
+        public LinkCycleItem(Link link)
+        {
+            _link = link;
+        }
+
+        public void Execute()
+        {
+            _link.CycleInventory();
+        }
+    }
+
     public class OpenInventory : ICommand
     {
         private Game1 game;

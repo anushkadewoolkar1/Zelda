@@ -59,6 +59,38 @@ namespace ZeldaGame.HUD
             int emptyHeartWidth = (int)(emptyHeartSource.Width * scale);
             int emptyHeartHeight = (int)(emptyHeartSource.Height * scale);
 
+            // full minimap bottom left
+            if (_link.CurrentItem.Contains(ItemType.Map))
+            {
+                scale = 1.8f;
+                Rectangle bottomMiniMapSource = new Rectangle(584, 0, 62, 38);
+                int bottomMiniMapWidth = (int)(bottomMiniMapSource.Width * scale);
+                int bottomMiniMapHeight = (int)(bottomMiniMapSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(10, 360, bottomMiniMapWidth, bottomMiniMapHeight),
+                    bottomMiniMapSource,
+                    Color.White
+                );
+            }
+            // empty bottom left minimap
+            else
+            {
+                scale = 1.8f;
+                Rectangle bottomMiniMapSource = new Rectangle(754, 0, 70, 50);
+                int bottomMiniMapWidth = (int)(bottomMiniMapSource.Width * scale);
+                int bottomMiniMapHeight = (int)(bottomMiniMapSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(10, 360, bottomMiniMapWidth, bottomMiniMapHeight),
+                    bottomMiniMapSource,
+                    Color.White
+                );
+            }
+            
+
             for (int i = 0; i <= 2; i++)
             {
 
