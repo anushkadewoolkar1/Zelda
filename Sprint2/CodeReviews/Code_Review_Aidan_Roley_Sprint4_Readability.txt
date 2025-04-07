@@ -1,0 +1,20 @@
+Author: Roy Acapulco
+Date: 4/7/2025
+Sprint4
+HUD.cs
+Author of Code: Anushka Dewoolkar
+Time: 10 minutes
+
+Notes:
+All variables are necessary
+Constructor and UpdateGameState are small.
+Each spriteBatch.Draw has it's parameters laid out line by line.
+Rectangle names are well though out (except maybe bottomSource is kinda ambiguous).
+How heart's are drawn is clean and intuitive.
+
+
+Overall,
+Methods are short and variables names are self-explanatory.
+Use of constants would probably help make the code more illustrative of functionality.
+Code is well laid out and is easy to read line by line.
+Could also use deleting the unused imports.
