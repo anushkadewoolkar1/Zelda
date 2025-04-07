@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MainGame.Commands;
 using Zelda.Enums;
 using MainGame.Sprites;
@@ -28,34 +28,34 @@ namespace MainGame.Controllers
         public Dictionary<UserInputs, ICommand> GetLevelCommandMap()
         {
             return new Dictionary<UserInputs, ICommand>
-             {
-                 { UserInputs.NewGame, new LeaveStartMenu(_game, _audio) },
-                 { UserInputs.None, new ChangeLinkState(_link, new LinkIdleState(_link, _link.currentDirection)) },
-                 { UserInputs.AttackMelee, new ChangeLinkState(_link, new LinkAttackingState(_link, _link.currentDirection, SwordType.WoodenSword)) },
-                 { UserInputs.UseItem, new LinkUseItem(_link, ItemType.Arrow) },
-                 { UserInputs.MoveUp, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Up)) },
-                 { UserInputs.MoveDown, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Down)) },
-                 { UserInputs.MoveLeft, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Left)) },
-                 { UserInputs.MoveRight, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Right)) },
-                 { UserInputs.ToggleFullscreen, new ToggleFullScreen(_game) },
-                 { UserInputs.RaiseVolume, new MasterVolumeUp(_audio) },
-                 { UserInputs.LowerVolume, new MasterVolumeDown(_audio) },
-                 { UserInputs.ToggleMute, new ToggleMuteMusic(_audio) },
-                 { UserInputs.ToggleOptions, new OpenCloseSettings(_game) },
-                 { UserInputs.ToggleInventory, new OpenInventory(_game) },
-                 { UserInputs.ResetLevel, new ResetCommand(_game) },
-                 { UserInputs.CycleItem, new LinkCycleItem(_link) }
-             };
+            {
+                { UserInputs.NewGame, new LeaveStartMenu(_game, _audio) },
+                { UserInputs.None, new ChangeLinkState(_link, new LinkIdleState(_link, _link.currentDirection)) },
+                { UserInputs.AttackMelee, new ChangeLinkState(_link, new LinkAttackingState(_link, _link.currentDirection, SwordType.WoodenSword)) },
+                { UserInputs.UseItem, new LinkUseItem(_link, ItemType.Arrow) },
+                { UserInputs.MoveUp, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Up)) },
+                { UserInputs.MoveDown, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Down)) },
+                { UserInputs.MoveLeft, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Left)) },
+                { UserInputs.MoveRight, new ChangeLinkState(_link, new LinkWalkingState(_link, Direction.Right)) },
+                { UserInputs.ToggleFullscreen, new ToggleFullScreen(_game) },
+                { UserInputs.RaiseVolume, new MasterVolumeUp(_audio) },
+                { UserInputs.LowerVolume, new MasterVolumeDown(_audio) },
+                { UserInputs.ToggleMute, new ToggleMuteMusic(_audio) },
+                { UserInputs.ToggleOptions, new OpenCloseSettings(_game) },
+                { UserInputs.ToggleInventory, new OpenInventory(_game) },
+                { UserInputs.ResetLevel, new ResetCommand(_game) },
+                { UserInputs.CycleItem, new LinkCycleItem(_link) }
+            };
         }
 
         public Dictionary<UserInputs, ICommand> GetMenuCommandMap()
         {
             return new Dictionary<UserInputs, ICommand>
-             {
-                 { UserInputs.None, new ChangeLinkState(_link, new LinkIdleState(_link, _link.currentDirection)) },
-                 { UserInputs.ToggleOptions, new OpenCloseSettings(_game) },
-                 { UserInputs.ToggleInventory, new OpenInventory(_game) }
-             };
+            {
+                { UserInputs.None, new ChangeLinkState(_link, new LinkIdleState(_link, _link.currentDirection)) },
+                { UserInputs.ToggleOptions, new OpenCloseSettings(_game) },
+                { UserInputs.ToggleInventory, new OpenInventory(_game) }
+            };
         }
     }
 }
