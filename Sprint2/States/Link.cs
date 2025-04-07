@@ -273,8 +273,12 @@ public class Link : IGameObject
     {
         if (CurrentItem.Count == 0)
             return;
-        chooseItem = (chooseItem + 1) % CurrentItem.Count;
-        System.Diagnostics.Debug.WriteLine("Selected inventory index: " + chooseItem);
+        do
+        {
+            chooseItem = (chooseItem + 1) % CurrentItem.Count;
+            System.Diagnostics.Debug.WriteLine("Selected inventory index: " + chooseItem);
+        }
+        while (CurrentItem[chooseItem] != ItemType.Boomerang && CurrentItem[chooseItem] != ItemType.Arrow && CurrentItem[chooseItem] != ItemType.Bomb);
     }
 
     public void TakeDamage(int damage)
