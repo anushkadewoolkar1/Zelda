@@ -100,7 +100,10 @@ namespace MainGame
 
         public void EnemyHit()
         {
-            soundEffects[1].Play();
+            if (soundEffects[1] != null)
+            {
+                soundEffects[1].Play();
+            }
         }
 
         public void LinkHit()

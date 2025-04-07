@@ -47,6 +47,7 @@ public class Link : IGameObject
 
     // other fields for movement
     private Vector2 velocity;
+    private Vector2 lastNonZeroVelocity;
 
     private List<IGameObject> gameObjects;
     private LinkItemManager itemManager;
@@ -167,6 +168,7 @@ public class Link : IGameObject
 
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
         Position += direction * Speed * dt;
+        lastNonZeroVelocity = velocity;
         velocity = direction;
     }
 
@@ -181,7 +183,15 @@ public class Link : IGameObject
     {
         get { return velocity;  }
     }
+    public Vector2 NonZeroVelocity
+    {
+        get { return NonZeroVelocity; }
+    }
 
+    public void ResetVelocity()
+    {
+        velocity = Vector2.Zero;
+    }
     public void PerformAttack(Direction direction)
     {
         _audio.SwordSwing();

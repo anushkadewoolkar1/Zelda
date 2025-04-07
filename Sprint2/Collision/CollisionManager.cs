@@ -222,19 +222,62 @@ public class CollisionManager
         // If the intersection width is smaller than its height, assume a horizontal collision.
         if (intersection.Width < intersection.Height)
         {
-            // Use the velocity of objA to decide: if moving right, collision is on the right; else, left.
-            if (objA.Velocity.X < 0)
-                return CollisionSide.Right;
+
+            if (objA.Velocity.X != 0)
+            {
+                // Use the velocity of objA to decide: if moving right, collision is on the right; else, left.
+                if (objA.Velocity.X < 0)
+                    return CollisionSide.Right;
+                else
+                    return CollisionSide.Left;
+            }
             else
-                return CollisionSide.Left;
+            {
+                if (objB.Velocity.X < 0)
+                    return CollisionSide.Right;
+                else
+                    return CollisionSide.Left;
+            }
         }
+            
         else
         {
-            // Vertical collision: if moving down, collision is at the bottom; else, top.
-            if (objA.Velocity.Y < 0)
-                return CollisionSide.Bottom;
+
+            if (objA.Velocity.Y != 0)
+            {
+                // Vertical collision: if moving down, collision is at the bottom; else, top.
+                if (objA.Velocity.Y < 0)
+                    return CollisionSide.Bottom;
+                else
+                    return CollisionSide.Top;
+            }
             else
-                return CollisionSide.Top;
+            {
+                if (objB.Velocity.Y < 0)
+                    return CollisionSide.Bottom;
+                else if (objB.Velocity.Y != 0)
+                    return CollisionSide.Top;
+
+                else
+                {
+                    if (objA.Velocity.X != 0)
+                    {
+                        // Use the velocity of objA to decide: if moving right, collision is on the right; else, left.
+                        if (objA.Velocity.X < 0)
+                            return CollisionSide.Right;
+                        else
+                            return CollisionSide.Left;
+                    }
+                    else
+                    {
+                        if (objB.Velocity.X < 0)
+                            return CollisionSide.Right;
+                        else
+                            return CollisionSide.Left;
+                    }
+                }
+            }
+            
         }
     }
 
