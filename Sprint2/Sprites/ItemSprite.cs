@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
+using MainGame.States;
 
 namespace MainGame.Sprites
 {
@@ -106,6 +107,11 @@ namespace MainGame.Sprites
         public void Update(GameTime gameTime, Link link)
         {
             //no-op
+        }
+
+        public void Update(GameTime gameTime, Enemy enemy)
+        {
+            // no-op
         }
     }
 }

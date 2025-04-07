@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MainGame.CollisionHandling;
 using Zelda.Enums;
+using MainGame.States;
 
 namespace MainGame.Sprites
 {
@@ -209,6 +210,11 @@ namespace MainGame.Sprites
                 return new Rectangle((int)(position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE),
                     sourceRectangle.X, sourceRectangle.Y);
             }
+        }
+
+        public void Update(GameTime gameTime, Enemy enemy)
+        {
+            // no-op
         }
     }
 
