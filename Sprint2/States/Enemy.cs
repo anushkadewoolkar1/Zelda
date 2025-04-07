@@ -217,7 +217,10 @@ namespace MainGame.States
 
         public void TakeDamage(ItemType projectile)
         {
-            _audio.EnemyHit();
+            if (!CurrentItem.Contains(ItemType.Boomerang))
+            {
+                _audio.EnemyHit();
+            }
             
             switch (projectile)
             {
