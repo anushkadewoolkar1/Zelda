@@ -74,6 +74,7 @@ namespace MainGame
 
         public IDisplay currDisplay;
         public Level levelMap;
+        public IMenu baseMenu;
 
 
         private StartMenu _startMenu;
@@ -270,6 +271,9 @@ namespace MainGame
             ICommand lowerVolume = new MasterVolumeDown(_audio);
             ICommand raiseVolume = new MasterVolumeUp(_audio);
             ICommand resetLevel = new ResetCommand(this);
+            ICommand incCursorIndex = new ChangeCursorIndex(baseMenu, 1);
+            ICommand decCursorIndex = new ChangeCursorIndex(baseMenu, -1);
+            ICommand selectMenuOption = new SelectMenuOption(ICommand command);
 
             Dictionary<UserInputs, ICommand> levelCommandMap = new Dictionary<UserInputs, ICommand> 
             {

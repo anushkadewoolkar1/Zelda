@@ -333,6 +333,38 @@ namespace MainGame.Commands
         }
     }
 
+    public class ChangeCursorIndex : ICommand
+    {
+        private IMenu menu;
+        private int deltaIndex;
+
+        public ChangeCursorIndex(IMenu targetMenu, int delta)
+        {
+            deltaIndex = delta;
+            menu = targetMenu;
+        }
+
+        public void Execute()
+        {
+            menu.changeCursorIndex(deltaIndex);
+        }
+    }
+
+    public class SelectMenuOption : ICommand
+    {
+        private IMenu menu;
+        
+        public SelectMenuOption(IMenu menu)
+        {
+            this.menu = menu;
+        }
+
+        public void Execute()
+        {
+            menu.LoadCommand(UserInputs.SelectOption);
+        }
+    }
+
 }
 
 
