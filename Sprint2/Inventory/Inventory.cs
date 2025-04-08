@@ -8,35 +8,56 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MainGame.CollisionHandling;
 using Zelda.Enums;
+using MainGame.Display;
 
 namespace Zelda.Inventory
 {
     public class Inventory
     {
         private Texture2D _backgroundTexture;
-        private List<ItemType> pickedUpItems;
 
         private Texture2D pixel;
 
         private Link link;
-        private ItemType currentItem;
 
-        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link)
+        private Level _level;
+
+        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link, Level level)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
-            pickedUpItems = _link.CurrentItem;
             link = _link;
             pixel = new Texture2D(graphicsDevice, 1, 1);
             pixel.SetData(new[] { Color.White });
+            _level = level;
         }
 
-        public void OpenInventory()
+        private int[] currentRoomMap()
         {
-            if (link.chooseItem != null)
+            switch (_level.currentRoom[0], _level.currentRoom[1])
             {
-                currentItem = link.CurrentItem[link.chooseItem];
-            }
+                // SPAWN
+                case (1, 5): return new int[] { 307, 271 };
+                case (1, 3): return new int[] { 307, 242 };
+                case (1, 2): return new int[] { 307, 227 };
+                case (1, 0): return new int[] { 307, 197 };
 
+                case (3, 5): return new int[] { 336, 271 };
+                case (3, 3): return new int[] { 336, 242 };
+                case (3, 2): return new int[] { 336, 227 };
+
+                case (2, 5): return new int[] { 322, 271 };
+                case (2, 4): return new int[] { 322, 256 };
+                case (2, 3): return new int[] { 322, 242 };
+                case (2, 2): return new int[] { 322, 227 };
+                case (2, 1): return new int[] { 322, 212 };
+                case (2, 0): return new int[] { 322, 197 };
+
+                case (4, 2): return new int[] { 351, 227 };
+                case (4, 1): return new int[] { 351, 212 };
+
+                case (5, 1): return new int[] { 365, 212 };
+            }
+            return new int[] { 300, 300 };
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -203,6 +224,24 @@ namespace Zelda.Inventory
                     _backgroundTexture,
                     new Rectangle(360, 79, bombWidth, bombHeight),
                     boomerangSource,
+                    Color.White
+                );
+            }
+
+            if (link.CurrentItem.Contains(ItemType.Map))
+            {
+
+                int[] tempCoords = currentRoomMap();
+                scale = 1.0f;
+                // minimap link tracker in inventory
+                Rectangle pinkSource = new Rectangle(350, 70, 5, 5);
+                int pinkWidth = (int)(pinkSource.Width * scale);
+                int pinkHeight = (int)(pinkSource.Height * scale);
+
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    new Rectangle(tempCoords[0], tempCoords[1], pinkWidth, pinkHeight),
+                    pinkSource,
                     Color.White
                 );
             }

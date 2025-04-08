@@ -180,7 +180,7 @@ namespace MainGame
             _deathScreen = new DeathScreen(Content);
             _winScreen = new WinScreen(Content);
             _settings = new SettingsMenu(Content, GraphicsDevice);
-            _inventory = new Inventory(Content, GraphicsDevice, linkSprite);
+            _inventory = new Inventory(Content, GraphicsDevice, linkSprite, levelMap);
             _hud = new HUD(Content, linkSprite);
 
             SetupControllers();
