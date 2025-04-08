@@ -2,7 +2,7 @@ Author: Roy Acapulco
 Date: 4/7/2025
 Sprint4
 HUD.cs
-Author of Code: Anushka Dewoolkar
+Author of Code: Aidan Roley
 Time: 10 minutes
 
 Notes:
