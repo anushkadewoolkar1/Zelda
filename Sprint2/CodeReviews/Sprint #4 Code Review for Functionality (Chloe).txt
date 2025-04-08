@@ -1,0 +1,25 @@
+﻿Sprint #4 Code Review for Functionality:
+
+
+Code Reviewer: Paul Paciorek
+Code Reviewee: Chloe Fuller
+Date: 04-07-2025
+File: GameAudio.cs
+Time Taken: 20 minutes
+
+
+
+
+(+) Uses Singleton pattern to access new object instance, protects potential conflicts of object creation in different classes.
+
+
+(+) Encasing sound effects as individual methods of an audio class makes it easier to directly access and execute these methods.
+
+
+(-) There is a null check on the second sound effect, but none on the remainder of the sound effects.
+
+
+(-) If more sound effects or music tracks are needed, they will need to be hard encoded in the code file (not really that important for a game of this scale though)
+
+
+A suggestion I would have for the code would be to add null checks to all of the sound effects / music methods in order to ensure the program doesn’t crash if a sound effect file is null.
