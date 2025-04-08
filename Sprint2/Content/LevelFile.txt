@@ -164,7 +164,7 @@ LoadRoomBlock(3;2),,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,InvisibleBloc
 ,,,,,,,,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,
 ,,,,,,,,,,InvisibleBlock,InvisibleBlock,InvisibleBlock,
 ,,,,,,,,,,,InvisibleBlock,InvisibleBlock,
-,,,,,,,,,,Enemy.Aquamentus,,,LoadRoomBlock(5;1)
+,,,Enemy.Aquamentus,,,,,,,,,,LoadRoomBlock(5;1)
 ,,,,,,,,,,,InvisibleBlock,InvisibleBlock,
 ,,,,,,,,,,InvisibleBlock,InvisibleBlock,InvisibleBlock,
 ,,,,,,,,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,

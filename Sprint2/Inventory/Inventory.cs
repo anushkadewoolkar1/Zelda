@@ -35,7 +35,7 @@ namespace Zelda.Inventory
         {
             switch (_level.currentRoom[0], _level.currentRoom[1])
             {
-                // SPAWN
+               
                 case (1, 5): return new int[] { 307, 271 };
                 case (1, 3): return new int[] { 307, 242 };
                 case (1, 2): return new int[] { 307, 227 };
