@@ -1,0 +1,11 @@
+﻿TeamTingles
+Sprint #4 Reflection
+
+
+Overall, Sprint #4 was a good development period for our team. This sprint oversaw the advancement of many new systems, such as the Audio and Menu systems, as well as improved previously buggy components such as the Collision and Projectile systems. Overall, the team was able to work much more independently during this sprint, each working on their own component. This helped reduce code conflicts, as the files that were written did not to be interwoven with files that other members of the team were working on. With two weeks until the deadline of Sprint #5, the team has a good idea of which direction to head moving forward to successfully close out the project.
+
+
+The responsibilities of the Sprint were as follows: Aiden Roley helped develop the menu system, creating the current inventory menu as well as helping with numerous bug fixes within the code. Anushka Dewoolkar helped refactor redundancies in the code. Chloe Feeler created and fleshed out the audio component for the game, encoding the game’s sound effects and music. Kyle Dietrich worked to refactor some of the redundant code in the Collision component, as well as implement some of the different events of the game. Paul Paciorek helped develop the menu system framework. Finally, Roy Volker-Acapulco made numerous refactors, helping to rework components such as Collision, Level, and Sprites, and also helped develop the new Audio and Menu components.
+
+
+Some of the things that I believe the team can improve upon going into the final Sprint is increased communication between the team. When everyone is developing separate components, it isolates each member and reduces communication between team members, meaning that when the time comes to interweave these components together, it is much more challenging to understand others’ logic without talking to them in person. Another improvement that can be implemented for Sprint #5 is creating ReadMe files for each folder, which explains how the component works and how each class operates within the system. This would increase readability between code authors, and allow for much more efficient development and debugging. Overall, the team is looking at completing the project by the day of the final exam, and all members are excited to finish out the project strong.
