@@ -1,0 +1,12 @@
+Author: Kyle Dietrich
+Date: 4/7/2025
+Sprint: 5
+File name: CommandFactory.cs
+Author of the .cs file: Anushka
+Specific comments on code quality:
+	Pros: The class fullfills a single responsibility of mapping user inputs to command instances
+		  The use of dictionary creates cleare and concise mapping that is easy to read and extend
+		  Follows good practices and is well structered
+	Cons: Some unused dependecies
+		  Some inline comments could be useful for explaining commands and why they are used, but the names mostly do that already
+		  
