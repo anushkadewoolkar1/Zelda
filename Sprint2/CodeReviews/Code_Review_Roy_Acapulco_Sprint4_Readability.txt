@@ -1,0 +1,21 @@
+Author: Aidan Roley
+Date: 4/7/2025
+Sprint4
+ProjectileSprite.cs
+Author of Code: Roy Acapulco
+Time: 10 minutes
+
+- I like the consistent boolean variable naming conventions, it makes it clear when there is a flag in the code.
+
+- There are no unused imports or variables (unlike many other files in this project right now) which makes it less bloated.
+
+- It's good that so many variables are private so there's less to worry about other files modifying them when trying to debug something.
+
+- AdjustProjectile is a bit long, there are many if statements that could trivially be split up into multiple functions, making it more readable and concise.
+
+- While the flag names might be consistent, the naming conventions for the other variables are not quite as good. Ex: some private fields have a _ before them
+and otheres not at all. Make all private ones _ and others without the underscore.
+
+- Once again, too many hardcoded numbers, use const variables instead.
+
+
