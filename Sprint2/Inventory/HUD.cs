@@ -63,14 +63,14 @@ namespace ZeldaGame.HUD
             // full minimap bottom left
             if (_link.CurrentItem.Contains(ItemType.Map))
             {
-                scale = 1.8f;
+                scale = 2.0f;
                 Rectangle bottomMiniMapSource = new Rectangle(584, 0, 62, 38);
                 int bottomMiniMapWidth = (int)(bottomMiniMapSource.Width * scale);
                 int bottomMiniMapHeight = (int)(bottomMiniMapSource.Height * scale);
 
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(10, 360, bottomMiniMapWidth, bottomMiniMapHeight),
+                    new Rectangle(40, 370, bottomMiniMapWidth, bottomMiniMapHeight),
                     bottomMiniMapSource,
                     Color.White
                 );
@@ -78,14 +78,14 @@ namespace ZeldaGame.HUD
             // empty bottom left minimap
             else
             {
-                scale = 1.8f;
+                scale = 2.0f;
                 Rectangle bottomMiniMapSource = new Rectangle(754, 0, 70, 50);
                 int bottomMiniMapWidth = (int)(bottomMiniMapSource.Width * scale);
                 int bottomMiniMapHeight = (int)(bottomMiniMapSource.Height * scale);
 
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(10, 360, bottomMiniMapWidth, bottomMiniMapHeight),
+                    new Rectangle(40, 370, bottomMiniMapWidth, bottomMiniMapHeight),
                     bottomMiniMapSource,
                     Color.White
                 );
