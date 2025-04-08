@@ -176,7 +176,7 @@ LoadRoomBlock(3;2),,InvisibleBlock,,InvisibleBlock,,InvisibleBlock,InvisibleBloc
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
 ,,InvisibleBlock,,InvisibleBlock,,,,,InvisibleBlock,,InvisibleBlock,,
 LoadRoomBlock(4;1),,InvisibleBlock,,,,,Item.Triforce,,,,InvisibleBlock,,
-,,InvisibleBlock,,,,,,,,,InvisibleBlock,,
 ,,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,,,InvisibleBlock,InvisibleBlock,InvisibleBlock,InvisibleBlock,,
+,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
