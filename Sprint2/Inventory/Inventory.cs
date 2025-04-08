@@ -245,6 +245,59 @@ namespace Zelda.Inventory
                     Color.White
                 );
             }
+
+
+            if (link.CurrentItem.Count > 0)
+            {
+                switch (link.CurrentItem[link.chooseItem])
+                {
+                    case ItemType.Arrow:
+
+                        scale = 2.3f;
+                        Rectangle arrowSource = new Rectangle(617, 138, 5, 13);
+                        int arrowWidth = (int)(arrowSource.Width * scale);
+                        int arrowHeight = (int)(arrowSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(121, 59, arrowWidth, arrowHeight),
+                            arrowSource,
+                            Color.White
+                         );
+                        break;
+
+                    case ItemType.Bomb:
+
+                        scale = 2.2f;
+                        Rectangle bombSource = new Rectangle(604, 138, 8, 14);
+                        int bombWidth = (int)(bombSource.Width * scale);
+                        int bombHeight = (int)(bombSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(121, 59, bombWidth, bombHeight),
+                            bombSource,
+                            Color.White
+                        );
+                        break;
+
+                    case ItemType.Boomerang:
+
+                        scale = 2.4f;
+                        Rectangle boomerangSource = new Rectangle(585, 140, 7, 12);
+                        int boomerangWidth = (int)(boomerangSource.Width * scale);
+                        int boomerangHeight = (int)(boomerangSource.Height * scale);
+
+                        spriteBatch.Draw(
+                            _backgroundTexture,
+                            new Rectangle(121, 59, boomerangWidth, boomerangHeight),
+                            boomerangSource,
+                            Color.White
+                        );
+                        break;
+                }
+            }
+
         }
 
     }
