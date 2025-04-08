@@ -1,0 +1,23 @@
+Author: Aidan Roley
+Date: 4/7/2025
+Sprint4
+ProjectileDecorator.cs
+Author of Code: Roy Acapulco
+Time: 10 minutes
+
+Maintainability.
+
+- I really like the use of decorator pattern/system with this because it makes combining different functionality like rotation and movement
+possible without extremely long and bloated control flow statements.
+
+- I also like the use of projection client in order to organize the updating/logical things elsewhere with a clear entry point.
+
+- When it comes to what could be better, the amount of hardcoded numbers is a bit large, making them into const variables would make this better.
+
+- There are many classes which use some sort of timer. You could make another class (or some sort of encapsulation) that holds one timer that you use for everything
+so it's not as disorganized.
+
+- Lots of classes in here change the properties of ProjectileSprite directly. I would recommend creating methods instead of directly changing the variables
+as a means of reducing coupling.
+
+
