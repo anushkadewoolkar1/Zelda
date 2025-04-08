@@ -1,0 +1,13 @@
+﻿Author: Kyle Dietrich
+Date: 4/7/2025
+Sprint: 4
+File name: Game1.cs
+Author of the .cs file: Anushka
+Time taken: 30 min
+Specific comments on what is readable and what is not:
+    Overall structure is readable and organized with meaningful names and has been refactored well to shorten the length.
+    The naming coventions and descriptive variable names make it easier to read. the seperation of controller setup, assest loading,
+    and game state handling make it clear what the code is doing. The added helper methods also contribute to this.
+
+    Adding some inline commments could help with readability and grouping related fields and methods. Such as the busy-wait loop
+    in EnterPauseMode or the rendering target calculations could use more comments to help explain.

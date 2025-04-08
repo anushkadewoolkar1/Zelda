@@ -1,9 +1,9 @@
 # Project Overview
-This project is Sprint 3 of our game development series. 
-The primary objectives for Sprint 3 that were implemented were:
+This project is Sprint 4 of our game development series. 
+The primary objectives for Sprint 4 that were implemented were:
 
 Interface and Class Development:
-We Created and refined interfaces for various aspects of the game (players, enemies, items, projectiles, blocks, etc.)
+We Created and refined interfaces for various aspects of the game (players, enemies, items, projectiles, blocks, inventory,  etc.)
 and implemented classes for each game object in our initial dungeon/level.
 
 Rendering and Animation:
@@ -14,7 +14,7 @@ State Management:
 Managed state changes for objects, including directional facing, taking damage, 
 and triggering invulnerability. 
 
-Collision Handling:
+Collision Handling Fixing:
 Developing a comprehensive collision system that:
 
 Uses bounding boxes (via an IGameObject interface) for collision detection.
