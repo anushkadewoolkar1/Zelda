@@ -147,7 +147,7 @@ namespace MainGame.Commands
         public void Execute()
         {
             //_link.PickUpItem(_item);
-            _link.ChangeState(new LinkUsingItemState(_link, _link.currentDirection, _item));
+            _link.ChangeState(new LinkUsingItemState(_link, _link.currentDirection));
         }
     }
 

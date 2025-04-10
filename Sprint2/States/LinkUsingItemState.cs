@@ -14,18 +14,10 @@ public class LinkUsingItemState : ILinkState
     private ItemType item;
     private float useItemDuration;
 
-    public LinkUsingItemState(Link link, Direction direction, ItemType item)
+    public LinkUsingItemState(Link link, Direction direction)
     {
         this.link = link;
         this.currentDirection = direction;
-        if (link.CurrentItem.Count != 0)
-        {
-            this.item = link.CurrentItem[link.chooseItem];
-        }
-        else
-        {
-            this.item = item;
-        }
         
         //useItemDuration = 0.5f; // Using an item lasts for half a second.
     }
@@ -33,6 +25,7 @@ public class LinkUsingItemState : ILinkState
     public void Enter()
     {
         this.currentDirection = this.link.currentDirection;
+        /*
         if (this.link.CurrentItem.Exists(x => x.Equals(this.item))) {
             this.link.chooseItem = this.link.CurrentItem.IndexOf(this.item);
         } else
@@ -40,6 +33,7 @@ public class LinkUsingItemState : ILinkState
             this.link.CurrentItem.Add(this.item);
             this.link.chooseItem = this.link.CurrentItem.Count - 1;
         }
+        */
         this.link.linkUseItem = true;
 
         useItemDuration = 0.2f; // Using an item lasts for half a second.
