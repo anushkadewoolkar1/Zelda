@@ -47,7 +47,6 @@ namespace MainGame.Sprites
         private const int BOMB_BLOW_BEGIN = 20;
         private const int BOMB_BLOW_STAGES = 5;
         private const int BOMB_BLOW_FINISH = 35;
-        private const int BMRNG_REVERSE_TIME = 30;
 
         private const int LGBOMB_OFFSET_X = 17;
         private const int SMBOMB_OFFSET_X = 13;
@@ -63,8 +62,8 @@ namespace MainGame.Sprites
         public ProjectileDecoratorExplode(ProjectileComponent projectileComponent, ProjectileSprite ProjectileSprite ) : base(projectileComponent)
         {
             timer = 0;
-            sourceRectangle = ProjectileSprite.sourceRectangle;
             projectileSprite = ProjectileSprite;
+            sourceRectangle = ProjectileSprite.sourceRectangle;
 
         }
         public override void Update(GameTime gameTime, Link link)
@@ -74,8 +73,10 @@ namespace MainGame.Sprites
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
+            sourceRectangle = projectileSprite.sourceRectangle;
+
             // Handles the explosion of the bomb
-            if (timer >= BOMB_BLOW_BEGIN && timer % BOMB_BLOW_STAGES == 0)
+            if (timer >= (BOMB_BLOW_BEGIN) && timer % BOMB_BLOW_STAGES == 0)
             {
                 if (timer == BOMB_BLOW_BEGIN)
                 {
@@ -90,7 +91,9 @@ namespace MainGame.Sprites
                 {
                     sourceRectangle.Offset(LGBOMB_OFFSET_X, BASE_OFFSET_Y);
                 }
+
             }
+            projectileSprite.sourceRectangle = sourceRectangle;
             base.Draw(spriteBatch, position);
         }
     }
@@ -304,6 +307,7 @@ namespace MainGame.Sprites
 
             base.Update(gameTime, link);
         }
+
         public override void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             base.Draw(spriteBatch, position);

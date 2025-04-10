@@ -84,6 +84,8 @@ public class Link : IGameObject
 
         _audio = GameAudio.Instance;
 
+        CurrentItem.Add(ItemType.WoodenSword);
+
         LinkHurt = 1;
     }
 
@@ -122,7 +124,7 @@ public class Link : IGameObject
             }
         }
 
-        System.Diagnostics.Debug.WriteLine($"Link's Position {Position} and {level.roomHeight}");
+        //System.Diagnostics.Debug.WriteLine($"Link's Position {Position} and {level.roomHeight}");
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -289,7 +291,10 @@ public class Link : IGameObject
             chooseItem = (chooseItem + 1) % CurrentItem.Count;
             System.Diagnostics.Debug.WriteLine("Selected inventory index: " + chooseItem);
         }
-        while (CurrentItem[chooseItem] != ItemType.Boomerang && CurrentItem[chooseItem] != ItemType.Arrow && CurrentItem[chooseItem] != ItemType.Bomb);
+        while (CurrentItem[chooseItem] != ItemType.Boomerang
+        && CurrentItem[chooseItem] != ItemType.Arrow
+        && CurrentItem[chooseItem] != ItemType.Bomb
+        && CurrentItem[chooseItem] != ItemType.WoodenSword);
     }
 
     public void TakeDamage(int damage)

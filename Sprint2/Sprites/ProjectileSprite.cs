@@ -95,10 +95,10 @@ namespace MainGame.Sprites
             spriteBatch.Draw(_texture, new Vector2((int)(_position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(_position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE)),
                 sourceRectangle, Color.White, rotation, destinationOrigin, PROJECTILE_SCALE, SpriteEffects.None, 0f);
 
+            projectileClient.Draw(spriteBatch, position);
+
             //Keeps track of link's previous position
             position = _position;
-
-            projectileClient.Draw(spriteBatch, position);
 
             return;
         }
@@ -119,6 +119,8 @@ namespace MainGame.Sprites
                     isSwordBeam = false;
                 }
             }
+
+            if (isSwordBeam) link.swordBeam = true;
 
             projectileClient.Update(gameTime, link);
 
