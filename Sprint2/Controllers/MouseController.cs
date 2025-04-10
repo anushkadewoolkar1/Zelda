@@ -24,7 +24,7 @@ namespace MainGame.Controllers
             _windowHeight = windowHeight;
         }
 
-        public override void Update(Level level)
+        public override void Update(LevelManager level)
         {
             MouseState state = Mouse.GetState();
 
@@ -47,6 +47,7 @@ namespace MainGame.Controllers
 
                 level.moveLink = false;
                 // top left
+                /*
                 if (topHalf && leftHalf)
                 {
                     
@@ -68,9 +69,11 @@ namespace MainGame.Controllers
                     level.LoadRoom(level.currentRoom[0], level.currentRoom[1] + 1);
                 }
                 level.moveLink = true;
+                
 
                 System.Diagnostics.Debug.WriteLine(level.currentRoom[0].ToString() + "||"
                     + level.currentRoom[1].ToString());
+                */
             }
         }
     }

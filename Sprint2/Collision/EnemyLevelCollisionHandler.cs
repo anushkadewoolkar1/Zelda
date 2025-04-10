@@ -20,7 +20,7 @@ namespace MainGame.Collision
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {
             Enemy enemy = objA as Enemy;
-            Level level = objB as Level;
+            LevelManager level = objB as LevelManager;
             if (enemy == null || level == null) return;
 
             RandomlyChangeDirection(enemy, enemy.Direction);

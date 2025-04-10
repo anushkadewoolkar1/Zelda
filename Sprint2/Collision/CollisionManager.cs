@@ -19,7 +19,7 @@ public class CollisionManager
     public int debug = 0;
     public int levelDebug = 0;
 
-    public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, Level currLevel)
+    public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, LevelManager currLevel)
     {
         SortDynamicObjects(dynamicObjects);
 
@@ -35,7 +35,7 @@ public class CollisionManager
     }
 
     // Checks and dispatches collisions between each dynamic object and the level boundary
-    private void CheckLevelCollisions(List<IGameObject> dynamicObjects, Level currlevel)
+    private void CheckLevelCollisions(List<IGameObject> dynamicObjects, LevelManager currlevel)
     {
         foreach (var objA in dynamicObjects)
         {
@@ -164,7 +164,7 @@ public class CollisionManager
     }
 
     // Dispatches collisions involving a single object and the level
-    private void DispatchLevelCollisions(IGameObject objA, Level currLevel, Rectangle intersection)
+    private void DispatchLevelCollisions(IGameObject objA, LevelManager currLevel, Rectangle intersection)
     {
         ICollisionHandler collisionHandler = null;
 

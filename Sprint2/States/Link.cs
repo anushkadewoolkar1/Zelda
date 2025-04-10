@@ -57,7 +57,8 @@ public class Link : IGameObject
     private double healthTimer = 0;
 
     // used for link winning the game
-    public Level level { get; set; }
+   // public Level level { get; set; }
+    public LevelManager level { get; set; }
 
     public Link(List<IGameObject> _gameObjects)
     {

@@ -1,5 +1,4 @@
 ﻿
-/*
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +13,7 @@ namespace MainGame.Display
     public class LevelManager : ILevel, IGameObject
     {
         private LevelFileReader levelData;
-        private Room currentRoom;
+        public Room currentRoom;
         private Texture2D backgroundTexture;
         private List<IGameObject> globalGameObjects;
         private ContentManager contentManager;
@@ -86,7 +85,7 @@ namespace MainGame.Display
                 myGame.GameState = state;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (UpdateGameState != Zelda.Enums.GameState.Playing && UpdateGameState != Zelda.Enums.GameState.Paused)
                 return;
@@ -96,7 +95,7 @@ namespace MainGame.Display
                 sourceRectangle, Color.White);
 
             myLink.Draw(spriteBatch);
-            currentRoom?.Draw(spriteBatch, myLink);
+           if (transition == 0) currentRoom?.Draw(spriteBatch, myLink);
 
             if (transition > 0)
             {
@@ -104,7 +103,7 @@ namespace MainGame.Display
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (UpdateGameState != Zelda.Enums.GameState.Playing)
                 return;
@@ -121,7 +120,7 @@ namespace MainGame.Display
         }
 
         // finds and initiates room loading based on coords
-        public void LoadRoom(int xCoordinate, int yCoordinate)
+        public override void LoadRoom(int xCoordinate, int yCoordinate)
         {
             transition = 1;
             int count = levelData.Objects.Count;
@@ -189,7 +188,7 @@ namespace MainGame.Display
                 roomHeight * yCoordinate + LevelConstants.SHIFT_INTO_RANGE * (yCoordinate + 1),
                 roomWidth, roomHeight);
 
-            currentRoom = new Room(contentManager, backgroundTexture);
+            currentRoom = new Room(contentManager, backgroundTexture, this);
             currentRoom.LoadRoomData(xCoordinate, yCoordinate, tokenStartIndex, levelData.Objects, globalGameObjects, myLink);
 
             currentRoomCoords[0] = xCoordinate;
@@ -227,7 +226,7 @@ namespace MainGame.Display
 
         public void Destroy()
         {
-            // Clean up as needed.
+            
         }
 
         // handles room transition effect by updating the background source rectangle
@@ -238,6 +237,8 @@ namespace MainGame.Display
                 int oldX = roomWidth * currentRoomCoords[0] + LevelConstants.SHIFT_INTO_RANGE * (currentRoomCoords[0] + LevelConstants.SHIFT_INTO_RANGE);
                 int newX = roomWidth * xCoordinate + LevelConstants.SHIFT_INTO_RANGE * (xCoordinate + LevelConstants.SHIFT_INTO_RANGE);
                 sourceRectangle.X = oldX + ((newX - oldX) % (LevelConstants.ROOM_TRANSITION_SPEED * 6)) * transitionNumber * LevelConstants.ROOM_TRANSITION_SPEED;
+
+
             }
             else
             {
@@ -251,4 +252,3 @@ namespace MainGame.Display
         }
     }
 }
-*/

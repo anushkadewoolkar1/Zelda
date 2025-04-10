@@ -13,6 +13,6 @@ namespace MainGame.Controllers
     public abstract class DebugController : IController
     {
         public void Update() { }
-        public abstract void Update(Level level);
+        public abstract void Update(LevelManager level);
     }
 }

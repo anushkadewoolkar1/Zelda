@@ -47,7 +47,7 @@ namespace MainGame.Display
             //no-op
         }
 
-        public void PauseLevel(Level level)
+        public void PauseLevel(LevelManager level)
         {
             //no-op
         }

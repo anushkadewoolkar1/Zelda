@@ -20,9 +20,9 @@ namespace Zelda.Inventory
 
         private Link link;
 
-        private Level _level;
+        private LevelManager _level;
 
-        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link, Level level)
+        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link, LevelManager level)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
             link = _link;
@@ -33,7 +33,7 @@ namespace Zelda.Inventory
 
         private int[] currentRoomMap()
         {
-            switch (_level.currentRoom[0], _level.currentRoom[1])
+            switch (_level.currentRoomCoords[0], _level.currentRoomCoords[1])
             {
                
                 case (1, 5): return new int[] { 307, 271 };

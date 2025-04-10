@@ -16,7 +16,7 @@ public class Block : IBlock, IGameObject
     private int currentTextureIndex = 0;
     protected TileMap tileMap = TileMap.GetInstance();
 
-    public Level myLevel { get; set; }
+    public LevelManager myLevel { get; set; }
     public Vector2 loadRoom { get; set; }
 
 
@@ -24,7 +24,7 @@ public class Block : IBlock, IGameObject
     private const int BOUNDING_BOX_DIM_X = 28;
     private const int BOUNDING_BOX_DIM_Y = 23;
 
-    public Block(Vector2 startPosition, Texture2D[] blockTextures, Level level)
+    public Block(Vector2 startPosition, Texture2D[] blockTextures, LevelManager level)
     {
         //tilePosition = startPosition;
         pixelPosition = startPosition;

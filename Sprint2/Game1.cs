@@ -69,7 +69,7 @@ namespace MainGame
 
         public Link linkSprite { get; set; }
         public IDisplay currDisplay;
-        public Level levelMap;
+        public LevelManager levelMap;
         public bool isInventoryOpen { get; set; }
         public bool isSettingsOpen { get; set; }
 
@@ -172,7 +172,7 @@ namespace MainGame
             _itemSprite = _item.GetItemSprite();
 
             linkSprite = new Link(_gameObjects);
-            levelMap = new Level(Content, _gameObjects);
+            levelMap = new LevelManager(Content, _gameObjects);
             levelMap.AddLink(linkSprite);
             levelMap.LoadRoom(2, 5);
 
@@ -256,7 +256,7 @@ namespace MainGame
 
         public void ResetLevel()
         {
-            levelMap = new Level(Content, _gameObjects);
+            levelMap = new LevelManager(Content, _gameObjects);
             levelMap.AddLink(linkSprite);
             levelMap.LoadRoom(2, 5);
         }

@@ -7,12 +7,12 @@ using MainGame.Display;
 
 public class LoadRoomBlock : Block
 {
-    private Level level;
+    private LevelManager level;
     private int targetX, targetY;
 
     private const int COLLISION_THRESH = 10;
 
-    public LoadRoomBlock(Vector2 startPosition, Texture2D[] blockTextures, Level level, int x, int y)
+    public LoadRoomBlock(Vector2 startPosition, Texture2D[] blockTextures, LevelManager level, int x, int y)
         : base(startPosition, blockTextures, level)
     {
         this.level = level;

@@ -17,7 +17,7 @@ namespace MainGame.Collision
         public void HandleCollision(IGameObject objA, IGameObject objB, CollisionSide side)
         {
             Link link = objA as Link;
-            Level level = objB as Level;
+            LevelManager level = objB as LevelManager;
             if (link == null || level == null) return;
 
             switch (side)

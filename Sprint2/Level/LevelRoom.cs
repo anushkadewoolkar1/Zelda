@@ -1,5 +1,4 @@
 ﻿
-/*
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +11,7 @@ using MainGame.States;
 
 namespace MainGame.Display
 {
-    public class Room
+    public class Room : IGameObject
     {
         
         public List<Block> Blocks { get; private set; }
@@ -28,10 +27,13 @@ namespace MainGame.Display
         private Texture2D backgroundTexture;
         private ContentManager contentManager;
 
-        public Room(ContentManager content, Texture2D backgroundTexture)
+        private LevelManager level;
+
+        public Room(ContentManager content, Texture2D backgroundTexture, LevelManager level)
         {
             this.contentManager = content;
             this.backgroundTexture = backgroundTexture;
+            this.level = level;
 
             Blocks = new List<Block>();
             Enemies = new List<Enemy>();
@@ -111,7 +113,7 @@ namespace MainGame.Display
             );
             Texture2D[] blockTextures = LoadBlockTextures();
             string token = tokens[tokenIndex];
-            Block block = new Block(position, blockTextures, null);
+            Block block = new Block(position, blockTextures, level);
             if (token.Contains("Load"))
             {
                 block.loadRoom = new Vector2(
@@ -169,6 +171,14 @@ namespace MainGame.Display
                     (int)RoomDimensions.Y - LevelConstants.LEVEL_CENTER_POSITION + 18);
             }
         }
+        public Vector2 Velocity
+        {
+            get { return new Vector2(0, 0); }
+        }
+
+        public void Destroy()
+        {
+
+        }
     }
 }
-*/
