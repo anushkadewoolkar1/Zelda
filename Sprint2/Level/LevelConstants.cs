@@ -15,5 +15,6 @@
         public const int SHIFT_INTO_RANGE = 1;
         public const int ROOM_STARTING_POINT = 12;
         public const int ROOM_TRANSITION_SPEED = 3;
+        public const int ROOM_TRANSITION_END = 19;
     }
 }

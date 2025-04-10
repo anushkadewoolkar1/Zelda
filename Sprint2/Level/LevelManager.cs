@@ -247,7 +247,7 @@ namespace MainGame.Display
                 sourceRectangle.Y = oldY + ((newY - oldY) % (LevelConstants.ROOM_TRANSITION_SPEED * 2)) * transitionNumber * LevelConstants.ROOM_TRANSITION_SPEED;
             }
             transition++;
-            if (transition == 19)
+            if (transition == LevelConstants.ROOM_TRANSITION_END)
                 LoadRoomEnd(xCoordinate, yCoordinate);
         }
     }
