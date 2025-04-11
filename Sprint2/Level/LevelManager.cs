@@ -250,5 +250,10 @@ namespace MainGame.Display
             if (transition == LevelConstants.ROOM_TRANSITION_END)
                 LoadRoomEnd(xCoordinate, yCoordinate);
         }
+
+        public int[] GetCurrentRoomCoords()
+        {
+            return currentRoomCoords;
+        }
     }
 }

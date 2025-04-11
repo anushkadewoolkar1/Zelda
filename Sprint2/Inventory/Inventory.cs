@@ -1,26 +1,37 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using MainGame.CollisionHandling;
-using Zelda.Enums;
 using MainGame.Display;
+using Zelda.Enums;
+using System.Collections.Generic;
 
 namespace Zelda.Inventory
 {
     public class Inventory
     {
         private Texture2D _backgroundTexture;
-
         private Texture2D pixel;
-
         private Link link;
-
         private LevelManager _level;
+
+        // Data/coords for each sprite location in inv
+        public struct SpriteDef
+        {
+            public float Scale;
+            public Rectangle SourceRect;
+            public int Width;
+            public int Height;
+
+            public SpriteDef(float scale, Rectangle sourceRect)
+            {
+                Scale = scale;
+                SourceRect = sourceRect;
+                Width = (int)(sourceRect.Width * scale);
+                Height = (int)(sourceRect.Height * scale);
+            }
+        }
+
+        private Dictionary<string, SpriteDef> _spriteDefs;
 
         public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link, LevelManager level)
         {
@@ -29,276 +40,202 @@ namespace Zelda.Inventory
             pixel = new Texture2D(graphicsDevice, 1, 1);
             pixel.SetData(new[] { Color.White });
             _level = level;
+            InitializeSpriteDefinitions();
         }
 
+        private void InitializeSpriteDefinitions()
+        {
+            _spriteDefs = new Dictionary<string, SpriteDef>();
+
+            _spriteDefs["topLeft"] = new SpriteDef(InventoryConstants.TopLeftScale, InventoryConstants.TopLeftSourceRect);
+            _spriteDefs["topRight"] = new SpriteDef(InventoryConstants.TopRightScale, InventoryConstants.TopRightSourceRect);
+            _spriteDefs["dungeon"] = new SpriteDef(InventoryConstants.DungeonScale, InventoryConstants.DungeonSourceRect);
+
+            _spriteDefs["compass"] = new SpriteDef(InventoryConstants.CompassScale, InventoryConstants.CompassSourceRect);
+            _spriteDefs["mapIcon"] = new SpriteDef(InventoryConstants.MapIconScale, InventoryConstants.MapIconSourceRect);
+            _spriteDefs["miniMap"] = new SpriteDef(InventoryConstants.MiniMapScale, InventoryConstants.MiniMapSourceRect);
+            _spriteDefs["emptyMap"] = new SpriteDef(InventoryConstants.EmptyMapScale, InventoryConstants.EmptyMapSourceRect);
+
+            _spriteDefs["arrowInv"] = new SpriteDef(InventoryConstants.ArrowInvScale, InventoryConstants.ArrowInvSourceRect);
+            _spriteDefs["bombInv"] = new SpriteDef(InventoryConstants.BombInvScale, InventoryConstants.BombInvSourceRect);
+            _spriteDefs["boomerangInv"] = new SpriteDef(InventoryConstants.BoomerangInvScale, InventoryConstants.BoomerangInvSourceRect);
+
+            _spriteDefs["pinkIndicator"] = new SpriteDef(InventoryConstants.PinkIndicatorScale, InventoryConstants.PinkIndicatorSourceRect);
+
+            _spriteDefs["selectedArrow"] = new SpriteDef(InventoryConstants.SelectedArrowScale, InventoryConstants.SelectedArrowSourceRect);
+            _spriteDefs["selectedBomb"] = new SpriteDef(InventoryConstants.SelectedBombScale, InventoryConstants.SelectedBombSourceRect);
+            _spriteDefs["selectedBoomerang"] = new SpriteDef(InventoryConstants.SelectedBoomerangScale, InventoryConstants.SelectedBoomerangSourceRect);
+        }
+
+        // Link tracking on minimap
         private int[] currentRoomMap()
         {
-            switch (_level.currentRoomCoords[0], _level.currentRoomCoords[1])
-            {
-               
-                case (1, 5): return new int[] { 307, 271 };
-                case (1, 3): return new int[] { 307, 242 };
-                case (1, 2): return new int[] { 307, 227 };
-                case (1, 0): return new int[] { 307, 197 };
+            int[] coords = _level.GetCurrentRoomCoords();
+            int x = coords[0];
+            int y = coords[1];
 
-                case (3, 5): return new int[] { 336, 271 };
-                case (3, 3): return new int[] { 336, 242 };
-                case (3, 2): return new int[] { 336, 227 };
-
-                case (2, 5): return new int[] { 322, 271 };
-                case (2, 4): return new int[] { 322, 256 };
-                case (2, 3): return new int[] { 322, 242 };
-                case (2, 2): return new int[] { 322, 227 };
-                case (2, 1): return new int[] { 322, 212 };
-                case (2, 0): return new int[] { 322, 197 };
-
-                case (4, 2): return new int[] { 351, 227 };
-                case (4, 1): return new int[] { 351, 212 };
-
-                case (5, 1): return new int[] { 365, 212 };
-            }
-            return new int[] { 300, 300 };
+            return new int[] { InventoryConstants.BaseLX + InventoryConstants.LXOffset * x, InventoryConstants.BaseLY + InventoryConstants.LYOffset * y };
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        private Rectangle GetDestinationRect(SpriteDef sprite, int x, int y)
         {
+            return new Rectangle(x, y, sprite.Width, sprite.Height);
+        }
 
-            // black screen replace zelda game background first
+        public void DrawStaticElements(SpriteBatch spriteBatch)
+        {
+            // Draw black background rectangle.
             var viewport = spriteBatch.GraphicsDevice.Viewport;
-            int halfWidth = viewport.Width / 1 + 33;
-            int halfHeight = viewport.Height / 1 - 8;
-
-            // Draw black rectangle over 
+            int halfWidth = viewport.Width + InventoryConstants.BackgroundExtraWidth;
+            int halfHeight = viewport.Height + InventoryConstants.BackgroundExtraHeight;
             spriteBatch.Draw(
                 pixel,
                 new Rectangle(0, 0, halfWidth, halfHeight),
                 Color.Black
             );
 
-
-
-
-            // Inventory + square under it + "use b button for this"
-            float scale = 1.5f;
-            Rectangle topLeftSource = new Rectangle(8, 20, 108, 78);
-            int topLeftSourceWidth = (int)(topLeftSource.Width * scale);
-            int topLeftSourceHeight = (int)(topLeftSource.Height * scale);
-
             spriteBatch.Draw(
                 _backgroundTexture,
-                new Rectangle(30, 5, topLeftSourceWidth, topLeftSourceHeight), // 10 pixels below top
-                topLeftSource,
+                GetDestinationRect(_spriteDefs["topLeft"], InventoryConstants.TopLeftDestX, InventoryConstants.TopLeftDestY),
+                _spriteDefs["topLeft"].SourceRect,
                 Color.White
             );
 
-
-            // blue rectangle to the right of the use b button for this
-            scale = 1.64f;
-            Rectangle topRightSource = new Rectangle(115, 50, 130, 48);
-            int topRightSourceWidth = (int)(topRightSource.Width * scale);
-            int topRightSourceHeight = (int)(topRightSource.Height * scale);
-
             spriteBatch.Draw(
                 _backgroundTexture,
-                new Rectangle(240, 53, topRightSourceWidth, topRightSourceHeight),
-                topRightSource,
-                Color.White
-                );
-
-            // Map/Compass and minimap
-            scale = 1.8f;
-            Rectangle dungeonSource = new Rectangle(260, 114, 83, 84);
-            int dungeonWidth = (int)(dungeonSource.Width * scale);
-            int dungeonHeight = (int)(dungeonSource.Height * scale);
-
-            spriteBatch.Draw(
-                _backgroundTexture,
-                new Rectangle(25, 165, dungeonWidth, dungeonHeight),
-                dungeonSource,
+                GetDestinationRect(_spriteDefs["topRight"], InventoryConstants.TopRightDestX, InventoryConstants.TopRightDestY),
+                _spriteDefs["topRight"].SourceRect,
                 Color.White
             );
 
-            // draw compass if pick up
+            spriteBatch.Draw(
+                _backgroundTexture,
+                GetDestinationRect(_spriteDefs["dungeon"], InventoryConstants.DungeonDestX, InventoryConstants.DungeonDestY),
+                _spriteDefs["dungeon"].SourceRect,
+                Color.White
+            );
+        }
+
+        public void DrawDynamicElements(SpriteBatch spriteBatch)
+        {
             if (link.CurrentItem.Contains(ItemType.Compass))
             {
-                scale = 2.5f;
-                Rectangle compassSource = new Rectangle(612, 157, 14, 14);
-                int compassWidth = (int)(compassSource.Width * scale);
-                int compassHeight = (int)(compassSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(95, 265, compassWidth, compassHeight),
-                    compassSource,
+                    GetDestinationRect(_spriteDefs["compass"], InventoryConstants.CompassDestX, InventoryConstants.CompassDestY),
+                    _spriteDefs["compass"].SourceRect,
                     Color.White
                 );
             }
 
-            // draw map and minimap if pick up
             if (link.CurrentItem.Contains(ItemType.Map))
             {
-
-                // map icon
-                scale = 2.4f;
-                Rectangle mapSource = new Rectangle(602, 157, 6, 14);
-                int mapWidth = (int)(mapSource.Width * scale);
-                int mapHeight = (int)(mapSource.Height * scale);
-
+                // Map icon drawing
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(105, 195, mapWidth, mapHeight),
-                    mapSource,
+                    GetDestinationRect(_spriteDefs["mapIcon"], InventoryConstants.MapIconDestX, InventoryConstants.MapIconDestY),
+                    _spriteDefs["mapIcon"].SourceRect,
                     Color.White
                 );
 
-                // map in the middle
-                scale = 1.8f;
-                Rectangle middleMiniMapSource = new Rectangle(345, 114, 150, 84);
-                int middleMiniMapWidth = (int)(middleMiniMapSource.Width * scale);
-                int middleMiniMapHeight = (int)(middleMiniMapSource.Height * scale);
-
+                // Full minimap
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(200, 180, middleMiniMapWidth, middleMiniMapHeight),
-                    middleMiniMapSource,
+                    GetDestinationRect(_spriteDefs["miniMap"], InventoryConstants.MiniMapDestX, InventoryConstants.MiniMapDestY),
+                    _spriteDefs["miniMap"].SourceRect,
                     Color.White
                 );
             }
-            // otherwise, draw the blank map
-            else
+            else // Draw empty map if no map item exists
             {
-                scale = 1.8f;
-                Rectangle emptyMapSource = new Rectangle(348, 214, 125, 80);
-                int emptyMapWidth = (int)(emptyMapSource.Width * scale);
-                int emptyMapHeight = (int)(emptyMapSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(200, 180, emptyMapWidth, emptyMapHeight),
-                    emptyMapSource,
+                    GetDestinationRect(_spriteDefs["emptyMap"], InventoryConstants.EmptyMapDestX, InventoryConstants.EmptyMapDestY),
+                    _spriteDefs["emptyMap"].SourceRect,
                     Color.White
                 );
             }
 
-            // arrow 
+            // Inventory icons
             if (link.CurrentItem.Contains(ItemType.Arrow))
             {
-                scale = 2.6f;
-                Rectangle arrowSource = new Rectangle(617, 138, 5, 13);
-                int arrowWidth = (int)(arrowSource.Width * scale);
-                int arrowHeight = (int)(arrowSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(273, 75, arrowWidth, arrowHeight),
-                    arrowSource,
+                    GetDestinationRect(_spriteDefs["arrowInv"], InventoryConstants.ArrowInvDestX, InventoryConstants.ArrowInvDestY),
+                    _spriteDefs["arrowInv"].SourceRect,
                     Color.White
-                 );
+                );
             }
-
-
-            // bomb
             if (link.CurrentItem.Contains(ItemType.Bomb))
             {
-                scale = 2.5f;
-                Rectangle bombSource = new Rectangle(604, 138, 8, 14);
-                int bombWidth = (int)(bombSource.Width * scale);
-                int bombHeight = (int)(bombSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(310, 75, bombWidth, bombHeight),
-                    bombSource,
+                    GetDestinationRect(_spriteDefs["bombInv"], InventoryConstants.BombInvDestX, InventoryConstants.BombInvDestY),
+                    _spriteDefs["bombInv"].SourceRect,
                     Color.White
                 );
             }
-
             if (link.CurrentItem.Contains(ItemType.Boomerang))
             {
-                scale = 2.5f;
-                Rectangle boomerangSource = new Rectangle(585, 138, 7, 14);
-                int bombWidth = (int)(boomerangSource.Width * scale);
-                int bombHeight = (int)(boomerangSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(360, 79, bombWidth, bombHeight),
-                    boomerangSource,
+                    GetDestinationRect(_spriteDefs["boomerangInv"], InventoryConstants.BoomerangInvDestX, InventoryConstants.BoomerangInvDestY),
+                    _spriteDefs["boomerangInv"].SourceRect,
                     Color.White
                 );
             }
 
+            // Minimap indicator
             if (link.CurrentItem.Contains(ItemType.Map))
             {
-
                 int[] tempCoords = currentRoomMap();
-                scale = 1.0f;
-                // minimap link tracker in inventory
-                Rectangle pinkSource = new Rectangle(350, 70, 5, 5);
-                int pinkWidth = (int)(pinkSource.Width * scale);
-                int pinkHeight = (int)(pinkSource.Height * scale);
-
                 spriteBatch.Draw(
                     _backgroundTexture,
-                    new Rectangle(tempCoords[0], tempCoords[1], pinkWidth, pinkHeight),
-                    pinkSource,
+                    GetDestinationRect(_spriteDefs["pinkIndicator"], tempCoords[0], tempCoords[1]),
+                    _spriteDefs["pinkIndicator"].SourceRect,
                     Color.White
                 );
             }
 
-
+            // Draw currently selected item in inventory (fixed destination)
             if (link.CurrentItem.Count > 0)
             {
                 switch (link.CurrentItem[link.chooseItem])
                 {
                     case ItemType.Arrow:
-
-                        scale = 2.3f;
-                        Rectangle arrowSource = new Rectangle(617, 138, 5, 13);
-                        int arrowWidth = (int)(arrowSource.Width * scale);
-                        int arrowHeight = (int)(arrowSource.Height * scale);
-
                         spriteBatch.Draw(
                             _backgroundTexture,
-                            new Rectangle(121, 59, arrowWidth, arrowHeight),
-                            arrowSource,
+                            GetDestinationRect(_spriteDefs["selectedArrow"], InventoryConstants.SelectedItemDestX, InventoryConstants.SelectedItemDestY),
+                            _spriteDefs["selectedArrow"].SourceRect,
                             Color.White
-                         );
+                        );
                         break;
 
                     case ItemType.Bomb:
-
-                        scale = 2.2f;
-                        Rectangle bombSource = new Rectangle(604, 138, 8, 14);
-                        int bombWidth = (int)(bombSource.Width * scale);
-                        int bombHeight = (int)(bombSource.Height * scale);
-
                         spriteBatch.Draw(
                             _backgroundTexture,
-                            new Rectangle(121, 59, bombWidth, bombHeight),
-                            bombSource,
+                            GetDestinationRect(_spriteDefs["selectedBomb"], InventoryConstants.SelectedItemDestX, InventoryConstants.SelectedItemDestY),
+                            _spriteDefs["selectedBomb"].SourceRect,
                             Color.White
                         );
                         break;
 
                     case ItemType.Boomerang:
-
-                        scale = 2.4f;
-                        Rectangle boomerangSource = new Rectangle(585, 140, 7, 12);
-                        int boomerangWidth = (int)(boomerangSource.Width * scale);
-                        int boomerangHeight = (int)(boomerangSource.Height * scale);
-
                         spriteBatch.Draw(
                             _backgroundTexture,
-                            new Rectangle(121, 59, boomerangWidth, boomerangHeight),
-                            boomerangSource,
+                            GetDestinationRect(_spriteDefs["selectedBoomerang"], InventoryConstants.SelectedItemDestX, InventoryConstants.SelectedItemDestY),
+                            _spriteDefs["selectedBoomerang"].SourceRect,
                             Color.White
                         );
                         break;
                 }
             }
-
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            DrawStaticElements(spriteBatch);
+            DrawDynamicElements(spriteBatch);
+        }
     }
 }
