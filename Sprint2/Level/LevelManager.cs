@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Zelda.Enums;
 using MainGame.CollisionHandling;
 using MainGame.Sprites;
+using MainGame.States;
 
 namespace MainGame.Display
 {
@@ -254,6 +255,35 @@ namespace MainGame.Display
         public int[] GetCurrentRoomCoords()
         {
             return currentRoomCoords;
+        }
+
+        public void SpawnTriForce()
+        {
+            Vector2 offset = Vector2.Zero;
+            switch (myLink.currentDirection)
+            {
+                case Direction.Up:
+                    offset = new Vector2(0, -50);
+                    break;
+                case Direction.Down:
+                    offset = new Vector2(0, 50);
+                    break;
+                case Direction.Left:
+                    offset = new Vector2(-50, 0);
+                    break;
+                case Direction.Right:
+                    offset = new Vector2(50, 0);
+                    break;
+            }
+
+            Vector2 spawnPosition = myLink.Position + offset;
+            int SpawnX = (int)spawnPosition.X;
+            int SpawnY = (int)spawnPosition.Y;
+
+            Item triForce = new Item();
+            triForce = triForce.CreateItem(ItemType.Triforce, SpawnX, SpawnY);
+
+            globalGameObjects.Add(triForce);
         }
     }
 }

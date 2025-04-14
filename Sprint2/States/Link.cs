@@ -60,6 +60,9 @@ public class Link : IGameObject
    // public Level level { get; set; }
     public LevelManager level { get; set; }
 
+    public float SpeedMultiplier { get; set; } = 1.0f;
+    public float Scale { get; set; } = 1.0f;
+
     public Link(List<IGameObject> _gameObjects)
     {
         // Initialize the sprite factory 
@@ -170,7 +173,7 @@ public class Link : IGameObject
             direction.Normalize();
 
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        Position += direction * Speed * dt;
+        Position += direction * Speed * SpeedMultiplier * dt;
         lastNonZeroVelocity = velocity;
         velocity = direction;
     }
@@ -273,14 +276,6 @@ public class Link : IGameObject
         {
             var itemType = CurrentItem[chooseItem];
             itemManager.UseItem(itemType, currentDirection);
-            /*
-            if (itemType == ItemType.Arrow || itemType == ItemType.Bomb)
-            {
-                CurrentItem.RemoveAt(chooseItem);
-                if (chooseItem >= CurrentItem.Count)
-                    chooseItem = 0;
-            }
-            */
         }
     }
     public void CycleInventory()
@@ -350,5 +345,13 @@ public class Link : IGameObject
     public void Destroy()
     {
 
+    }
+
+    public void FireSpreadArrows()
+    {
+        itemManager.UseItem(ItemType.Arrow, Direction.Up);
+        itemManager.UseItem(ItemType.Arrow, Direction.Down);
+        itemManager.UseItem(ItemType.Arrow, Direction.Left);
+        itemManager.UseItem(ItemType.Arrow, Direction.Right);
     }
 }

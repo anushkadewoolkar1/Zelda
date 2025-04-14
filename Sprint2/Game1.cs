@@ -73,6 +73,8 @@ namespace MainGame
         public bool isInventoryOpen { get; set; }
         public bool isSettingsOpen { get; set; }
 
+        private CheatCodeManager _cheatCodeManager;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -109,6 +111,8 @@ namespace MainGame
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadDynamicObjects();
+
+            _cheatCodeManager = new CheatCodeManager(linkSprite, levelMap);
         }
 
         protected override void Update(GameTime gameTime)
@@ -127,6 +131,8 @@ namespace MainGame
             _winScreen.UpdateGameState(GameState);
             _settings.UpdateGameState(GameState);
             _hud.UpdateGameState(GameState);
+
+            _cheatCodeManager.Update(gameTime);
 
             base.Update(gameTime);
         }
