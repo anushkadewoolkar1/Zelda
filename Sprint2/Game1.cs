@@ -74,6 +74,13 @@ namespace MainGame
         public bool isSettingsOpen { get; set; }
 
         private CheatCodeManager _cheatCodeManager;
+        public int GamesPlayed { get; set; } = 0;
+        public int GamesWon { get; set; } = 0;
+        public int GamesLost { get; set; } = 0;
+
+        public bool showStats = false;
+
+
 
         public Game1()
         {
@@ -117,6 +124,7 @@ namespace MainGame
 
         protected override void Update(GameTime gameTime)
         {
+            
             _mouseController.Update(levelMap);
 
             _gamePadConnected = GamePad.GetState(0).IsConnected;
@@ -134,6 +142,8 @@ namespace MainGame
 
             _cheatCodeManager.Update(gameTime);
 
+
+
             base.Update(gameTime);
         }
 
@@ -147,11 +157,18 @@ namespace MainGame
 
             if (isInventoryOpen) _inventory.Draw(_spriteBatch);
             if (isSettingsOpen) _settings.Draw(_spriteBatch);
+            if (showStats)
+            {
+                string statsText = $"Games Played: {GamesPlayed}\nGames Won: {GamesWon}\nGames Lost: {GamesLost}";
+                _spriteBatch.DrawString(_spriteFont, statsText, new Vector2(10, 10), Color.White);
+            }
+
 
             _startMenu.Draw(_spriteBatch);
             _deathScreen.Draw(_spriteBatch);
             _winScreen.Draw(_spriteBatch);
             _hud.Draw(_spriteBatch);
+            
 
             _spriteBatch.End();
             base.Draw(gameTime);
@@ -258,6 +275,7 @@ namespace MainGame
             Thread.Sleep(3000);
             LoadDynamicObjects();
             SwitchDisplay(GameState.Playing);
+            GamesPlayed+=1;
         }
 
         public void ResetLevel()

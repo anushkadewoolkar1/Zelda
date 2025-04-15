@@ -44,7 +44,8 @@ namespace MainGame.Controllers
                 { UserInputs.ToggleOptions, new OpenCloseSettings(_game) },
                 { UserInputs.ToggleInventory, new OpenInventory(_game) },
                 { UserInputs.ResetLevel, new ResetCommand(_game) },
-                { UserInputs.CycleItem, new LinkCycleItem(_link) }
+                { UserInputs.CycleItem, new LinkCycleItem(_link) },
+                { UserInputs.ToggleStats, new ToggleStatsCommand(_game) },
             };
         }
 

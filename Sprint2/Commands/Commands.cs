@@ -195,6 +195,10 @@ namespace MainGame.Commands
         }
         public void Execute()
         {
+            if (_game.GameState != Zelda.Enums.GameState.Win && _game.GameState != Zelda.Enums.GameState.GameOver)
+            {
+            _game.GamesPlayed += 1; // Only count as a new play if not already finished
+            }
             _game.LoadDynamicObjects();
         }
     }
@@ -345,9 +349,28 @@ namespace MainGame.Commands
 
         public void Execute()
         {
+            if (game.GameState != GameState.Win && game.GameState != GameState.GameOver)
+            {
+                game.GamesPlayed += 1;
+            }
             game.ResetLevel();
         }
     }
+    public class ToggleStatsCommand : ICommand
+{
+    private readonly Game1 _game;
+
+    public ToggleStatsCommand(Game1 game)
+    {
+        _game = game;
+    }
+
+    public void Execute()
+    {
+        _game.showStats = !_game.showStats;
+    }
+}
+
 
 }
 

@@ -31,6 +31,7 @@ namespace MainGame.Display
         private GameState UpdateGameState;
         private CollisionManager collisionManager;
         private Game1 myGame;
+        public Game1 game => myGame;
         private Link myLink;
 
 
@@ -117,6 +118,8 @@ namespace MainGame.Display
             {
                 myGame.GameState = Zelda.Enums.GameState.GameOver;
                 myLink.Health = 3;
+                myGame.GamesPlayed += 1;
+                myGame.GamesLost += 1;
             }
         }
 

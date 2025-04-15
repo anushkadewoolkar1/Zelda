@@ -28,6 +28,11 @@ namespace MainGame.CollisionHandling
                 // Link has won the game.
                 System.Diagnostics.Debug.WriteLine($"Link has won and is in state {Zelda.Enums.GameState.Win}");
                 link.level.GameState(Zelda.Enums.GameState.Win);
+                if (link.level.game is Game1 game)
+                {
+                    game.GamesWon += 1;
+                    game.GamesPlayed += 1;
+                }
             }
         }
     }
