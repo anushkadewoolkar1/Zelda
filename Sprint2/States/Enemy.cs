@@ -35,7 +35,7 @@ namespace MainGame.States
         private Vector2 projectilePosition;
         private Vector2 velocity;
         private TileMap tileMap = TileMap.GetInstance();
-        private GameAudio _audio = GameAudio.Instance;
+        private GameAudio audio;
 
         // constants
         private const double ZERO = 0.0;
@@ -53,7 +53,7 @@ namespace MainGame.States
         private const double spriteUpdateInterval = 1000.0 / 5.0; 
 
 
-        public Enemy(List<IGameObject> _gameObjects)
+        public Enemy(List<IGameObject> _gameObjects, GameAudio _audio)
         {
             spriteFactory = EnemySpriteFactory.Instance;
 
@@ -73,6 +73,7 @@ namespace MainGame.States
             itemSpawn = false;
             itemSpawned = false;
 
+            audio = _audio;
         }
 
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
@@ -219,7 +220,7 @@ namespace MainGame.States
         {
             if (!CurrentItem.Contains(ItemType.Boomerang))
             {
-                _audio.EnemyHit();
+                audio.EnemyHit();
             }
             
             switch (projectile)

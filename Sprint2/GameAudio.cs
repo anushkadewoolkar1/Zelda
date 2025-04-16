@@ -95,11 +95,13 @@ namespace MainGame
 
         public void PickUpItem()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[0].Play();
         }
 
         public void EnemyHit()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             if (soundEffects[1] != null)
             {
                 soundEffects[1].Play();
@@ -108,41 +110,49 @@ namespace MainGame
 
         public void LinkHit()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[2].Play();
         }
 
         public void LowHealth()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[3].Play();
         }
 
         public void SwordSwing()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[4].Play();
         }
 
         public void EnemyDead()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[5].Play();
         }
 
         public void PickUpBetterItem()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[6].Play();
         }
 
         public void ItemSpawn()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[7].Play();
         }
 
         public void CollectRupee()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[8].Play();
         }
 
         public void ShootArrow()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             soundEffects[9].Play();
         }
 
