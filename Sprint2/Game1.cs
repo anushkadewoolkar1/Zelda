@@ -196,6 +196,7 @@ namespace MainGame
 
             linkSprite = new Link(_gameObjects);
             LinkSpriteFactory.Instance.SetLink(linkSprite);
+            linkSprite._audio = _audio;
             levelMap = new LevelManager(Content, _gameObjects);
             levelMap.AddLink(linkSprite);
             levelMap.LoadRoom(2, 5);

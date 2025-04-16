@@ -20,18 +20,11 @@ public class LinkDyingState : ILinkState
     public void Enter()
     {
         link.SetSprite(LinkSpriteFactory.Instance.CreateDeath());
-        // He still needs to spin
-        link.HandleDeathStart();
     }
 
     public void Update(GameTime gameTime)
     {
         dyingDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (dyingDuration <= 0)
-        {
-            // After the dying animation, handle game over logic.
-            link.HandleDeathCompletion();
-        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

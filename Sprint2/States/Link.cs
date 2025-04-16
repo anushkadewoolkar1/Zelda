@@ -54,7 +54,7 @@ public class Link : IGameObject
     private LinkItemManager itemManager;
 
     // used for sound effects
-    private GameAudio _audio;
+    public GameAudio _audio { get; set; }
     private double healthTimer = 0;
 
     // used for link winning the game
@@ -194,15 +194,7 @@ public class Link : IGameObject
     {
         get { return velocity;  }
     }
-    public Vector2 NonZeroVelocity
-    {
-        get { return NonZeroVelocity; }
-    }
 
-    public void ResetVelocity()
-    {
-        velocity = Vector2.Zero;
-    }
     public void PerformAttack(Direction direction)
     {
         _audio.SwordSwing();
