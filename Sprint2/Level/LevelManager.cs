@@ -32,7 +32,7 @@ namespace MainGame.Display
         private CollisionManager collisionManager;
         private Game1 myGame;
         public Game1 game => myGame;
-        private Link myLink;
+        public Link myLink { get; set; }
 
 
         private int roomWidth, roomHeight;
@@ -287,6 +287,11 @@ namespace MainGame.Display
             triForce = triForce.CreateItem(ItemType.Triforce, SpawnX, SpawnY);
 
             globalGameObjects.Add(triForce);
+        }
+
+        public Link ReturnLink()
+        {
+            return myLink;
         }
     }
 }

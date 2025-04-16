@@ -97,7 +97,7 @@ namespace MainGame.Display
         {
             if (!Enum.TryParse(tokens[tokenIndex].Substring(LevelConstants.ENEMY_START_INDEX), out EnemyType enemyType))
                 return;
-            Enemy enemy = new Enemy(globalObjects);
+            Enemy enemy = new Enemy(globalObjects, level.ReturnLink()._audio);
             enemy.CreateEnemy(enemyType,
                 new Vector2((gridIndex % LevelConstants.BLOCKS_PER_ROOM_X) - LevelConstants.SHIFT_INTO_RANGE,
                             (gridIndex / LevelConstants.BLOCKS_PER_ROOM_X) - LevelConstants.SHIFT_INTO_RANGE));

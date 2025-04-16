@@ -101,6 +101,7 @@ namespace MainGame
 
         public void EnemyHit()
         {
+            if (MediaPlayer.State == MediaState.Stopped) return;
             if (soundEffects[1] != null)
             {
                 soundEffects[1].Play();
