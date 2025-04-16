@@ -103,7 +103,7 @@ namespace MainGame.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            Vector2 origin = new Vector2(sourceRectangle.Width / 2f, sourceRectangle.Height / 2f);
+            Vector2 origin = new Vector2(8, 8);
 
             if (death)
             {

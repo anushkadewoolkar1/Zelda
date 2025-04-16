@@ -183,11 +183,13 @@ public class Link : IGameObject
     {
         get
         {
-            return new Rectangle(
-                (int)(Position.X - (12 * LinkScale) / 2),
-                (int)(Position.Y - (12 * LinkScale) / 2),
-                (int)(12 * LinkScale),
-                (int)(12 * LinkScale));
+            int width = (int)(16 * LinkScale);
+            int height = (int)(16 * LinkScale);
+
+            int x = (int)Math.Round(Position.X - width / 2f);
+            int y = (int)Math.Round(Position.Y - height / 2f);
+
+            return new Rectangle(x, y, width, height);
         }
     }
     public Vector2 Velocity

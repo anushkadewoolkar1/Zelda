@@ -24,22 +24,29 @@ public class LinkBlockCollisionHandler : ICollisionHandler
         switch (collisionSide)
         {
             case CollisionSide.Left:
-                // Push Link to the left.
-                link.Position = new Vector2(block.BoundingBox.Left - link.BoundingBox.Width, link.Position.Y);
+                link.Position = new Vector2(
+                    block.BoundingBox.Left - (link.BoundingBox.Width / 2f), 
+                    link.Position.Y);
                 break;
             case CollisionSide.Right:
-                link.Position = new Vector2(block.BoundingBox.Right, link.Position.Y);
+                link.Position = new Vector2(
+                    block.BoundingBox.Right + (link.BoundingBox.Width / 2f),
+                    link.Position.Y);
                 break;
             case CollisionSide.Top:
-                link.Position = new Vector2(link.Position.X, block.BoundingBox.Top - link.BoundingBox.Height);
+                link.Position = new Vector2(
+                    link.Position.X, 
+                    block.BoundingBox.Top - (link.BoundingBox.Height /  2f));
                 break;
             case CollisionSide.Bottom:
-                link.Position = new Vector2(link.Position.X, block.BoundingBox.Bottom);
+                link.Position = new Vector2(
+                    link.Position.X, 
+                    block.BoundingBox.Bottom + (link.BoundingBox.Height / 2f));
                 break;
             default:
                 break;
         }
-       // link.ResetVelocity();
+        // link.ResetVelocity();
         block.LoadRoom();
 
     }

@@ -80,7 +80,8 @@ namespace MainGame
 
         public bool showStats = false;
 
-
+        // For red bounding box drawing
+        private Texture2D pixel;
 
         public Game1()
         {
@@ -120,6 +121,9 @@ namespace MainGame
             LoadDynamicObjects();
 
             _cheatCodeManager = new CheatCodeManager(linkSprite, levelMap);
+
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new[] { Color.White });
         }
 
         protected override void Update(GameTime gameTime)
@@ -168,10 +172,18 @@ namespace MainGame
             _deathScreen.Draw(_spriteBatch);
             _winScreen.Draw(_spriteBatch);
             _hud.Draw(_spriteBatch);
-            
+
+            //// === DEBUG: Draw Link's Bounding Box ===
+            //Rectangle bb = linkSprite.BoundingBox;
+
+            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y, bb.Width, 1), Color.Red); // Top
+            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y + bb.Height - 1, bb.Width, 1), Color.Red); // Bottom
+            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y, 1, bb.Height), Color.Red); // Left
+            //_spriteBatch.Draw(pixel, new Rectangle(bb.X + bb.Width - 1, bb.Y, 1, bb.Height), Color.Red); // Right
 
             _spriteBatch.End();
             base.Draw(gameTime);
+
         }
 
         public ISprite CurrentSprite
