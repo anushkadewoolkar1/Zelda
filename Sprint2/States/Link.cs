@@ -297,6 +297,13 @@ public class Link : IGameObject
 
         _audio.LinkHit();
 
+        if (linkAttacking == true)
+        {
+            linkAttacking = false;
+            RemoveGameObject(new HitBox(Position, currentDirection));
+            ChangeState(new LinkWalkingState(this, currentDirection));
+        }
+
         if (Health <= 0)
         {
             Health = 0;
