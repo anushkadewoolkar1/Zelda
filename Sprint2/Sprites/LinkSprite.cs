@@ -32,12 +32,17 @@ namespace MainGame.Sprites
         private const int COLOR_SCALE = 310;
         private const int RIGHT_BOUNDARY_COORD = 742;
         private const int RECTANGLE_DIM = 16;
+        // For scaling cheat
+        private readonly Link _link;
+        public float Scale { get; set; } = 2f;
 
-        public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] linkStates)
+        public LinkSprite(Texture2D texture, int spriteSheetXPos, int spriteSheetYPos, int[] linkStates, Link link)
         {
             _texture = texture;
 
             death = false;
+
+            _link = link;
 
             //Sets clock to 0 when Link isn't damaged 
             linkDamaged = !(Convert.ToBoolean(linkStates[3]));
@@ -98,47 +103,60 @@ namespace MainGame.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
-            destinationRectangle = new Rectangle((int)_position.X - (leftAdjustment * linkScale), (int)_position.Y - (upAdjustment * linkScale),
-                            sourceRectangle.Width * linkScale, sourceRectangle.Height * linkScale);
+            Vector2 origin = new Vector2(sourceRectangle.Width / 2f, sourceRectangle.Height / 2f);
 
             if (death)
             {
-                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Gray);
+                spriteBatch.Draw(
+                    _texture,
+                    _position,
+                    sourceRectangle,
+                    Color.Gray,
+                    0f,
+                    origin,
+                    _link.LinkScale,
+                    SpriteEffects.None,
+                    0f);
                 return;
             }
 
             if (!linkDamaged)
             {
-                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+                spriteBatch.Draw(
+                    _texture,
+                    _position,
+                    sourceRectangle,
+                    Color.White,
+                    0f,
+                    origin,
+                    _link.LinkScale,
+                    SpriteEffects.None,
+                    0f);
             }
             else
             {
+                Color flickerColor = Color.White;
                 switch (damageClock % 3)
                 {
-                    case 0:
-                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Purple);
-                        break;
-                    case 1:
-                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Red);
-                        break;
-                    case 2:
-                        spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.Blue);
-                        break;
-                    default:
-                        break;
+                    case 0: flickerColor = Color.Purple; break;
+                    case 1: flickerColor = Color.Red; break;
+                    case 2: flickerColor = Color.Blue; break;
                 }
+
+                spriteBatch.Draw(
+                    _texture,
+                    _position,
+                    sourceRectangle,
+                    flickerColor,
+                    0f,
+                    origin,
+                    _link.LinkScale,
+                    SpriteEffects.None,
+                    0f);
+
                 damageClock++;
             }
         }
-
-        //public void SetDamaged(bool damaged)
-        //{
-        //    linkDamaged = damaged;
-        //    if (!damaged)
-        //    {
-        //        damageClock = 0;
-        //    }
-        //}
 
 
         public void Update(GameTime gameTime)

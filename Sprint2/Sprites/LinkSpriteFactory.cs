@@ -49,6 +49,7 @@ namespace MainGame.Sprites
         int[] LinkTotality;
 
         private static LinkSpriteFactory instance = new LinkSpriteFactory();
+        private Link link;
 
         public static LinkSpriteFactory Instance
         {
@@ -67,172 +68,101 @@ namespace MainGame.Sprites
             zeldaSpriteSheet = spriteBatch.Load<Texture2D>("LinkAllOverworldColorsWithReflection");
         }
 
+        public void SetLink(Link link)
+        {
+            this.link = link;
+        }
         /* See enumerations above for how state and health is implemented
          */
         public ISprite CreateDownWalk(int frame, int state, int health)
         {
             LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUpWalk(int frame, int state, int health)
         {
             LinkTotality = [UP, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WALK_UP_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WALK_UP_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateLeftWalk(int frame, int state, int health)
         {
             LinkTotality = [LEFT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WALK_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WALK_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateRightWalk(int frame, int state, int health)
         {
             LinkTotality = [RIGHT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WALK_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WALK_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUseItemDown(int frame, int state, int health)
         {
             LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_DOWN_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUseItemUp(int state, int health)
         {
             LinkTotality = [UP, ANIMTN_START_FRAME, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_UP_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_UP_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUseItemLeft(int state, int health)
         {
             LinkTotality = [LEFT, ANIMTN_START_FRAME, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUseItemRight(int state, int health)
         {
             LinkTotality = [RIGHT, ANIMTN_START_FRAME, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_LEFTRIGHT_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
 
         public ISprite CreatePickUpItemOne(int state, int health)
         {
             LinkTotality = [UP, ANIMTN_START_FRAME, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_ONE_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_ONE_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
         public ISprite CreatePickUpItemTwo(int state, int health)
         {
             LinkTotality = [UP, ANIMTN_START_FRAME, state, health];
-            return new LinkSprite(zeldaSpriteSheet, ITEM_TWO_XPOS, WALK_AND_ITEM_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, ITEM_TWO_XPOS, WALK_AND_ITEM_YPOS, LinkTotality, link);
         }
 
 
         public ISprite CreateDownAttackWoodenSword(int frame, int state, int health)
         {
             LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_DOWN_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_DOWN_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateUpAttackWoodenSword(int frame, int state, int health)
         {
             LinkTotality = [UP, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_UP_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_UP_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateLeftAttackWoodenSword(int frame, int state, int health)
         {
             LinkTotality = [LEFT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateRightAttackWoodenSword(int frame, int state, int health)
         {
             LinkTotality = [RIGHT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-
-        public ISprite CreateDownAttackWhiteSword(int frame, int state, int health)
-        {
-            LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WHITE_XPOS, ATTACK_DOWN_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateUpAttackWhiteSword(int frame, int state, int health)
-        {
-            LinkTotality = [UP, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WHITE_XPOS, ATTACK_UP_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateLeftAttackWhiteSword(int frame, int state, int health)
-        {
-            LinkTotality = [LEFT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WHITE_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateRightAttackWhiteSword(int frame, int state, int health)
-        {
-            LinkTotality = [RIGHT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, WHITE_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-
-        public ISprite CreateDownAttackMagicalSword(int frame, int state, int health)
-        {
-            LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_SWORD_XPOS, ATTACK_DOWN_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateUpAttackMagicalSword(int frame, int state, int health)
-        {
-            LinkTotality = [UP, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_SWORD_XPOS, ATTACK_UP_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateLeftAttackMagicalSword(int frame, int state, int health)
-        {
-            LinkTotality = [LEFT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_SWORD_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateRightAttackMagicalSword(int frame, int state, int health)
-        {
-            LinkTotality = [RIGHT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_SWORD_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-
-        public ISprite CreateDownAttackMagicalRod(int frame, int state, int health)
-        {
-            LinkTotality = [DOWN, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_ROD_XPOS, ATTACK_DOWN_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateUpAttackMagicalRod(int frame, int state, int health)
-        {
-            LinkTotality = [UP, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_ROD_XPOS, ATTACK_UP_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateLeftAttackMagicalRod(int frame, int state, int health)
-        {
-            LinkTotality = [LEFT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_ROD_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
-        }
-
-        public ISprite CreateRightAttackMagicalRod(int frame, int state, int health)
-        {
-            LinkTotality = [RIGHT, frame, state, health];
-            return new LinkSprite(zeldaSpriteSheet, MAGIC_ROD_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality);
+            return new LinkSprite(zeldaSpriteSheet, WOODEN_XPOS, ATTACK_LEFTRIGHT_YPOS, LinkTotality, link);
         }
 
         public ISprite CreateDeath()
         {
-            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, [0,0,-1,0]);
+            return new LinkSprite(zeldaSpriteSheet, WALK_DOWN_XPOS, WALK_AND_ITEM_YPOS, [0,0,-1,0], link);
         }
     }
 }

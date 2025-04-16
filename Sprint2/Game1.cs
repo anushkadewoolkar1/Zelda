@@ -195,6 +195,7 @@ namespace MainGame
             _itemSprite = _item.GetItemSprite();
 
             linkSprite = new Link(_gameObjects);
+            LinkSpriteFactory.Instance.SetLink(linkSprite);
             levelMap = new LevelManager(Content, _gameObjects);
             levelMap.AddLink(linkSprite);
             levelMap.LoadRoom(2, 5);

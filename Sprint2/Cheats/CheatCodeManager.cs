@@ -29,19 +29,19 @@ public class CheatCodeManager
 
 
         recentKeys = new List<string>();
-        maxDelayBetweenKeys = 1000; // 1 seconds between keys 
+        maxDelayBetweenKeys = 4000; 
         timeSinceLastKey = 0;
 
         // The keys here are the sequences for the cheat codes
         this.cheatCommands = new Dictionary<string, MainGame.Commands.ICommand>()
         {
-            { "UPUPDOWNDOWNLEFTRIGHTLEFTRIGHT", new ToggleInivicibility(link) }, // doesnt work yet
+            { "DOWNRIGHTDOWNRIGHT", new ToggleInivicibility(link) }, 
             { "UPDOWNUPDOWN", new IncreaseLinkSpeed(link) },
             { "DOWNUPDOWNUP", new DecreaseLinkSpeed(link) },
-            { "LEFTRIGHTRIGHTLEFT", new IncreaseLinkSize(link) }, // doesnt work yet
-            { "RIGHTLEFTLEFTRIGHT", new DecreaseLinkSize(link) }, // doesnt work yet
-            { "UPDOWNLEFTRIGHT", new SpreadArrowAttack(link) },
-            { "UPDOWNRIGHTLEFTDOWNRIGHTUPDOWNRIGHTLEFT", new SpawnTriForce(levelManager) } // doesnt work yet
+            { "LEFTRIGHTLEFTRIGHT", new IncreaseLinkSize(link) }, 
+            { "RIGHTLEFTRIGHTLEFT", new DecreaseLinkSize(link) },
+            { "UPDOWNLEFTRIGHT", new SpreadArrowAttack(link) }, // needs to shoot arrows
+            { "UPDOWNRIGHTLEFTDOWNRIGHTUPDOWNRIGHTLEFT", new SpawnTriForce(levelManager) } // kinda works
         };
     }
 
@@ -56,23 +56,28 @@ public class CheatCodeManager
         {
             foreach (var key in pressedKeys)
             {
-                string keyStr = key.ToString().ToUpper();
-                if (recentKeys.Count == 0 || recentKeys[recentKeys.Count - 1] != keyStr)
+                if (key == Keys.Up || key == Keys.Down || key == Keys.Left || key == Keys.Right )
                 {
-                    recentKeys.Add(keyStr);
-                    timeSinceLastKey = 0; // recent timer on key press
+                    string keyStr = key.ToString().ToUpper();
+                    if (recentKeys.Count == 0 || recentKeys[recentKeys.Count - 1] != keyStr)
+                    {
+                        recentKeys.Add(keyStr);
+                        timeSinceLastKey = 0; // recent timer on key press
+                    }
                 }
+
             }
 
             string currentSequence = string.Join("", recentKeys);
+            //System.Diagnostics.Debug.WriteLine("Current cheat input: " + currentSequence);
 
             foreach (var cheat in cheatCommands)
             {
                 if (currentSequence.EndsWith(cheat.Key, StringComparison.OrdinalIgnoreCase))
                 {
+                    //System.Diagnostics.Debug.WriteLine($"Cheat matched: {cheat.Key} -> + currentSequence...");
                     // Cheat found - execute
                     cheat.Value.Execute();
-
                     recentKeys.Clear();
                     break;
                 }
@@ -81,6 +86,7 @@ public class CheatCodeManager
         // If to much time passes clear buffer
         if (timeSinceLastKey > maxDelayBetweenKeys)
         {
+            //System.Diagnostics.Debug.WriteLine("Sequence timeout, clearing input");
             recentKeys.Clear();
         }
     }

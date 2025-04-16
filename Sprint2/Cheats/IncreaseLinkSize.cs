@@ -1,12 +1,13 @@
 using System.Diagnostics;
 using MainGame.Commands;
+using MainGame.Sprites;
 
 namespace MainGame.Cheats
 {
     public class IncreaseLinkSize : ICommand
     {
         private readonly Link _link;
-        private const float IncreaseAmount = 0.1f; // 10%
+        private const float IncreaseAmount = 0.3f; 
 
         public IncreaseLinkSize(Link link)
         {
@@ -15,8 +16,12 @@ namespace MainGame.Cheats
 
         public void Execute()
         {
-            _link.Scale += IncreaseAmount;
-            System.Diagnostics.Debug.WriteLine("Cheat Activated: Link is bigger!");
+            if(_link.CurrentSprite is LinkSprite linkSprite)
+            {
+                _link.LinkScale += IncreaseAmount;
+                System.Diagnostics.Debug.WriteLine("Cheat Activated: Link is bigger!");
+            }
+            
         }
     }
 }

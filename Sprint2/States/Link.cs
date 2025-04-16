@@ -20,6 +20,7 @@ public class Link : IGameObject
     public Vector2 Position { get; set; }
     public Boolean noMoving { get; set; }
     private ISprite currentSprite;
+    public ISprite CurrentSprite => currentSprite;
     private LinkSpriteFactory spriteFactory;
 
     // Invulnerability settings.
@@ -61,7 +62,7 @@ public class Link : IGameObject
     public LevelManager level { get; set; }
 
     public float SpeedMultiplier { get; set; } = 1.0f;
-    public float Scale { get; set; } = 1.0f;
+    public float LinkScale { get; set; } = 2f;
 
     public Link(List<IGameObject> _gameObjects)
     {
@@ -182,7 +183,11 @@ public class Link : IGameObject
     {
         get
         {
-            return new Rectangle((int)Position.X, (int)Position.Y, 30, 30);
+            return new Rectangle(
+                (int)(Position.X - (12 * LinkScale) / 2),
+                (int)(Position.Y - (12 * LinkScale) / 2),
+                (int)(12 * LinkScale),
+                (int)(12 * LinkScale));
         }
     }
     public Vector2 Velocity

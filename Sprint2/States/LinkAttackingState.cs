@@ -72,34 +72,18 @@ public class LinkAttackingState : ILinkState
             case Direction.Up:
                 if (swordType == SwordType.WoodenSword)
                     link.SetSprite(LinkSpriteFactory.Instance.CreateUpAttackWoodenSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.WhiteSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateUpAttackWhiteSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.MagicalSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateUpAttackMagicalSword(attackFrame, 1, link.LinkHurt));
                 break;
             case Direction.Down:
                 if (swordType == SwordType.WoodenSword)
                     link.SetSprite(LinkSpriteFactory.Instance.CreateDownAttackWoodenSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.WhiteSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateDownAttackWhiteSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.MagicalSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateDownAttackMagicalSword(attackFrame, 1, link.LinkHurt));
                 break;
             case Direction.Left:
                 if (swordType == SwordType.WoodenSword)
                     link.SetSprite(LinkSpriteFactory.Instance.CreateLeftAttackWoodenSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.WhiteSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateLeftAttackWhiteSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.MagicalSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateLeftAttackMagicalSword(attackFrame, 1, link.LinkHurt));
                 break;
             case Direction.Right:
                 if (swordType == SwordType.WoodenSword)
                     link.SetSprite(LinkSpriteFactory.Instance.CreateRightAttackWoodenSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.WhiteSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateRightAttackWhiteSword(attackFrame, 1, link.LinkHurt));
-                else if (swordType == SwordType.MagicalSword)
-                    link.SetSprite(LinkSpriteFactory.Instance.CreateRightAttackMagicalSword(attackFrame, 1, link.LinkHurt));
                 break;
         }
     }
