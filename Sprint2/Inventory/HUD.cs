@@ -5,6 +5,7 @@ using Zelda.Enums;
 using Zelda.Inventory;  // Gives us access to Inventory.SpriteDef
 using MainGame.Display;
 using System.Collections.Generic;
+using static Zelda.Inventory.Inventory;
 
 namespace ZeldaGame.HUD
 {
@@ -13,15 +14,17 @@ namespace ZeldaGame.HUD
         private Texture2D _backgroundTexture;
         private GameState _gameState;
         private Link _link;
+        private LevelManager _level;
 
         private Dictionary<string, Inventory.SpriteDef> _spriteDefs;
 
-        public HUD(ContentManager content, Link link)
+        public HUD(ContentManager content, Link link, LevelManager level)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
             _link = link;
             InitializeSpriteDefinitions();
-        }
+            _level = level;
+        }   
 
         private void InitializeSpriteDefinitions()
         {
@@ -36,11 +39,22 @@ namespace ZeldaGame.HUD
             _spriteDefs["miniMapMap"] = new Inventory.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Map);
             _spriteDefs["miniMapEmpty"] = new Inventory.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Empty);
 
+            _spriteDefs["pinkIndicator"] = new SpriteDef(InventoryConstants.HudIndicatorScale, InventoryConstants.HudIndicatorSourceRect);
+
             _spriteDefs["selectedArrow"] = new Inventory.SpriteDef(HudConstants.SelectedArrowScale, HudConstants.SelectedArrowSourceRect);
             _spriteDefs["selectedBomb"] = new Inventory.SpriteDef(HudConstants.SelectedBombScale, HudConstants.SelectedBombSourceRect);
             _spriteDefs["selectedBoomerang"] = new Inventory.SpriteDef(HudConstants.SelectedBoomerangScale, HudConstants.SelectedBoomerangSourceRect);
         }
 
+        // Link tracking on minimap
+        private int[] currentRoomMap()
+        {
+            int[] coords = _level.GetCurrentRoomCoords();
+            int x = coords[0];
+            int y = coords[1];
+
+            return new int[] { InventoryConstants.hBaseLX + InventoryConstants.hLXOffset * x, InventoryConstants.hBaseLY + InventoryConstants.hLYOffset * y };
+        }
 
         private Rectangle GetDestinationRect(Inventory.SpriteDef sprite, int x, int y)
         {
@@ -89,6 +103,15 @@ namespace ZeldaGame.HUD
                 Inventory.SpriteDef miniMap = _spriteDefs["miniMapMap"];
                 Rectangle miniMapDest = GetDestinationRect(miniMap, HudConstants.MiniMapDestX, HudConstants.MiniMapDestY);
                 spriteBatch.Draw(_backgroundTexture, miniMapDest, miniMap.SourceRect, Color.White);
+
+                // indicator
+                int[] tempCoords = currentRoomMap();
+                spriteBatch.Draw(
+                    _backgroundTexture,
+                    GetDestinationRect(_spriteDefs["pinkIndicator"], tempCoords[0], tempCoords[1]),
+                    _spriteDefs["pinkIndicator"].SourceRect,
+                    Color.White
+                );
             }
             else
             {

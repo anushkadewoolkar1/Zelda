@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace MainGame.Display
 {
@@ -37,6 +38,9 @@ namespace MainGame.Display
 
         public const float PinkIndicatorScale = 1.0f;
         public static readonly Rectangle PinkIndicatorSourceRect = new Rectangle(350, 70, 5, 5);
+
+        public const float HudIndicatorScale = 0.5f;
+        public static readonly Rectangle HudIndicatorSourceRect = new Rectangle(400, 245, 10, 10);
 
         public const float SelectedArrowScale = 2.3f;
         public static readonly Rectangle SelectedArrowSourceRect = new Rectangle(617, 138, 5, 13);
@@ -90,6 +94,14 @@ namespace MainGame.Display
         public const int LXOffset = 15;
         public const int BaseLY = 197;
         public const int LYOffset = 15;
+
+        // hud minimap indicator
+        public const int hBaseLX = 60;
+        public const int hLXOffset = 18;
+        public const int hBaseLY = 400;
+        public const int hLYOffset = 8;
+
+
     };
 }
 
