@@ -154,20 +154,42 @@ namespace MainGame.Display
             tokenStartIndex = index;
 
             // adjust links position if u need to
-            if (xCoordinate != currentRoomCoords[0] && moveLink)
+            const float BUFFER = 16f; 
+
+            if (moveLink)
             {
-                int roomCenterX = roomWidth - 16;
-                myLink.Position = new Vector2(
-                    roomCenterX + Math.Sign(roomCenterX - myLink.Position.X) * (roomCenterX - this.BoundingBox.X - 12),
-                    myLink.Position.Y);
+                Vector2 newPosition = myLink.Position;
+
+                switch (myLink.currentDirection)
+                {
+                    case Direction.Left:
+                        newPosition = new Vector2(
+                            BoundingBox.Right - (myLink.BoundingBox.Width / 2f) - BUFFER,
+                            BoundingBox.Center.Y);
+                        break;
+
+                    case Direction.Right:
+                        newPosition = new Vector2(
+                            BoundingBox.Left + (myLink.BoundingBox.Width / 2f) + BUFFER,
+                            BoundingBox.Center.Y);
+                        break;
+
+                    case Direction.Up:
+                        newPosition = new Vector2(
+                            BoundingBox.Center.X,
+                            BoundingBox.Bottom - (myLink.BoundingBox.Height / 2f) - BUFFER);
+                        break;
+
+                    case Direction.Down:
+                        newPosition = new Vector2(
+                            BoundingBox.Center.X,
+                            BoundingBox.Top + (myLink.BoundingBox.Height / 2f) + BUFFER);
+                        break;
+                }
+
+                myLink.Position = newPosition;
             }
-            else if (yCoordinate != currentRoomCoords[1] && moveLink)
-            {
-                int roomCenterY = roomHeight - 16;
-                myLink.Position = new Vector2(
-                    myLink.Position.X,
-                    roomCenterY + Math.Sign(roomCenterY - myLink.Position.Y) * (roomCenterY - this.BoundingBox.Y - 12));
-            }
+
 
             myLink.noMoving = true;
 

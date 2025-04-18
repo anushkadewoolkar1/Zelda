@@ -7,6 +7,7 @@ using MainGame.CollisionHandling;
 using MainGame.States;
 using Zelda.Enums;
 using MainGame.Display;
+using Microsoft.Xna.Framework;
 
 namespace MainGame.Collision
 {
@@ -22,18 +23,28 @@ namespace MainGame.Collision
 
             switch (side)
             {
-                // this corresponds to the left side of the level..etc
                 case CollisionSide.Left:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X, link.Position.Y);
+                    link.Position = new Vector2(
+                        level.BoundingBox.Left + (link.BoundingBox.Width / 2f),
+                        link.Position.Y);
                     break;
+
                 case CollisionSide.Right:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(level.BoundingBox.X + level.BoundingBox.Width - link.BoundingBox.Width, link.Position.Y);
+                    link.Position = new Vector2(
+                        level.BoundingBox.Right - (link.BoundingBox.Width / 2f),
+                        link.Position.Y);
                     break;
-                case CollisionSide.Bottom:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.BoundingBox.Y + level.BoundingBox.Height - link.BoundingBox.Height);
-                    break;
+
                 case CollisionSide.Top:
-                    link.Position = new Microsoft.Xna.Framework.Vector2(link.Position.X, level.BoundingBox.Y);
+                    link.Position = new Vector2(
+                        link.Position.X,
+                        level.BoundingBox.Top + (link.BoundingBox.Height / 2f));
+                    break;
+
+                case CollisionSide.Bottom:
+                    link.Position = new Vector2(
+                        link.Position.X,
+                        level.BoundingBox.Bottom - (link.BoundingBox.Height / 2f));
                     break;
             }
         }
