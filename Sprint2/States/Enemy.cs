@@ -24,15 +24,12 @@ namespace MainGame.States
         public EnemyType enemyType { get; set; }
         public float Speed { get; set; }
         public Direction Direction { get; set; }
-        private ISprite boomerangSprite, fireballSprite;
-        private Boolean itemSpawn;
         private Boolean itemSpawned;
         public ItemType itemType { get; set; }
         public List<ItemType> CurrentItem { get; set; }
         public int chooseItem { get; set; }
         private EnemyProjectileManager projectileManager;
         private List<IGameObject> gameObjects;
-        private Vector2 projectilePosition;
         private Vector2 velocity;
         private TileMap tileMap = TileMap.GetInstance();
         private GameAudio audio;
@@ -68,9 +65,7 @@ namespace MainGame.States
 
             CurrentItem = new List<ItemType>();
             gameObjects = _gameObjects;
-            projectileManager = new EnemyProjectileManager(this, gameObjects);
-            itemType = ItemType.Boomerang;
-            itemSpawn = false;
+            projectileManager = EnemyProjectileManager.Instance;
             itemSpawned = false;
 
             audio = _audio;
@@ -79,6 +74,13 @@ namespace MainGame.States
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
         {
             enemyType = enemyCreated;
+            if(enemyCreated == EnemyType.Goriya)
+            {
+                CurrentItem.Add(ItemType.Boomerang);
+            } else if (enemyCreated == EnemyType.Aquamentus)
+            {
+                CurrentItem.Add(ItemType.Fireball);
+            }
             SetHealth();
             position = tileMap.GetTileCenter(spawnPosition);
             //I combined the two lines below into one line so that position can be a property
@@ -138,26 +140,26 @@ namespace MainGame.States
             sprite.Draw(spriteBatch, this.position);
             projectileManager.Draw(spriteBatch);
 
-            if (itemSpawn)
-            {
-                projectilePosition = position + new Vector2((float) TWO, (float) TWO);
-                itemSpawn = false;
-                itemSpawned = true;
-            }
-            if (itemSpawned)
-            {
-                switch (itemType)
-                {
-                    case ItemType.Boomerang:
-                        boomerangSprite.Draw(spriteBatch, projectilePosition);
-                        break;
-                    case ItemType.Fireball:
-                        fireballSprite.Draw(spriteBatch, projectilePosition);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //if (itemSpawn)
+            //{
+            //    projectilePosition = position + new Vector2((float)TWO, (float)TWO);
+            //    itemSpawn = false;
+            //    itemSpawned = true;
+            //}
+            //if (itemSpawned)
+            //{
+            //    switch (itemType)
+            //    {
+            //        case ItemType.Boomerang:
+            //            boomerangSprite.Draw(spriteBatch, projectilePosition);
+            //            break;
+            //        case ItemType.Fireball:
+            //            fireballSprite.Draw(spriteBatch, projectilePosition);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
         }
 
         public void ChangeDirection(Direction newDirection)
@@ -207,11 +209,11 @@ namespace MainGame.States
 
             if(enemyType == EnemyType.Goriya)
             {
-                CurrentItem.Add(ItemType.Boomerang);
+                // CurrentItem.Add(ItemType.Boomerang);
                 projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
             } else if (enemyType == EnemyType.Aquamentus)
             {
-                CurrentItem.Add(ItemType.Fireball);
+                // CurrentItem.Add(ItemType.Fireball);
                 projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
             }
         }
@@ -278,20 +280,20 @@ namespace MainGame.States
             }
             //sprite.Update(gameTime);
 
-            if (itemSpawned)
-            {
-                switch (itemType)
-                {
-                    case ItemType.Boomerang:
-                        boomerangSprite.Update(gameTime, this);
-                        break;
-                    case ItemType.Fireball:
-                        fireballSprite.Update(gameTime, this);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //if (itemSpawned)
+            //{
+            //    switch (itemType)
+            //    {
+            //        case ItemType.Boomerang:
+            //            boomerangSprite.Update(gameTime, this);
+            //            break;
+            //        case ItemType.Fireball:
+            //            fireballSprite.Update(gameTime, this);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
 
 
             if (EnemyHealth <= ZERO)

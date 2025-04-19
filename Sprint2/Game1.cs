@@ -200,6 +200,7 @@ namespace MainGame
             ItemSpriteFactory.Instance.ItemTextures(Content);
             LinkSpriteFactory.Instance.LoadLinkTextures(Content);
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
+            EnemyProjectileManager.Instance.LoadAllTextures(Content);
 
             _spriteFont = Content.Load<SpriteFont>("DefaultFont");
             _item = new Item().CreateItem(ItemType.Arrow, 11, 6);

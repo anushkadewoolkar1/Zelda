@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MainGame.Sprites;
 using MainGame.CollisionHandling;
+using Microsoft.Xna.Framework.Content;
 using Zelda.Enums;
+using MainGame.Collision;
 
 namespace MainGame.States
 {
@@ -15,9 +17,11 @@ namespace MainGame.States
     {
         private Enemy enemy;
         private List<IGameObject> gameObjects;
+        private Texture2D goriyaSpritesheet;
+        private Texture2D aquaSpritesheet;
 
         // need boomerang and fireball for Goriya and Aquamentus
-        private ISprite boomerangSprite, fireballSprite;
+        private EnemyProjectileSprite boomerangSprite, fireballSprite;
 
         private bool spawnedItem;
         private bool initializeItem;
@@ -28,23 +32,38 @@ namespace MainGame.States
         private int projectileTimer = 0;
         private int projectileTimerMax = 20;
 
-        public EnemyProjectileManager(Enemy enemy, List<IGameObject> _gameObjects)
+        private EnemyProjectileManager()
         {
-            this.enemy = enemy;
+        }
+
+        private static EnemyProjectileManager instance = new EnemyProjectileManager();
+
+        public static EnemyProjectileManager Instance
+        {  get { return instance; } }
+
+        public void LoadAllTextures(ContentManager spriteBatch)
+        {
+            goriyaSpritesheet = spriteBatch.Load<Texture2D>("ItemSpritesheet");
+            aquaSpritesheet = spriteBatch.Load<Texture2D>("lozNPCs");
+        }
+
+        public void SetProjectile(Enemy _enemy, List<IGameObject> _gameObjects)
+        {
+            enemy = _enemy;
             gameObjects = _gameObjects;
             spawnedItem = false;
             initializeItem = false;
-            destroy = false;
         }
 
         public void Update(GameTime gameTime)
         {
-            if(projectileTimer == projectileTimerMax)
-            {
-                enemy.CurrentItem.Remove(enemy.itemType);
-            } else if(projectileTimer >= projectileTimerMax)
+            if (!spawnedItem)
             {
                 return;
+            }
+            if(projectilePosition == enemy.position)
+            {
+                enemy.CurrentItem.Remove(enemy.itemType);
             }
 
             projectilePosition += MoveDirection(projectileDirection) * projectileSpeed;
@@ -85,7 +104,7 @@ namespace MainGame.States
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (destroy) return;
+            if (destroy || !spawnedItem) return;
 
             foreach (var type in enemy.CurrentItem)
             {
@@ -104,7 +123,6 @@ namespace MainGame.States
 
         public void SpawnProjectile(ItemType itemType, Direction direction)
         {
-            spawnedItem = false;
 
             switch (itemType)
             {
@@ -119,9 +137,10 @@ namespace MainGame.States
                     break;
             }
 
-            projectilePosition = enemy.position;
+            projectilePosition = enemy.position + MoveDirection(direction);
             projectileDirection = direction;
             initializeItem = true;
+            spawnedItem = true;
         }
 
         private Vector2 MoveDirection(Direction direction)
@@ -141,14 +160,9 @@ namespace MainGame.States
             }
         }
 
-        private ISprite CreateBoomerangSprite(Direction direction)
+        private EnemyProjectileSprite CreateBoomerangSprite(Direction direction)
         {
-            if (direction == Direction.Up)
-                return ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)direction);
-            else if (direction == Direction.Right)
-                return ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)direction - 2);
-            else
-                return ProjectileSpriteFactory.Instance.CreateBoomerangBrown((int)direction + 1);
+            return new EnemyProjectileSprite(goriyaSpritesheet, 1, 1, 65, 0, 5, 8, ItemType.Boomerang);
         }
 
 

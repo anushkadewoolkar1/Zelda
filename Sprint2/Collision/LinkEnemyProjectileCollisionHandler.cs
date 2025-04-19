@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MainGame.Collision;
 using MainGame.CollisionHandling;
+using MainGame.Sprites;
 using Zelda.Enums;
 
 namespace MainGame.CollisionHandling
@@ -16,12 +17,12 @@ namespace MainGame.CollisionHandling
         {
             // Assume objA is Link and objB is an Enemy Projectile.
             Link link = objA as Link;
-            EnemyProjectile enemyProj = objB as EnemyProjectile;
+            EnemyProjectileSprite enemyProj = objB as EnemyProjectileSprite;
 
             if (link == null || enemyProj == null)
             {
                 link = objB as Link;
-                enemyProj = objA as EnemyProjectile;
+                enemyProj = objA as EnemyProjectileSprite;
             }
 
             if (link == null || enemyProj == null)

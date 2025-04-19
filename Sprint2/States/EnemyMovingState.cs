@@ -31,7 +31,8 @@ namespace MainGame.States
         private const int THIRTY = 30;
         private const int FIFTY = 50;
         private const int SEVENTY_FIVE = 75;
-        private const int HUNDRED = 100;
+        private const int HALF_TIMER = 100;
+        private const int MAX_TIMER = 200;
 
 
         private int timer = ZERO;
@@ -59,7 +60,7 @@ namespace MainGame.States
         {
             Vector2 move = Vector2.Zero;
 
-            enemy.Speed = HUNDRED;
+            enemy.Speed = HALF_TIMER;
 
             int random = RandomNumberGenerator.GetInt32(-ONE, ONE);
             Direction randomDirection = GenerateRandomDirection();
@@ -72,7 +73,7 @@ namespace MainGame.States
                     break;
                 case EnemyType.Keese:
                     enemy.Speed = TWENTY;
-                    if(timer == HUNDRED)
+                    if(timer == HALF_TIMER)
                     {
                         enemy.Direction = randomDirection;
                     }
@@ -90,7 +91,7 @@ namespace MainGame.States
                     break;
                 case EnemyType.Stalfos:
                     enemy.Speed = THIRTY;
-                    if(timer == ZERO || timer == HUNDRED)
+                    if(timer == ZERO || timer == HALF_TIMER)
                     {
                         enemy.Direction = randomDirection;
                     }
@@ -98,11 +99,11 @@ namespace MainGame.States
                     move = MoveDirection(enemy.Direction);
                     break;
                 case EnemyType.Goriya:
-                    if(timer == ZERO || timer == HUNDRED)
+                    if(timer == ZERO || timer == HALF_TIMER)
                     {
                         moving = true;
                         enemy.ChangeDirection(randomDirection);
-                    } else if (timer == FIFTY || timer == (HUNDRED + FIFTY))
+                    } else if (timer == FIFTY || timer == (HALF_TIMER + FIFTY))
                     {
                         enemy.SpawnProjectile();
                         moving = false;
@@ -119,7 +120,7 @@ namespace MainGame.States
                     break;
                 case EnemyType.Gel:
                     enemy.Speed = TWENTY;
-                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HUNDRED && timer < (HUNDRED + FIFTY)))
+                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FIFTY)))
                     {
                         move = new Vector2(ZERO, ZERO);
                     } else if (timer == SEVENTY_FIVE)
@@ -131,7 +132,7 @@ namespace MainGame.States
                     }
                     break;
                 case EnemyType.Zol:
-                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HUNDRED && timer < (HUNDRED + FIFTY)))
+                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FIFTY)))
                     {
                         move = new Vector2(ZERO, ZERO);
                     }
@@ -146,14 +147,14 @@ namespace MainGame.States
                         enemy.Speed = ZERO;
                         move = new Vector2(ZERO, ZERO);
                     }
-                    else if (timer >= TWENTY_FIVE && timer < HUNDRED)
+                    else if (timer >= TWENTY_FIVE && timer < HALF_TIMER)
                     {
-                        enemy.Speed = HUNDRED * TWO;
+                        enemy.Speed = HALF_TIMER * TWO;
                         move = MoveDirection(Direction.Down);
                     }
-                    else if (timer >= FIFTY && timer < HUNDRED)
+                    else if (timer >= FIFTY && timer < HALF_TIMER)
                     {
-                        enemy.Speed = HUNDRED;
+                        enemy.Speed = HALF_TIMER;
                         move = MoveDirection(Direction.Up);
                     }
                     break;
@@ -176,11 +177,11 @@ namespace MainGame.States
                         }
                     } else if (timer >= FIFTY && timer < SEVENTY_FIVE)
                     {
-                        enemy.Speed = HUNDRED * TWO;
+                        enemy.Speed = HALF_TIMER * TWO;
                         move = MoveDirection(Direction.Down);
                     } else
                     {
-                        enemy.Speed = HUNDRED;
+                        enemy.Speed = HALF_TIMER;
                         if (RandomNumberGenerator.GetInt32(-ONE, ONE) == ONE)
                         {
                             move = MoveDirection(Direction.Right);
@@ -196,10 +197,10 @@ namespace MainGame.States
                     if (timer >= ZERO && timer < FIFTY)
                     {
                         move = MoveDirection(Direction.Left);
-                    } else if (timer >= FIFTY && timer < HUNDRED)
+                    } else if (timer >= FIFTY && timer < HALF_TIMER)
                     {
                         move = MoveDirection(Direction.Right);
-                    } else if (timer == HUNDRED)
+                    } else if (timer == HALF_TIMER)
                     {
                         enemy.SpawnProjectile();
                     }
@@ -231,7 +232,7 @@ namespace MainGame.States
             }
 
             timer++;
-            if (timer == (HUNDRED * TWO))
+            if (timer == (HALF_TIMER * TWO))
             {
                 timer = ZERO;
             }
