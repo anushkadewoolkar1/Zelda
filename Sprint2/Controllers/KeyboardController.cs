@@ -101,7 +101,9 @@ namespace MainGame.Controllers
                 { Keys.R, UserInputs.ResetLevel },
 
                 { Keys.Tab, UserInputs.CycleItem },
-                { Keys.V, UserInputs.ToggleStats }
+                { Keys.V, UserInputs.ToggleStats },
+
+                { Keys.LeftShift, UserInputs.ToggleLinkRunning }
 
 
             };

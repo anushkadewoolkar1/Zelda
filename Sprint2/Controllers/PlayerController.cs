@@ -38,16 +38,16 @@ namespace MainGame.Controllers
 
         public void ExecuteActionInput(UserInputs input)
         {
-            /* Saving this piece of code for later (PP)
-             * 
+            //Saving this piece of code for later(PP)
+            //
             // Don't repeat held inputs
             if (input != lastAction)
-            {
-                // If game is being played, use game control set, otherwise, use menu control set: 
-                if (gameStateCopy == GameState.Playing) levelCommandMap[input].Execute();
-                else menuCommandMap[input].Execute();
-            }
-            */
+                {
+                    // If game is being played, use game control set, otherwise, use menu control set:
+                    if (gameStateCopy == GameState.Playing) levelCommandMap[input].Execute();
+                    else menuCommandMap[input].Execute();
+                }
+
 
             if (lastAction != input) levelCommandMap[input].Execute();
 

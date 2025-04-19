@@ -18,7 +18,8 @@ namespace Zelda.Enums
         ToggleFullscreen,
         ResetLevel,
         CycleItem,
-        ToggleStats
+        ToggleStats,
+        ToggleLinkRunning
     }
 
     public enum Direction

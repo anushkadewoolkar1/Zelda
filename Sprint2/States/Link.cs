@@ -64,6 +64,10 @@ public class Link : IGameObject
     public float SpeedMultiplier { get; set; } = 1.0f;
     public float LinkScale { get; set; } = 2f;
 
+    private int runningCounter = 0;
+    private int runningCooldown = 100;
+    private bool running = false;
+
     public Link(List<IGameObject> _gameObjects)
     {
         // Initialize the sprite factory 
@@ -111,6 +115,15 @@ public class Link : IGameObject
                 healthTimer = 0;
                 _audio.LowHealth();
             }
+        }
+
+        if (running)
+        {
+            UpdateRunning();
+        }
+        else if (!running && runningCooldown < 100)
+        {
+            UpdateCooldown();
         }
 
 
@@ -359,5 +372,46 @@ public class Link : IGameObject
         itemManager.UseItem(ItemType.Arrow, Direction.Down);
         itemManager.UseItem(ItemType.Arrow, Direction.Left);
         itemManager.UseItem(ItemType.Arrow, Direction.Right);
+    }
+
+    public void StartRunning()
+    {
+        running = true;
+
+        switch (Health)
+        {
+            case 1:
+                SpeedMultiplier = 1.0f;
+                break;
+            case 2:
+                SpeedMultiplier = 2.0f;
+                break;
+            case 3:
+                SpeedMultiplier = 3.0f;
+                break;
+        }
+    }
+
+    public void UpdateRunning()
+    {
+        runningCounter++;
+        if (runningCounter >= 50)
+        {
+            runningCounter = 0;
+            running = false;
+            runningCooldown--;
+        }
+    }
+
+    public void UpdateCooldown()
+    {
+        SpeedMultiplier = 1.0f;
+        runningCooldown--;
+        System.Diagnostics.Debug.WriteLine("Link has run out of stamina...");
+
+        if (runningCooldown <= 0)
+        {
+            runningCooldown = 100;
+        }
     }
 }

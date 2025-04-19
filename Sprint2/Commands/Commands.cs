@@ -365,11 +365,26 @@ namespace MainGame.Commands
         _game = game;
     }
 
-    public void Execute()
-    {
-        _game.showStats = !_game.showStats;
-    }
+        public void Execute()
+        {
+            _game.showStats = !_game.showStats;
+        }
 }
+
+
+    public class ToggleLinkRunning : ICommand
+    {
+        private Link _link;
+        public ToggleLinkRunning(Link link)
+        {
+            _link = link;
+        }
+
+        public void Execute()
+        {
+            _link.StartRunning();
+        }
+    }
 
 
 }
