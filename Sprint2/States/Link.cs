@@ -107,6 +107,7 @@ public class Link : IGameObject
 
         itemManager.Update(gameTime);
 
+        DetermineSpeed();
         if(Health <= 1.0)
         {
             healthTimer++;
@@ -412,6 +413,22 @@ public class Link : IGameObject
         if (runningCooldown <= 0)
         {
             runningCooldown = 100;
+        }
+    }
+
+    public void DetermineSpeed()
+    {
+        switch(Health)
+        {
+            case 1:
+                SpeedMultiplier = 1.0f;
+                break;
+            case 2:
+                SpeedMultiplier = 1.5f;
+                break;
+            case 3:
+                SpeedMultiplier = 2.0f;
+                break;
         }
     }
 }
