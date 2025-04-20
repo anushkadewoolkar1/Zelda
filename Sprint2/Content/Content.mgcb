@@ -176,6 +176,12 @@
 /processorParam:TextureFormat=Color
 /build:Game_Over_(The_Adventure_of_Link).png
 
+#begin hazeEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:hazeEffect.fx
+
 #begin ItemSpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

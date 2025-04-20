@@ -18,6 +18,7 @@ using Microsoft.Xna.Framework.Media;
 using System.Threading;
 using Zelda.Inventory;
 using ZeldaGame.HUD;
+using MainGame.Shader;
 
 namespace MainGame
 {
@@ -66,6 +67,8 @@ namespace MainGame
 
         private Item _item, _item2;
         private ItemSprite _itemSprite;
+
+        private ShaderManager _shaderManager;
 
         public Link linkSprite { get; set; }
         public IDisplay currDisplay;
@@ -121,6 +124,8 @@ namespace MainGame
             LoadDynamicObjects();
 
             _cheatCodeManager = new CheatCodeManager(linkSprite, levelMap);
+
+            _shaderManager = new ShaderManager(Content);
 
             pixel = new Texture2D(GraphicsDevice, 1, 1);
             pixel.SetData(new[] { Color.White });
