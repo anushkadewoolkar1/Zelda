@@ -83,6 +83,8 @@ namespace MainGame
         // For red bounding box drawing
         private Texture2D pixel;
 
+        Texture2D _baseTexture;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this)
@@ -107,6 +109,9 @@ namespace MainGame
 
         protected override void LoadContent()
         {
+
+            _baseTexture = new Texture2D(GraphicsDevice, 1, 1);
+            _baseTexture.SetData(new[] { Color.White });
             TileMap.Initialize(256, 240);
             _tileMap = TileMap.GetInstance();
 
@@ -121,7 +126,7 @@ namespace MainGame
 
             _cheatCodeManager = new CheatCodeManager(linkSprite, levelMap);
 
-            _shaderManager = new ShaderManager(Content);
+            
 
             pixel = new Texture2D(GraphicsDevice, 1, 1);
             pixel.SetData(new[] { Color.White });
@@ -154,12 +159,11 @@ namespace MainGame
 
         protected override void Draw(GameTime gameTime)
         {
+            // render the zelda game by itself to _renderTarget
+            GraphicsDevice.SetRenderTarget(_renderTarget);
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-
-            _spriteBatch.Draw(_renderTarget, _renderTargetDestination, Color.White);
             levelMap.Draw(_spriteBatch);
-
             if (isInventoryOpen) _inventory.Draw(_spriteBatch);
             if (isSettingsOpen) _settings.Draw(_spriteBatch);
             if (showStats)
@@ -167,12 +171,20 @@ namespace MainGame
                 string statsText = $"Games Played: {GamesPlayed}\nGames Won: {GamesWon}\nGames Lost: {GamesLost}";
                 _spriteBatch.DrawString(_spriteFont, statsText, new Vector2(10, 10), Color.White);
             }
-
-
             _startMenu.Draw(_spriteBatch);
             _deathScreen.Draw(_spriteBatch);
             _winScreen.Draw(_spriteBatch);
             _hud.Draw(_spriteBatch);
+            _spriteBatch.End();
+
+            // switch the render to window and clear it
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(Color.Black);
+
+
+
+            _shaderManager.Update(gameTime);
+            _shaderManager.Draw(_spriteBatch, _renderTarget);
 
             //// === DEBUG: Draw Link's Bounding Box ===
             //Rectangle bb = linkSprite.BoundingBox;
@@ -184,6 +196,7 @@ namespace MainGame
 
             _spriteBatch.End();
             base.Draw(gameTime);
+
 
         }
 
@@ -221,6 +234,7 @@ namespace MainGame
             _settings = new SettingsMenu(Content, GraphicsDevice);
             _inventory = new Inventory(Content, GraphicsDevice, linkSprite, levelMap);
             _hud = new HUD(Content, linkSprite, levelMap);
+            _shaderManager = new ShaderManager(Content, GraphicsDevice);
 
             SetupControllers();
 
@@ -230,11 +244,13 @@ namespace MainGame
             levelMap.CollisionManager(_collisionManager);
             levelMap.Game(this);
             GameState = GameState.StartMenu;
+
+            
         }
 
         private void SetupControllers()
         {
-            var commands = new CommandFactory(this, linkSprite, _itemSprite, _block, _audio);
+            var commands = new CommandFactory(this, linkSprite, _itemSprite, _block, _audio, _shaderManager);
 
             _keyboardController = new KeyboardController(commands.GetLevelCommandMap(), commands.GetMenuCommandMap());
             _gamePadController = new GamePadController(commands.GetLevelCommandMap(), commands.GetMenuCommandMap());

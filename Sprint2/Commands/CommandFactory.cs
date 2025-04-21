@@ -5,6 +5,7 @@ using MainGame.Sprites;
 using MainGame.Display;
 using MainGame.States;
 using Microsoft.Xna.Framework;
+using MainGame.Shader;
 
 namespace MainGame.Controllers
 {
@@ -15,14 +16,16 @@ namespace MainGame.Controllers
         private readonly ItemSprite _itemSprite;
         private readonly Block _block;
         private readonly GameAudio _audio;
+        private readonly ShaderManager _shaderManager;
 
-        public CommandFactory(Game1 game, Link link, ItemSprite itemSprite, Block block, GameAudio audio)
+        public CommandFactory(Game1 game, Link link, ItemSprite itemSprite, Block block, GameAudio audio, ShaderManager shaderManager)
         {
             _game = game;
             _link = link;
             _itemSprite = itemSprite;
             _block = block;
             _audio = audio;
+            _shaderManager = shaderManager;
         }
 
         public Dictionary<UserInputs, ICommand> GetLevelCommandMap()
@@ -47,7 +50,7 @@ namespace MainGame.Controllers
                 { UserInputs.CycleItem, new LinkCycleItem(_link) },
                 { UserInputs.ToggleStats, new ToggleStatsCommand(_game) },
                 { UserInputs.ToggleLinkRunning, new ToggleLinkRunning(_link)},
-                { UserInputs.ToggleFogOfWar, new ToggleFogOfWar() }
+                { UserInputs.ToggleFogOfWar, new ToggleFogOfWar(_shaderManager) }
             };
         }
 

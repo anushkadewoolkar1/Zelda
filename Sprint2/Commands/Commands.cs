@@ -17,6 +17,7 @@ using Zelda.Enums;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using MainGame.Visibility;
+using MainGame.Shader;
 
 namespace MainGame.Commands
 {
@@ -390,14 +391,17 @@ namespace MainGame.Commands
 
     public class ToggleFogOfWar : ICommand
     {
-        public ToggleFogOfWar()
+        private ShaderManager _shaderManager;
+        public ToggleFogOfWar(ShaderManager shaderManager)
         {
-
+            _shaderManager = shaderManager;
         }
         public void Execute()
         {
             FogOfWar fow = FogOfWar.Instance;
             fow.ToggleFogOfWar();
+            
+            _shaderManager.Toggle();
         }
     }
 }
