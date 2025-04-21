@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/jorda/source/repos/Sprint5v2/Sprint2/Content/PauseScreen.png</SourceFile>
-  <SourceTime>2025-04-16T12:59:29.8910209-04:00</SourceTime>
-  <DestFile>C:/Users/jorda/source/repos/Sprint5v2/Sprint2/Content/bin/DesktopGL/Content/PauseScreen.xnb</DestFile>
-  <DestTime>2025-04-20T18:27:58.8158322-04:00</DestTime>
+  <SourceFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/PauseScreen.png</SourceFile>
+  <SourceTime>2025-04-07T23:51:34.6080569-04:00</SourceTime>
+  <DestFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/bin/DesktopGL/Content/PauseScreen.xnb</DestFile>
+  <DestTime>2025-04-20T21:43:39.3229272-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

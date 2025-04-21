@@ -326,7 +326,7 @@ public class Link : IGameObject
         if (linkAttacking == true)
         {
             linkAttacking = false;
-            RemoveGameObject(new HitBox(Position, currentDirection));
+            RemoveGameObject(new HitBox(Position, currentDirection)); //<---.....
             ChangeState(new LinkWalkingState(this, currentDirection));
         }
 
@@ -363,13 +363,20 @@ public class Link : IGameObject
     }
 
     public void AddGameObject(IGameObject gameObject)
-    {
+    { 
         gameObjects.Add(gameObject);
     }
 
     public void RemoveGameObject(IGameObject gameObject)
     {
-        gameObjects.Remove(gameObject);
+        if (gameObject is HitBox)
+        {
+            gameObjects.RemoveAll(obj => obj is HitBox);
+        }
+        else
+        {
+            gameObjects.Remove(gameObject);
+        }
     }
 
     public void Destroy()

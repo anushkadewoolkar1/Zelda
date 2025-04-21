@@ -12,6 +12,7 @@ public class LinkAttackingState : ILinkState
     private SwordType swordType;
     private float attackDuration;
     private int attackFrame;
+    private HitBox currentHitbox;
 
     public LinkAttackingState(Link link, Direction direction, SwordType swordType)
     {
@@ -43,7 +44,9 @@ public class LinkAttackingState : ILinkState
 
         attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
         this.link.linkAttacking = true;
-        this.link.AddGameObject(new HitBox(this.link.Position, this.link.currentDirection));
+        //this.link.AddGameObject(new HitBox(this.link.Position, this.link.currentDirection));
+        this.currentHitbox = new HitBox(this.link.Position, this.link.currentDirection);
+        this.link.AddGameObject(currentHitbox);
         if (attackDuration > .375f)
         {
             attackFrame = 2;
@@ -58,7 +61,12 @@ public class LinkAttackingState : ILinkState
             SetAttack();
         } else
         {
-            this.link.RemoveGameObject(new HitBox(this.link.Position, this.link.currentDirection));
+            if (this.currentHitbox != null)
+            {
+                this.link.RemoveGameObject(currentHitbox);
+                this.currentHitbox = null;
+            }
+            // this.link.RemoveGameObject(new HitBox(this.link.Position, this.link.currentDirection)); <---LOL??
             this.link.linkAttacking = false;
             // After attacking, return idle
             link.ChangeState(new LinkIdleState(link, currentDirection));

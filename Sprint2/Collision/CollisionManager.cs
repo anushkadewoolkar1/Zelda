@@ -18,6 +18,7 @@ public class CollisionManager
 {
     public int debug = 0;
     public int levelDebug = 0;
+    CollisionSide lastSide = CollisionSide.Left;
 
     public void CheckDynamicCollisions(List<IGameObject> dynamicObjects, LevelManager currLevel)
     {
@@ -212,10 +213,56 @@ public class CollisionManager
         }
         
     }
+    private CollisionSide DetermineCollisionSide(IGameObject objA, IGameObject objB)
+    {
+        debug++;
 
+        Rectangle intersection = Rectangle.Intersect(objA.BoundingBox, objB.BoundingBox);
+        CollisionSide side;
+
+        if (intersection.Width < intersection.Height)
+        {
+            if (objA.Velocity.X != 0)
+            {
+                side = objA.Velocity.X < 0 ? CollisionSide.Right : CollisionSide.Left;
+            }
+            else
+            {
+                side = objB.Velocity.X < 0 ? CollisionSide.Right : CollisionSide.Left;
+            }
+        }
+        else
+        {
+            if (objA.Velocity.Y != 0)
+            {
+                side = objA.Velocity.Y <= 0 ? CollisionSide.Bottom : CollisionSide.Top;
+            }
+            else if (objB.Velocity.Y != 0)
+            {
+                side = objB.Velocity.Y <= 0 ? CollisionSide.Bottom : CollisionSide.Top;
+            }
+            else
+            {
+                if (objA.Velocity.X != 0)
+                {
+                    side = objA.Velocity.X < 0 ? CollisionSide.Right : CollisionSide.Left;
+                }
+                else
+                {
+                    side = objB.Velocity.X < 0 ? CollisionSide.Right : CollisionSide.Left;
+                }
+            }
+        }
+
+        lastSide = side;
+        return side;
+    }
+/*
     /// Determines the collision side for objA relative to objB using their velocities and intersection.
     private CollisionSide DetermineCollisionSide(IGameObject objA, IGameObject objB)
     {
+
+
         debug++;
         Rectangle intersection = Rectangle.Intersect(objA.BoundingBox, objB.BoundingBox);
 
@@ -280,6 +327,7 @@ public class CollisionManager
             
         }
     }
+*/
 
     // Helper method for determining if object is Link's projectile 
     private bool IsLinkProjectile(IGameObject obj)
