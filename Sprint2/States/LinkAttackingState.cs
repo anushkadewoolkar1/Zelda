@@ -44,7 +44,6 @@ public class LinkAttackingState : ILinkState
 
         attackDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
         this.link.linkAttacking = true;
-        //this.link.AddGameObject(new HitBox(this.link.Position, this.link.currentDirection));
         this.currentHitbox = new HitBox(this.link.Position, this.link.currentDirection);
         this.link.AddGameObject(currentHitbox);
         if (attackDuration > .375f)
@@ -61,12 +60,7 @@ public class LinkAttackingState : ILinkState
             SetAttack();
         } else
         {
-            if (this.currentHitbox != null)
-            {
-                this.link.RemoveGameObject(currentHitbox);
-                this.currentHitbox = null;
-            }
-            // this.link.RemoveGameObject(new HitBox(this.link.Position, this.link.currentDirection)); <---LOL??
+
             this.link.linkAttacking = false;
             // After attacking, return idle
             link.ChangeState(new LinkIdleState(link, currentDirection));
