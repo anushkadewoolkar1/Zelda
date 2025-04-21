@@ -72,6 +72,7 @@ public class Link : IGameObject
 
     private Gravity gravity;
     private FogOfWar fow = FogOfWar.Instance;
+    private Portal portal = Portal.Instance;
 
     public Link(List<IGameObject> _gameObjects)
     {
@@ -162,6 +163,9 @@ public class Link : IGameObject
 
         // Draw item/projectiles via item manager
         itemManager.Draw(spriteBatch);
+
+        // Draw portal
+        portal.DrawPortal(spriteBatch);
     }
 
     public void ChangeState(ILinkState newState)
@@ -447,5 +451,10 @@ public class Link : IGameObject
                 SpeedMultiplier = 2.0f;
                 break;
         }
+    }
+
+    public void UsePortal()
+    {
+        portal.ApplyForce((IGameObject)this);
     }
 }

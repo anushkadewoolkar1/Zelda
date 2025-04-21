@@ -20,7 +20,9 @@ namespace Zelda.Enums
         CycleItem,
         ToggleStats,
         ToggleLinkRunning,
-        ToggleFogOfWar
+        ToggleFogOfWar,
+        UsePortal,
+        TogglePortal
     }
 
     public enum Direction
