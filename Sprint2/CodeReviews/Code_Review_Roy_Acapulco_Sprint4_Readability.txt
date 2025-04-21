@@ -1,21 +1,17 @@
-Author: Aidan Roley
-Date: 4/7/2025
-Sprint4
-ProjectileSprite.cs
-Author of Code: Roy Acapulco
-Time: 10 minutes
+Author of Code Review: Anushka Dewoolkar
+Code Review Date: 4/21/2025
+Sprint Number: 5
+.cs File Reviewed: Gravity.cs
+Author of .cs File: Roy Acapulco
+Minutes Taken for Code Review: 25 minutes
+Specific comments on code quality:
+- Uses a singleton pattern appropriately for a force manager, avoiding multiple instances of gravity affecting objects inconsistently.
+- The GRAVITY_FORCE constant prevents the use of magic numbers.
+- The ApplyForce method correctly updates both position and velocity, ensuring objects respond visibly to the applied force.
+- Type-checking via as casts (gameObject as Enemy, gameObject as Link) causes repetitive code and tight coupling. If you use an interface or inheritance, it would reduce duplication.
+- The ToggleForce method accepts a parameter (IGameObject gameObject) but does not use it.
 
-- I like the consistent boolean variable naming conventions, it makes it clear when there is a flag in the code.
-
-- There are no unused imports or variables (unlike many other files in this project right now) which makes it less bloated.
-
-- It's good that so many variables are private so there's less to worry about other files modifying them when trying to debug something.
-
-- AdjustProjectile is a bit long, there are many if statements that could trivially be split up into multiple functions, making it more readable and concise.
-
-- While the flag names might be consistent, the naming conventions for the other variables are not quite as good. Ex: some private fields have a _ before them
-and otheres not at all. Make all private ones _ and others without the underscore.
-
-- Once again, too many hardcoded numbers, use const variables instead.
-
-
+Hypothetical Change:
+You can introduce a new object type, FallingPlatform, which should also be affected by gravity.
+This would require adding a new else if ((gameObject as FallingPlatform) != null) block inside ApplyForce().
+Repeating the same logic used for Enemy and Link.
