@@ -156,6 +156,8 @@ namespace MainGame.Commands
     public class ToggleMuteMusic : ICommand
     {
         private GameAudio _audio;
+
+        private Boolean doubleClick = false;
         public ToggleMuteMusic(GameAudio audio)
         {
             _audio = audio;
@@ -163,6 +165,11 @@ namespace MainGame.Commands
 
         public void Execute()
         {
+            if (doubleClick)
+            {
+                doubleClick = false;
+                return;
+            }
             if (_audio.MediaPlayerState() == MediaState.Playing)
             {
                 _audio.MuteBGM();
@@ -171,20 +178,7 @@ namespace MainGame.Commands
             {
                 _audio.UnmuteBGM();
             }
-        }
-    }
-
-    public class UnmuteMusic : ICommand
-    {
-        private GameAudio _audio;
-        public UnmuteMusic(GameAudio audio)
-        {
-            _audio = audio;
-        }
-
-        public void Execute()
-        {
-            _audio.UnmuteBGM();
+            doubleClick = true;
         }
     }
 
