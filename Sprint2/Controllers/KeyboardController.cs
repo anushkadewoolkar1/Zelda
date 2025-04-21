@@ -108,8 +108,9 @@ namespace MainGame.Controllers
 
                 { Keys.LeftShift, UserInputs.ToggleLinkRunning },
 
-                { Keys.T, UserInputs.ToggleFogOfWar }
+                { Keys.T, UserInputs.ToggleFogOfWar },
 
+                { Keys.C, UserInputs.UsePortal }
 
             };
         }
