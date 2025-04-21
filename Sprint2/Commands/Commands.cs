@@ -404,5 +404,21 @@ namespace MainGame.Commands
             _shaderManager.Toggle();
         }
     }
+
+    public class UsePortal : ICommand
+    {
+        private Link _link;
+        private ILinkState _targetState;
+
+        public UsePortal(Link currLink)
+        {
+            _link = currLink;
+        }
+
+        public void Execute()
+        {
+            _link.UsePortal();
+        }
+    }
 }
 

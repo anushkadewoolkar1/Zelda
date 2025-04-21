@@ -50,7 +50,8 @@ namespace MainGame.Controllers
                 { UserInputs.CycleItem, new LinkCycleItem(_link) },
                 { UserInputs.ToggleStats, new ToggleStatsCommand(_game) },
                 { UserInputs.ToggleLinkRunning, new ToggleLinkRunning(_link)},
-                { UserInputs.ToggleFogOfWar, new ToggleFogOfWar(_shaderManager) }
+                { UserInputs.ToggleFogOfWar, new ToggleFogOfWar(_shaderManager) },
+                { UserInputs.UsePortal, new UsePortal(_link) }
             };
         }
 
