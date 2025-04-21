@@ -11,6 +11,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="GameObjects\LoadRoomBlock.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="CodeReviews\Anushka_Sprint4_ReadabilityCodeReview.txt" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />

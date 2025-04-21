@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
 using ZeldaGame.Zelda.CollisionMap;
 using MainGame.CollisionHandling;
-using MainGame.Visibility;
 
 namespace MainGame.States
 {

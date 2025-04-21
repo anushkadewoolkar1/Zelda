@@ -116,7 +116,7 @@ namespace MainGame.Display
             Block block = new Block(position, blockTextures, level);
             if (token.Contains("Load"))
             {
-                block.loadRoom = new Vector2(
+                block.LoadRoomSet = new Vector2(
                     Int32.Parse(token.Substring(14, 1)),
                     Int32.Parse(token.Substring(16, 1))
                 );

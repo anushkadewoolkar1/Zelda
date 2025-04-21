@@ -44,7 +44,6 @@ namespace MainGame
         private DebugController _mouseController;
 
         private bool _gamePadConnected;
-        private bool _audioPlaying;
 
         private GameAudio _audio;
 
@@ -62,8 +61,6 @@ namespace MainGame
         private List<Enemy> _enemySprites = new();
 
         private Block _block;
-        private Block _invisibleBlock;
-        private LoadRoomBlock _loadRoomBlock;
 
         private Item _item, _item2;
         private ItemSprite _itemSprite;
@@ -118,7 +115,6 @@ namespace MainGame
 
             var blockTextures = LoadBlockTextures();
             _block = new Block(new Vector2(15, 1), blockTextures, levelMap);
-            _loadRoomBlock = new LoadRoomBlock(new Vector2(100, 100), blockTextures, levelMap, 1, 2);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadDynamicObjects();

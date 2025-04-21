@@ -28,7 +28,6 @@ namespace MainGame.States
         private Vector2 projectilePosition;
         private Direction projectileDirection;
         private GameAudio _audio;
-        private int boomerangTimer = 0;
 
         public LinkItemManager (Link link, List<IGameObject> gameObjects)
         {

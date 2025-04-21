@@ -14,7 +14,7 @@ namespace MainGame.Display
     public class LevelManager : ILevel, IGameObject
     {
         private LevelFileReader levelData;
-        public Room currentRoom;
+        private Room currentRoom;
         private Texture2D backgroundTexture;
         private List<IGameObject> globalGameObjects;
         private ContentManager contentManager;

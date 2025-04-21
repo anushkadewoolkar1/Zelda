@@ -11,7 +11,6 @@ public class LinkUsingItemState : ILinkState
 {
     private Link link;
     private Direction currentDirection;
-    private ItemType item;
     private float useItemDuration;
 
     public LinkUsingItemState(Link link, Direction direction)

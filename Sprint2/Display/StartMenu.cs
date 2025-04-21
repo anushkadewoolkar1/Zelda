@@ -19,15 +19,13 @@ namespace MainGame.Display
     {
         private Texture2D backgroundTexture;
         private GameState GameState;
-        private GameAudio _audio;
+        private GameAudio audio = GameAudio.Instance;
 
         public StartMenu(ContentManager content)
         {
             backgroundTexture = content.Load<Texture2D>("LegendOfZeldaStartScreen");
 
             GameState = Zelda.Enums.GameState.StartMenu;
-
-            _audio = GameAudio.Instance;
         }
 
         // Called once per frame to update sprites
@@ -62,7 +60,7 @@ namespace MainGame.Display
             GameState = _gameState;
             if (GameState == GameState.StartMenu && MediaPlayer.State != MediaState.Playing)
             {
-                _audio.PlayTitleBGM();
+                audio.PlayTitleBGM();
             }
         }
     }

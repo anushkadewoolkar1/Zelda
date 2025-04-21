@@ -17,8 +17,6 @@ namespace MainGame.Sprites
         private enum LinkSpriteDirection { Down, Left, Right, Up };
 
         private Rectangle sourceRectangle;
-        private Rectangle destinationRectangle;
-        private Vector2 sourceRectangleArea;
         private int colorAdjustment;
         private bool linkDamaged;
         private int damageClock;
@@ -26,7 +24,7 @@ namespace MainGame.Sprites
 
         private int leftAdjustment;
         private int upAdjustment;
-        private int linkScale = 2;
+        private const int linkScale = 2;
 
         private const int UP_DIRECTION = 3;
         private const int COLOR_SCALE = 310;

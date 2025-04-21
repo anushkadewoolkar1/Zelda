@@ -17,17 +17,11 @@ namespace MainGame.Sprites
 
         //Acts as a key for what each value stands of LinkState, LinkDirection, and LinkDamaged stands for
         private enum LinkState { GreenSmallShield, GreenMagicalShield, WhiteSmallShield, WhiteMagicalShield, RedSmallShield, RedMagicalShield };
-        private LinkState state = LinkState.GreenSmallShield;
         private enum LinkDirection { DownFacing, LeftFacing, RightFacing, UpFacing };
-        private LinkDirection direction = LinkDirection.RightFacing;
         private enum LinkDamaged { Normal, Damaged };
-        private LinkDamaged health = LinkDamaged.Normal;
 
         private const int WALK_AND_ITEM_YPOS = 11;
         private const int WOODEN_XPOS = 1;
-        private const int WHITE_XPOS = 94;
-        private const int MAGIC_SWORD_XPOS = 187;
-        private const int MAGIC_ROD_XPOS = 230;
         private const int ATTACK_DOWN_YPOS = 47;
         private const int ATTACK_UP_YPOS = 108;
         private const int ATTACK_LEFTRIGHT_YPOS = 77;

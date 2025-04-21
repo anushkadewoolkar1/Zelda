@@ -10,14 +10,13 @@ public class Block : IBlock, IGameObject
 {
     // Removed Keyboard property to refactor input behavior to be the responsibility of Keyboard/Command classes (PP):
     private KeyboardState _previousState;
-    private Vector2 tilePosition;
     private Vector2 pixelPosition;
     protected Texture2D[] textures;
     private int currentTextureIndex = 0;
     protected TileMap tileMap = TileMap.GetInstance();
 
-    public LevelManager myLevel { get; set; }
-    public Vector2 loadRoom { get; set; }
+    public LevelManager MyLevel { get; set; }
+    public Vector2 LoadRoomSet { get; set; }
 
 
     private const float scaleFactor = 0.3f;
@@ -34,12 +33,12 @@ public class Block : IBlock, IGameObject
         {
             System.Diagnostics.Debug.WriteLine($"Index {i}: {textures[i].Name}");
         }
-
-        loadRoom = new Vector2(-1, -1);
-        myLevel = level;
+        
+        LoadRoomSet = new Vector2(-1, -1);
+        MyLevel = level;
     }
 
-    public Vector2 GetPosition() => tilePosition;
+    public Vector2 GetPosition() => new Vector2(pixelPosition.X, pixelPosition.Y - 3);
     public bool IsSolid() => true;
     public bool IsPushable() => false;
     public bool Push(Vector2 direction) => false;
@@ -103,12 +102,11 @@ public class Block : IBlock, IGameObject
 
     public void LoadRoom()
     {
-        System.Diagnostics.Debug.WriteLine($"Trying to load Room({loadRoom.X},{loadRoom.Y})");
 
-        if (loadRoom.X == -1 && loadRoom.Y == -1)
+        if (LoadRoomSet.X == -1 && LoadRoomSet.Y == -1)
         {
             return;
         }
-        myLevel.LoadRoom((int)loadRoom.X, (int)loadRoom.Y);
+        MyLevel.LoadRoom((int)LoadRoomSet.X, (int)LoadRoomSet.Y);
     }
 }

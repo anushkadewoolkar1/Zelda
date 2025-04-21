@@ -18,10 +18,7 @@ namespace MainGame.Sprites
         private enum LinkDirection { UpFacing, LeftFacing, DownFacing, RightFacing };
 
         //Subtranction so that rotating sprite works but sprite does not move
-        private int notMoving = 4;
-
-        private LinkDirection direction = LinkDirection.RightFacing;
-
+        private const int NOTMOVING = 4;
         private const int DEFAULT_YPOS = 185;
         private const int BROWN_SWORD_XPOS = 2;
         private const int BROWN_SWORD_YPOS = 154;
@@ -152,13 +149,13 @@ namespace MainGame.Sprites
         public ISprite CreateLadderVertical()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing - notMoving);
+            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.DownFacing - NOTMOVING);
         }
 
         public ISprite CreateLadderHorizontal()
         {
 
-            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing - notMoving);
+            return new ProjectileSprite(projectileSpriteSheet, LADDER_XPOS, DEFAULT_YPOS, (int)LinkDirection.RightFacing - NOTMOVING);
         }
 
         /* Color

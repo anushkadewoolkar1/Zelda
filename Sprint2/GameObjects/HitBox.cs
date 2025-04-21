@@ -11,7 +11,7 @@ public class HitBox : IGameObject
 {
     private Rectangle hitRectangle;
     private Vector2 _direction;
-    private int SCALE = 32;
+    private const int SCALE = 32;
     public int scalePropertyHit
     {
         get
@@ -60,7 +60,7 @@ public class HitBox : IGameObject
         }
     }
 
-    public new void Destroy()
+    public void Destroy()
     {
         // Do nothing
     }

@@ -26,8 +26,8 @@ namespace MainGame.Sprites
         private Vector2 velocity;
         private Vector2 originalPosition;
         private Direction Direction;
-        private int XSize;
-        private int YSize;
+        private int XSize = 0;
+        private int YSize = 0;
         private int currentFrame;
         private int totalFrames;
         public int spriteSize;

@@ -17,11 +17,8 @@ namespace MainGame.Sprites
 
         public float rotation { get; set; }
         public int directionProjectile { get; set; }
-        private bool isBoomerang;
-        private bool isBomb;
         private bool isSwordBeam;
         private Vector2 velocity;
-        private Vector2 linkPosition;
         private Vector2 position;
         private ItemType currentProjectile;
 
@@ -47,8 +44,6 @@ namespace MainGame.Sprites
             _texture = texture;
 
             destroy = false;
-            isBomb = false;
-            isBoomerang = false;
             isSwordBeam = false;
 
             // Rotates projectile depending on direction using mathhelper
@@ -67,19 +62,6 @@ namespace MainGame.Sprites
 
             velocity = new Vector2(0, 0);
 
-            //Used for handling damaging enemy
-            if (isBomb)
-            {
-                currentProjectile = ItemType.Bomb;
-            }
-            else if (isBoomerang)
-            {
-                currentProjectile = ItemType.Boomerang;
-            }
-            else
-            {
-                currentProjectile = ItemType.Arrow;
-            }
         }
 
         //When calling this Draw, Position is the center of sprite
@@ -151,12 +133,13 @@ namespace MainGame.Sprites
                 {
                     // Projectile Decorator for bomb
                     projectileDecorator = new ProjectileDecoratorExplode(new ProjectileConcrete(), this);
-                    isBomb = true;
+                    currentProjectile = ItemType.Bomb;
                 }
                 else
                 {
                     // ProjectileDecorator for arrow
                     projectileDecorator = new ProjectileDecoratorLinear(new ProjectileConcrete(), this);
+                    currentProjectile = ItemType.Arrow;
                 }
             }
             else if (xCoordinate > ARROW_XCOORD && xCoordinate < BOMB_XCOORD)
@@ -165,18 +148,23 @@ namespace MainGame.Sprites
                 projectileDecorator = new ProjectileDecoratorRotate(new ProjectileDecoratorTrack(new ProjectileDecoratorReturn(
                     new ProjectileDecoratorLinear(new ProjectileConcrete(), this), this), this), this);
                 sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 8];
-                isBoomerang = true;
+                currentProjectile = ItemType.Boomerang;
             }
             else if (yCoordinate == SWORDBEAM_YCOORD)
             {
                 //ProjectileDecorator for sword beam
                 projectileDecorator = new ProjectileDecoratorLinear(new ProjectileConcrete(), this);
                 sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 16];
+                currentProjectile = ItemType.Arrow;
                 isSwordBeam = true;
+            } else
+            {
+                //Handles currentProjectile Exception cases
+                currentProjectile = ItemType.Arrow;
             }
 
-            // Sets up client for Draw and Update
-            projectileClient = new ProjectileClient(new ProjectileDecoratorTimeOut(projectileDecorator, this));
+                // Sets up client for Draw and Update
+                projectileClient = new ProjectileClient(new ProjectileDecoratorTimeOut(projectileDecorator, this));
 
             return sourceRectangleDimensions;
         }

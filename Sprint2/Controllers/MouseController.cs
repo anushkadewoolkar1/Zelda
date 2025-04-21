@@ -12,7 +12,6 @@ namespace MainGame.Controllers
 {
     public class MouseController : DebugController
     {
-        private readonly ICommand _quitCommand;
 
         private int _windowWidth;
         private int _windowHeight;
