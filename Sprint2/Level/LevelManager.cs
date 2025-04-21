@@ -26,7 +26,6 @@ namespace MainGame.Display
         private int tokenStartIndex; 
 
         public bool moveLink { get; set; }
-        public bool doubleClickTemp { get; set; }
 
         private GameState UpdateGameState;
         private CollisionManager collisionManager;
@@ -60,7 +59,6 @@ namespace MainGame.Display
             newRoomCoords = new int[] { LevelConstants.WIDTH_POSITION, LevelConstants.HEIGHT_POSITION };
 
             moveLink = true;
-            doubleClickTemp = false;
             UpdateGameState = Zelda.Enums.GameState.StartMenu;
         }
 

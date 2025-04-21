@@ -17,9 +17,7 @@ namespace MainGame.Forces
     {
         private static Portal instance = new Portal();
 
-        private ISprite port;
         private Item item;
-        private bool doubleClick = false;
         private Boolean PortalOn;
 
         public static Portal Instance
@@ -39,11 +37,6 @@ namespace MainGame.Forces
 
         public void ApplyForce(IGameObject gameObject)
         {
-            if (!doubleClick)
-            {
-                doubleClick = true;
-                return;
-            }
             Vector2 position = ((Link)gameObject).Position;
             if (item.pixelPosition == Vector2.Zero)
             {
@@ -54,7 +47,6 @@ namespace MainGame.Forces
                 ((Link)gameObject).Position = item.pixelPosition;
                 item.pixelPosition = Vector2.Zero;
             }
-            doubleClick = false;
         }
 
         public void ToggleForce(IGameObject gameObject)

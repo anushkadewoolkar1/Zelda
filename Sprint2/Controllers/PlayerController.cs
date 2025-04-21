@@ -49,8 +49,6 @@ namespace MainGame.Controllers
                 }
 
 
-            if (lastAction != input) levelCommandMap[input].Execute();
-
             // Update flags:
             AnyActionInput = true;
             lastAction = input;
