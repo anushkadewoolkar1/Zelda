@@ -17,7 +17,6 @@ namespace MainGame.Shader
         GraphicsDevice graphicsDevice;
 
         bool toggle = false;
-        private int doubleClick = 0;
         public ShaderManager(ContentManager content, GraphicsDevice graphicsDevice)
         {
             hazeEffect = content.Load<Effect>("hazeEffect");
@@ -26,12 +25,7 @@ namespace MainGame.Shader
 
         public void Toggle()
         {
-            if (doubleClick == 0) doubleClick++;
-            else
-            {
-                doubleClick--;
-                toggle = !toggle;
-            }
+            toggle = !toggle;
         }
 
         public void Update(GameTime gameTime)
