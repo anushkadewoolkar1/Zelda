@@ -9,7 +9,9 @@ using MainGame.CollisionHandling;
 using MainGame.Display;
 using MainGame.Sprites;
 using MainGame.States;
+using MainGame.Forces;
 using Zelda.Enums;
+using MainGame.Visibility;
 
 
 public class Link : IGameObject
@@ -47,7 +49,7 @@ public class Link : IGameObject
     public Direction currentDirection { get; set; }
 
     // other fields for movement
-    private Vector2 velocity;
+    public Vector2 velocity { get; set; }
     private Vector2 lastNonZeroVelocity;
 
     private List<IGameObject> gameObjects;
@@ -67,6 +69,9 @@ public class Link : IGameObject
     private int runningCounter = 0;
     private int runningCooldown = 100;
     private bool running = false;
+
+    private Gravity gravity;
+    private FogOfWar fow = FogOfWar.Instance;
 
     public Link(List<IGameObject> _gameObjects)
     {
@@ -96,10 +101,13 @@ public class Link : IGameObject
         CurrentItem.Add(ItemType.WoodenSword);
 
         LinkHurt = 1;
+
+        gravity = Gravity.Instance;
     }
 
     public void Update(List<IGameObject> _gameObjects,GameTime gameTime)
     {
+        gravity.ApplyForce(this);
 
         gameObjects = _gameObjects;
         currentState.Update(gameTime);
@@ -142,6 +150,8 @@ public class Link : IGameObject
                 EndInvulnerability();
             }
         }
+
+        fow.UpdateLink(this);
 
         //System.Diagnostics.Debug.WriteLine($"Link's Position {Position} and {level.roomHeight}");
     }

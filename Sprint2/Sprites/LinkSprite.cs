@@ -98,12 +98,17 @@ namespace MainGame.Sprites
                     break;
             }
 
-
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 _position)
         {
             Vector2 origin = new Vector2(8, 8);
+
+            //This is used when Link is attacking Left or Up (Adjusts rectange accordingly
+            _position.X -= leftAdjustment * linkScale;
+            _position.Y += upAdjustment * linkScale;
+
 
             if (death)
             {

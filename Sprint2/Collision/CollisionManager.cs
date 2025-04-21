@@ -246,14 +246,14 @@ public class CollisionManager
             if (objA.Velocity.Y != 0)
             {
                 // Vertical collision: if moving down, collision is at the bottom; else, top.
-                if (objA.Velocity.Y < 0)
+                if (objA.Velocity.Y <= 0)
                     return CollisionSide.Bottom;
                 else
                     return CollisionSide.Top;
             }
             else
             {
-                if (objB.Velocity.Y < 0)
+                if (objB.Velocity.Y <= 0)
                     return CollisionSide.Bottom;
                 else if (objB.Velocity.Y != 0)
                     return CollisionSide.Top;

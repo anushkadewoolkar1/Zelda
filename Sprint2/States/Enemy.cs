@@ -10,6 +10,8 @@ using MainGame.CollisionHandling;
 using MainGame.Sprites;
 using Zelda.Enums;
 using ZeldaGame.Zelda.CollisionMap;
+using MainGame.Forces;
+using MainGame.Visibility;
 
 
 namespace MainGame.States
@@ -30,9 +32,11 @@ namespace MainGame.States
         public int chooseItem { get; set; }
         private EnemyProjectileManager projectileManager;
         private List<IGameObject> gameObjects;
-        private Vector2 velocity;
+        public Vector2 velocity { get; set; }
         private TileMap tileMap = TileMap.GetInstance();
         private GameAudio audio;
+        private Gravity gravity;
+        private FogOfWar fow = FogOfWar.Instance;
 
         // constants
         private const double ZERO = 0.0;
@@ -48,6 +52,7 @@ namespace MainGame.States
 
         private double spriteUpdateTimer = 0;
         private const double spriteUpdateInterval = 1000.0 / 5.0; 
+
 
 
         public Enemy(List<IGameObject> _gameObjects, GameAudio _audio)
@@ -69,6 +74,8 @@ namespace MainGame.States
             itemSpawned = false;
 
             audio = _audio;
+
+            gravity = Gravity.Instance;
         }
 
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
@@ -137,7 +144,10 @@ namespace MainGame.States
 
         public void DrawCurrentSprite(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch, this.position);
+            if (fow.FogOfWarCheck(this))
+            {
+                sprite.Draw(spriteBatch, this.position);
+            }
             projectileManager.Draw(spriteBatch);
 
             //if (itemSpawn)
@@ -272,6 +282,8 @@ namespace MainGame.States
             enemyState.Update(gameTime);
             projectileManager.Update(gameTime);
             spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            gravity.ApplyForce(this);
 
             if (spriteUpdateTimer >= spriteUpdateInterval)
             {

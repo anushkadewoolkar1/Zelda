@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-
+using MainGame.Visibility;
 using MainGame.Sprites;
 using Zelda.Enums;
 using Microsoft.Xna.Framework;
@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpriteFactory;
 using ZeldaGame.Zelda.CollisionMap;
 using MainGame.CollisionHandling;
+using MainGame.Visibility;
 
 namespace MainGame.States
 {
@@ -20,10 +21,11 @@ namespace MainGame.States
         public Item currItem;
         public ItemType itemType;
         public ItemSprite itemSprite;
-        public Vector2 position;
+        public Vector2 position { get; set; }
         public Vector2 pixelPosition;
 
         public bool isVisible = true;
+        private FogOfWar fow = FogOfWar.Instance;
 
         TileMap tileMap = TileMap.GetInstance();
         private Vector2 tilePosition;
@@ -158,7 +160,7 @@ namespace MainGame.States
         public void Draw(SpriteBatch spriteBatch)
 
         {
-            if (!isVisible) return;
+            if (!isVisible || !fow.FogOfWarCheck((IGameObject)this)) return;
             pixelPosition = tileMap.GetTileCenter(tilePosition);
             itemSprite.Draw(spriteBatch, pixelPosition);
         }

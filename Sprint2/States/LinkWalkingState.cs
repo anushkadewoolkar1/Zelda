@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Zelda.Enums;
 using MainGame.Sprites;
+using MainGame.CollisionHandling;
 
 public class LinkWalkingState : ILinkState
 {
