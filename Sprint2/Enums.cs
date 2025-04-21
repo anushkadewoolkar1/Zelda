@@ -19,7 +19,8 @@ namespace Zelda.Enums
         ResetLevel,
         CycleItem,
         ToggleStats,
-        ToggleLinkRunning
+        ToggleLinkRunning,
+        ToggleFogOfWar
     }
 
     public enum Direction

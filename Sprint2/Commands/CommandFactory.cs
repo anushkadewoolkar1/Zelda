@@ -46,7 +46,8 @@ namespace MainGame.Controllers
                 { UserInputs.ResetLevel, new ResetCommand(_game) },
                 { UserInputs.CycleItem, new LinkCycleItem(_link) },
                 { UserInputs.ToggleStats, new ToggleStatsCommand(_game) },
-                { UserInputs.ToggleLinkRunning, new ToggleLinkRunning(_link)}
+                { UserInputs.ToggleLinkRunning, new ToggleLinkRunning(_link)},
+                { UserInputs.ToggleFogOfWar, new ToggleFogOfWar() }
             };
         }
 

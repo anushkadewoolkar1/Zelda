@@ -16,6 +16,7 @@ using MainGame.Display;
 using Zelda.Enums;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using MainGame.Visibility;
 
 namespace MainGame.Commands
 {
@@ -356,20 +357,21 @@ namespace MainGame.Commands
             game.ResetLevel();
         }
     }
-    public class ToggleStatsCommand : ICommand
-{
-    private readonly Game1 _game;
 
-    public ToggleStatsCommand(Game1 game)
+    public class ToggleStatsCommand : ICommand
     {
-        _game = game;
-    }
+        private readonly Game1 _game;
+
+        public ToggleStatsCommand(Game1 game)
+        {
+            _game = game;
+        }
 
         public void Execute()
         {
             _game.showStats = !_game.showStats;
         }
-}
+    }
 
 
     public class ToggleLinkRunning : ICommand
@@ -386,6 +388,17 @@ namespace MainGame.Commands
         }
     }
 
+    public class ToggleFogOfWar : ICommand
+    {
+        public ToggleFogOfWar()
+        {
 
+        }
+        public void Execute()
+        {
+            FogOfWar fow = FogOfWar.Instance;
+            fow.ToggleFogOfWar();
+        }
+    }
 }
 

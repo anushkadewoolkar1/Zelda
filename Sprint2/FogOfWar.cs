@@ -16,7 +16,8 @@ namespace MainGame.Visibility
     {
         private static FogOfWar instance = new FogOfWar();
 
-        private bool fogOfWarToggle;
+        private static bool fogOfWarToggle;
+        private static bool doubleClickCheck;
         private Direction linkFacingDirection;
         private Vector2 linkPosition;
 
@@ -30,7 +31,6 @@ namespace MainGame.Visibility
 
         private FogOfWar()
         {
-            fogOfWarToggle = true;
         }
 
         public Boolean FogOfWarCheck(IGameObject gameObject)
@@ -117,7 +117,8 @@ namespace MainGame.Visibility
 
         public void ToggleFogOfWar()
         {
-            fogOfWarToggle = !fogOfWarToggle;
+            if (doubleClickCheck) fogOfWarToggle = !fogOfWarToggle;
+            doubleClickCheck = !doubleClickCheck;
         }
     }
 }
