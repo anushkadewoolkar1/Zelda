@@ -1,0 +1,22 @@
+Author of Code Review: Anushka Dewoolkar
+Code Review Date: 4/7/2025
+Sprint Number: 4
+.cs File Reviewed: CollisionManager.cs
+Author of .cs File: Kyle Dietrich
+Minutes Taken for Code Review: 20 minutes
+Specific comments on what is readable and what is not:
+	What is:
+- Code is well-sectioned with comments (for example: CheckLevelCollisions, CheckObjectCollisions, DispatchLevelCollisions). This helps guide the reader through logic flow.
+- The structure of checking collisions → processing them → dispatching handlers makes logical sense and follows a clear pipeline.
+
+    What is not:
+- Reduce Repetition in ProcessCollisionPair - That method is very long and repeats similar structures multiple times: if (objA is Enemy && objB is HitBox) || (objB is Enemy && objA is HitBox))
+- This logic could be refactored into a helper method: 
+    private bool IsCollisionPair<T1, T2>(IGameObject a, IGameObject b) =>
+    (a is T1 && b is T2) || (a is T2 && b is T1);
+    So that it looks like this:
+    if (IsCollisionPair<Link, EnemyProjectile>(objA, objB))
+    {
+    new LinkEnemyProjectileCollisionHandler().HandleCollision(objA, objB, side);
+    return;
+    }

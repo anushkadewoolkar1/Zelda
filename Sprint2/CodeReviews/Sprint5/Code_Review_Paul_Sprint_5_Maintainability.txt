@@ -1,0 +1,20 @@
+Author: Kyle Dietrich
+Date: 4/21/2025
+Sprint5
+PlayerController.cs
+Author of Code: Paul Paciorek
+Time: 15 minutes
+
+Code quality comments:
+	Methods are named well and encapsulate behavior nicely. The logic to prevent
+	repeated executions is great and prevents unintended command spamming. Inline 
+	comments could be cleaned up a bit. 
+
+Hypothectical change:
+	Add support for multiplayer gameplay. The playercontroller is flexiblwe and a
+	second playercontroller2 could be added for second player input. the command maps
+	are per controller so each player can be managed easily. The shared gameStateCopy
+	might be confusing if multiple players are in the same state. so doing something 
+	to one player only could be tricky. The current desing does support multiplayer but 
+	being careful to ensure all state and flags remain true for each instance would be
+	important.

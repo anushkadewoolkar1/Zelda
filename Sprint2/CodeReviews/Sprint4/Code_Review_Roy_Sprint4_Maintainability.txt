@@ -1,0 +1,24 @@
+Author of Code Review: Anushka Dewoolkar
+Code Review Date: 4/21/2025
+Sprint Number: 5
+.cs File Reviewed: FogOfWar.cs
+Author of .cs File: Roy Acapulco
+Minutes Taken for Code Review: 30 minutes
+Specific comments on code readability:
+What is readable:
+The singleton structure is clearly defined and familiar to most developers.
+ApplyForce is logically separated by object type (Enemy or Item), making the method easier to read.
+Directional logic is structured using switch statements, so it's clear what direction is being handled at each block.
+
+What is not:
+- The position checks in ApplyForce are duplicated across Enemy and Item. This could be refactored to a helper like:
+private bool IsVisible(Vector2 objectPos) with logic for each direction handled once.
+- For Enemy, Direction.Up compares with <= and For Item, Direction.Up compares with >= This might be intentional, but if so, a comment would help clarify the purpose.
+- The class lacks any summary comments or method descriptions especially for visibility logic and fog toggling.
+- For refactoring, you could split ApplyForce into: 
+IsObjectVisibleFromDirection(Vector2 objPosition)
+Then in the main method, reduce duplication:
+if (gameObject is Enemy enemy)
+    return IsObjectVisibleFromDirection(enemy.position);
+if (gameObject is Item item)
+    return IsObjectVisibleFromDirection(item.position);

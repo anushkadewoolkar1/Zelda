@@ -1,0 +1,17 @@
+Author of Code Review: Anushka Dewoolkar
+Code Review Date: 4/21/2025
+Sprint Number: 5
+.cs File Reviewed: Gravity.cs
+Author of .cs File: Roy Acapulco
+Minutes Taken for Code Review: 25 minutes
+Specific comments on code quality:
+- Uses a singleton pattern appropriately for a force manager, avoiding multiple instances of gravity affecting objects inconsistently.
+- The GRAVITY_FORCE constant prevents the use of magic numbers.
+- The ApplyForce method correctly updates both position and velocity, ensuring objects respond visibly to the applied force.
+- Type-checking via as casts (gameObject as Enemy, gameObject as Link) causes repetitive code and tight coupling. If you use an interface or inheritance, it would reduce duplication.
+- The ToggleForce method accepts a parameter (IGameObject gameObject) but does not use it.
+
+Hypothetical Change:
+You can introduce a new object type, FallingPlatform, which should also be affected by gravity.
+This would require adding a new else if ((gameObject as FallingPlatform) != null) block inside ApplyForce().
+Repeating the same logic used for Enemy and Link.

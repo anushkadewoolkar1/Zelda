@@ -1,0 +1,10 @@
+Author of Code Review: Chloe Feller
+Code Review Date: 4/7/2025
+Sprint Number: 4
+.cs File Reviewed: IDisplay, IMenu, StartMenu, WinMenu, DeathScreen,
+Author of .cs File: Paul Paciorek
+Minutes Taken for Code Review: 10 minutes
+Comments:
+- Method names are clear and easy to understand, only needs a glance to understand what the purpose is.
+- Variable names follow C# standards and are also very easy to understand and associate with what type of variable it is.
+- Comments are also usually provided at the start of a method, allowing for more clarification on the method's function.

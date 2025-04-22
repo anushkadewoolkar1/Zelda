@@ -1,0 +1,19 @@
+Author: Kyle Dietrich
+Date: 4/21/2025
+Sprint5
+GamePadCOntroller.cs
+Author of Code: Paul Paciorek
+Time: 15 minutes
+
+Readable: 
+	Naming conventions and moethd names are clear and easy to read. The order 
+	of the check in Update() also are logically easy to understand. Also the 
+	inline comments hepl with understanding functionality
+
+Less-Readable:
+	Adding extra line spacing between the input group could help visually for 
+	reading. The levelMap and menu map could be renamed to levelCommandMap and 
+	menuCommandMap for better clarity. Lastly maybe changing the wording of 
+	the joystick threshold comment could help for my clarity as well. Something
+	like "If joystick direction exceeds a threshold, treat it as intentional
+	movement in that direction."
