@@ -32,7 +32,7 @@ proper response logic.
 - Roy Volker Acapulco
 
 # Controls
-Below are the key mappings implemented for Sprint 3. 
+Below are the key mappings implemented for Sprint 5. 
 
 # Player Controls
 Arrow Keys or WASD: Move the player character (e.g., Link) and change facing direction.
