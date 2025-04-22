@@ -55,7 +55,7 @@ namespace MainGame.Display
             GameState = GameState.Playing;
         }
 
-        public void UpdateGameState(GameState _gameState)
+        public override void UpdateGameState(GameState _gameState)
         {
             GameState = _gameState;
             if (GameState == GameState.StartMenu && MediaPlayer.State != MediaState.Playing)

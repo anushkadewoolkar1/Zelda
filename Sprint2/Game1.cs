@@ -56,6 +56,7 @@ namespace MainGame
         private SettingsMenu _settings;
         private Inventory _inventory;
         private HUD _hud;
+        private List<IMenu> menus = new List<IMenu>();
 
         private List<IGameObject> _gameObjects = new();
         private List<Enemy> _enemySprites = new();
@@ -144,9 +145,10 @@ namespace MainGame
             levelMap.Update(gameTime);
             levelMap.GameState(GameState);
 
-            _startMenu.UpdateGameState(GameState);
-            _deathScreen.UpdateGameState(GameState);
-            _winScreen.UpdateGameState(GameState);
+            foreach (IMenu menu in menus)
+            {
+                menu.UpdateGameState(GameState);
+            }
             _settings.UpdateGameState(GameState);
             _hud.UpdateGameState(GameState);
 
@@ -171,9 +173,11 @@ namespace MainGame
                 string statsText = $"Games Played: {GamesPlayed}\nGames Won: {GamesWon}\nGames Lost: {GamesLost}";
                 _spriteBatch.DrawString(_spriteFont, statsText, new Vector2(10, 10), Color.White);
             }
-            _startMenu.Draw(_spriteBatch);
-            _deathScreen.Draw(_spriteBatch);
-            _winScreen.Draw(_spriteBatch);
+            
+            foreach (IMenu menu in menus)
+            {
+                menu.Draw(_spriteBatch);
+            }
             _hud.Draw(_spriteBatch);
             _spriteBatch.End();
 
@@ -231,6 +235,10 @@ namespace MainGame
             _startMenu = new StartMenu(Content);
             _deathScreen = new DeathScreen(Content);
             _winScreen = new WinScreen(Content);
+            menus.Add(_startMenu);
+            menus.Add(_deathScreen);
+            menus.Add(_winScreen);
+
             _settings = new SettingsMenu(Content, GraphicsDevice);
             _inventory = new Inventory(Content, GraphicsDevice, linkSprite, levelMap);
             _hud = new HUD(Content, linkSprite, levelMap);

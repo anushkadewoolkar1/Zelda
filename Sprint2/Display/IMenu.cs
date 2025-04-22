@@ -25,5 +25,7 @@ namespace MainGame.Display
 
         // Executes a state modification based on command definition:
         public abstract void LoadCommand(ICommand command);
+
+        public abstract void UpdateGameState(GameState gameStates);
     }
 }
