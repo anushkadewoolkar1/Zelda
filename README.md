@@ -39,9 +39,10 @@ Arrow Keys or WASD: Move the player character (e.g., Link) and change facing dir
 Z: Perform a sword attack.
 N: Use Item
 Tab: Cycle Item (you must hit tab after picking up an item to select it)
+Enter: Enter new Game
 
 Other Controls
-Left Click: Moves to next room
+Left Click: Moves to next room (Doesn't work currently)
 Q: Quit the game.
 R: Reset the program to its initial state.
 F: Toggle program in and out of full-screen
@@ -49,6 +50,12 @@ K: Open inventory menu
 L: Open settings menu
 +: Increase program volume
 -: Decrease program volume
+P: Toggle Mute
+F: Toggle Fullscreen
+V: Toggle Stats
+LeftShift: Toggle Link Running
+T: Toggle Fog Of War
+C: Create/Use Portal
 
 
 
