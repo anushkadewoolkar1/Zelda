@@ -37,6 +37,7 @@ namespace MainGame.Forces
 
         public void ApplyForce(IGameObject gameObject)
         {
+            //Creates a portal (represented as a Map) that Link can use to teleport back
             Vector2 position = ((Link)gameObject).Position;
             if (item.pixelPosition == Vector2.Zero)
             {
@@ -56,6 +57,7 @@ namespace MainGame.Forces
 
         public void DrawPortal(SpriteBatch spriteBatch)
         {
+            //Vector2.Zero is used to check if the portal needs to be drawn
             if (item.pixelPosition != Vector2.Zero)
             {
                 item.itemSprite.Draw(spriteBatch, item.pixelPosition);

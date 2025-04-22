@@ -39,6 +39,8 @@ namespace MainGame.Visibility
 
             Boolean Result = false;
 
+            //Uses direction of Link and compares position
+            //to determine if the object is in the fog of war
             if ((gameObject as Enemy) != null)
             {
                 Enemy enemy = (Enemy)gameObject;
@@ -106,6 +108,7 @@ namespace MainGame.Visibility
                 System.Diagnostics.Debug.WriteLine("FogOfWar couldn't find gameObject.");
             }
 
+            //Return true if the object should be visible
             return Result;
         }
 

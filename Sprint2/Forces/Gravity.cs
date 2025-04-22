@@ -31,13 +31,12 @@ namespace MainGame.Forces
             gravityOn = false;
         }
 
-        private const float GRAVITY_FORCE = 4f; // Adjust as needed
+        private const float GRAVITY_FORCE = 4f; // Use to change gravitational force
         public void ApplyForce(IGameObject gameObject)
         {
             if (!gravityOn) return;
 
             Microsoft.Xna.Framework.Vector2 objectPosition;
-
 
             if ((gameObject as Enemy) != null)
             {
