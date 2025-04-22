@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace MainGame.Forces
 {
 
+    //Creates a portal that Link uses to teleport back
     public class Portal : IForces
     {
         private static Portal instance = new Portal();

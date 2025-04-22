@@ -12,7 +12,7 @@ using MainGame.Forces;
 
 namespace MainGame.Visibility
 {
-
+    //Used to handle Fog Of War (objects dissappear if not in view)
     public class FogOfWar : IForces
     {
         private static FogOfWar instance = new FogOfWar();
