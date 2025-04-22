@@ -15,3 +15,5 @@ Paul Paciorek: Prior to the presentation, I am still aiming towards improving th
 
 
 Roy Acapulco: Overall Sprint 5 was quite challenging because of the time of year and the amount of time we had to work on it. I was able to get a working version of FogOfWar and a Portal, but I wasn't able to implement Gravity because of some difficulty with how collision handling is handled.
+
+Anushka Dewoolkar: Sprint 5 gave me the opportunity to work on something new, so I decided to make a "View Stats" button. I like the individuality this gave because it required less coordination between team members. Overall, I felt I had enough time and could've tried implementing "enemies killed" within the stats or refactored old code. 
