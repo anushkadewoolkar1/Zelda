@@ -1,0 +1,14 @@
+Author: Chloe Feller
+Date: 4/21/2025
+Sprint 5
+File Name: ShaderManager.cs and CollisionManager.cs
+Author of Code: Aidan Roley
+Time Spent: 20 minutes
+
+CollisionManager:
+- Some of the methods that dispatch / figure out the collisions could possibly be extracted, especially ProcessCollisionPair. I think a function could be made where you pass whatever the variable states are (Link, Enemy, Item, etc) and assign it to the corresponding handler and return the handler (essentially make a method that returns whichever handler is being used)
+- ProcessColisionPair also takes up more than a screen, but that can also be referenced back to the previous point
+- The way the methods are written are with very high quality code, and everything is designed well enough where there shouldn't be any latency issues while the game is running these files
+
+ShadersManager:
+- I don't really have any comments with this one, it maintains itself pretty well in the grand scheme of things
