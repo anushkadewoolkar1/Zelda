@@ -1,0 +1,17 @@
+﻿TeamTingles
+Sprint #5 Reflection
+
+
+Sprint #5 was unfortunately a challenging period for the team, as given the approaching finals season, all of us were very busy throughout the weeks leading up to the due date of this sprint. However, the team was still able to expand the scope of the project, developing new auxiliary features of the game that were not present in the base version submitted in Sprint #4. The team each decided on one feature to implement, and were each able to work on these features independently, which very much helped the overall development process as we didn’t have to always be available to communicate in case we were busy like in some other sprints.
+
+
+The responsibilities of the Sprint were as follows: Aidan Roley developed a shader system for the game. Anushka Dewoolkar developed a stat tracking system for the game. Chloe Feeler developed a system for mapping the speed of Link to his current health. Kyle Dietrich developed the cheat code system of the game. Paul Paciorek was tasked with developing the Game Log system as well as implementing the menu system from the last sprint. Roy Volker-Acapulco developed a Fog of War system as well as a portal system.
+
+
+Approaching the presentation of our project, we are proud of the progress the team has made as a unit. It is unbelievable that despite being complete strangers less than three months ago, we were able to successfully cooperate to develop a project with countless interacting systems while keeping up with the rest of our classes in the meantime. We are excited to present the culmination of three months' work very soon, and will continue fine tuning the game to make the final product as fun and polished as possible.
+
+
+Paul Paciorek: Prior to the presentation, I am still aiming towards improving the current menu system, as well as developing the game log feature that I had decided on at the beginning of the Sprint. Although I would have liked to do significantly more the past couple of weeks, school and health related obstacles kept arising that kept me away from development.
+
+
+Roy Acapulco: Overall Sprint 5 was quite challenging because of the time of year and the amount of time we had to work on it. I was able to get a working version of FogOfWar and a Portal, but I wasn't able to implement Gravity because of some difficulty with how collision handling is handled.
