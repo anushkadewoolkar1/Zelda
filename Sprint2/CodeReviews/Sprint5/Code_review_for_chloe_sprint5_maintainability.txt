@@ -1,0 +1,15 @@
+Author: Aidan Roley
+Date: 4/21/2025
+Sprint5
+EnemyMovingState.cs
+Author of Code: Chloe
+Time: 10 minutes
+
+- The constants in this one are named well, no need for changes in that area in my opinion
+- The switch block is a bit difficult to understand and get through, so I think refactoring each enemytype in the switch block
+to have its own method would help
+- There are declared variables at the top that are never used, such as projectileSprite, spritebatch, position, Direction.
+- Since moving is only used by the Goriya, a renaming of it to something goriya specific would make it easier to understand
+
+If I were to make a change, I think the most important thing would be do clear out the switch block's logic and replace each case's logic
+with a call to a function that does the same thing. That way, it makes it more redable but also more maintainable since everything is more modular.

@@ -1,0 +1,15 @@
+Author: Aidan Roley
+Date: 4/21/2025
+Sprint5
+Enemy.cs
+Author of Code: Chloe
+Time: 10 minutes
+
+- It would probably be a good idea to move the constants elsewhere (to a different file) since there are so many.
+- Constants like TWO and THREE aren't good naming conventions; try to find ways to not use them while avoiding magic numbers.
+- Property naming is not always consistent.
+- SetHealth() is called twice in the constructor since it calls CreateEnemy and SetHealth, but CreateEnemy already calls it
+- There are big control flow blocks in the drawing code that could be split up into multiple functions to make it more readable
+
+As for the change, I think the most important thing to do would be to move all of the constants to a separate class and remove the
+variables names that are just a number in the constants.
