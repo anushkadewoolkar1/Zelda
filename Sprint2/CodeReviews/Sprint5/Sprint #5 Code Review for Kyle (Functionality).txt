@@ -1,0 +1,20 @@
+﻿Sprint #4 Code Review for Functionality:
+
+
+Code Reviewer: Paul Paciorek
+Code Reviewee: Kyle Dietrich
+Date: 04-21-2025
+File: CheatCodeManager.cs
+Time Taken: 20 minutes
+
+
+(+) Using a keystring-to-command dictionary to hold cheat codes not only is consistent with the current behavior of the keyboard class, but is also generally a great way to handle this direct access.
+
+
+(+) Using these commands to hold the function of the cheat as a value allows for each command to define its behavior without coupling it to the cheat code manager, allows for greater flexibility in code
+
+
+(-) This may be an especially intensive program to have constantly updating (relative to the rest of the program) since it goes through multiple nested 
+
+
+Suggestion - Would there be any way to incorporate this component within the current user input system, as I believe that it would improve the overall efficiency of the system.

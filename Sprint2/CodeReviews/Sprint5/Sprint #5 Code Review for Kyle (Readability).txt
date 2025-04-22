@@ -1,0 +1,20 @@
+﻿Sprint #5 Code Review for Readability:
+
+
+Code Reviewer: Paul Paciorek
+Code Reviewee: Kyle Dietrich
+Date: 04-21-2025
+File: ToggleInvincibility.cs
+Time Taken: 15 minutes
+
+
+(+) Class is simple, and easy to follow the logic of what its functionality is.
+
+
+(-) Inconsistent variable nomenclature results in less overall readability of the file from a glance.
+
+
+(-) No comments mean that a client not familiar with the software may not be able to understand the purpose of each statement.
+
+
+(+) The file is well-spaced, increasing the overall visibility.
