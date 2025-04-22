@@ -1,0 +1,17 @@
+Author: Chloe Feller
+Date: 4/21/2025
+Sprint 5
+File Name: ShaderManager.cs and CollisionManager.cs
+Author of Code: Aidan Roley
+Time Spent: 20 minutes
+
+- Code follows C# naming conventions, making it easy to differentiate types of variables
+- Plenty of comments to understand any confusing code and separate methods
+
+CollisionManager:
+- Commented out code could be erased, but it's all placed at the bottom so it isn't really in the way
+- Space between lines helps to differentiate when the "goal" of the code changes (ex. plenty of space between an if/else statement, or between methods)
+- lastSide variable could be deleted, as it looks like it is only assigned a value in DetermineCollisionSide but is not used anywhere else
+
+ShaderManager:
+- File is very short and all methods can fit inside one screen (the entire file can fit in one screen)
