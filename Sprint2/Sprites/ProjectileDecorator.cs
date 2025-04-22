@@ -216,6 +216,7 @@ namespace MainGame.Sprites
         }
         public override void Update(GameTime gameTime, Link link)
         {
+            //Tracks Link's movement and checks if projectile is caught, so it can be destroyed.
             if (directionProjectile % 2 == 1)
             {
                 if ((int)(linkPosition.Y - link.Position.Y) > 0)

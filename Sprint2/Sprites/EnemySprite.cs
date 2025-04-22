@@ -20,7 +20,7 @@ namespace MainGame.Sprites
         public int Rows { get; set; }
         public int Cols { get; set; }
         private List<Rectangle> SourceRectangles = new();
-        public EnemyType EnemyType;
+        private EnemyType EnemyType;
         private int xSize;
         private int ySize;
         private int currentFrame;

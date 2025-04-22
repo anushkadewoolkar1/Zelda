@@ -13,7 +13,7 @@ namespace MainGame.Shader
 {
     public class ShaderManager
     {
-        public Effect hazeEffect;
+        private Effect hazeEffect;
         GraphicsDevice graphicsDevice;
 
         bool toggle = false;

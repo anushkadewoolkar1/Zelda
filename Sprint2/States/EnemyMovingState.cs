@@ -18,7 +18,7 @@ namespace MainGame.States
         private Enemy enemy;
         private SpriteBatch spriteBatch;
         private Vector2 position;
-        public Direction Direction;
+        private Direction Direction;
         private Boolean moving = true;
 
         // constants

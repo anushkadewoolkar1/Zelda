@@ -35,7 +35,6 @@ namespace MainGame.States
         public Vector2 velocity { get; set; }
         private TileMap tileMap = TileMap.GetInstance();
         private GameAudio audio;
-        private Gravity gravity;
         private FogOfWar fow = FogOfWar.Instance;
 
         // constants
@@ -75,7 +74,6 @@ namespace MainGame.States
 
             audio = _audio;
 
-            gravity = Gravity.Instance;
         }
 
         public Enemy CreateEnemy(EnemyType enemyCreated, Vector2 spawnPosition)
@@ -282,8 +280,6 @@ namespace MainGame.States
             enemyState.Update(gameTime);
             projectileManager.Update(gameTime);
             spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            gravity.ApplyForce(this);
 
             if (spriteUpdateTimer >= spriteUpdateInterval)
             {

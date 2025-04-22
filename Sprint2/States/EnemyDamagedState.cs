@@ -13,10 +13,10 @@ namespace MainGame.States
     {
         private Enemy enemy;
         private SpriteBatch spriteBatch;
-        int timer = 1000;
+        private int timer = 1000;
         private Vector2 position;
 
-        const int ZERO = 0;
+        private const int ZERO = 0;
 
         public EnemyDamagedState(Enemy enemy)
         {

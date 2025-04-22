@@ -8,11 +8,12 @@ using MainGame.States;
 using MainGame.Sprites;
 using Microsoft.Xna.Framework;
 using Zelda.Enums;
+using MainGame.Forces;
 
 namespace MainGame.Visibility
 {
 
-    public class FogOfWar
+    public class FogOfWar : IForces
     {
         private static FogOfWar instance = new FogOfWar();
 
@@ -75,25 +76,25 @@ namespace MainGame.Visibility
                 switch (linkFacingDirection)
                 {
                     case Direction.Left:
-                        if (item.position.X <= linkPosition.X)
+                        if (item.pixelPosition.X <= linkPosition.X)
                         {
                             Result = true;
                         }
                         break;
                     case Direction.Up:
-                        if (item.position.Y >= linkPosition.Y)
+                        if (item.pixelPosition.Y <= linkPosition.Y)
                         {
                             Result = true;
                         }
                         break;
                     case Direction.Right:
-                        if (item.position.X >= linkPosition.X)
+                        if (item.pixelPosition.X >= linkPosition.X)
                         {
                             Result = true;
                         }
                         break;
                     case Direction.Down:
-                        if (item.position.Y <= linkPosition.Y)
+                        if (item.pixelPosition.Y >= linkPosition.Y)
                         {
                             Result = true;
                         }
@@ -117,6 +118,16 @@ namespace MainGame.Visibility
         public void ToggleFogOfWar()
         {
             fogOfWarToggle = !fogOfWarToggle;
+        }
+
+        public void ApplyForce(IGameObject gameObject)
+        {
+            //no-op
+        }
+
+        public void ToggleForce(IGameObject gameObject)
+        {
+            //no-op
         }
     }
 }

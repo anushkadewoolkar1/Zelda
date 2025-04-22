@@ -18,9 +18,6 @@ namespace MainGame.Sprites
         public int Rows { get; set; }
         public int Cols { get; set; }
         private List<Rectangle> SourceRectangles = new();
-        public Enemy enemy;
-        public ItemType ItemType;
-        private Vector2 enemyPosition;
         private Vector2 position;
         private Rectangle sourceRectangle;
         private Vector2 velocity;
@@ -30,7 +27,7 @@ namespace MainGame.Sprites
         private int YSize = 0;
         private int currentFrame;
         private int totalFrames;
-        public int spriteSize;
+        public int spriteSize { get; set; }
         private double totalElapsed = 0.0;
         private bool spawned = false;
         private TileMap TileMap = TileMap.GetInstance();
@@ -51,8 +48,6 @@ namespace MainGame.Sprites
             }
 
             velocity = new Vector2(0, 0);
-
-            ItemType = itemType;
         }
 
         public void Update(GameTime gameTime, Enemy enemy)
