@@ -22,20 +22,18 @@ namespace MainGame.States
         private Boolean moving = true;
 
         // constants
-        private const int ZERO = 0;
-        private const int ONE = 1;
-        private const int TWO = 2;
 
-        private const int TWENTY = 20;
-        private const int TWENTY_FIVE = 25;
-        private const int THIRTY = 30;
-        private const int FIFTY = 50;
-        private const int SEVENTY_FIVE = 75;
+        private const int SMALL_ENEMY_SPEED = 20;
+        private const int EIGTH_TIMER = 25;
+        private const int LARGE_ENEMY_SPEED = 30;
+        private const int FOURTH_TIMER = 50;
+        private const int THREE_EIGHT_TIMER = 75;
         private const int HALF_TIMER = 100;
         private const int MAX_TIMER = 200;
+        private const int MAX_SPEED = 200;
 
 
-        private int timer = ZERO;
+        private int timer = 0;
 
         public EnemyMovingState(Enemy enemy)
         {
@@ -62,17 +60,17 @@ namespace MainGame.States
 
             enemy.Speed = HALF_TIMER;
 
-            int random = RandomNumberGenerator.GetInt32(-ONE, ONE);
+            int random = RandomNumberGenerator.GetInt32(-1, 1);
             Direction randomDirection = GenerateRandomDirection();
 
             switch (enemy.enemyType)
             {
                 case EnemyType.OldMan:
                     // no-op: OldMan NPC doesn't need to move
-                    enemy.Speed = ZERO;
+                    enemy.Speed = 0;
                     break;
                 case EnemyType.Keese:
-                    enemy.Speed = TWENTY;
+                    enemy.Speed = SMALL_ENEMY_SPEED;
                     if(timer == HALF_TIMER)
                     {
                         enemy.Direction = randomDirection;
@@ -90,8 +88,8 @@ namespace MainGame.States
 
                     break;
                 case EnemyType.Stalfos:
-                    enemy.Speed = THIRTY;
-                    if(timer == ZERO || timer == HALF_TIMER)
+                    enemy.Speed = LARGE_ENEMY_SPEED;
+                    if(timer == 0 || timer == HALF_TIMER)
                     {
                         enemy.Direction = randomDirection;
                     }
@@ -99,11 +97,11 @@ namespace MainGame.States
                     move = MoveDirection(enemy.Direction);
                     break;
                 case EnemyType.Goriya:
-                    if(timer == ZERO || timer == HALF_TIMER)
+                    if(timer == 0 || timer == HALF_TIMER)
                     {
                         moving = true;
                         enemy.ChangeDirection(randomDirection);
-                    } else if (timer == FIFTY || timer == (HALF_TIMER + FIFTY))
+                    } else if (timer == FOURTH_TIMER || timer == (HALF_TIMER + FOURTH_TIMER))
                     {
                         enemy.SpawnProjectile();
                         moving = false;
@@ -119,11 +117,11 @@ namespace MainGame.States
                     }
                     break;
                 case EnemyType.Gel:
-                    enemy.Speed = TWENTY;
-                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FIFTY)))
+                    enemy.Speed = SMALL_ENEMY_SPEED;
+                    if ((timer >= 0 && timer < FOURTH_TIMER) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FOURTH_TIMER)))
                     {
-                        move = new Vector2(ZERO, ZERO);
-                    } else if (timer == SEVENTY_FIVE)
+                        move = new Vector2(0, 0);
+                    } else if (timer == THREE_EIGHT_TIMER)
                     {
                         enemy.ChangeDirection(randomDirection);
                     } else
@@ -132,9 +130,9 @@ namespace MainGame.States
                     }
                     break;
                 case EnemyType.Zol:
-                    if ((timer >= ZERO && timer < FIFTY) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FIFTY)))
+                    if ((timer >= 0 && timer < FOURTH_TIMER) || (timer >= HALF_TIMER && timer < (HALF_TIMER + FOURTH_TIMER)))
                     {
-                        move = new Vector2(ZERO, ZERO);
+                        move = new Vector2(0, 0);
                     }
                     else
                     {
@@ -142,47 +140,47 @@ namespace MainGame.States
                     }
                     break;
                 case EnemyType.Trap:
-                    if (timer >= ZERO && timer < TWENTY_FIVE)
+                    if (timer >= 0 && timer < EIGTH_TIMER)
                     {
-                        enemy.Speed = ZERO;
-                        move = new Vector2(ZERO, ZERO);
+                        enemy.Speed = 0;
+                        move = new Vector2(0, 0);
                     }
-                    else if (timer >= TWENTY_FIVE && timer < HALF_TIMER)
+                    else if (timer >= EIGTH_TIMER && timer < HALF_TIMER)
                     {
-                        enemy.Speed = HALF_TIMER * TWO;
+                        enemy.Speed = MAX_SPEED;
                         move = MoveDirection(Direction.Down);
                     }
-                    else if (timer >= FIFTY && timer < HALF_TIMER)
+                    else if (timer >= FOURTH_TIMER && timer < HALF_TIMER)
                     {
                         enemy.Speed = HALF_TIMER;
                         move = MoveDirection(Direction.Up);
                     }
                     break;
                 case EnemyType.Wallmaster:
-                    enemy.Speed = FIFTY;
+                    enemy.Speed = FOURTH_TIMER;
                     
-                    move = new Vector2(RandomNumberGenerator.GetInt32(-ONE, TWO), RandomNumberGenerator.GetInt32(-ONE, TWO));
+                    move = new Vector2(RandomNumberGenerator.GetInt32(-1, 2), RandomNumberGenerator.GetInt32(-1, 2));
                     
                     break;
                 case EnemyType.Rope:
                     // set to a timer in sprint2, rope's double movement speed needs to be triggered by lining up with link, not doing it eveyr once in a while
-                    if (timer >= ZERO && timer < FIFTY)
+                    if (timer >= 0 && timer < FOURTH_TIMER)
                     {
-                        if (RandomNumberGenerator.GetInt32(-ONE, ONE) == ONE)
+                        if (RandomNumberGenerator.GetInt32(-1, 1) == 1)
                         {
                             move = MoveDirection(Direction.Right);
                         } else
                         {
                             move = MoveDirection(Direction.Left);
                         }
-                    } else if (timer >= FIFTY && timer < SEVENTY_FIVE)
+                    } else if (timer >= FOURTH_TIMER && timer < THREE_EIGHT_TIMER)
                     {
-                        enemy.Speed = HALF_TIMER * TWO;
+                        enemy.Speed = MAX_SPEED;
                         move = MoveDirection(Direction.Down);
                     } else
                     {
                         enemy.Speed = HALF_TIMER;
-                        if (RandomNumberGenerator.GetInt32(-ONE, ONE) == ONE)
+                        if (RandomNumberGenerator.GetInt32(-1, 1) == 1)
                         {
                             move = MoveDirection(Direction.Right);
                         }
@@ -194,10 +192,10 @@ namespace MainGame.States
                     break;
                 case EnemyType.Aquamentus:
                     enemy.itemType = ItemType.Fireball;
-                    if (timer >= ZERO && timer < FIFTY)
+                    if (timer >= 0 && timer < FOURTH_TIMER)
                     {
                         move = MoveDirection(Direction.Left);
-                    } else if (timer >= FIFTY && timer < HALF_TIMER)
+                    } else if (timer >= FOURTH_TIMER && timer < HALF_TIMER)
                     {
                         move = MoveDirection(Direction.Right);
                     } else if (timer == HALF_TIMER)
@@ -206,20 +204,20 @@ namespace MainGame.States
                     }
                     break;
                 case EnemyType.Dodongo:
-                    enemy.Speed = FIFTY;
-                    if (timer == ZERO)
+                    enemy.Speed = FOURTH_TIMER;
+                    if (timer == 0)
                     {
                         enemy.ChangeDirection(Direction.Right);
                     }
-                    else if (timer == TWENTY_FIVE)
+                    else if (timer == EIGTH_TIMER)
                     {
                         enemy.ChangeDirection(Direction.Up);
                     }
-                    else if (timer == FIFTY)
+                    else if (timer == FOURTH_TIMER)
                     {
                         enemy.ChangeDirection(Direction.Left);
                     }
-                    else if (timer == SEVENTY_FIVE)
+                    else if (timer == THREE_EIGHT_TIMER)
                     {
                         enemy.ChangeDirection(Direction.Down);
                     }
@@ -227,14 +225,14 @@ namespace MainGame.States
                     move = MoveDirection(enemy.Direction);
                     break;
                 default:
-                    move = new Vector2(ZERO, ONE); ;
+                    move = new Vector2(0, 1); ;
                     break;
             }
 
             timer++;
-            if (timer == (HALF_TIMER * TWO))
+            if (timer == (MAX_TIMER))
             {
-                timer = ZERO;
+                timer = 0;
             }
 
             enemy.Move(move, gameTime);
@@ -242,7 +240,7 @@ namespace MainGame.States
 
         public Direction GenerateRandomDirection()
         {
-            int random = RandomNumberGenerator.GetInt32(ZERO, 4);
+            int random = RandomNumberGenerator.GetInt32(0, 4);
             switch(random)
             {
                 case 0:
@@ -263,15 +261,15 @@ namespace MainGame.States
             switch(dir)
             {
                 case Direction.Up:
-                    return new Vector2(ZERO, -ONE);
+                    return new Vector2(0, -1);
                 case Direction.Down:
-                    return new Vector2(ZERO, ONE);
+                    return new Vector2(0, 1);
                 case Direction.Left:
-                    return new Vector2(ONE, ZERO);
+                    return new Vector2(1, 0);
                 case Direction.Right:
-                    return new Vector2(-ONE, ZERO);
+                    return new Vector2(-1, 0);
                 default:
-                    return new Vector2(ZERO, ZERO);
+                    return new Vector2(0, 0);
             }
         }
 
