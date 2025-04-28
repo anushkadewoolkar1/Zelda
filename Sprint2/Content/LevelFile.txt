@@ -3,7 +3,7 @@
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
 ,,,,,,,,,,,,,
-LoadRoomBlock(1;5),,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,LoadRoomBlock(3;5)
+LoadRoomBlock(1;5),,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,LoadRoomBlock(3;5)|
 ,,,,,,,,,,,,,
 ,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,,InvisibleBlock,,
 ,,,,,,,,,,,,,

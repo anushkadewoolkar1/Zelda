@@ -121,6 +121,9 @@ namespace MainGame.Display
                     Int32.Parse(token.Substring(16, 1))
                 );
             }
+            if (token.Contains("|")) {
+                block.NeedKey();
+            }
             Blocks.Add(block);
             globalObjects.Add(block);
         }

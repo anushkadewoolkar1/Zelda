@@ -46,7 +46,14 @@ public class LinkBlockCollisionHandler : ICollisionHandler
             default:
                 break;
         }
-        // link.ResetVelocity();
+
+        if (block.needKey && link.CurrentItem.Contains(ItemType.Key))
+        {
+            link.CurrentItem.Remove(ItemType.Key);
+        } else if (block.needKey)
+        {
+            return;
+        }
         block.LoadRoom();
 
     }

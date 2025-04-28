@@ -290,7 +290,11 @@ public class Link : IGameObject
             case "ZeldaSpriteBomb": 
                 CurrentItem.Add(ItemType.Bomb); 
                 break;
+            case "ZeldaSpriteKey":
+                CurrentItem.Add(ItemType.Key);
+                break;
         }
+
     }
 
     public void UseItem()

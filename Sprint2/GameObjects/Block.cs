@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MainGame.CollisionHandling;
 using MainGame.Display;
 using ZeldaGame.Zelda.CollisionMap;
+using System;
 
 public class Block : IBlock, IGameObject
 {
@@ -22,6 +23,7 @@ public class Block : IBlock, IGameObject
     private const float scaleFactor = 0.3f;
     private const int BOUNDING_BOX_DIM_X = 28;
     private const int BOUNDING_BOX_DIM_Y = 23;
+    public Boolean needKey { get; set; }
 
     public Block(Vector2 startPosition, Texture2D[] blockTextures, LevelManager level)
     {
@@ -36,6 +38,7 @@ public class Block : IBlock, IGameObject
         
         LoadRoomSet = new Vector2(-1, -1);
         MyLevel = level;
+        needKey = false;
     }
 
     public Vector2 GetPosition() => new Vector2(pixelPosition.X, pixelPosition.Y - 3);
@@ -108,5 +111,10 @@ public class Block : IBlock, IGameObject
             return;
         }
         MyLevel.LoadRoom((int)LoadRoomSet.X, (int)LoadRoomSet.Y);
+    }
+
+    public void NeedKey()
+    {
+        needKey = true;
     }
 }
