@@ -30,7 +30,7 @@ namespace MainGame.Sprites
         private const int WIDTH_INDEX = 2;
         private const int HEIGHT_INDEX = 3;
         private const int PROJECTILE_SIZE = 16;
-        private const int OOB_COORD = 200;
+        private const int OOB_COORD = 1000;
         private const int SKINNY_PROJECTILE_YCOORD = 185;
         private const int ARROW_XCOORD = 30;
         private const int BOMB_XCOORD = 129;
@@ -77,10 +77,11 @@ namespace MainGame.Sprites
             spriteBatch.Draw(_texture, new Vector2((int)(_position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(_position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE)),
                 sourceRectangle, Color.White, rotation, destinationOrigin, PROJECTILE_SCALE, SpriteEffects.None, 0f);
 
-            projectileClient.Draw(spriteBatch, position);
 
             //Keeps track of link's previous position
             position = _position;
+
+            projectileClient.Draw(spriteBatch, position);
 
             return;
         }
@@ -198,7 +199,7 @@ namespace MainGame.Sprites
             get
             {
                 return new Rectangle((int)(position.X + deltaPosition[X_INDEX] * PROJECTILE_SCALE), (int)(position.Y + deltaPosition[Y_INDEX] * PROJECTILE_SCALE),
-                    sourceRectangle.X, sourceRectangle.Y);
+                    sourceRectangle.Width, sourceRectangle.Height);
             }
         }
 

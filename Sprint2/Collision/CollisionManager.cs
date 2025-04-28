@@ -147,12 +147,18 @@ public class CollisionManager
         }
 
         // Enemy -> LinkProjectile
-        if ((objA is Enemy && IsLinkProjectile(objB)) ||
-            (objB is Enemy && IsLinkProjectile(objA)))
+        if (IsLinkProjectile(objB) ||
+            IsLinkProjectile(objA))
         {
-            var projectileHandler = new EnemyLinkProjectileCollisionHandler();
-            if (objA is Enemy) projectileHandler.HandleCollision(objA, objB, side);
-            else projectileHandler.HandleCollision(objB, objA, side);
+            if (objA is Enemy || objB is Enemy)
+            {
+                var projectileHandler = new EnemyLinkProjectileCollisionHandler();
+                if (objA is Enemy) projectileHandler.HandleCollision(objA, objB, side);
+                else projectileHandler.HandleCollision(objB, objA, side);
+            }
+
+            if (objA is Block) objB.Destroy();
+            else if (objB is Block) objA.Destroy();
         }
 
         if ((objA is Enemy && objB is HitBox) ||
@@ -191,8 +197,8 @@ public class CollisionManager
             return;
         }
 
-        // Figure out which side
-        CollisionSide side;
+            // Figure out which side
+            CollisionSide side;
         int heightDiff = (objA.BoundingBox.Height - intersection.Height);
         int widthDiff = (objA.BoundingBox.Width - intersection.Width);
 
