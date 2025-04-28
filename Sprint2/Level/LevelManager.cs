@@ -187,7 +187,7 @@ namespace MainGame.Display
 
                 myLink.Position = newPosition;
             }
-
+            myLink.DestroyPortals();
 
             myLink.noMoving = true;
 

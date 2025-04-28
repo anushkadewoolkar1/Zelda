@@ -459,6 +459,15 @@ public class Link : IGameObject
 
     public void UsePortal()
     {
+        if (portal.ReadyToUse()) { 
+            portal.UsePortal((IGameObject)this);
+            return;
+        }
         portal.ApplyForce((IGameObject)this);
+    }
+
+    public void DestroyPortals()
+    {
+        portal.DestroyPortals();
     }
 }
