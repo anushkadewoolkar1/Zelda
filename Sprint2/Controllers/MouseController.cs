@@ -44,32 +44,34 @@ namespace MainGame.Controllers
                 bool topHalf = mouseY < _windowHeight / 2;
                 bool leftHalf = mouseX < _windowWidth / 2;
 
+                int[] levelCoord = level.currentRoomCoords;
+
                 level.moveLink = false;
                 // top left
-                /*
+                
                 if (topHalf && leftHalf)
                 {
-                    
-                    level.LoadRoom(level.currentRoom[0], level.currentRoom[1] - 1);
+
+                    level.LoadRoom(levelCoord[0], levelCoord[1] - 1);
                 }
                 // top right
                 else if (topHalf && !leftHalf)
                 {
-                    level.LoadRoom(level.currentRoom[0] + 1, level.currentRoom[1]);
+                    level.LoadRoom(levelCoord[0] + 1, levelCoord[1]);
                 }
                 // bottom left
                 else if (!topHalf && leftHalf)
                 {
-                    level.LoadRoom(level.currentRoom[0] - 1, level.currentRoom[1]);
+                    level.LoadRoom(levelCoord[0] - 1, levelCoord[1]);
                 }
                 // bottom right
                 else
                 {
-                    level.LoadRoom(level.currentRoom[0], level.currentRoom[1] + 1);
+                    level.LoadRoom(levelCoord[0], levelCoord[1] + 1);
                 }
                 level.moveLink = true;
                 
-
+                /*
                 System.Diagnostics.Debug.WriteLine(level.currentRoom[0].ToString() + "||"
                     + level.currentRoom[1].ToString());
                 */
