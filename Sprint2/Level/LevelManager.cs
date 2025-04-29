@@ -158,31 +158,28 @@ namespace MainGame.Display
             {
                 Vector2 newPosition = myLink.Position;
 
-                switch (myLink.currentDirection)
+                System.Diagnostics.Debug.WriteLine($"X: {newPosition.X} Y: {newPosition.Y}");
+
+                if(newPosition.X < 100)
                 {
-                    case Direction.Left:
-                        newPosition = new Vector2(
-                            BoundingBox.Right - (myLink.BoundingBox.Width / 2f) - BUFFER,
-                            BoundingBox.Center.Y);
-                        break;
-
-                    case Direction.Right:
-                        newPosition = new Vector2(
-                            BoundingBox.Left + (myLink.BoundingBox.Width / 2f) + BUFFER,
-                            BoundingBox.Center.Y);
-                        break;
-
-                    case Direction.Up:
-                        newPosition = new Vector2(
-                            BoundingBox.Center.X,
-                            BoundingBox.Bottom - (myLink.BoundingBox.Height / 2f) - BUFFER);
-                        break;
-
-                    case Direction.Down:
-                        newPosition = new Vector2(
-                            BoundingBox.Center.X,
-                            BoundingBox.Top + (myLink.BoundingBox.Height / 2f) + BUFFER);
-                        break;
+                    newPosition = new Vector2(
+                                BoundingBox.Right - (myLink.BoundingBox.Width / 2f) - BUFFER,
+                                BoundingBox.Center.Y);
+                } else if (newPosition.X > 400)
+                {
+                    newPosition = new Vector2(
+                                BoundingBox.Left + (myLink.BoundingBox.Width / 2f) + BUFFER,
+                                BoundingBox.Center.Y);
+                } else if (newPosition.Y < 100)
+                {
+                    newPosition = new Vector2(
+                                BoundingBox.Center.X,
+                                BoundingBox.Bottom - (myLink.BoundingBox.Height / 2f) - BUFFER);
+                } else
+                {
+                    newPosition = new Vector2(
+                                BoundingBox.Center.X,
+                                BoundingBox.Top + (myLink.BoundingBox.Height / 2f) + BUFFER);
                 }
 
                 myLink.Position = newPosition;

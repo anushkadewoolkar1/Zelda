@@ -222,39 +222,41 @@ namespace MainGame.States
             //    var itemType = CurrentItem[chooseItem];
             //    projectileManager.SpawnProjectile(itemType, Direction);
             //}
-
-            if(enemyType == EnemyType.Goriya)
+            ProjectileSprite hold;
+            if (enemyType == EnemyType.Goriya)
             {
                 // CurrentItem.Add(ItemType.Boomerang);
                 //projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
-                
-            } else if (enemyType == EnemyType.Aquamentus)
+                switch (Direction)
+                {
+                    case Direction.Up:
+                        hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
+                        break;
+                    case Direction.Down:
+                        hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(2);
+                        break;
+                    case Direction.Left:
+                        hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(1);
+                        break;
+                    case Direction.Right:
+                        hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(3);
+                        break;
+                    default:
+                        hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
+                        break;
+                }
+
+            } else //(enemyType == EnemyType.Aquamentus)
             {
+                hold = (ProjectileSprite)projectileSpriteFactory.CreateLeftArrowBlue();
                 // CurrentItem.Add(ItemType.Fireball);
                 //projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
             }
 
-            ProjectileSprite hold;
 
-            System.Diagnostics.Debug.WriteLine($"Directions Are: {Direction}");
-            switch (Direction)
-            {
-                case Direction.Up:
-                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
-                    break;
-                case Direction.Down:
-                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(2);
-                    break;
-                case Direction.Left:
-                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(1);
-                    break;
-                case Direction.Right:
-                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(3);
-                    break;
-                default:
-                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
-                    break;
-            }
+
+                System.Diagnostics.Debug.WriteLine($"Directions Are: {Direction}");
+            
             hold.isEnemyProjectile = true;
             projectileList.Add(hold);
             gameObjects.Add(hold);
@@ -325,7 +327,7 @@ namespace MainGame.States
             foreach (var projectile in projectileList)
             {
                 Link link = new Link(gameObjects);
-                link.Position = position;
+                link.Position = new Vector2(position.X-8,position.Y-8);
                 link.currentDirection = Direction;
                 projectile.Update(gameTime, new Link(gameObjects));
             }
