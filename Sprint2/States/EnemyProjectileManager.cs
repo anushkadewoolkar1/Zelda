@@ -55,6 +55,13 @@ namespace MainGame.States
             initializeItem = false;
         }
 
+        public void SetObjects(List<IGameObject> _gameObjects)
+        {
+            gameObjects = _gameObjects;
+
+        }
+
+
         public void Update(GameTime gameTime)
         {
             if (!spawnedItem)

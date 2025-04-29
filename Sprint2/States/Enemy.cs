@@ -218,11 +218,11 @@ namespace MainGame.States
             if(enemyType == EnemyType.Goriya)
             {
                 // CurrentItem.Add(ItemType.Boomerang);
-                projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
+                //projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
             } else if (enemyType == EnemyType.Aquamentus)
             {
                 // CurrentItem.Add(ItemType.Fireball);
-                projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
+                //projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
             }
         }
 
