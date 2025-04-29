@@ -252,8 +252,10 @@ namespace MainGame
             levelMap.CollisionManager(_collisionManager);
             levelMap.Game(this);
             GameState = GameState.StartMenu;
+            EnemyProjectileManager.Instance.SetObjects(_gameObjects);
 
-            
+
+
         }
 
         private void SetupControllers()
