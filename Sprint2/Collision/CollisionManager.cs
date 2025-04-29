@@ -94,8 +94,8 @@ public class CollisionManager
         CollisionSide side = DetermineCollisionSide(objA, objB);
 
         // Link -> EnemyProjectile
-        if ((objA is Link && objB is EnemyProjectileSprite) ||
-            (objA is EnemyProjectileSprite && objB is Link))
+        if ((objA is Link && objB is ProjectileSprite) ||
+            (objA is ProjectileSprite && objB is Link))
         {
             var projectileHandler = new LinkEnemyProjectileCollisionHandler();
             projectileHandler.HandleCollision(objA, objB, side);

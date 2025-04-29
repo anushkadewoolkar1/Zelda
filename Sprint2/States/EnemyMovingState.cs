@@ -277,5 +277,10 @@ namespace MainGame.States
         {
             // no-op
         }
+
+        public Direction ReturnDirection()
+        {
+            return Direction;
+        }
     }
 }

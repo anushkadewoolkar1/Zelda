@@ -31,11 +31,13 @@ namespace MainGame.States
         public List<ItemType> CurrentItem { get; set; }
         public int chooseItem { get; set; }
         private EnemyProjectileManager projectileManager;
+        private ProjectileSpriteFactory projectileSpriteFactory = ProjectileSpriteFactory.Instance;
         private List<IGameObject> gameObjects;
         public Vector2 velocity { get; set; }
         private TileMap tileMap = TileMap.GetInstance();
         private GameAudio audio;
         private FogOfWar fow = FogOfWar.Instance;
+        private List<ProjectileSprite> projectileList = new List<ProjectileSprite>();
 
         // constants
         private const double ZERO = 0.0;
@@ -146,7 +148,13 @@ namespace MainGame.States
             {
                 sprite.Draw(spriteBatch, this.position);
             }
-            projectileManager.Draw(spriteBatch);
+
+            foreach (var projectile in projectileList)
+            {
+                projectile.Draw(spriteBatch, this.position);
+            }
+
+            //projectileManager.Draw(spriteBatch);
 
             //if (itemSpawn)
             //{
@@ -218,12 +226,39 @@ namespace MainGame.States
             if(enemyType == EnemyType.Goriya)
             {
                 // CurrentItem.Add(ItemType.Boomerang);
-                projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
+                //projectileManager.SpawnProjectile(ItemType.Boomerang, Direction);
+                
             } else if (enemyType == EnemyType.Aquamentus)
             {
                 // CurrentItem.Add(ItemType.Fireball);
-                projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
+                //projectileManager.SpawnProjectile(ItemType.Fireball, Direction);
             }
+
+            ProjectileSprite hold;
+
+            System.Diagnostics.Debug.WriteLine($"Directions Are: {Direction}");
+            switch (Direction)
+            {
+                case Direction.Up:
+                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
+                    break;
+                case Direction.Down:
+                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(2);
+                    break;
+                case Direction.Left:
+                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(1);
+                    break;
+                case Direction.Right:
+                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(3);
+                    break;
+                default:
+                    hold = (ProjectileSprite)projectileSpriteFactory.CreateBoomerangBrown(0);
+                    break;
+            }
+            hold.isEnemyProjectile = true;
+            projectileList.Add(hold);
+            gameObjects.Add(hold);
+            
         }
 
         public void TakeDamage(ItemType projectile)
@@ -278,13 +313,21 @@ namespace MainGame.States
         {
             gameObjects = _gameObjects;
             enemyState.Update(gameTime);
-            projectileManager.Update(gameTime);
+            //projectileManager.Update(gameTime);
             spriteUpdateTimer += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (spriteUpdateTimer >= spriteUpdateInterval)
             {
                 sprite.Update(gameTime);
                 spriteUpdateTimer = 0;
+            }
+
+            foreach (var projectile in projectileList)
+            {
+                Link link = new Link(gameObjects);
+                link.Position = position;
+                link.currentDirection = Direction;
+                projectile.Update(gameTime, new Link(gameObjects));
             }
             //sprite.Update(gameTime);
 

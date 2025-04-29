@@ -31,6 +31,8 @@ namespace MainGame.CollisionHandling
                 return;
             }
 
+            if (linkProjectile.isEnemyProjectile == true) return;
+
             System.Diagnostics.Debug.WriteLine("Enemy hit by link's projectile!");
             switch(linkProjectile.ReturnCurrentProjectile())
             {

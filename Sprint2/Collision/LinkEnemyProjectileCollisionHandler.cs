@@ -17,12 +17,12 @@ namespace MainGame.CollisionHandling
         {
             // Assume objA is Link and objB is an Enemy Projectile.
             Link link = objA as Link;
-            EnemyProjectileSprite enemyProj = objB as EnemyProjectileSprite;
+            ProjectileSprite enemyProj = objB as ProjectileSprite;
 
             if (link == null || enemyProj == null)
             {
                 link = objB as Link;
-                enemyProj = objA as EnemyProjectileSprite;
+                enemyProj = objA as ProjectileSprite;
             }
 
             if (link == null || enemyProj == null)
@@ -32,6 +32,8 @@ namespace MainGame.CollisionHandling
             }
 
             if (link.IsInvulnerable) return;
+
+            if (enemyProj.isEnemyProjectile == false) return;
 
             link.TakeDamage(1);
             // Remove projectile once that method is implemented

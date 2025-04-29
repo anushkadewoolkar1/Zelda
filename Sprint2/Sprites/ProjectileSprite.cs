@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MainGame.CollisionHandling;
 using Zelda.Enums;
 using MainGame.States;
+using System;
 
 namespace MainGame.Sprites
 {
@@ -17,6 +18,7 @@ namespace MainGame.Sprites
 
         public float rotation { get; set; }
         public int directionProjectile { get; set; }
+        public Boolean isEnemyProjectile { get; set; } = false;
         private bool isSwordBeam;
         private Vector2 velocity;
         private Vector2 position;
