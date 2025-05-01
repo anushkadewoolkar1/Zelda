@@ -24,7 +24,7 @@ namespace MainGame.Sprites
         private Vector2 position;
         private ItemType currentProjectile;
 
-        public bool destroy { get; set; }
+        private bool destroy;
 
         private const int PROJECTILE_SCALE = 2;
         private const int X_INDEX = 0;
@@ -90,19 +90,12 @@ namespace MainGame.Sprites
 
         public void Update(GameTime gameTime, Link link)
         {
+            HandleSwordBeam(link, destroy);
 
             //Returns when destroyed but let's link know when swordbeam is inactive
-            if (destroy && isSwordBeam!)
+            if (destroy)
             {
-                if (!isSwordBeam)
-                {
-                    return;
-                }
-                else
-                {
-                    link.swordBeam = false;
-                    isSwordBeam = false;
-                }
+                return;
             }
 
             if (isSwordBeam) link.swordBeam = true;
@@ -159,15 +152,16 @@ namespace MainGame.Sprites
                 projectileDecorator = new ProjectileDecoratorLinear(new ProjectileConcrete(), this);
                 sourceRectangleDimensions = [xCoordinate, yCoordinate, 5, 16];
                 currentProjectile = ItemType.Arrow;
-                isSwordBeam = true;
-            } else
+                ToggleSwordBeam();
+            }
+            else
             {
                 //Handles currentProjectile Exception cases
                 currentProjectile = ItemType.Arrow;
             }
 
-                // Sets up client for Draw and Update
-                projectileClient = new ProjectileClient(new ProjectileDecoratorTimeOut(projectileDecorator, this));
+            // Sets up client for Draw and Update
+            projectileClient = new ProjectileClient(new ProjectileDecoratorTimeOut(projectileDecorator, this));
 
             return sourceRectangleDimensions;
         }
@@ -208,6 +202,24 @@ namespace MainGame.Sprites
         public void Update(GameTime gameTime, Enemy enemy)
         {
             // no-op
+        }
+
+
+        private void ToggleSwordBeam()
+        {
+            isSwordBeam = !isSwordBeam;
+        }
+
+        private void HandleSwordBeam(Link link, Boolean destroy)
+        {
+            if (!link.swordBeam && destroy) return;
+
+            if (destroy)
+            {
+                isSwordBeam = false;
+            }
+
+            link.swordBeam = isSwordBeam;
         }
     }
 

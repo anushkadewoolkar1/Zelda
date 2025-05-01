@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/hazeEffect.fx</SourceFile>
-  <SourceTime>2025-04-21T02:35:12.2847346-04:00</SourceTime>
-  <DestFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/bin/DesktopGL/Content/hazeEffect.xnb</DestFile>
-  <DestTime>2025-05-01T18:02:51.7760011-04:00</DestTime>
+  <SourceFile>C:/Users/jorda/source/repos/AfterTheSprints/Sprint2/Content/hazeEffect.fx</SourceFile>
+  <SourceTime>2025-05-01T18:20:03.2390095-04:00</SourceTime>
+  <DestFile>C:/Users/jorda/source/repos/AfterTheSprints/Sprint2/Content/bin/DesktopGL/Content/hazeEffect.xnb</DestFile>
+  <DestTime>2025-05-01T18:22:02.6199496-04:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>EffectProcessor</Processor>

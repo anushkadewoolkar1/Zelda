@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/../DefaultFont.spritefont</SourceFile>
-  <SourceTime>2025-02-10T16:37:16.6794333-05:00</SourceTime>
-  <DestFile>C:/Users/aidan/Downloads/repos/ZeldaGame/Zelda/Sprint2/Content/bin/DesktopGL/Content/DefaultFont.xnb</DestFile>
-  <DestTime>2025-05-01T18:02:51.5386357-04:00</DestTime>
+  <SourceFile>C:/Users/jorda/source/repos/AfterTheSprints/Sprint2/Content/../DefaultFont.spritefont</SourceFile>
+  <SourceTime>2025-05-01T18:20:03.3042173-04:00</SourceTime>
+  <DestFile>C:/Users/jorda/source/repos/AfterTheSprints/Sprint2/Content/bin/DesktopGL/Content/DefaultFont.xnb</DestFile>
+  <DestTime>2025-05-01T18:22:01.9948181-04:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
