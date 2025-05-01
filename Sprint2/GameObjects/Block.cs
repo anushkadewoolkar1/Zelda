@@ -49,21 +49,6 @@ public class Block : IBlock, IGameObject
     public void Update()
     {
         
-        KeyboardState state = Keyboard.GetState();
-
-        // Change to previous texture when T is input
-        if (state.IsKeyDown(Keys.T) && _previousState.IsKeyUp(Keys.T))
-        {
-            currentTextureIndex = (currentTextureIndex - 1 + textures.Length) % textures.Length;
-        }
-
-        if (state.IsKeyDown(Keys.Y) && _previousState.IsKeyUp(Keys.Y))
-        {
-            currentTextureIndex = (currentTextureIndex + 1) % textures.Length;
-        }
-
-        _previousState = state;
-        
     }
 
     // Temporary method (as for now) to reflect Sprint 2 Functionality (PP):
