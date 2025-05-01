@@ -4,6 +4,28 @@ namespace MainGame.Sprites
 {
     internal static class LinkAttackHelper
     {
+        //Link Attack Constants
+        private const int DOWN_ATTACK_FRAME_TWO = 27;
+        private const int DOWN_ATTACK_FRAME_THREE = 23;
+        private const int DOWN_ATTACK_FRAME_FOUR = 19;
+        private const int UP_ATTACK_FRAME_TWO = 28;
+        private const int UP_ATTACK_FRAME_THREE = 27;
+        private const int UP_ATTACK_FRAME_FOUR = 19;
+        private const int SIDE_ATTACK_FRAME_TWO = 27;
+        private const int SIDE_ATTACK_FRAME_THREE = 23;
+        private const int SIDE_ATTACK_FRAME_FOUR = 19;
+        private const int UP_ATTACK_ADJUSTMENT_FRAME_TWO = 11;
+        private const int UP_ATTACK_ADJUSTMENT_FRAME_THREE = 10;
+        private const int UP_ATTACK_ADJUSTMENT_FRAME_FOUR = 2;
+        private const int SIDE_ATTACK_ADJUSTMENT_FRAME_THREE = 11;
+        private const int SIDE_ATTACK_ADJUSTMENT_FRAME_FOUR = 18;
+        private const int VERTICAL_ATTACK_ADJUSTMENT_FRAME_TWO = 12;
+        private const int VERTICAL_ATTACK_ADJUSTMENT_FRAME_THREE = 11;
+        private const int VERTICAL_ATTACK_ADJUSTMENT_FRAME_FOUR = 3;
+        private const int HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_TWO = 12;
+        private const int HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_THREE = 7;
+        private const int HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_FOUR = 3;
+
         // Adjusts source rectangle dimensions when Link is attacking
         public static int[] AdjustAttacks(int xCoordinate, int yCoordinate, int frame, int facingDirection, out int leftAdjustment, out int upAdjustment)
         {
@@ -22,13 +44,13 @@ namespace MainGame.Sprites
                 switch (frame)
                 {
                     case 2:
-                        sourceRectangleDimensions[3] = 27;
+                        sourceRectangleDimensions[3] = DOWN_ATTACK_FRAME_TWO;
                         break;
                     case 3:
-                        sourceRectangleDimensions[3] = 23;
+                        sourceRectangleDimensions[3] = DOWN_ATTACK_FRAME_THREE;
                         break;
                     case 4:
-                        sourceRectangleDimensions[3] = 19;
+                        sourceRectangleDimensions[3] = DOWN_ATTACK_FRAME_FOUR;
                         break;
                     default:
                         break;
@@ -39,19 +61,19 @@ namespace MainGame.Sprites
                 switch (frame)
                 {
                     case 2:
-                        upAdjustment = 12;
-                        sourceRectangleDimensions[3] = 28;
-                        sourceRectangleDimensions[1] = yCoordinate - 11;
+                        upAdjustment = VERTICAL_ATTACK_ADJUSTMENT_FRAME_TWO;
+                        sourceRectangleDimensions[3] = UP_ATTACK_FRAME_TWO;
+                        sourceRectangleDimensions[1] = yCoordinate - UP_ATTACK_ADJUSTMENT_FRAME_TWO;
                         break;
                     case 3:
-                        upAdjustment = 11;
-                        sourceRectangleDimensions[3] = 27;
-                        sourceRectangleDimensions[1] = yCoordinate - 10;
+                        upAdjustment = VERTICAL_ATTACK_ADJUSTMENT_FRAME_THREE;
+                        sourceRectangleDimensions[3] = UP_ATTACK_FRAME_THREE;
+                        sourceRectangleDimensions[1] = yCoordinate - UP_ATTACK_ADJUSTMENT_FRAME_THREE;
                         break;
                     case 4:
-                        upAdjustment = 3;
-                        sourceRectangleDimensions[3] = 19;
-                        sourceRectangleDimensions[1] = yCoordinate - 2;
+                        upAdjustment = VERTICAL_ATTACK_ADJUSTMENT_FRAME_FOUR;
+                        sourceRectangleDimensions[3] = UP_ATTACK_FRAME_FOUR;
+                        sourceRectangleDimensions[1] = yCoordinate - UP_ATTACK_ADJUSTMENT_FRAME_FOUR;
                         break;
                     default:
                         break;
@@ -64,25 +86,25 @@ namespace MainGame.Sprites
                     case 2:
                         if (facingDirection == (int)LinkSprite.LinkSpriteDirection.Left)
                         {
-                            leftAdjustment = 12;
+                            leftAdjustment = HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_TWO;
                         }
-                        sourceRectangleDimensions[2] = 27;
+                        sourceRectangleDimensions[2] = SIDE_ATTACK_FRAME_TWO;
                         break;
                     case 3:
                         if (facingDirection == (int)LinkSprite.LinkSpriteDirection.Left)
                         {
-                            leftAdjustment = 7;
+                            leftAdjustment = HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_THREE;
                         }
-                        sourceRectangleDimensions[2] = 23;
-                        sourceRectangleDimensions[0] = xCoordinate + 11;
+                        sourceRectangleDimensions[2] = SIDE_ATTACK_FRAME_THREE;
+                        sourceRectangleDimensions[0] = xCoordinate + SIDE_ATTACK_ADJUSTMENT_FRAME_THREE;
                         break;
                     case 4:
                         if (facingDirection == (int)LinkSprite.LinkSpriteDirection.Left)
                         {
-                            leftAdjustment = 3;
+                            leftAdjustment = HORIZONTAL_ATTACK_ADJUSTMENT_FRAME_FOUR;
                         }
-                        sourceRectangleDimensions[2] = 19;
-                        sourceRectangleDimensions[0] = xCoordinate + 11 + 7;
+                        sourceRectangleDimensions[2] = SIDE_ATTACK_FRAME_FOUR;
+                        sourceRectangleDimensions[0] = xCoordinate + SIDE_ATTACK_ADJUSTMENT_FRAME_FOUR;
                         break;
                     default:
                         break;
