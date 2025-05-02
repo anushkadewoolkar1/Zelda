@@ -22,7 +22,7 @@ using MainGame.Shader;
 
 namespace MainGame
 {
-    public class Game1 : Game
+    public partial class Game1 : Game
     {
         private const int TargetFPS = 30;
         private static readonly Point DefaultResolution = new(512, 480);
@@ -108,31 +108,6 @@ namespace MainGame
             base.Initialize();
         }
 
-        protected override void LoadContent()
-        {
-
-            _baseTexture = new Texture2D(GraphicsDevice, 1, 1);
-            _baseTexture.SetData(new[] { Color.White });
-            TileMap.Initialize(256, 240);
-            _tileMap = TileMap.GetInstance();
-
-            _audio = GameAudio.Instance;
-            _audio.LoadAllAudio(Content);
-
-            var blockTextures = LoadBlockTextures();
-            _block = new Block(new Vector2(15, 1), blockTextures, levelMap);
-
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            LoadDynamicObjects();
-
-            _cheatCodeManager = new CheatCodeManager(linkSprite, levelMap);
-
-            
-
-            pixel = new Texture2D(GraphicsDevice, 1, 1);
-            pixel.SetData(new[] { Color.White });
-        }
-
         protected override void Update(GameTime gameTime)
         {
             
@@ -153,8 +128,6 @@ namespace MainGame
             _hud.UpdateGameState(GameState);
 
             _cheatCodeManager.Update(gameTime);
-
-
 
             base.Update(gameTime);
         }
@@ -185,23 +158,11 @@ namespace MainGame
             GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Clear(Color.Black);
 
-
-
             _shaderManager.Update(gameTime);
             _shaderManager.Draw(_spriteBatch, _renderTarget);
 
-            //// === DEBUG: Draw Link's Bounding Box ===
-            //Rectangle bb = linkSprite.BoundingBox;
-
-            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y, bb.Width, 1), Color.Red); // Top
-            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y + bb.Height - 1, bb.Width, 1), Color.Red); // Bottom
-            //_spriteBatch.Draw(pixel, new Rectangle(bb.X, bb.Y, 1, bb.Height), Color.Red); // Left
-            //_spriteBatch.Draw(pixel, new Rectangle(bb.X + bb.Width - 1, bb.Y, 1, bb.Height), Color.Red); // Right
-
             _spriteBatch.End();
             base.Draw(gameTime);
-
-
         }
 
         public ISprite CurrentSprite
@@ -209,74 +170,6 @@ namespace MainGame
             get => _currentSprite;
             set => _currentSprite = value;
         }
-
-        public void LoadDynamicObjects()
-        {
-            _gameObjects.Clear();
-
-            ProjectileSpriteFactory.Instance.LoadProjectileTextures(Content);
-            ItemSpriteFactory.Instance.ItemTextures(Content);
-            LinkSpriteFactory.Instance.LoadLinkTextures(Content);
-            EnemySpriteFactory.Instance.LoadAllTextures(Content);
-            EnemyProjectileManager.Instance.LoadAllTextures(Content);
-
-            _spriteFont = Content.Load<SpriteFont>("DefaultFont");
-            _item = new Item().CreateItem(ItemType.Arrow, 11, 6);
-            _item2 = new Item().CreateItem(ItemType.Arrow, 1, 6);
-            _itemSprite = _item.GetItemSprite();
-
-            linkSprite = new Link(_gameObjects);
-            LinkSpriteFactory.Instance.SetLink(linkSprite);
-            linkSprite._audio = _audio;
-            levelMap = new LevelManager(Content, _gameObjects);
-            levelMap.AddLink(linkSprite);
-            levelMap.LoadRoom(2, 5);
-
-            _startMenu = new StartMenu(Content);
-            _deathScreen = new DeathScreen(Content);
-            _winScreen = new WinScreen(Content);
-            menus.Add(_startMenu);
-            menus.Add(_deathScreen);
-            menus.Add(_winScreen);
-
-            _settings = new SettingsMenu(Content, GraphicsDevice);
-            _inventory = new Inventory(Content, GraphicsDevice, linkSprite, levelMap);
-            _hud = new HUD(Content, linkSprite, levelMap);
-            _shaderManager = new ShaderManager(Content, GraphicsDevice);
-
-            SetupControllers();
-
-            _gameObjects.AddRange(new IGameObject[] { _item, _item2, linkSprite });
-            _enemySprites.ForEach(e => _gameObjects.Add(e));
-
-            levelMap.CollisionManager(_collisionManager);
-            levelMap.Game(this);
-            GameState = GameState.StartMenu;
-            EnemyProjectileManager.Instance.SetObjects(_gameObjects);
-
-
-
-        }
-
-        private void SetupControllers()
-        {
-            var commands = new CommandFactory(this, linkSprite, _itemSprite, _block, _audio, _shaderManager);
-
-            _keyboardController = new KeyboardController(commands.GetLevelCommandMap(), commands.GetMenuCommandMap());
-            _gamePadController = new GamePadController(commands.GetLevelCommandMap(), commands.GetMenuCommandMap());
-            _mouseController = new MouseController(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-        }
-
-        private Texture2D[] LoadBlockTextures()
-        {
-            var textures = new List<Texture2D>();
-            for (int i = 1; i <= 10; i++)
-                textures.Add(Content.Load<Texture2D>($"block{i}"));
-
-            textures.Add(Content.Load<Texture2D>("transparent_block"));
-            return textures.ToArray();
-        }
-
         private Rectangle GetRenderTargetDestination(Point resolution)
         {
             Point bounds = new(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
