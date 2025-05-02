@@ -69,13 +69,11 @@ public class CheatCodeManager
             }
 
             string currentSequence = string.Join("", recentKeys);
-            //System.Diagnostics.Debug.WriteLine("Current cheat input: " + currentSequence);
 
             foreach (var cheat in cheatCommands)
             {
                 if (currentSequence.EndsWith(cheat.Key, StringComparison.OrdinalIgnoreCase))
                 {
-                    //System.Diagnostics.Debug.WriteLine($"Cheat matched: {cheat.Key} -> + currentSequence...");
                     // Cheat found - execute
                     cheat.Value.Execute();
                     recentKeys.Clear();
@@ -86,7 +84,6 @@ public class CheatCodeManager
         // If to much time passes clear buffer
         if (timeSinceLastKey > maxDelayBetweenKeys)
         {
-            //System.Diagnostics.Debug.WriteLine("Sequence timeout, clearing input");
             recentKeys.Clear();
         }
     }

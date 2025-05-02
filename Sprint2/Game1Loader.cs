@@ -76,7 +76,7 @@ namespace MainGame
             menus.Add(_winScreen);
 
             _settings = new SettingsMenu(Content, GraphicsDevice);
-            _inventory = new Inventory(Content, GraphicsDevice, linkSprite, levelMap);
+            _inventory = new InventoryHUD(Content, GraphicsDevice, linkSprite, levelMap);
             _hud = new HUD(Content, linkSprite, levelMap);
 
             _shaderManager = new ShaderManager(Content, GraphicsDevice);

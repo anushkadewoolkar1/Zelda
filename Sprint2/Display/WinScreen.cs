@@ -14,7 +14,7 @@ using Zelda.Enums;
 namespace MainGame.Display
 {
     //
-    public class WinScreen : IMenu
+    public class WinScreen : BaseMenu
     {
         private Texture2D backgroundTexture;
         private GameState GameState;

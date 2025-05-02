@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Zelda.Inventory
 {
-    public class Inventory
+    public class InventoryHUD
     {
         private Texture2D _backgroundTexture;
         private Texture2D pixel;
@@ -33,7 +33,7 @@ namespace Zelda.Inventory
 
         private Dictionary<string, SpriteDef> _spriteDefs;
 
-        public Inventory(ContentManager content, GraphicsDevice graphicsDevice, Link _link, LevelManager level)
+        public InventoryHUD(ContentManager content, GraphicsDevice graphicsDevice, Link _link, LevelManager level)
         {
             _backgroundTexture = content.Load<Texture2D>("PauseScreen");
             link = _link;

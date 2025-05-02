@@ -13,7 +13,7 @@ using Zelda.Enums;
 namespace MainGame.Display
 {
     // Interface for menus, extending the behavior of a display (PP):
-    public abstract class IMenu : IDisplay
+    public abstract class BaseMenu : IDisplay
     {
         public readonly GameState identity;
 

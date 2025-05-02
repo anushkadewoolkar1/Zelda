@@ -12,7 +12,7 @@ using Zelda.Enums;
 namespace MainGame.Display
 {
     // Interface for game sprites
-    public abstract class ILevel : IDisplay
+    public abstract class BaseLevel : IDisplay
     {
         public readonly GameState identity = GameState.Playing;
 

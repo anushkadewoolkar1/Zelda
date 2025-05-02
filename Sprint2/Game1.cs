@@ -54,9 +54,9 @@ namespace MainGame
         private DeathScreen _deathScreen;
         private WinScreen _winScreen;
         private SettingsMenu _settings;
-        private Inventory _inventory;
+        private InventoryHUD _inventory;
         private HUD _hud;
-        private List<IMenu> menus = new List<IMenu>();
+        private List<BaseMenu> menus = new List<BaseMenu>();
 
         private List<IGameObject> _gameObjects = new();
         private List<Enemy> _enemySprites = new();
@@ -120,7 +120,7 @@ namespace MainGame
             levelMap.Update(gameTime);
             levelMap.GameState(GameState);
 
-            foreach (IMenu menu in menus)
+            foreach (BaseMenu menu in menus)
             {
                 menu.UpdateGameState(GameState);
             }
@@ -147,7 +147,7 @@ namespace MainGame
                 _spriteBatch.DrawString(_spriteFont, statsText, new Vector2(10, 10), Color.White);
             }
             
-            foreach (IMenu menu in menus)
+            foreach (BaseMenu menu in menus)
             {
                 menu.Draw(_spriteBatch);
             }

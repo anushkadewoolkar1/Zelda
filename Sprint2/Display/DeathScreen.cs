@@ -14,7 +14,7 @@ using Zelda.Enums;
 namespace MainGame.Display
 {
     //
-    public class DeathScreen : IMenu
+    public class DeathScreen : BaseMenu
     {
         private Texture2D backgroundTexture;
         private GameState GameState;

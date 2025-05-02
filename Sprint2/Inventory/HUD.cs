@@ -5,7 +5,7 @@ using Zelda.Enums;
 using Zelda.Inventory;  // Gives us access to Inventory.SpriteDef
 using MainGame.Display;
 using System.Collections.Generic;
-using static Zelda.Inventory.Inventory;
+using static Zelda.Inventory.InventoryHUD;
 
 namespace ZeldaGame.HUD
 {
@@ -16,7 +16,7 @@ namespace ZeldaGame.HUD
         private Link _link;
         private LevelManager _level;
 
-        private Dictionary<string, Inventory.SpriteDef> _spriteDefs;
+        private Dictionary<string, InventoryHUD.SpriteDef> _spriteDefs;
 
         public HUD(ContentManager content, Link link, LevelManager level)
         {
@@ -28,22 +28,22 @@ namespace ZeldaGame.HUD
 
         private void InitializeSpriteDefinitions()
         {
-            _spriteDefs = new Dictionary<string, Inventory.SpriteDef>();
+            _spriteDefs = new Dictionary<string, InventoryHUD.SpriteDef>();
 
-            _spriteDefs["bottomBar"] = new Inventory.SpriteDef(HudConstants.BottomBarScale, HudConstants.BottomBarSourceRect);
+            _spriteDefs["bottomBar"] = new InventoryHUD.SpriteDef(HudConstants.BottomBarScale, HudConstants.BottomBarSourceRect);
 
-            _spriteDefs["fullHeart"] = new Inventory.SpriteDef(HudConstants.HeartIconScale, HudConstants.FullHeartSourceRect);
-            _spriteDefs["emptyHeart"] = new Inventory.SpriteDef(HudConstants.HeartIconScale, HudConstants.EmptyHeartSourceRect);
+            _spriteDefs["fullHeart"] = new InventoryHUD.SpriteDef(HudConstants.HeartIconScale, HudConstants.FullHeartSourceRect);
+            _spriteDefs["emptyHeart"] = new InventoryHUD.SpriteDef(HudConstants.HeartIconScale, HudConstants.EmptyHeartSourceRect);
 
 
-            _spriteDefs["miniMapMap"] = new Inventory.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Map);
-            _spriteDefs["miniMapEmpty"] = new Inventory.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Empty);
+            _spriteDefs["miniMapMap"] = new InventoryHUD.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Map);
+            _spriteDefs["miniMapEmpty"] = new InventoryHUD.SpriteDef(HudConstants.MiniMapScale, HudConstants.BottomMiniMapSourceRect_Empty);
 
             _spriteDefs["pinkIndicator"] = new SpriteDef(InventoryConstants.HudIndicatorScale, InventoryConstants.HudIndicatorSourceRect);
 
-            _spriteDefs["selectedArrow"] = new Inventory.SpriteDef(HudConstants.SelectedArrowScale, HudConstants.SelectedArrowSourceRect);
-            _spriteDefs["selectedBomb"] = new Inventory.SpriteDef(HudConstants.SelectedBombScale, HudConstants.SelectedBombSourceRect);
-            _spriteDefs["selectedBoomerang"] = new Inventory.SpriteDef(HudConstants.SelectedBoomerangScale, HudConstants.SelectedBoomerangSourceRect);
+            _spriteDefs["selectedArrow"] = new InventoryHUD.SpriteDef(HudConstants.SelectedArrowScale, HudConstants.SelectedArrowSourceRect);
+            _spriteDefs["selectedBomb"] = new InventoryHUD.SpriteDef(HudConstants.SelectedBombScale, HudConstants.SelectedBombSourceRect);
+            _spriteDefs["selectedBoomerang"] = new InventoryHUD.SpriteDef(HudConstants.SelectedBoomerangScale, HudConstants.SelectedBoomerangSourceRect);
         }
 
         // Link tracking on minimap
@@ -56,7 +56,7 @@ namespace ZeldaGame.HUD
             return new int[] { InventoryConstants.hBaseLX + InventoryConstants.hLXOffset * x, InventoryConstants.hBaseLY + InventoryConstants.hLYOffset * y };
         }
 
-        private Rectangle GetDestinationRect(Inventory.SpriteDef sprite, int x, int y)
+        private Rectangle GetDestinationRect(InventoryHUD.SpriteDef sprite, int x, int y)
         {
             return new Rectangle(x, y, sprite.Width, sprite.Height);
         }
@@ -68,14 +68,14 @@ namespace ZeldaGame.HUD
 
         public void DrawStaticElements(SpriteBatch spriteBatch)
         {
-            Inventory.SpriteDef bottomBar = _spriteDefs["bottomBar"];
+            InventoryHUD.SpriteDef bottomBar = _spriteDefs["bottomBar"];
             Rectangle bottomBarDest = GetDestinationRect(bottomBar, HudConstants.BottomBarDestX, HudConstants.BottomBarDestY);
             spriteBatch.Draw(_backgroundTexture, bottomBarDest, bottomBar.SourceRect, Color.White);
 
             // hearts
             int health = _link.Health;
-            Inventory.SpriteDef fullHeart = _spriteDefs["fullHeart"];
-            Inventory.SpriteDef emptyHeart = _spriteDefs["emptyHeart"];
+            InventoryHUD.SpriteDef fullHeart = _spriteDefs["fullHeart"];
+            InventoryHUD.SpriteDef emptyHeart = _spriteDefs["emptyHeart"];
 
             for (int i = 0; i < 3; i++)
             {
@@ -100,7 +100,7 @@ namespace ZeldaGame.HUD
             // minimap @ bottom
             if (_link.CurrentItem.Contains(ItemType.Map))
             {
-                Inventory.SpriteDef miniMap = _spriteDefs["miniMapMap"];
+                InventoryHUD.SpriteDef miniMap = _spriteDefs["miniMapMap"];
                 Rectangle miniMapDest = GetDestinationRect(miniMap, HudConstants.MiniMapDestX, HudConstants.MiniMapDestY);
                 spriteBatch.Draw(_backgroundTexture, miniMapDest, miniMap.SourceRect, Color.White);
 
@@ -115,7 +115,7 @@ namespace ZeldaGame.HUD
             }
             else
             {
-                Inventory.SpriteDef miniMapEmpty = _spriteDefs["miniMapEmpty"];
+                InventoryHUD.SpriteDef miniMapEmpty = _spriteDefs["miniMapEmpty"];
                 Rectangle miniMapDest = GetDestinationRect(miniMapEmpty, HudConstants.MiniMapDestX, HudConstants.MiniMapDestY);
                 spriteBatch.Draw(_backgroundTexture, miniMapDest, miniMapEmpty.SourceRect, Color.White);
             }
@@ -127,21 +127,21 @@ namespace ZeldaGame.HUD
                 {
                     case ItemType.Arrow:
                         {
-                            Inventory.SpriteDef selectedArrow = _spriteDefs["selectedArrow"];
+                            InventoryHUD.SpriteDef selectedArrow = _spriteDefs["selectedArrow"];
                             Rectangle arrowDest = GetDestinationRect(selectedArrow, HudConstants.SelectedArrowDestX, HudConstants.SelectedArrowDestY);
                             spriteBatch.Draw(_backgroundTexture, arrowDest, selectedArrow.SourceRect, Color.White);
                             break;
                         }
                     case ItemType.Bomb:
                         {
-                            Inventory.SpriteDef selectedBomb = _spriteDefs["selectedBomb"];
+                            InventoryHUD.SpriteDef selectedBomb = _spriteDefs["selectedBomb"];
                             Rectangle bombDest = GetDestinationRect(selectedBomb, HudConstants.SelectedBombDestX, HudConstants.SelectedBombDestY);
                             spriteBatch.Draw(_backgroundTexture, bombDest, selectedBomb.SourceRect, Color.White);
                             break;
                         }
                     case ItemType.Boomerang:
                         {
-                            Inventory.SpriteDef selectedBoomerang = _spriteDefs["selectedBoomerang"];
+                            InventoryHUD.SpriteDef selectedBoomerang = _spriteDefs["selectedBoomerang"];
                             Rectangle boomerangDest = GetDestinationRect(selectedBoomerang, HudConstants.SelectedBoomerangDestX, HudConstants.SelectedBoomerangDestY);
                             spriteBatch.Draw(_backgroundTexture, boomerangDest, selectedBoomerang.SourceRect, Color.White);
                             break;

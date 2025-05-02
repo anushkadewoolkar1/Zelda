@@ -10,7 +10,7 @@ using MainGame.States;
 
 namespace MainGame.Display
 {
-    public partial class LevelManager : ILevel, IGameObject
+    public partial class LevelManager : BaseLevel, IGameObject
     {
         private LevelFileReader levelData;
         private Room currentRoom;

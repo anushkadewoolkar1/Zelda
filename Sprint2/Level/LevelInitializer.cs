@@ -9,7 +9,7 @@ using MainGame.States;
 
 namespace MainGame.Display
 {
-    public partial class LevelManager : ILevel, IGameObject
+    public partial class LevelManager : BaseLevel, IGameObject
     {
         public override void LoadRoom(int xCoordinate, int yCoordinate)
         {
